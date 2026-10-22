@@ -11,7 +11,7 @@ import {
   ArrowRight,
   Phone,
   Calendar,
-  Wrench,
+  MessageCircle,
 } from "lucide-react";
 import { WORKSHOP_SERVICES, WORKSHOP_INFO, ServiceItem } from "@/data/workshopData";
 
@@ -26,7 +26,9 @@ function ServiceDetailsContent() {
   useEffect(() => {
     if (serviceParam) {
       const found = WORKSHOP_SERVICES.find(
-        (s) => s.id.toLowerCase() === serviceParam.toLowerCase()
+        (s) =>
+          s.id.toLowerCase() === serviceParam.toLowerCase() ||
+          s.title.toLowerCase().includes(serviceParam.toLowerCase())
       );
       if (found) {
         setSelectedService(found);
@@ -34,10 +36,21 @@ function ServiceDetailsContent() {
     }
   }, [serviceParam]);
 
+  const workshopServices = WORKSHOP_SERVICES.filter(
+    (s) => s.category === "Workshop Services"
+  );
+  const interiorServices = WORKSHOP_SERVICES.filter(
+    (s) => s.category === "Interior & Accessories"
+  );
+
+  const whatsappInquiryUrl = `${WORKSHOP_INFO.whatsappUrl}&text=${encodeURIComponent(
+    `Hello Al Rahmaniah Auto, I am interested in booking the "${selectedService.title}" service for my vehicle.`
+  )}`;
+
   return (
     <div className="bg-white">
       {/* Page Hero Banner */}
-      <section className="relative w-full h-[50vh] min-h-[380px] overflow-hidden flex flex-col justify-center items-center bg-black pt-20">
+      <section className="relative w-full h-[52vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center bg-black pt-20">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/services-hero.png"
@@ -46,19 +59,19 @@ function ServiceDetailsContent() {
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-[#120505]/75 backdrop-brightness-75" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
+          <div className="absolute inset-0 bg-black/75 backdrop-brightness-75" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
         </div>
 
-        <div className="relative z-20 text-center px-6 max-w-3xl mx-auto">
+        <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
           <div className="inline-block px-4 py-1.5 rounded-full bg-red-600/20 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-[0.25em] mb-4">
-            Detailed Service Specifications
+            {selectedService.category}
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-black tracking-tight uppercase leading-tight text-white mb-3">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-black tracking-tight uppercase leading-[0.95] text-white mb-3">
             {selectedService.title} <span className="text-red-500">Service</span>
           </h1>
-          <p className="max-w-xl mx-auto text-zinc-300 text-sm md:text-base font-normal leading-relaxed">
-            Professional car maintenance and repair standards in Sharjah Industrial Area 5.
+          <p className="max-w-2xl mx-auto text-zinc-300 text-sm md:text-base font-normal leading-relaxed">
+            Expert care for your car. Certified workshop mechanical maintenance & custom interior upholstery in Sharjah Industrial Area 4.
           </p>
         </div>
       </section>
@@ -69,25 +82,48 @@ function ServiceDetailsContent() {
           {/* Left Sidebar: Service Selector & Contact */}
           <div className="lg:col-span-4 space-y-8">
             {/* Service Nav Tabs */}
-            <div className="bg-zinc-50 border border-zinc-200/90 rounded-2xl p-6 shadow-sm">
+            <div className="bg-zinc-50 border border-zinc-200/90 rounded-2xl p-6 shadow-xs">
               <h3 className="font-display font-black text-xl text-zinc-900 uppercase tracking-tight mb-4 pb-3 border-b border-zinc-200">
-                All Services
+                Workshop Services
               </h3>
-              <div className="space-y-2">
-                {WORKSHOP_SERVICES.map((s) => {
+              <div className="space-y-1.5 mb-6">
+                {workshopServices.map((s) => {
                   const isActive = s.id === selectedService.id;
                   return (
                     <button
                       key={s.id}
                       onClick={() => setSelectedService(s)}
-                      className={`w-full text-left px-4 py-3 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wide transition-all flex items-center justify-between cursor-pointer ${
+                      className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide transition-all flex items-center justify-between cursor-pointer ${
                         isActive
-                          ? "bg-red-600 text-white shadow-lg shadow-red-600/30"
+                          ? "bg-red-600 text-white shadow-md shadow-red-600/30"
                           : "bg-white text-zinc-700 hover:bg-zinc-100 border border-zinc-200/60"
                       }`}
                     >
-                      <span>{s.title}</span>
-                      <ArrowRight className={`w-4 h-4 ${isActive ? "text-white" : "text-zinc-400"}`} />
+                      <span className="truncate pr-2">{s.title}</span>
+                      <ArrowRight className={`w-3.5 h-3.5 shrink-0 ${isActive ? "text-white" : "text-zinc-400"}`} />
+                    </button>
+                  );
+                })}
+              </div>
+
+              <h3 className="font-display font-black text-xl text-zinc-900 uppercase tracking-tight mb-4 pb-3 border-b border-zinc-200">
+                Interior & Accessories
+              </h3>
+              <div className="space-y-1.5">
+                {interiorServices.map((s) => {
+                  const isActive = s.id === selectedService.id;
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => setSelectedService(s)}
+                      className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide transition-all flex items-center justify-between cursor-pointer ${
+                        isActive
+                          ? "bg-red-600 text-white shadow-md shadow-red-600/30"
+                          : "bg-white text-zinc-700 hover:bg-zinc-100 border border-zinc-200/60"
+                      }`}
+                    >
+                      <span className="truncate pr-2">{s.title}</span>
+                      <ArrowRight className={`w-3.5 h-3.5 shrink-0 ${isActive ? "text-white" : "text-zinc-400"}`} />
                     </button>
                   );
                 })}
@@ -95,31 +131,41 @@ function ServiceDetailsContent() {
             </div>
 
             {/* Quick Contact & Book Box */}
-            <div className="bg-[#0c0c0e] text-white rounded-2xl p-8 border border-zinc-800 shadow-xl relative overflow-hidden">
-              <div className="relative z-10">
-                <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.25em] mb-2 block">
+            <div className="bg-[#0c0c0e] text-white rounded-2xl p-7 border border-zinc-800 shadow-xl relative overflow-hidden">
+              <div className="relative z-10 space-y-4">
+                <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.25em] block">
                   Need Fast Assistance?
                 </span>
-                <h4 className="font-display font-black text-2xl uppercase tracking-tight mb-4">
-                  Speak to Our Head Technician
+                <h4 className="font-display font-black text-2xl uppercase tracking-tight">
+                  Speak to Our Workshop Manager
                 </h4>
-                <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed mb-6">
-                  Call our service team directly for instant quotes and vehicle drop-off coordination.
+                <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
+                  Call or WhatsApp our Sharjah team directly for immediate advice, quotes, and slot confirmation.
                 </p>
 
-                <div className="space-y-3 mb-6">
+                <div className="space-y-2.5 pt-2">
                   <a
-                    href={`tel:${WORKSHOP_INFO.phones[0]}`}
-                    className="flex items-center gap-3 text-sm text-white font-bold bg-white/10 hover:bg-white/20 p-3 rounded-xl transition-colors"
+                    href={`tel:${WORKSHOP_INFO.phones[0].replace(/\s+/g, "")}`}
+                    className="flex items-center gap-3 text-xs sm:text-sm text-white font-bold bg-white/10 hover:bg-white/20 p-3 rounded-xl transition-colors border border-white/10"
                   >
-                    <Phone className="w-4 h-4 text-red-500" />
+                    <Phone className="w-4 h-4 text-red-500 shrink-0" />
                     <span>{WORKSHOP_INFO.phones[0]}</span>
+                  </a>
+
+                  <a
+                    href={whatsappInquiryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-xs sm:text-sm text-white font-bold bg-emerald-600/30 hover:bg-emerald-600/50 p-3 rounded-xl transition-colors border border-emerald-500/30"
+                  >
+                    <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>WhatsApp Inquiry</span>
                   </a>
                 </div>
 
                 <Link
                   href={`/booking?service=${selectedService.id}`}
-                  className="w-full btn-primary text-white font-bold text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-lg shadow-red-600/30 flex items-center justify-center gap-2"
+                  className="w-full btn-primary text-white font-bold text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 mt-2"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Book {selectedService.title}</span>
@@ -131,7 +177,7 @@ function ServiceDetailsContent() {
           {/* Right Main Content */}
           <div className="lg:col-span-8 space-y-8">
             {/* Big Main Image */}
-            <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden shadow-xl border border-zinc-200 bg-zinc-900">
+            <div className="relative h-80 sm:h-96 w-full rounded-2xl overflow-hidden shadow-xl border border-zinc-200 bg-zinc-900">
               <Image
                 src={selectedService.image}
                 alt={selectedService.title}
@@ -141,7 +187,7 @@ function ServiceDetailsContent() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-6 left-6 z-10 bg-red-600 text-white font-black text-xs uppercase tracking-widest px-4 py-2 rounded-lg shadow-lg">
-                Certified Service Bay
+                {selectedService.category}
               </div>
             </div>
 
@@ -210,7 +256,7 @@ function ServiceDetailsContent() {
                   Ready to book {selectedService.title}?
                 </p>
                 <p className="text-zinc-500 text-xs sm:text-sm">
-                  Choose your preferred date and time at our Sharjah Industrial Area 5 shop.
+                  Choose your preferred date and time at our Sharjah Industrial Area 4 shop.
                 </p>
               </div>
 

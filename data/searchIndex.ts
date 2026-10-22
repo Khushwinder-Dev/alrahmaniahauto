@@ -1,6 +1,5 @@
 import { allProductsData } from "./productsData";
-import servicesJsonEn from "./services_en.json";
-import servicesJsonAr from "./services_ar.json";
+import { WORKSHOP_SERVICES } from "./workshopData";
 
 export interface SearchResultItem {
   id: string;
@@ -21,7 +20,7 @@ const productSearchItems: SearchResultItem[] = allProductsData.map((p) => ({
   nameAr: p.longName || p.name,
   category: "Product",
   categoryAr: "منتج",
-  href: `/products?search=${encodeURIComponent(p.name)}`,
+  href: `/products/${p.id}`,
   desc: p.description || p.longName,
   descAr: p.description || p.longName,
   keywords: [
@@ -30,88 +29,40 @@ const productSearchItems: SearchResultItem[] = allProductsData.map((p) => ({
     p.category,
     p.subcategory || "",
     "product",
-    "frp",
-    "fiberglass",
-    "stainless steel",
-    "ladder",
-    "tank",
-    "bucket",
-    "cover",
-    "tray",
-    "grating",
-    "manhole",
-    "منتج",
-    "فيبرجلاس",
-    "خزان",
-    "سلم",
+    "seat covers",
+    "leather",
+    "seatbelt",
+    "carpet",
+    "headliner",
+    "accessories",
+    "sharjah",
+    "car interior",
   ].filter(Boolean),
 }));
 
 /* ─── DYNAMICALLY GENERATED SERVICES SEARCH ITEMS ─────────────────────── */
-const arServicesMap = new Map<number, any>();
-if (Array.isArray(servicesJsonAr)) {
-  servicesJsonAr.forEach((s: any) => {
-    arServicesMap.set(s.serviceNumber, s);
-  });
-}
+const serviceSearchItems: SearchResultItem[] = WORKSHOP_SERVICES.map((s) => ({
+  id: `service-${s.id}`,
+  name: s.title,
+  nameAr: s.title,
+  category: "Service",
+  categoryAr: "خدمة",
+  href: `/services-details?service=${s.id}`,
+  desc: s.shortDesc,
+  descAr: s.shortDesc,
+  keywords: [
+    s.title,
+    s.category,
+    s.id,
+    "service",
+    "workshop",
+    "car maintenance",
+    "auto repair",
+    "sharjah",
+    ...s.features,
+  ],
+}));
 
-const serviceSearchItems: SearchResultItem[] = [];
-
-if (Array.isArray(servicesJsonEn)) {
-  servicesJsonEn.forEach((s: any) => {
-    const arService = arServicesMap.get(s.serviceNumber);
-
-    // Main service
-    serviceSearchItems.push({
-      id: `service-${s.serviceNumber}`,
-      name: s.serviceTitle,
-      nameAr: arService?.serviceTitle || s.serviceTitle,
-      category: "Service",
-      categoryAr: "خدمة",
-      href: `/services?service=${s.serviceNumber}`,
-      desc: s.shortDescription || s.tagline || `${s.serviceTitle} specialized contracting services.`,
-      descAr: arService?.shortDescription || arService?.tagline || "",
-      keywords: [
-        s.serviceTitle,
-        s.serviceSlug || "",
-        s.category || "",
-        "service",
-        "contracting",
-        "division",
-        ...(s.seoKeywords || []),
-      ].filter(Boolean),
-    });
-
-    // Subservices
-    if (Array.isArray(s.subservices)) {
-      s.subservices.forEach((sub: any, idx: number) => {
-        const arSub = arService?.subservices?.[idx];
-
-        serviceSearchItems.push({
-          id: `subservice-${s.serviceNumber}-${sub.serviceSlug || idx}`,
-          name: sub.serviceTitle,
-          nameAr: arSub?.serviceTitle || sub.serviceTitle,
-          category: "Service",
-          categoryAr: "خدمة فرعية",
-          href: `/services?service=${s.serviceNumber}&sub=${sub.serviceSlug}`,
-          desc:
-            sub.shortDescription ||
-            `${sub.serviceTitle} specialized application under ${s.serviceTitle}.`,
-          descAr: arSub?.shortDescription || "",
-          keywords: [
-            sub.serviceTitle,
-            sub.serviceSlug || "",
-            s.serviceTitle,
-            "service",
-            "subservice",
-            "application",
-            "waterproofing",
-          ].filter(Boolean),
-        });
-      });
-    }
-  });
-}
 
 /* ─── STATIC CORE PAGES, SUBCONTRACT & SOLUTIONS ──────────────────────── */
 const coreSearchItems: SearchResultItem[] = [

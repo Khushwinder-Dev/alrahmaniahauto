@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import {
   MapPin,
   Phone,
@@ -12,8 +13,12 @@ import {
   Info,
 } from "lucide-react";
 import toast from "react-hot-toast";
+import { WORKSHOP_SERVICES, WORKSHOP_INFO } from "@/data/workshopData";
 
-export default function BookingPage() {
+function BookingContent() {
+  const searchParams = useSearchParams();
+  const serviceParam = searchParams.get("service");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,6 +29,19 @@ export default function BookingPage() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (serviceParam) {
+      const match = WORKSHOP_SERVICES.find(
+        (s) =>
+          s.id.toLowerCase() === serviceParam.toLowerCase() ||
+          s.title.toLowerCase().includes(serviceParam.toLowerCase())
+      );
+      if (match) {
+        setFormData((prev) => ({ ...prev, service: match.title }));
+      }
+    }
+  }, [serviceParam]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,12 +89,12 @@ export default function BookingPage() {
               data-aos-delay="400"
               className="max-w-xl text-gray-400 text-xs md:text-sm font-medium tracking-wide opacity-80"
             >
-              A look at the quality work we deliver — every car, every time.
+              Reserve your service slot at Al Rahmaniah Auto Workshop & Accessories in Sharjah.
             </p>
           </div>
         </section>
 
-        {/* Info + Booking Form Section */}
+        {/* Content Section */}
         <section className="bg-white py-16 px-6 md:px-12 lg:px-24">
           <div className="max-w-[1400px] mx-auto">
             {/* Top 3 Info Columns */}
@@ -87,9 +105,9 @@ export default function BookingPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wide mb-1 leading-tight">
-                    AL RAHMANIAH AUTO MAINTENANCE WORKSHOP
+                    {WORKSHOP_INFO.name}
                   </h3>
-                  <p className="text-zinc-500 text-sm">Industrial Area No 5, Sharjah, UAE</p>
+                  <p className="text-zinc-500 text-sm">{WORKSHOP_INFO.address}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -100,8 +118,8 @@ export default function BookingPage() {
                   <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wide mb-1">
                     CALL US
                   </h3>
-                  <p className="text-zinc-500 text-sm">+971564406456</p>
-                  <p className="text-zinc-500 text-sm">+971557636994</p>
+                  <p className="text-zinc-500 text-sm">{WORKSHOP_INFO.phones[0]}</p>
+                  <p className="text-zinc-500 text-sm">{WORKSHOP_INFO.phones[1]}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -112,8 +130,8 @@ export default function BookingPage() {
                   <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wide mb-1">
                     WORKING HOURS
                   </h3>
-                  <p className="text-zinc-500 text-sm">Saturday - Thursday: 8:00 am - 9:00 pm</p>
-                  <p className="text-zinc-500 text-sm">Friday : Closed</p>
+                  <p className="text-zinc-500 text-sm">{WORKSHOP_INFO.hours.weekdays}</p>
+                  <p className="text-zinc-500 text-sm">{WORKSHOP_INFO.hours.friday}</p>
                 </div>
               </div>
             </div>
@@ -194,19 +212,27 @@ export default function BookingPage() {
                     required
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full bg-zinc-100 border-none rounded-xl p-4 text-zinc-900 focus:ring-2 focus:ring-red-600/20 outline-none"
+                    className="w-full bg-zinc-100 border-none rounded-xl p-4 text-zinc-900 focus:ring-2 focus:ring-red-600/20 outline-none font-medium"
                   >
                     <option value="">Select Service</option>
-                    <option>Mechanical Repair</option>
-                    <option>Electrical Diagnostics</option>
-                    <option>AC Service &amp; Gas Refill</option>
-                    <option>Oil &amp; Filter Change</option>
-                    <option>Brake Service</option>
-                    <option>Full Maintenance</option>
+                    <optgroup label="Workshop Services">
+                      {WORKSHOP_SERVICES.filter((s) => s.category === "Workshop Services").map((s) => (
+                        <option key={s.id} value={s.title}>
+                          {s.title}
+                        </option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Interior & Accessories">
+                      {WORKSHOP_SERVICES.filter((s) => s.category === "Interior & Accessories").map((s) => (
+                        <option key={s.id} value={s.title}>
+                          {s.title}
+                        </option>
+                      ))}
+                    </optgroup>
                   </select>
                   <textarea
                     name="message"
-                    placeholder="Details about your car (e.g. Toyota Camry 2020)..."
+                    placeholder="Details about your car (e.g. Toyota Camry 2022, check engine light or custom seat covers)..."
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -231,7 +257,7 @@ export default function BookingPage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Find Us On Map</h2>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                Visit our workshop in Sharjah. Professional auto maintenance services you can trust.
+                Visit our workshop & accessories center in Sharjah. Professional automotive services you can trust.
               </p>
             </div>
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 relative group">
@@ -240,26 +266,26 @@ export default function BookingPage() {
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
-                  src="https://maps.google.com/maps?q=AL%20RAHMANIAH%20AUTO%20MAINTENANCE%20WORKSHOP%20Industrial%20Area%205%20-%20Industrial%20Area%20-%20Sharjah&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=AL%20RAHMANIAH%20AUTO%20ACCESSORIES%20Industrial%20Area%204%20-%20Sharjah&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="AL RAHMANIAH AUTO MAINTENANCE WORKSHOP"
+                  title="AL RAHMANIAH AUTO ACCESSORIES & WORKSHOP"
                 />
               </div>
               <div className="absolute top-4 left-4 z-10 bg-white rounded-md shadow-lg border border-gray-200 p-4 w-[320px] hidden md:block">
                 <div className="flex justify-between items-start mb-1">
                   <div className="flex-1">
                     <h3 className="text-[16px] font-semibold text-gray-900 leading-tight">
-                      AL RAHMANIAH AUTO MAINTENANCE WORKSHOP
+                      AL RAHMANIAH AUTO
                     </h3>
                     <p className="text-[13px] text-gray-600 mt-1 leading-normal">
-                      Industrial Area 5 - Industrial Area - Sharjah
+                      Industrial Area 4 - Sharjah - UAE
                     </p>
                   </div>
                   <div className="flex gap-2 ml-2">
                     <a
-                      href="https://www.google.com/maps/dir/?api=1&destination=25.320666,55.408305"
+                      href="https://maps.google.com"
                       target="_blank"
                       rel="noreferrer"
                       className="p-2 bg-blue-50 rounded-full hover:bg-blue-100 text-blue-600 transition-colors"
@@ -268,7 +294,7 @@ export default function BookingPage() {
                       <ExternalLink className="w-[18px] h-[18px]" />
                     </a>
                     <a
-                      href="https://www.google.com/maps/dir/?api=1&destination=25.320666,55.408305"
+                      href="https://maps.google.com"
                       target="_blank"
                       rel="noreferrer"
                       className="p-2 bg-blue-600 rounded-full hover:bg-blue-700 text-white transition-colors"
@@ -301,5 +327,13 @@ export default function BookingPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white pt-32 text-center">Loading Booking Page...</div>}>
+      <BookingContent />
+    </Suspense>
   );
 }

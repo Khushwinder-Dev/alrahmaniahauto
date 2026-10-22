@@ -166,20 +166,20 @@ export default function Footer() {
             <div className="flex gap-4">
               <MapPin className="text-red-600 shrink-0 w-5 h-5" />
               <p className="text-sm">
-                Industrial Area No 5 ,<br /> Sharjah, UAE
+                Industrial Area 4,<br /> Sharjah, UAE
               </p>
             </div>
             <div className="flex gap-4">
               <Phone className="text-red-600 shrink-0 w-5 h-5" />
               <div className="text-sm">
                 <p>
-                  <a href="tel:+971564406456" className="hover:text-white transition-colors">
-                    +971564406456
+                  <a href="tel:+971558875678" className="hover:text-white transition-colors font-medium">
+                    +971 55 887 5678
                   </a>
                 </p>
                 <p>
-                  <a href="tel:+971557636994" className="hover:text-white transition-colors">
-                    +971557636994
+                  <a href="tel:+971558674927" className="hover:text-white transition-colors font-medium">
+                    +971 55 867 4927
                   </a>
                 </p>
               </div>

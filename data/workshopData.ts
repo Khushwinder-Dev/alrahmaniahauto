@@ -1,6 +1,7 @@
 export interface ServiceItem {
   id: string;
   title: string;
+  category: "Workshop Services" | "Interior & Accessories";
   shortDesc: string;
   fullDesc: string;
   image: string;
@@ -13,131 +14,207 @@ export interface ServiceItem {
 export const WORKSHOP_SERVICES: ServiceItem[] = [
   {
     id: "diagnostics",
-    title: "Diagnostics",
-    shortDesc: "Advanced computer diagnostics to identify and resolve engine problems",
+    title: "Engine Diagnostics",
+    category: "Workshop Services",
+    shortDesc: "Advanced computer diagnostics & sensor scanning to identify and resolve check engine codes",
     fullDesc: "Our state-of-the-art diagnostic scanners interface directly with your car's onboard computer (ECU) to pinpoint fault codes, sensor malfunctions, transmission errors, and electrical issues with 100% precision.",
     image: "/images/ims_b_3.jpg",
     iconName: "cpu",
     features: [
-      "Full ECU and sensor scans",
-      "Check engine light analysis",
-      "Live data monitoring & graphing",
-      "Detailed health report with repair recommendations"
+      "Full ECU, TCU & sensor diagnostic scan",
+      "Check engine light trouble code isolation",
+      "Live engine parameter & sensor graphing",
+      "Comprehensive health report & repair estimate"
     ],
     duration: "30-45 mins",
     warranty: "Diagnostic Accuracy Guarantee"
   },
   {
-    id: "oil-change",
-    title: "Oil Change",
-    shortDesc: "Quick and professional oil change service with premium quality oils",
-    fullDesc: "We use only manufacturer-approved, high-grade fully synthetic oils formulated to withstand the intense UAE desert heat, prolonging engine life and maximizing fuel efficiency.",
-    image: "/images/service-1.png",
-    iconName: "droplets",
-    features: [
-      "OEM-spec premium synthetic oils (5W-30, 0W-40, etc.)",
-      "Genuine oil filter replacement",
-      "Comprehensive multi-point vehicle inspection",
-      "Fluids top-up (coolant, brake, washer fluid)"
-    ],
-    duration: "20-30 mins",
-    warranty: "Genuine Oil & Filter Guarantee"
-  },
-  {
     id: "brakes",
-    title: "Brakes",
-    shortDesc: "Complete brake system inspection, repair and replacement",
+    title: "Brake Service & Repair",
+    category: "Workshop Services",
+    shortDesc: "Complete brake system inspection, ceramic pad replacement, rotor skimming, and ABS servicing",
     fullDesc: "Ensure maximum safety with our specialized brake service. We inspect pads, rotors, drums, calipers, and hydraulic brake lines, replacing worn parts with genuine ceramic or metallic friction materials.",
     image: "/images/service-2.png",
     iconName: "shield-check",
     features: [
       "Brake pad & rotor replacement",
-      "Brake disc skimming / resurfacing",
-      "Brake fluid flush & bleeding",
-      "ABS sensor & caliper servicing"
+      "High-precision disc skimming / resurfacing",
+      "Brake hydraulic fluid flush & bleeding",
+      "ABS module & caliper seal inspection"
     ],
     duration: "45-60 mins",
     warranty: "6 Months / 10,000 KM Warranty"
   },
   {
-    id: "suspension",
-    title: "Suspension",
-    shortDesc: "Full suspension inspection, repair and replacement for a smooth ride",
-    fullDesc: "Restore smooth handling, ride comfort, and stability. We service shock absorbers, struts, control arms, ball joints, bushings, and stabilizer links for all vehicle makes.",
-    image: "/images/service-5.png",
-    iconName: "car",
+    id: "oil-change",
+    title: "Oil Change & Maintenance",
+    category: "Workshop Services",
+    shortDesc: "Quick and professional synthetic oil change service with genuine OEM filter replacement",
+    fullDesc: "We use only manufacturer-approved, high-grade fully synthetic oils formulated to withstand the intense UAE desert heat, prolonging engine life and maximizing fuel efficiency.",
+    image: "/images/service-1.png",
+    iconName: "droplets",
     features: [
-      "Shock absorber & strut replacement",
-      "Control arm & bushing renewals",
-      "Steering rack & tie rod repair",
-      "Noise, vibration, and harshness (NVH) testing"
+      "OEM-spec 100% synthetic engine oil (5W-30, 0W-40, 5W-40)",
+      "Genuine OEM oil filter replacement",
+      "25-point bumper-to-bumper vehicle inspection",
+      "Essential fluids top-up (coolant, washer, brake fluid)"
     ],
-    duration: "1-2 hours",
-    warranty: "1 Year Workmanship Warranty"
+    duration: "20-30 mins",
+    warranty: "Genuine Oil & Filter Guarantee"
   },
   {
-    id: "battery",
-    title: "Battery",
-    shortDesc: "Battery testing, replacement and charging system diagnostics",
-    fullDesc: "Extreme Gulf temperatures drain battery life fast. We test battery cranking power, alternator charging output, and starter motor draw, offering high-durability AGM and maintenance-free batteries.",
-    image: "/images/service-8.png",
-    iconName: "battery",
+    id: "wheel-alignment",
+    title: "Wheel Alignment & Balancing",
+    category: "Workshop Services",
+    shortDesc: "Computerized laser wheel alignment, dynamic high-speed balancing, tire rotation, and safety checks",
+    fullDesc: "Eliminate steering pull, minimize uneven tire wear, and ensure maximum handling stability on UAE roads with our computerized 3D laser alignment and digital wheel balancing.",
+    image: "/images/service-6.png",
+    iconName: "disc",
     features: [
-      "Digital battery health & load testing",
-      "Alternator & charging voltage check",
-      "Terminal corrosion cleaning & terminal protection",
-      "Top-tier brands with up to 2-year warranty"
+      "3D Computerized laser 4-wheel alignment",
+      "Dynamic high-speed wheel balancing",
+      "Camber, caster & toe angle calibration",
+      "Tread depth measurement & tire rotation"
     ],
-    duration: "15-20 mins",
-    warranty: "12 to 24 Months Replacement"
+    duration: "30-45 mins",
+    warranty: "Laser Alignment Guarantee"
   },
   {
     id: "ac-repair",
-    title: "A/C Repair",
-    shortDesc: "Air conditioning repair and maintenance for optimal comfort",
+    title: "AC Service & Repair",
+    category: "Workshop Services",
+    shortDesc: "Precision AC refrigerant recharge, leak detection with UV dye, compressor repair, and cabin sanitization",
     fullDesc: "Beat the Sharjah heat with icy-cool air conditioning. We handle refrigerant recharging (R134a / R1234yf), compressor repair, evaporator replacement, condenser cleaning, and leak detection.",
     image: "/images/service-3.png",
     iconName: "fan",
     features: [
       "Precision gas leak detection with UV dye",
       "AC compressor, condenser & evaporator overhaul",
-      "Cabin air filter replacement & sanitization",
-      "System vacuuming & high-grade gas recharge"
+      "High-grade refrigerant gas vacuum & refill",
+      "Cabin air filter renewal & antibacterial sanitization"
     ],
     duration: "45-90 mins",
     warranty: "Cooling Performance Guarantee"
   },
   {
-    id: "tires",
-    title: "Tires",
-    shortDesc: "Tire inspection, rotation, balancing and replacement service",
-    fullDesc: "Stay safe on highway commutes. We inspect tread depth, perform high-speed computerized wheel balancing, laser alignment, and provide tire replacements from Michelin, Bridgestone, Continental, and more.",
-    image: "/images/service-6.png",
-    iconName: "disc",
+    id: "suspension",
+    title: "Suspension & Steering",
+    category: "Workshop Services",
+    shortDesc: "Shock absorber replacement, steering rack repair, control arm bushings, and chassis stabilization",
+    fullDesc: "Restore smooth handling, ride comfort, and stability. We service shock absorbers, struts, control arms, ball joints, bushings, and stabilizer links for all vehicle makes.",
+    image: "/images/service-5.png",
+    iconName: "car",
     features: [
-      "Computerized laser wheel alignment",
-      "Dynamic wheel balancing",
-      "Puncture repair & valve replacement",
-      "Tire rotation & tread wear analysis"
-    ],
-    duration: "30-45 mins",
-    warranty: "Manufacturer Warranty on New Tires"
-  },
-  {
-    id: "computer-programming",
-    title: "Computer Programming",
-    shortDesc: "ECU programming, software updates and vehicle system configuration",
-    fullDesc: "Advanced software calibration, module coding, key programming, and firmware upgrades for luxury and modern European and Japanese automobiles.",
-    image: "/images/service-7.png",
-    iconName: "code",
-    features: [
-      "ECU / TCU software updates",
-      "Control module adaptation & coding",
-      "Sensor calibration & throttle body relearn",
-      "Immobilizer & smart key configuration"
+      "Shock absorber & strut replacement",
+      "Control arm & polyurethane bushing renewal",
+      "Steering rack, tie rod & ball joint servicing",
+      "Road test & NVH (noise, vibration) elimination"
     ],
     duration: "1-2 hours",
-    warranty: "Software Stability Guarantee"
+    warranty: "1 Year Workmanship Warranty"
+  },
+  {
+    id: "seat-covers",
+    title: "Custom Seat Covers & Fitment",
+    category: "Interior & Accessories",
+    shortDesc: "Custom tailored luxury leather seat covers crafted for comfort, style, and durability with 100% original materials",
+    fullDesc: "Revive your car's interior with premium custom seat covers. Expertly stitched using 100% original high-grade German and Italian leatherette, Nappa leather, and breathable textures, custom-tailored for your exact car model.",
+    image: "/fb-posts/580575558_122191406348549942_4454035087039568744_n.jpg",
+    iconName: "armchair",
+    features: [
+      "100% Original premium grade automotive leather & fabrics",
+      "Custom diamond quilting, perforations & dual-tone stitching",
+      "Laser-measured snug fitment matching OEM seats",
+      "Compatible with side airbags and seat heating/cooling"
+    ],
+    duration: "2-4 hours",
+    warranty: "Material & Craftsmanship Guarantee"
+  },
+  {
+    id: "roof-headliner",
+    title: "Roof Headliner Repair",
+    category: "Interior & Accessories",
+    shortDesc: "Restore sagging roof fabric, luxury Alcantara headliner upgrades, pillar trimming, and custom starlight ceilings",
+    fullDesc: "UAE heat causes factory roof fabric adhesive to degrade and sag. Our interior specialists strip the headliner board, clean old adhesive, and re-upholster in OEM fabric, luxury Alcantara, or custom starlight ceilings.",
+    image: "/fb-posts/592746335_122194714862549942_8464117864862490904_n.jpg",
+    iconName: "sparkles",
+    features: [
+      "High-temperature Gulf-rated heat-resistant adhesive",
+      "OEM textured fabric, suede & luxury Alcantara options",
+      "A, B, C pillar and sunroof sunshade re-wrapping",
+      "Optional fiber-optic starlight ceiling installation"
+    ],
+    duration: "3-5 hours",
+    warranty: "Anti-Sag Adhesive Guarantee"
+  },
+  {
+    id: "colored-seatbelts",
+    title: "Custom Colored Seatbelts",
+    category: "Interior & Accessories",
+    shortDesc: "OEM-certified custom colored seatbelt replacement in vibrant sports red, yellow, blue, and racing shades",
+    fullDesc: "Transform your vehicle cockpit with certified high-strength colored seatbelts. Available in Porsche red, Ferrari yellow, BMW M-style tri-color, Tiffany blue, and dozens of custom hues meeting international safety standards.",
+    image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
+    iconName: "shield",
+    features: [
+      "FIA & OEM compliant high-tensile polyester webbing",
+      "Heavy-duty computerized bar-tack safety stitching",
+      "Available in over 20+ vibrant colors and patterns",
+      "Retains all factory tensioners and airbag triggers"
+    ],
+    duration: "1-2 hours",
+    warranty: "Safety Standard Certified"
+  },
+  {
+    id: "floor-carpeting",
+    title: "Floor Carpeting & 3D Mats",
+    category: "Interior & Accessories",
+    shortDesc: "Precision laser-cut floor carpeting, all-weather 3D/5D leatherette floor mats, and acoustic soundproofing",
+    fullDesc: "Protect your vehicle cabin from sand, spills, and wear. We provide custom-molded complete floor carpeting, trunk liners, and bespoke 3D/5D waterproof leather mats designed for full floor coverage.",
+    image: "/fb-posts/461951688_122103674852549942_8184493955403732311_n.png",
+    iconName: "layers",
+    features: [
+      "Laser-scanned floorpan contour fitment",
+      "Heavy-duty waterproof & dirt-resistant 3D/5D materials",
+      "Full floor replacement & trunk protective lining",
+      "Under-carpet sound deadening & heat insulation"
+    ],
+    duration: "1-2 hours",
+    warranty: "Waterproof & Wear Guarantee"
+  },
+  {
+    id: "battery",
+    title: "Battery & Electrical Care",
+    category: "Workshop Services",
+    shortDesc: "Digital battery load testing, charging alternator diagnostics, starter motor repair, and AGM battery replacement",
+    fullDesc: "Extreme Gulf temperatures drain battery life fast. We test battery cranking power, alternator charging output, and starter motor draw, offering high-durability AGM and maintenance-free batteries with replacement warranty.",
+    image: "/images/service-8.png",
+    iconName: "battery",
+    features: [
+      "Digital battery conductance & cold-cranking health test",
+      "Alternator charging voltage & starter current check",
+      "Terminal cleaning & anti-corrosion protection",
+      "Top-tier maintenance-free and AGM batteries in stock"
+    ],
+    duration: "15-20 mins",
+    warranty: "12 to 24 Months Replacement"
+  },
+  {
+    id: "interior-detailing",
+    title: "Interior Detailing & Restoration",
+    category: "Interior & Accessories",
+    shortDesc: "Comprehensive interior deep cleaning, leather conditioning, steam sanitization, and showroom-fresh revival",
+    fullDesc: "Revive and protect your vehicle interior. Our multi-stage detailing process includes high-temperature steam extraction, leather deep cleaning and nourishment, fabric shampooing, and ozone odor elimination.",
+    image: "/fb-posts/581519632_122191279118549942_7579179045438295882_n.jpg",
+    iconName: "sparkles",
+    features: [
+      "Deep leather cleaning & UV conditioning treatment",
+      "High-temperature steam sanitization for bacteria & odors",
+      "Roof liner, carpet & dashboard detailed scrubbing",
+      "Air conditioning duct sterilization & cabin deodorizing"
+    ],
+    duration: "2-4 hours",
+    warranty: "100% Satisfaction Guarantee"
   }
 ];
 
@@ -253,37 +330,38 @@ export const WORKSHOP_VIDEOS: VideoGalleryItem[] = [
 export const WORKSHOP_FAQS = [
   {
     q: "What types of vehicles do you service?",
-    a: "We specialize in servicing and repairing a wide range of vehicles, including luxury, German (Mercedes-Benz, BMW, Audi, Porsche, VW), Japanese (Toyota, Lexus, Nissan, Honda), and American cars, using advanced computerized diagnostic tools and factory-trained technicians."
+    a: "We specialize in servicing and repairing a wide range of vehicles, including luxury, German (Mercedes-Benz, BMW, Audi, Porsche, VW), Japanese (Toyota, Lexus, Nissan, Honda), and American cars, using advanced computerized diagnostic tools, certified mechanics, and custom interior craftsmen."
   },
   {
     q: "Where is your auto workshop located in Sharjah?",
-    a: "We are located at Industrial Area No 5, Sharjah, UAE. Our workshop is easily accessible from Dubai, Ajman, and all parts of Sharjah, with dedicated customer reception and ample parking."
+    a: "We are located at Industrial Area 4, Sharjah, UAE. Our workshop & accessories store is easily accessible from Dubai, Ajman, and all parts of Sharjah, with dedicated customer reception, inspection bays, and ample parking."
   },
   {
     q: "Do you offer upfront estimates before starting any work?",
-    a: "Yes! 100% transparency is our core promise. We perform an initial inspection, pinpoint the issue, and provide a clear, itemized quote detailing parts and labor before turning a single wrench."
+    a: "Yes! 100% transparency is our core promise. We perform an initial inspection, pinpoint the issue, and provide a clear, itemized quote detailing parts and labor before turning a single wrench or stitching fabric."
   },
   {
     q: "How long does a standard oil change or minor service take?",
-    a: "Our express maintenance services—such as synthetic oil changes, filter renewals, brake inspections, and battery swaps—are typically completed in under 45 to 60 minutes in our dedicated express bays."
+    a: "Our express maintenance services—such as synthetic oil changes, filter renewals, brake inspections, and battery swaps—are typically completed in under 30 to 45 minutes in our dedicated express bays."
   },
   {
-    q: "Do you provide warranty on your repair work and parts?",
-    a: "Absolutely. All our replacement parts and labor are backed by our workshop guarantee. We use genuine OEM or high-grade certified aftermarket parts that carry full manufacturer warranties."
+    q: "Do you provide warranty on your repair work and seat covers?",
+    a: "Absolutely. All our mechanical replacement parts and upholstery craftsmanship are backed by warranty. We use 100% original high-grade materials and genuine OEM parts that carry full warranty."
   },
   {
     q: "Can I book an appointment online or through WhatsApp?",
-    a: "Yes! You can easily book an appointment using our online booking form or message our service advisors directly on WhatsApp at +971 56 440 6456 for instant response and priority slot reservation."
+    a: "Yes! You can easily book an appointment using our online booking form or message our service advisors directly on WhatsApp at +971 55 867 4927 or call +971 55 887 5678 for instant response and priority slot reservation."
   }
 ];
 
 export const WORKSHOP_INFO = {
-  name: "Al Rahmaniah Auto Maintenance Workshop",
-  tagline: "Trusted Car Maintenance in Sharjah",
-  address: "Industrial Area No 5, Sharjah, UAE",
-  phones: ["+971564406456", "+971557636994"],
-  whatsapp: "+971564406456",
-  whatsappUrl: "https://api.whatsapp.com/send?phone=971564406456",
+  name: "Al Rahmaniah Auto Maintenance & Accessories",
+  tagline: "Expert Care for Your Car, Every Time You Drive",
+  address: "Industrial Area 4, Sharjah, UAE",
+  phones: ["+971 55 887 5678", "+971 55 867 4927", "+971 55 750 2083", "+971 56 440 6456"],
+  whatsapp: "+971558674927",
+  whatsappUrl: "https://api.whatsapp.com/send?phone=971558674927",
+  bookingPhone: "+971 55 887 5678",
   emails: ["info@alrahmaniahauto.com", "alrahmaniahauto@gmail.com"],
   hours: {
     weekdays: "Saturday - Thursday: 8:00 AM - 9:00 PM",
@@ -295,5 +373,6 @@ export const WORKSHOP_INFO = {
     instagram: "https://www.instagram.com/alrahmaniahauto",
     tiktok: "https://www.tiktok.com/@alrahmaniahauto"
   },
-  mapEmbedUrl: "https://maps.google.com/maps?q=AL%20RAHMANIAH%20AUTO%20MAINTENANCE%20WORKSHOP%20Industrial%20Area%205%20-%20Industrial%20Area%20-%20Sharjah&t=&z=15&ie=UTF8&iwloc=&output=embed"
+  mapEmbedUrl: "https://maps.google.com/maps?q=AL%20RAHMANIAH%20AUTO%20ACCESSORIES%20Industrial%20Area%204%20-%20Sharjah&t=&z=15&ie=UTF8&iwloc=&output=embed"
 };
+
