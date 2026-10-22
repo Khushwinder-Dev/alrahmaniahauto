@@ -4,11 +4,10 @@ import React, { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, X, ChevronsLeft, ChevronsRight, ArrowRight, MessageCircle } from "lucide-react";
-import { allProductsData, PRODUCT_CATEGORIES, ProductDetailItem } from "@/data/productsData";
+import { allProductsData } from "@/data/productsData";
 
 export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 9;
 
@@ -23,21 +22,18 @@ export default function ProductsPage() {
     }
   }, []);
 
-  // Filter products by search and category
+  // Filter products by search query
   const filteredProducts = useMemo(() => {
     return allProductsData.filter((product) => {
       const matchSearch =
         searchQuery.trim() === "" ||
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase());
+        product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchQuery.toLowerCase());
 
-      const matchCategory =
-        selectedCategory === "All Categories" ||
-        product.category === selectedCategory;
-
-      return matchSearch && matchCategory;
+      return matchSearch;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery]);
 
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / itemsPerPage));
   const paginatedProducts = useMemo(() => {
@@ -85,33 +81,17 @@ export default function ProductsPage() {
       <section className="py-12 sm:py-16">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Controls Bar: Category Pills + Search Box */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-5 mb-10 pb-6 border-b border-zinc-200">
-            {/* Category Tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 scrollbar-none">
-              {PRODUCT_CATEGORIES.map((cat) => {
-                const isActive = selectedCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => {
-                      setSelectedCategory(cat);
-                      setCurrentPage(1);
-                    }}
-                    className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                      isActive
-                        ? "bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg shadow-red-600/30 border border-red-500"
-                        : "bg-white text-zinc-700 hover:text-red-600 hover:border-red-300 border border-zinc-200 shadow-2xs"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                );
-              })}
+          {/* Controls Bar: Product Count + Search Box */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-zinc-200">
+            <div className="flex items-center gap-2.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-600"></div>
+              <p className="text-sm font-bold text-zinc-800 uppercase tracking-wider">
+                Showing <span className="text-red-600 font-extrabold">{filteredProducts.length}</span> Products
+              </p>
             </div>
 
             {/* Search Box */}
-            <div className="w-full lg:w-80 relative">
+            <div className="w-full sm:w-80 relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" />
               <input
                 type="text"
@@ -120,7 +100,7 @@ export default function ProductsPage() {
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                placeholder="Search accessories…"
+                placeholder="Search products & accessories…"
                 className="w-full h-11 pl-10 pr-10 rounded-full bg-white border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-red-600 focus:ring-2 focus:ring-red-600/20 outline-none transition-all shadow-xs"
               />
               {searchQuery && (
@@ -137,28 +117,22 @@ export default function ProductsPage() {
             </div>
           </div>
 
-          {/* Results Count & Reset Filter */}
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-red-600"></div>
-              <p className="text-xs font-bold text-zinc-600 uppercase tracking-wider">
-                Showing <span className="text-zinc-900 font-extrabold">{filteredProducts.length}</span> Products
+          {searchQuery && (
+            <div className="flex items-center justify-between mb-6 -mt-4 bg-red-50/60 border border-red-100 rounded-xl px-4 py-2.5">
+              <p className="text-xs text-zinc-600">
+                Search results for: <span className="font-bold text-red-600">&quot;{searchQuery}&quot;</span>
               </p>
-            </div>
-
-            {(selectedCategory !== "All Categories" || searchQuery) && (
               <button
                 onClick={() => {
-                  setSelectedCategory("All Categories");
                   setSearchQuery("");
                   setCurrentPage(1);
                 }}
                 className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline cursor-pointer"
               >
-                Clear all filters
+                Clear search
               </button>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Products Grid */}
           {filteredProducts.length === 0 ? (
@@ -168,15 +142,14 @@ export default function ProductsPage() {
               </div>
               <h3 className="text-lg font-bold text-zinc-900 mb-1">No products found</h3>
               <p className="text-xs text-zinc-500 mb-5 leading-relaxed">
-                We couldn&apos;t find any items matching your filter. Try searching for other terms or view all categories.
+                We couldn&apos;t find any items matching your search. Try searching for other terms or view all products.
               </p>
               <button
                 onClick={() => {
-                  setSelectedCategory("All Categories");
                   setSearchQuery("");
                   setCurrentPage(1);
                 }}
-                className="px-6 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-full text-xs font-bold tracking-wider uppercase transition-all shadow-md shadow-red-600/30"
+                className="px-6 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-full text-xs font-bold tracking-wider uppercase transition-all shadow-md shadow-red-600/30 cursor-pointer"
               >
                 View All Products
               </button>
