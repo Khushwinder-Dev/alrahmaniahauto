@@ -39,61 +39,59 @@ import { VoiceMicButton, VoiceListeningBadge, useVoiceInput } from "@/components
 const PRODUCT_LISTING_FAQS: FaqItem[] = [
   {
     id: 1,
-    question: "Are all supplied materials accompanied by manufacturer TDS, MSDS, and approvals?",
-    questionAr: "هل تُرفق جميع المواد الموردة ببيانات السلامة والمواصفات الفنية والاعتمادات؟",
+    question: "What materials do you use for your custom car seat covers?",
+    questionAr: "ما هي المواد المستخدمة في تفصيل أغطية مقاعد السيارات؟",
     answer:
-      "Yes. Every waterproofing product, elastomeric coating, and chemical admixture is supplied with official technical data sheets (TDS), material safety data sheets (MSDS), and compliance certificates approved by Dubai Municipality and UAE Civil Defense.",
+      "We use 100% original, automotive-grade materials including heavy-duty 3D diamond-stitched PVC leather, premium Napa leatherette, breathable microfiber suede (Alcantara style), and genuine leather hides engineered specifically to withstand extreme UAE summer heat without cracking, peeling, or fading.",
     answerAr:
-      "نعم. يتم توريد كل منتج عزل مائي، أو طلاء مرن، أو مضاف كيميائي ببيانات المواصفات الفنية الرسمية (TDS)، وبيانات سلامة المواد (MSDS)، وشهادات المطابقة المعتمدة من بلدية دبي والدفاع المدني.",
+      "نستخدم مواد أصلية 100٪ بمواصفات سيارات عالية الجودة، بما في ذلك جلد PVC بتطريز ماسي ثلاثي الأبعاد، وجلد نابا الفاخر، والشمواه فائق النعومة (ستايل الكانتارا)، والجلود الطبيعية المعالجة لتحمل حرارة صيف الإمارات دون تشقق أو بهتان.",
   },
   {
     id: 2,
-    question: "Do you offer contractor trade pricing and bulk project deliveries across the UAE?",
-    questionAr: "هل تقدمون أسعار تفضيلية للمقاولين وتوريدات ضخمة في جميع أنحاء الإمارات؟",
+    question: "Can seat covers be tailored for my specific vehicle make and model?",
+    questionAr: "هل يتم تفصيل وتثبيت الأغطية خصيصاً لموديل ونوع سيارتي؟",
     answer:
-      "Yes. We support main contractors, consultants, and specialized subcontractors with competitive commercial pricing, dedicated account managers, and fast on-site delivery throughout Dubai, Abu Dhabi, Sharjah, and the Northern Emirates.",
+      "Yes. Our master trimmers in Sharjah custom-pattern and stitch covers for all vehicles including sedans, 4x4s, luxury SUVs (Land Cruiser, Nissan Patrol, Prado, Tahoe, Defender, Mercedes, BMW), sports coupes, and commercial fleets with full airbag seam compatibility.",
     answerAr:
-      "نعم. ندعم المقاولين الرئيسيين والاستشاريين والمقاولين الفرعيين بأسعار تجارية تنافسية، ومديري حسابات مخصصين، وتوصيل سريع ومباشر للمواقع في دبي وأبوظبي والشارقة والإمارات الشمالية.",
+      "نعم. يقوم خبراؤنا في الشارقة بأخذ القياسات والتفصيل الدقيق لكافة أنواع المركبات بما في ذلك الصالون والدفع الرباعي والسيارات الفاخرة (لاندكروزر، باترول، برادو، تاهو، مرسيدس، بي إم دبليو) مع مراعاة سلامة الوسائد الهوائية (الإيرباج).",
   },
   {
     id: 3,
-    question: "Which international chemical and waterproofing brands are available in your catalog?",
-    questionAr: "ما هي العلامات التجارية العالمية لمواد العزل المتوفرة لديكم؟",
+    question: "Are your custom colored seatbelts safety certified?",
+    questionAr: "هل أحزمة الأمان الملونة معتمدة ومطابقة لمواصفات السلامة؟",
     answer:
-      "We source, distribute, and apply premium certified systems from top global manufacturers including BASF Master Builders, Sika, Fosroc, Henkel Polybit, GCP Applied Technologies, and Dow.",
+      "Yes. All colored webbing (M-Power Tri-Stripe, Racing Red, Speed Yellow, Tiffany Blue, Acid Orange) is woven from 100% high-tenacity polyester rated at >25 kN tensile strength, certified to international ECE R16 and FMVSS 209 automotive safety regulations.",
     answerAr:
-      "نوفر ونوزع ونطبق أنظمة معتمدة من كبرى الشركات العالمية الرائدة مثل باسف (BASF)، وسيكا (Sika)، وفوسروك (Fosroc)، وهنكل بوليبت، وGCP، وداو.",
+      "نعم. جميع أحزمة الأمان الملونة (ألوان إم-باور، الأحمر الرياضي، الأصفر، الأزرق، البرتقالي) مصنوعة من بوليستر فائق المتانة بقوة شد تتجاوز 25 كيلو نيوتن ومعتمدة للمطابقة وفق المعايير الدولية ECE R16 وFMVSS 209.",
   },
   {
     id: 4,
-    question: "How do I choose the correct primer and membrane system for my substrate?",
-    questionAr: "كيف أختار البرايمر ونظام الغشاء المناسب لسطح مشروعي؟",
+    question: "Do you supply wholesale rolls and materials to upholstery workshops across UAE and GCC?",
+    questionAr: "هل توفرون رولات الأقمشة والجلود بالجملة لورش التنجيد في الإمارات والخليج؟",
     answer:
-      "Our technical specialists provide complimentary substrate compatibility assessments evaluating concrete moisture thresholds, surface porosity, chemical exposure, and temperature fluctuations to recommend the ideal priming and membrane schedule.",
+      "Yes. We supply master rolls of Rahmaniah Collection 2025 leatherette, CARFECT deep-pile automotive carpet, genuine USA foam-backed headliners, XCHEM ENIFIX SP 300 adhesives, and bonded nylon threads with fast delivery across UAE, Saudi Arabia, Oman, and Kuwait.",
     answerAr:
-      "يقدم خبراؤنا الفنيون تقييماً مجانياً لتوافق الأسطح من خلال فحص نسبة الرطوبة في الخرسانة ومسامية السطح والتعرض الكيميائي لتحديد البرايمر ونظام العزل المثالي.",
+      "نعم. نوفر رولات كاملة بالجملة من مجموعة رحمانية 2025 للجلود، وسجاد CARFECT الفاخر، وأقمشة الأسقف الأمريكية مع الإسفنج، وغراء XCHEM المقاوم للحرارة، وخيوط النايلون المتينة مع شحن سريع لكافة الإمارات ودول الخليج.",
   },
   {
     id: 5,
-    question: "What storage conditions and shelf life are recommended for the UAE climate?",
-    questionAr: "ما هي شروط التخزين وفترة الصلاحية الموصى بها في مناخ الإمارات؟",
+    question: "How long does seat cover fitment or interior re-trimming take at your workshop?",
+    questionAr: "كم يستغرق تركيب أغطية المقاعد أو تجديد الفرش في ورشتكم؟",
     answer:
-      "Liquid-applied polyurethanes, epoxies, and bituminous primers should be stored in sheltered, climate-controlled environments between 10°C and 30°C away from direct sunlight. Most un-opened formulations retain peak performance for 12 months.",
+      "Standard pre-fit seat cover sets are installed in approximately 2 to 4 hours. Full custom bespoke leather upholstery, roof headliner restoration, or complete cabin overhauls typically take 1 to 2 business days.",
     answerAr:
-      "يجب تخزين طلاءات البولي يوريثان السائلة، والإيبوكسي، والبادئات البيتومينية في مستودعات مظللة ومكيفة بدرجات حرارة بين 10 إلى 30 درجة مئوية بعيداً عن أشعة الشمس المباشرة. تظل معظم العبوات المغلقة صالحة لمدة 12 شهراً.",
+      "يستغرق تركيب الأغطية الجاهزة ما بين ساعتين إلى 4 ساعات. أما التفصيل الكامل للمقاعد بالجلد أو تجديد قماش السقف المتدلي أو التجديد الشامل فيستغرق من يوم إلى يومي عمل.",
   },
   {
     id: 6,
-    question: "Can Taj Al Rahmah provide certified installation alongside material supply?",
-    questionAr: "هل تقدم تاج الرحمة خدمات التطبيق والتركيب المعتمد بجانب توريد المواد؟",
+    question: "Does Al Rahmaniah Auto offer full workshop mechanical and AC services alongside interior work?",
+    questionAr: "هل تقدم ورشة الرحمانية خدمات الصيانة الميكانيكية والتكييف بجانب الفرش؟",
     answer:
-      "Yes. We offer fully integrated turnkey solutions combining certified product supply with trained application teams, backed by 10 to 25-year joint warranties covering both material and installation.",
+      "Yes! Our dedicated workshop in Industrial Area 4, Sharjah provides computer diagnostics, AC gas refilling and compressor repair, brake service, wheel alignment, suspension repairs, and routine oil maintenance.",
     answerAr:
-      "نعم. نقدم حلولاً متكاملة تجمع بين توريد المواد المعتمدة وفرق التركيب المؤهلة، مدعومة بضمانات مشتركة تتراوح بين 10 إلى 25 عاماً تغطي المواد ومصنعية التنفيذ معاً.",
+      "نعم! تقدم ورشتنا في المنطقة الصناعية 4 بالشارقة فحص الكمبيوتر، وصيانة وشحن غاز المكيف، وتبديل المكابح والزيوت، وميزان الإطارات، ونظام التعليق والميكانيكا المتكاملة.",
   },
 ];
-
-const categoryList: { name: string; count: number }[] = [];
 
 export default function ProductsPage() {
   const router = useRouter();
@@ -154,6 +152,15 @@ export default function ProductsPage() {
       }
     },
   });
+
+  // Category List with counts
+  const categoryList = useMemo(() => {
+    const counts: Record<string, number> = {};
+    allProductsData.forEach((p) => {
+      counts[p.category] = (counts[p.category] || 0) + 1;
+    });
+    return Object.entries(counts).map(([name, count]) => ({ name, count }));
+  }, []);
 
   // Toggle Category Filter
   const toggleCategory = (catName: string) => {
@@ -268,12 +275,53 @@ export default function ProductsPage() {
   return (
     <div>
       <CommonHeader
-        title="Our Products"
+        title="Our Products & Accessories"
         breadcrumb="Products"
         imagePath="/banners/Product_.png"
       />
     <div className="min-h-screen bg-[#fafbfc] text-gray-900 pb-[40px] md:pb-[56px] lg:pb-[72px]">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pt-[40px] md:pt-[56px] lg:pt-[72px]">
+
+        {/* ===================== STORE HERO BANNER ===================== */}
+        <div className="mb-8 rounded-3xl bg-gradient-to-r from-red-600 via-zinc-900 to-black p-6 sm:p-8 lg:p-10 text-white relative overflow-hidden shadow-xl border border-red-500/20">
+          <div className="relative z-10 max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold uppercase tracking-wider mb-3 text-red-200 border border-white/10">
+              <span>💎 100% Original Materials</span>
+              <span>•</span>
+              <span>Sharjah, UAE</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-display mb-2.5">
+              Al Rahmaniah Auto Accessories
+            </h2>
+            <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6 font-normal">
+              Revive your car’s interior with premium seat covers, crafted for comfort, style, and durability. Explore our complete collection of custom 3D diamond leather covers, colored seatbelts, genuine headliner rolls, and workshop fitment services.
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="https://api.whatsapp.com/send?phone=971558674927&text=Hello%20Al%20Rahmaniah%20Auto%20Accessories,%20I%20would%20like%20to%20inquire%20about%20your%20products%20and%20seat%20covers."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition-all shadow-lg hover:shadow-emerald-500/25"
+              >
+                <span>💬 WhatsApp Inquiry</span>
+              </a>
+              <a
+                href="tel:+971558674927"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white text-gray-900 hover:bg-gray-100 font-bold text-xs sm:text-sm transition-all shadow"
+              >
+                <span>📞 +971 55 867 4927</span>
+              </a>
+              <a
+                href="tel:0557502083"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm transition-all border border-white/20"
+              >
+                <span>📞 055-7502083</span>
+              </a>
+            </div>
+          </div>
+          <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-15 pointer-events-none hidden lg:block bg-radial from-red-500 to-transparent"></div>
+        </div>
+
         {/* Mobile Filter Toggle */}
         <div className="lg:hidden flex items-center justify-between mb-4">
           <div>
@@ -286,7 +334,7 @@ export default function ProductsPage() {
             onClick={() => setIsMobileFilterOpen(true)}
             className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-gray-700 shadow-sm"
           >
-            <SlidersHorizontal className="w-4 h-4 text-[#01a9a0]" />
+            <SlidersHorizontal className="w-4 h-4 text-red-600" />
             Filters
           </button>
         </div>
@@ -302,7 +350,7 @@ export default function ProductsPage() {
               onBlur={() => voice.setFocusedField(null)}
               onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
               placeholder="Search products…"
-              className="w-full h-11 pl-9 pr-16 rounded-full bg-white border border-gray-200 text-sm text-gray-800 placeholder:text-gray-400 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/15 outline-none transition-all duration-200 shadow-sm"
+              className="w-full h-11 pl-9 pr-16 rounded-full bg-white border border-gray-200 text-sm text-gray-800 placeholder:text-gray-400 focus:border-red-600 focus:ring-2 focus:ring-red-600/15 outline-none transition-all duration-200 shadow-sm"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
               {voice.isFieldActive("productsSearch") && (
@@ -326,16 +374,16 @@ export default function ProductsPage() {
         </div>
 
         {/* Main 2-Column: Left Filters + Right Products Grid */}
-        <div className="">
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* ===================== LEFT SIDEBAR ===================== */}
           <aside
-            className={`hidden w-full lg:w-64 xl:w-72 flex-shrink-0 space-y-5 ${isMobileFilterOpen
-              ? "fixed inset-0 z-50 bg-black/50 p-4 overflow-y-auto flex items-center justify-center lg:static lg:bg-transparent lg:p-0"
+            className={`w-full lg:w-64 xl:w-72 flex-shrink-0 space-y-5 ${isMobileFilterOpen
+              ? "fixed inset-0 z-50 bg-black/60 p-4 overflow-y-auto flex items-center justify-center lg:static lg:bg-transparent lg:p-0"
               : "hidden lg:block"
               }`}
           >
             <div
-              className={`hidden w-full max-w-md lg:max-w-none space-y-5 ${isMobileFilterOpen
+              className={`w-full max-w-md lg:max-w-none space-y-5 ${isMobileFilterOpen
                 ? "bg-white p-6 rounded-3xl max-h-[90vh] overflow-y-auto shadow-2xl"
                 : ""
                 }`}
@@ -360,14 +408,14 @@ export default function ProductsPage() {
                   <h2 className="text-base font-bold text-gray-900">Filters</h2>
                   <button
                     onClick={handleResetAll}
-                    className="text-xs font-semibold text-[#01a9a0] hover:underline cursor-pointer transition-colors"
+                    className="text-xs font-semibold text-red-600 hover:underline cursor-pointer transition-colors"
                   >
                     Reset all
                   </button>
                 </div>
 
                 {/* Section 1: CATEGORY */}
-                <div className="py-4 border-b border-gray-100 hidden">
+                <div className="py-4 border-b border-gray-100">
                   <button
                     onClick={() => setIsCategoryOpen(!isCategoryOpen)}
                     className="w-full flex items-center justify-between text-left cursor-pointer group"
@@ -751,20 +799,75 @@ export default function ProductsPage() {
 
                       {/* Product Details */}
                       <div className="flex flex-col flex-1 pb-1">
+                        {/* Category & Price Badge */}
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <span className="text-[10px] font-extrabold uppercase tracking-wider text-red-600 bg-red-50 px-2 py-0.5 rounded-full border border-red-100 truncate max-w-[150px]">
+                            {product.category}
+                          </span>
+                          {product.price && (
+                            <span className="text-xs font-bold text-gray-900 bg-gray-100 px-2 py-0.5 rounded-md shrink-0">
+                              {product.price}
+                            </span>
+                          )}
+                        </div>
+
                         {/* Product Name */}
                         <Link
                           href={`/products/${product.id}`}
                           className="group/title block"
                         >
-                          <h3 className="text-sm sm:text-[15px] font-bold font-anek text-gray-900 tracking-tight leading-snug group-hover/title:text-[#01a9a0] transition-colors line-clamp-1">
+                          <h3 className="text-sm sm:text-[15px] font-bold font-anek text-gray-900 tracking-tight leading-snug group-hover/title:text-red-600 transition-colors line-clamp-1">
                             {product.name}
                           </h3>
                         </Link>
 
                         {/* Product Description */}
-                        <p className="text-xs text-gray-500 leading-relaxed mt-1.5 line-clamp-2">
+                        <p className="text-xs text-gray-500 leading-relaxed mt-1 line-clamp-2">
                           {product.description}
                         </p>
+
+                        {/* Rating & Reviews */}
+                        <div className="flex items-center gap-1.5 mt-2.5">
+                          <div className="flex items-center gap-0.5 text-amber-500">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`w-3 h-3 ${
+                                  i < Math.floor(product.rating)
+                                    ? "fill-amber-500 text-amber-500"
+                                    : "fill-gray-200 text-gray-200"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-[11px] font-bold text-gray-800">
+                            {product.rating}
+                          </span>
+                          <span className="text-[11px] text-gray-400">
+                            ({product.reviewsCount})
+                          </span>
+                        </div>
+
+                        {/* Actions: View Details + WhatsApp */}
+                        <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
+                          <Link
+                            href={`/products/${product.id}`}
+                            className="text-xs font-bold text-gray-700 hover:text-red-600 transition-colors"
+                          >
+                            Details →
+                          </Link>
+                          <a
+                            href={`https://api.whatsapp.com/send?phone=971558674927&text=${encodeURIComponent(
+                              `Hello Al Rahmaniah Auto Accessories, I am inquiring about: ${product.name}`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white text-[11px] font-bold transition-all border border-emerald-200 shadow-xs cursor-pointer"
+                          >
+                            <span>WhatsApp</span>
+                          </a>
+                        </div>
                       </div>
 
                       {/* ===================== TOOLTIP SHARE POPOVER (Relative to this product card) ===================== */}
