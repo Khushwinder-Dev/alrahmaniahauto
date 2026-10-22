@@ -11,8 +11,6 @@ const NAV_LINKS = [
   { label: "About", href: "/about-us" },
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Brands", href: "/brands" },
   { label: "Contact", href: "/contact" },
   { label: "Blogs", href: "/blogs" },
 ];
@@ -40,11 +38,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ${
-          isScrolled
-            ? "bg-black/95 backdrop-blur-lg border-b border-white/10"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ${isScrolled
+          ? "bg-black/95 backdrop-blur-lg border-b border-white/10"
+          : "bg-transparent"
+          }`}
       >
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex items-center justify-between h-20 lg:h-24">
@@ -75,11 +72,10 @@ export default function Navbar() {
                   >
                     {link.label}
                     <span
-                      className={`absolute bottom-0 left-0 w-full h-[2px] bg-red-600 transition-transform duration-300 ease-out origin-center ${
-                        isActive
-                          ? "scale-x-100"
-                          : "scale-x-0 group-hover:scale-x-100"
-                      }`}
+                      className={`absolute bottom-0 left-0 w-full h-[2px] bg-red-600 transition-transform duration-300 ease-out origin-center ${isActive
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                        }`}
                     />
                   </Link>
                 );
@@ -141,9 +137,8 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-3xl font-black uppercase tracking-tighter hover:text-red-600 transition-colors ${
-                    pathname === link.href ? "text-red-600" : "text-white"
-                  }`}
+                  className={`text-3xl font-black uppercase tracking-tighter hover:text-red-600 transition-colors ${pathname === link.href ? "text-red-600" : "text-white"
+                    }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
