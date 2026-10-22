@@ -20,7 +20,7 @@ export default function FAQPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/services-hero.png"
-            alt="FAQs Bab Al Bustan Auto Workshop"
+            alt="FAQs Al Rahmaniah Auto Workshop"
             fill
             priority
             className="object-cover"

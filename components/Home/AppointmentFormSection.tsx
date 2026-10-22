@@ -39,7 +39,7 @@ export default function AppointmentFormSection() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/header.png"
-            alt="Bab Al Bustan Auto Workshop Background"
+            alt="Al Rahmaniah Auto Workshop Background"
             fill
             className="object-cover"
           />
@@ -48,8 +48,8 @@ export default function AppointmentFormSection() {
         <div className="relative z-10 max-w-8xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.1] uppercase tracking-tight drop-shadow-lg">
-              Experience Premium Care –<span className="font-display italic font-bold text-red-500"> Bab Al Bustan</span> <br className="hidden md:block" />
-              Auto Maintenance Workshop
+              Experience Premium Care –<span className="font-display italic font-bold text-red-500"> Al Rahmaniah Auto</span> <br className="hidden md:block" />
+              Maintenance Workshop
             </h2>
           </div>
           <div className="relative flex justify-end">

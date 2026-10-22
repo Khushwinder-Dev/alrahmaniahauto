@@ -41,7 +41,7 @@ function ServiceDetailsContent() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/services-hero.png"
-            alt="Service Details Bab Al Bustan"
+            alt="Service Details Al Rahmaniah Auto"
             fill
             priority
             className="object-cover"

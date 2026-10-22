@@ -56,7 +56,7 @@ export default function BlogsPage() {
               data-aos-delay="400"
               className="max-w-xl text-gray-400 text-xs md:text-sm font-medium tracking-wide opacity-80"
             >
-              Read the latest tips on car maintenance, AC repair, and engine diagnostics from Bab Al Bustan Workshop in Sharjah.
+              Read the latest tips on car maintenance, AC repair, and engine diagnostics from Al Rahmaniah Auto Workshop in Sharjah.
             </p>
           </div>
         </section>
@@ -70,7 +70,7 @@ export default function BlogsPage() {
                   Explore Our Latest Insights
                 </h2>
                 <p className="text-lg text-gray-700 max-w-4xl mx-auto">
-                  Stay updated with expert automotive advice, maintenance tips, and industry trends from the leading experts at Bab Al Bustan Workshop.
+                  Stay updated with expert automotive advice, maintenance tips, and industry trends from the leading experts at Al Rahmaniah Auto Workshop.
                 </p>
               </div>
 
@@ -200,7 +200,7 @@ export default function BlogsPage() {
                         Professional Car Care You Can Trust
                       </h2>
                       <p className="text-red-100 text-lg mb-8">
-                        From oil changes to complex engine diagnostics, our team at Bab Al Bustan is ready to keep your vehicle in peak condition.
+                        From oil changes to complex engine diagnostics, our team at Al Rahmaniah Auto is ready to keep your vehicle in peak condition.
                       </p>
                       <button
                         onClick={() => router.push("/booking")}

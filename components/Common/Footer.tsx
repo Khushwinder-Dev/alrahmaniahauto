@@ -13,7 +13,7 @@ export default function Footer() {
           <Link className="inline-block" href="/">
             <div className="relative w-32 h-16">
               <Image
-                alt="Bab Al Bustan Logo"
+                alt="Al Rahmaniah Auto Logo"
                 fill
                 className="object-contain"
                 src="/images/logo.png"
@@ -21,13 +21,13 @@ export default function Footer() {
             </div>
           </Link>
           <p className="text-sm leading-relaxed text-gray-400">
-            Bab Al Bustan Auto Maintenance Workshop, our workshop stands as a symbol of precision, quality, and trust for all your car care needs.
+            Al Rahmaniah Auto Maintenance Workshop, our workshop stands as a symbol of precision, quality, and trust for all your car care needs.
           </p>
           <div className="flex items-center gap-4">
             <span className="text-sm font-medium text-white">Follow us :</span>
             <div className="flex gap-2">
               <a
-                href="https://www.facebook.com/babalbustan2/"
+                href="https://www.facebook.com/alrahmaniahauto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-zinc-800/50 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all border border-zinc-700"
@@ -45,7 +45,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.instagram.com/babalbustan2/"
+                href="https://www.instagram.com/alrahmaniahauto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-zinc-800/50 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all border border-zinc-700"
@@ -63,7 +63,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.tiktok.com/@babalbustan2"
+                href="https://www.tiktok.com/@alrahmaniahauto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-zinc-800/50 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all border border-zinc-700"
@@ -95,6 +95,7 @@ export default function Footer() {
             {[
               { label: "Home", href: "/" },
               { label: "About Us", href: "/about-us" },
+              { label: "Products & Accessories", href: "/products" },
               { label: "Services", href: "/services" },
               { label: "Gallery", href: "/gallery" },
               { label: "Brands", href: "/brands" },
@@ -187,13 +188,13 @@ export default function Footer() {
               <Mail className="text-red-600 shrink-0 w-5 h-5" />
               <div className="text-sm">
                 <p>
-                  <a href="mailto:info@babalbustanuae.com" className="hover:text-white transition-colors">
-                    info@babalbustanuae.com
+                  <a href="mailto:info@alrahmaniahauto.com" className="hover:text-white transition-colors">
+                    info@alrahmaniahauto.com
                   </a>
                 </p>
                 <p>
-                  <a href="mailto:babalbustan1@gmail.com" className="hover:text-white transition-colors">
-                    babalbustan1@gmail.com
+                  <a href="mailto:alrahmaniahauto@gmail.com" className="hover:text-white transition-colors">
+                    alrahmaniahauto@gmail.com
                   </a>
                 </p>
               </div>
@@ -206,7 +207,7 @@ export default function Footer() {
         <p>
           © Copyright 2026{" "}
           <span className="text-red-600 font-bold">
-            Bab Al Bustan Auto Maintenance Workshop
+            Al Rahmaniah Auto Maintenance Workshop
           </span>
           . All rights reserved.
         </p>

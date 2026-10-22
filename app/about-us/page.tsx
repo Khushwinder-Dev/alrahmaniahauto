@@ -194,7 +194,7 @@ export default function AboutUsPage() {
                 <span>Why Choose Us</span>
               </div>
               <h2 className="text-3xl md:text-5xl font-display text-slate-900 tracking-tight leading-tight max-w-5xl mx-auto">
-                Reasons to Choose Bab Al Bustan Auto Maintenance Workshop
+                Reasons to Choose Al Rahmaniah Auto Maintenance Workshop
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

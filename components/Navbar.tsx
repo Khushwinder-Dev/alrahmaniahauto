@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const NAV_LINKS = [
   { label: "About", href: "/about-us" },
   { label: "Services", href: "/services" },
+  { label: "Products", href: "/products" },
   { label: "Gallery", href: "/gallery" },
   { label: "Brands", href: "/brands" },
   { label: "Contact", href: "/contact" },
@@ -53,7 +54,7 @@ export default function Navbar() {
                 <div className="relative h-12 lg:h-16 w-32 lg:w-40">
                   <Image
                     src="/images/logo.png"
-                    alt="Logo"
+                    alt="Al Rahmaniah Auto Logo"
                     fill
                     priority
                     className="object-contain"

@@ -48,7 +48,7 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
           animate={{ opacity: 1, y: 0 }}
           className="font-display text-[clamp(3.2rem,7.5vw,6rem)] font-extrabold text-white leading-[1.05] tracking-[-0.01em] uppercase mb-[1.25rem] drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]"
         >
-          {s?.home_hero_title || "Bab Al Bustan Auto Maintenance Workshop"}
+          {s?.home_hero_title || "Al Rahmaniah Auto Maintenance Workshop"}
         </motion.h1>
         <motion.h3
           initial={{ opacity: 0 }}

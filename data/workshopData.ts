@@ -225,7 +225,7 @@ export const WORKSHOP_VIDEOS: VideoGalleryItem[] = [
     title: "Workshop Tour & Vehicle Lift Diagnostics",
     category: "Workshop",
     videoUrl: "/videos/workshop-video-1.mp4",
-    description: "Behind the scenes at Bab Al Bustan in Sharjah Industrial Area 5."
+    description: "Behind the scenes at Al Rahmaniah Auto in Sharjah Industrial Area 5."
   },
   {
     id: "workshop-video-2",
@@ -278,22 +278,22 @@ export const WORKSHOP_FAQS = [
 ];
 
 export const WORKSHOP_INFO = {
-  name: "Bab Al Bustan Auto Maintenance Workshop",
+  name: "Al Rahmaniah Auto Maintenance Workshop",
   tagline: "Trusted Car Maintenance in Sharjah",
   address: "Industrial Area No 5, Sharjah, UAE",
   phones: ["+971564406456", "+971557636994"],
   whatsapp: "+971564406456",
   whatsappUrl: "https://api.whatsapp.com/send?phone=971564406456",
-  emails: ["info@babalbustanuae.com", "babalbustan1@gmail.com"],
+  emails: ["info@alrahmaniahauto.com", "alrahmaniahauto@gmail.com"],
   hours: {
     weekdays: "Saturday - Thursday: 8:00 AM - 9:00 PM",
     break: "Break: 1:30 PM – 3:30 PM",
     friday: "Friday: Closed"
   },
   social: {
-    facebook: "https://www.facebook.com/babalbustan2/",
-    instagram: "https://www.instagram.com/babalbustan2",
-    tiktok: "https://www.tiktok.com/@babalbustan2"
+    facebook: "https://www.facebook.com/alrahmaniahauto",
+    instagram: "https://www.instagram.com/alrahmaniahauto",
+    tiktok: "https://www.tiktok.com/@alrahmaniahauto"
   },
-  mapEmbedUrl: "https://maps.google.com/maps?q=BAB%20AL%20BUSTAN%20AUTO%20MAINTENANCE%20WORKSHOP%20Industrial%20Area%205%20-%20Industrial%20Area%20-%20Sharjah&t=&z=15&ie=UTF8&iwloc=&output=embed"
+  mapEmbedUrl: "https://maps.google.com/maps?q=AL%20RAHMANIAH%20AUTO%20MAINTENANCE%20WORKSHOP%20Industrial%20Area%205%20-%20Industrial%20Area%20-%20Sharjah&t=&z=15&ie=UTF8&iwloc=&output=embed"
 };

@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Al Rahmaniah Auto Maintenance Workshop (alrahmaniahauto)
+
+This is the official web application for **Al Rahmaniah Auto Maintenance Workshop** in Sharjah, UAE.
 
 ## Getting Started
 

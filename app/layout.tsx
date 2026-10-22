@@ -22,8 +22,8 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://babalbustan.ae"),
-  title: "Best Car Workshop in Sharjah | Bab Al Bustan Auto Maintenance",
+  metadataBase: new URL("https://alrahmaniahauto.ae"),
+  title: "Best Car Workshop in Sharjah | Al Rahmaniah Auto Maintenance",
   description:
     "Professional auto repair & car maintenance in Sharjah Industrial Area 5. We specialize in oil changes, brake repair, AC service, and computer diagnostics.",
   keywords: [
@@ -33,14 +33,14 @@ export const metadata: Metadata = {
     "car AC repair Sharjah",
     "oil change Sharjah",
     "brake repair Sharjah",
-    "Bab Al Bustan auto workshop"
+    "Al Rahmaniah auto workshop"
   ],
   icons: {
     icon: "/images/logo.png",
     apple: "/images/logo.png",
   },
   openGraph: {
-    title: "Best Car Workshop in Sharjah | Bab Al Bustan Auto Maintenance",
+    title: "Best Car Workshop in Sharjah | Al Rahmaniah Auto Maintenance",
     description:
       "Professional auto repair & car maintenance in Sharjah Industrial Area 5. We specialize in oil changes, brake repair, AC service, and computer diagnostics.",
     images: ["/images/logo.png"],

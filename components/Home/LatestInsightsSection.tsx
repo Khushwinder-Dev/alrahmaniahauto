@@ -10,7 +10,7 @@ export default function LatestInsightsSection() {
 
   const featured = {
     date: "Mar 1, 2026",
-    author: "Bab Al Bustan Auto Maintenance Workshop",
+    author: "Al Rahmaniah Auto Maintenance Workshop",
     title: "How Regular Oil Changes Keep Your Engine Running Longer and Smoother",
     image: "/images/service-5.png",
     badge: "WORKSHOP",
@@ -20,7 +20,7 @@ export default function LatestInsightsSection() {
   const sideArticles = [
     {
       date: "Feb 20, 2026",
-      author: "Bab Al Bustan Auto Maintenance Workshop",
+      author: "Al Rahmaniah Auto Maintenance Workshop",
       title: "Top Signs Your Brake Pads Need Immediate Replacement",
       image: "/images/service-6.png",
       badge: "WORKSHOP",
@@ -28,7 +28,7 @@ export default function LatestInsightsSection() {
     },
     {
       date: "Feb 10, 2026",
-      author: "Bab Al Bustan Auto Maintenance Workshop",
+      author: "Al Rahmaniah Auto Maintenance Workshop",
       title: "Why Professional Interior Detailing Is Worth Every Dirham",
       image: "/images/service-7.png",
       badge: "DETAILING",
@@ -36,7 +36,7 @@ export default function LatestInsightsSection() {
     },
     {
       date: "Jan 28, 2026",
-      author: "Bab Al Bustan Auto Maintenance Workshop",
+      author: "Al Rahmaniah Auto Maintenance Workshop",
       title: "Engine Diagnostics: Catch Problems Before They Become Costly",
       image: "/images/service-8.png",
       badge: "DIAGNOSTICS",

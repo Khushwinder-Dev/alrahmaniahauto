@@ -221,7 +221,7 @@ export async function sendEmailNotification({
                       ${escapeHtml(title)}
                     </h1>
                     <p style="margin: 6px 0 0 0; color: rgba(255,255,255,0.85); font-size: 13px;">
-                      Taj Al Rahmah Contracting • UAE Website Lead Notification
+                      Al Rahmaniah Auto Maintenance Workshop • UAE Website Lead Notification
                     </p>
                   </td>
                 </tr>
@@ -256,7 +256,7 @@ export async function sendEmailNotification({
                 <!-- FOOTER -->
                 <tr>
                   <td style="background-color: #f8fafc; padding: 18px 30px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 12px; color: #94a3b8;">
-                    Taj Al Rahmah Contracting UAE — Automated Lead & Inquiries System
+                    Al Rahmaniah Auto Maintenance Workshop UAE — Automated Lead & Inquiries System
                   </td>
                 </tr>
 
@@ -279,9 +279,9 @@ ${validFields.map((f) => `${f.label}: ${f.value}`).join("\n")}
     `.trim();
 
     await transporter.sendMail({
-      from: `"Taj Al Rahmah Leads" <${process.env.SMTP_USER}>`,
+      from: `"Al Rahmaniah Auto Leads" <${process.env.SMTP_USER}>`,
       to: recipient,
-      subject: `[Taj Al Rahmah] ${title}`,
+      subject: `[Al Rahmaniah Auto] ${title}`,
       text: plainText,
       html: htmlContent,
       attachments: attachments || [],

@@ -792,8 +792,8 @@ export default function ExpandableSearchBar({
     } else {
       setAiResponse(
         isAr
-          ? `بناءً على متطلبات "${questionText}" في بيئة البناء بدولة الإمارات، توصي تاج الرحمة بإجراء فحص هندسي للموقع لاختيار النظام الأمثل المطابق لمعايير بلدية دبي والدفاع المدني مع ضمان شامل من 10 إلى 25 سنة.`
-          : `For "${questionText}" under UAE climate standards, Taj Al Rahmah recommends a specialized technical specification compliant with Dubai Municipality & Civil Defense standards, backed by a 10 to 25-year warranty.`
+          ? `بناءً على متطلبات "${questionText}"، توصي ورشة الرحمانية لصيانة السيارات بإجراء فحص شامل للمركبة واستخدام قطع غيار أصلية ومطابقة لأعلى معايير الجودة والسلامة.`
+          : `For "${questionText}", Al Rahmaniah Auto Workshop recommends a specialized inspection compliant with top UAE automotive standards, backed by our service guarantee.`
       );
     }
   };
@@ -1496,10 +1496,10 @@ export default function ExpandableSearchBar({
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-gray-900">
-                    {isAr ? "المساعد الهندسي الذكي لتاج الرحمة" : "Taj Al Rahmah AI Engineering Assistant"}
+                    {isAr ? "المساعد الذكي لورشة الرحمانية" : "Al Rahmaniah Auto AI Assistant"}
                   </h3>
                   <p className="text-[11px] text-gray-500">
-                    {isAr ? "إجابات هندسية فورية ومطابقة لمواصفات الإمارات" : "Instant engineering answers & UAE specifications"}
+                    {isAr ? "إجابات فورية لخدمات وصيانة السيارات" : "Instant auto maintenance & service answers"}
                   </p>
                 </div>
               </div>

@@ -324,7 +324,7 @@ const translations: Record<Language, Translations> = {
         {
           name: "Stella Smith, New York",
           title:
-            "Taj Al Rahmah delivered exactly what we expected — professional work, timely completion, and great communication from start to finish.",
+            "Al Rahmaniah Auto Maintenance delivered exactly what we expected — professional work, timely completion, and great communication from start to finish.",
         },
         {
           name: "Abdur Gaffar, Dubai",
@@ -339,7 +339,7 @@ const translations: Record<Language, Translations> = {
         {
           name: "Ahmed Hassan, Dubai",
           title:
-            "Reliable and efficient service delivery. Taj Al Rahmah consistently provides high-quality work with excellent project management and communication.",
+            "Reliable and efficient service delivery. Al Rahmaniah Auto Maintenance consistently provides high-quality work with excellent project management and communication.",
         },
         {
           name: "Milon Islam, Dubai",
@@ -433,12 +433,12 @@ const translations: Record<Language, Translations> = {
       contactTitle: "Contact",
       phone1: "+971 55 617 3300",
       phone2: "+971 52 749 2002",
-      email1: "info@tajalrahmah.com",
-      email2: "tajalrahmah@gmail.com",
+      email1: "info@alrahmaniahauto.com",
+      email2: "alrahmaniahauto@gmail.com",
       location: "Office G-01-691, Al,\nKhabaisi, Dubai, UAE",
       workingHours: "Mon - Sat: 9:00 AM - 6:00 PM",
       closedDay: "Sunday - Closed",
-      copyright: "© 2026 Taj Al Rahmah. All Rights Reserved.",
+      copyright: "© 2026 Al Rahmaniah Auto Maintenance Workshop. All Rights Reserved.",
       scrollToTop: "Scroll to top",
       exploreMore: "View All Services",
     },
@@ -656,7 +656,7 @@ const translations: Record<Language, Translations> = {
         {
           name: "ستيلا سميث، نيويورك",
           title:
-            "سلمت شركة تاج الرحمة بالضبط ما توقعناه - عمل احترافي، إكمال في الوقت المحدد، وتواصل رائع من البداية إلى النهاية.",
+            "قدمت ورشة الرحمانية لصيانة السيارات بالضبط ما توقعناه - عمل احترافي، إكمال في الوقت المحدد، وتواصل رائع من البداية إلى النهاية.",
         },
         {
           name: "عبد الغفار، دبي",
@@ -671,7 +671,7 @@ const translations: Record<Language, Translations> = {
         {
           name: "أحمد حسن، دبي",
           title:
-            "تسليم خدمة موثوق وفعال. تقدم شركة تاج الرحمة باستمرار عملاً عالي الجودة مع إدارة مشاريع وتواصل ممتازين.",
+            "تسليم خدمة موثوق وفعال. تقدم ورشة الرحمانية لصيانة السيارات باستمرار عملاً عالي الجودة مع إدارة ممتازة وتواصل متميز.",
         },
         {
           name: "ميلون إسلام، دبي",
@@ -765,12 +765,12 @@ const translations: Record<Language, Translations> = {
       contactTitle: "تواصل معنا",
       phone1: "+971 55 617 3300",
       phone2: "+971 55 617 3300",
-      email1: "info@tajalrahmah.com",
-      email2: "tajalrahmah@gmail.com",
+      email1: "info@alrahmaniahauto.com",
+      email2: "alrahmaniahauto@gmail.com",
       location: "مكتب G-01-691، الخبيصي،\nدبي، 00000 دبي",
       workingHours: "السبت - الخميس: 8:00 ص - 9:00 م",
       closedDay: "الجمعة - مغلق",
-      copyright: "© 2026 تاج الرحمة. جميع الحقوق محفوظة.",
+      copyright: "© 2026 ورشة الرحمانية لصيانة السيارات. جميع الحقوق محفوظة.",
       scrollToTop: "العودة للأعلى",
       exploreMore: "عرض جميع الخدمات",
     },

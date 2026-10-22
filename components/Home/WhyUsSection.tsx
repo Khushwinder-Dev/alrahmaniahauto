@@ -14,13 +14,13 @@ export default function WhyUsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="flex flex-col items-start max-w-2xl">
             <span className="text-red-600 font-bold text-[11px] tracking-[0.15em] uppercase mb-6">
-              Bab Al Bustan Auto Maintenance Workshop
+              Al Rahmaniah Auto Maintenance Workshop
             </span>
             <h2 className="font-display text-4xl md:text-6xl font-black text-zinc-900 leading-[1.1] mb-8 uppercase tracking-tight">
               Professional Car Maintenance in Sharjah
             </h2>
             <p className="text-zinc-600 text-base leading-relaxed mb-10">
-              Bab Al Bustan Auto Maintenance Workshop is dedicated to keeping your vehicle running smoothly and efficiently. We offer a comprehensive range of automotive services — from mechanical repairs and diagnostics to full detailing solutions — using advanced equipment and skilled craftsmanship to ensure your car performs at its best.
+              Al Rahmaniah Auto Maintenance Workshop is dedicated to keeping your vehicle running smoothly and efficiently. We offer a comprehensive range of automotive services — from mechanical repairs and diagnostics to full detailing solutions — using advanced equipment and skilled craftsmanship to ensure your car performs at its best.
             </p>
             <div className="w-full bg-zinc-50 border border-zinc-100 rounded-xl p-8 mb-10 flex items-start gap-6">
               <div className="flex-shrink-0 bg-white shadow-sm p-3 rounded-lg">

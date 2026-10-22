@@ -206,18 +206,18 @@ export default function ContactPage() {
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
-                  src="https://maps.google.com/maps?q=BAB%20AL%20BUSTAN%20AUTO%20MAINTENANCE%20WORKSHOP%20Industrial%20Area%205%20-%20Industrial%20Area%20-%20Sharjah&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=AL%20RAHMANIAH%20AUTO%20MAINTENANCE%20WORKSHOP%20Industrial%20Area%205%20-%20Industrial%20Area%20-%20Sharjah&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="BAB AL BUSTAN AUTO MAINTENANCE WORKSHOP"
+                  title="AL RAHMANIAH AUTO MAINTENANCE WORKSHOP"
                 />
               </div>
               <div className="absolute top-4 left-4 z-10 bg-white rounded-md shadow-lg border border-gray-200 p-4 w-[320px] hidden md:block">
                 <div className="flex justify-between items-start mb-1">
                   <div className="flex-1">
                     <h3 className="text-[16px] font-semibold text-gray-900 leading-tight">
-                      BAB AL BUSTAN AUTO MAINTENANCE WORKSHOP
+                      AL RAHMANIAH AUTO MAINTENANCE WORKSHOP
                     </h3>
                     <p className="text-[13px] text-gray-600 mt-1 leading-normal">
                       Industrial Area 5 - Industrial Area - Sharjah

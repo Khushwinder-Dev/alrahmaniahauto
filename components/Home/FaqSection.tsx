@@ -79,7 +79,7 @@ const faqs: FaqItem[] = [
     id: 10,
     question: "Where can I get satisfactory car service?",
     answer:
-      "Bab Al Bustan Auto Maintenance Workshop is the top choice in Sharjah for reliable, expert, and affordable automotive care.",
+      "Al Rahmaniah Auto Maintenance Workshop is the top choice in Sharjah for reliable, expert, and affordable automotive care.",
     column: 2,
   },
 ];

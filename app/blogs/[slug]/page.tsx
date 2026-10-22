@@ -18,10 +18,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
-  if (!post) return { title: "Blog Not Found | Bab Al Bustan" };
+  if (!post) return { title: "Blog Not Found | Al Rahmaniah Auto" };
 
   return {
-    title: `${post.title} | Bab Al Bustan Auto Maintenance`,
+    title: `${post.title} | Al Rahmaniah Auto Maintenance`,
     description: post.excerpt,
     openGraph: {
       title: post.title,

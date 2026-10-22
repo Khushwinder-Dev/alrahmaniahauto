@@ -22,14 +22,14 @@ export default function FeatureSection() {
         <div className="flex flex-col items-start lg:pl-10">
           <div className="inline-block px-2 py-1.5 rounded-full border border-red-900/40 bg-red-900/10 mb-8">
             <span className="text-red-600 text-[10px] font-black tracking-[0.2em] uppercase">
-              Bab Al Bustan Auto Maintenance Workshop
+              Al Rahmaniah Auto Maintenance Workshop
             </span>
           </div>
           <h2 className="font-display text-2xl md:text-5xl font-bold text-white leading-tight mb-6 tracking-tight">
             We Go Beyond Just a <br /> Car Maintenance
           </h2>
           <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-4 max-w-3xl">
-            Bab Al Bustan Auto Maintenance Workshop, we blend speed with precision. Our certified technicians use cutting-edge equipment to deliver results that exceed expectations — every single time.
+            Al Rahmaniah Auto Maintenance Workshop, we blend speed with precision. Our certified technicians use cutting-edge equipment to deliver results that exceed expectations — every single time.
           </p>
           <div className="space-y-4 w-full mb-12">
             <div className="flex items-start gap-3 group">

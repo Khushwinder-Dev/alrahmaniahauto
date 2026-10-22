@@ -87,7 +87,7 @@ export default function GalleryPage() {
                 Ready for a <span className="text-red-600">Transformation?</span>
               </h2>
               <p className="text-zinc-400 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-                Book your appointment today and see the Bab Al Bustan Auto Maintenance Workshop difference.
+                Book your appointment today and see the Al Rahmaniah Auto Maintenance Workshop difference.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
