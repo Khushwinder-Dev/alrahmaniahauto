@@ -3,105 +3,14 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import {
-  LayoutGrid,
-  List as ListIcon,
-  ChevronDown,
-  ChevronUp,
-  ChevronsLeft,
-  ChevronsRight,
-  Headphones,
-  Star,
-  Share2,
-  X,
-  SlidersHorizontal,
-  Link2,
-  Send,
-  Check,
-  Search,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { allProductsData, ProductDetailItem } from "@/data/productsData";
-import CommonHeader from "@/components/Common/CommonHeader";
-import FaqSection, { FaqItem } from "@/components/Common/FaqSection";
-import { useLanguage } from "@/context/LanguageContext";
-import {
-  FormFieldError,
-  getFieldError,
-  InputValidationTick,
-  isValidEmail,
-  isValidPhone,
-  isValidText,
-} from "@/components/ui/InputValidationTick";
-import { VoiceMicButton, VoiceListeningBadge, useVoiceInput } from "@/components/ui/VoiceMicButton";
-
-const PRODUCT_LISTING_FAQS: FaqItem[] = [
-  {
-    id: 1,
-    question: "What materials do you use for your custom car seat covers?",
-    questionAr: "ما هي المواد المستخدمة في تفصيل أغطية مقاعد السيارات؟",
-    answer:
-      "We use 100% original, automotive-grade materials including heavy-duty 3D diamond-stitched PVC leather, premium Napa leatherette, breathable microfiber suede (Alcantara style), and genuine leather hides engineered specifically to withstand extreme UAE summer heat without cracking, peeling, or fading.",
-    answerAr:
-      "نستخدم مواد أصلية 100٪ بمواصفات سيارات عالية الجودة، بما في ذلك جلد PVC بتطريز ماسي ثلاثي الأبعاد، وجلد نابا الفاخر، والشمواه فائق النعومة (ستايل الكانتارا)، والجلود الطبيعية المعالجة لتحمل حرارة صيف الإمارات دون تشقق أو بهتان.",
-  },
-  {
-    id: 2,
-    question: "Can seat covers be tailored for my specific vehicle make and model?",
-    questionAr: "هل يتم تفصيل وتثبيت الأغطية خصيصاً لموديل ونوع سيارتي؟",
-    answer:
-      "Yes. Our master trimmers in Sharjah custom-pattern and stitch covers for all vehicles including sedans, 4x4s, luxury SUVs (Land Cruiser, Nissan Patrol, Prado, Tahoe, Defender, Mercedes, BMW), sports coupes, and commercial fleets with full airbag seam compatibility.",
-    answerAr:
-      "نعم. يقوم خبراؤنا في الشارقة بأخذ القياسات والتفصيل الدقيق لكافة أنواع المركبات بما في ذلك الصالون والدفع الرباعي والسيارات الفاخرة (لاندكروزر، باترول، برادو، تاهو، مرسيدس، بي إم دبليو) مع مراعاة سلامة الوسائد الهوائية (الإيرباج).",
-  },
-  {
-    id: 3,
-    question: "Are your custom colored seatbelts safety certified?",
-    questionAr: "هل أحزمة الأمان الملونة معتمدة ومطابقة لمواصفات السلامة؟",
-    answer:
-      "Yes. All colored webbing (M-Power Tri-Stripe, Racing Red, Speed Yellow, Tiffany Blue, Acid Orange) is woven from 100% high-tenacity polyester rated at >25 kN tensile strength, certified to international ECE R16 and FMVSS 209 automotive safety regulations.",
-    answerAr:
-      "نعم. جميع أحزمة الأمان الملونة (ألوان إم-باور، الأحمر الرياضي، الأصفر، الأزرق، البرتقالي) مصنوعة من بوليستر فائق المتانة بقوة شد تتجاوز 25 كيلو نيوتن ومعتمدة للمطابقة وفق المعايير الدولية ECE R16 وFMVSS 209.",
-  },
-  {
-    id: 4,
-    question: "Do you supply wholesale rolls and materials to upholstery workshops across UAE and GCC?",
-    questionAr: "هل توفرون رولات الأقمشة والجلود بالجملة لورش التنجيد في الإمارات والخليج؟",
-    answer:
-      "Yes. We supply master rolls of Rahmaniah Collection 2025 leatherette, CARFECT deep-pile automotive carpet, genuine USA foam-backed headliners, XCHEM ENIFIX SP 300 adhesives, and bonded nylon threads with fast delivery across UAE, Saudi Arabia, Oman, and Kuwait.",
-    answerAr:
-      "نعم. نوفر رولات كاملة بالجملة من مجموعة رحمانية 2025 للجلود، وسجاد CARFECT الفاخر، وأقمشة الأسقف الأمريكية مع الإسفنج، وغراء XCHEM المقاوم للحرارة، وخيوط النايلون المتينة مع شحن سريع لكافة الإمارات ودول الخليج.",
-  },
-  {
-    id: 5,
-    question: "How long does seat cover fitment or interior re-trimming take at your workshop?",
-    questionAr: "كم يستغرق تركيب أغطية المقاعد أو تجديد الفرش في ورشتكم؟",
-    answer:
-      "Standard pre-fit seat cover sets are installed in approximately 2 to 4 hours. Full custom bespoke leather upholstery, roof headliner restoration, or complete cabin overhauls typically take 1 to 2 business days.",
-    answerAr:
-      "يستغرق تركيب الأغطية الجاهزة ما بين ساعتين إلى 4 ساعات. أما التفصيل الكامل للمقاعد بالجلد أو تجديد قماش السقف المتدلي أو التجديد الشامل فيستغرق من يوم إلى يومي عمل.",
-  },
-  {
-    id: 6,
-    question: "Does Al Rahmaniah Auto offer full workshop mechanical and AC services alongside interior work?",
-    questionAr: "هل تقدم ورشة الرحمانية خدمات الصيانة الميكانيكية والتكييف بجانب الفرش؟",
-    answer:
-      "Yes! Our dedicated workshop in Industrial Area 4, Sharjah provides computer diagnostics, AC gas refilling and compressor repair, brake service, wheel alignment, suspension repairs, and routine oil maintenance.",
-    answerAr:
-      "نعم! تقدم ورشتنا في المنطقة الصناعية 4 بالشارقة فحص الكمبيوتر، وصيانة وشحن غاز المكيف، وتبديل المكابح والزيوت، وميزان الإطارات، ونظام التعليق والميكانيكا المتكاملة.",
-  },
-];
+import { Search, X, ChevronsLeft, ChevronsRight, ArrowRight, MessageCircle } from "lucide-react";
+import { allProductsData, PRODUCT_CATEGORIES, ProductDetailItem } from "@/data/productsData";
 
 export default function ProductsPage() {
-  const router = useRouter();
-  const { isArabic } = useLanguage();
-  // Filter States
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedRating, setSelectedRating] = useState<number | "any">("any");
-  const [isCategoryOpen, setIsCategoryOpen] = useState(true);
-  const [isRatingOpen, setIsRatingOpen] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 9;
 
   // Sync search param from URL if present
   useEffect(() => {
@@ -114,88 +23,21 @@ export default function ProductsPage() {
     }
   }, []);
 
-  // View & Pagination States
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [itemsPerPage, setItemsPerPage] = useState<number>(20);
-  const [isPageDropdownOpen, setIsPageDropdownOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [selectedCardId, setSelectedCardId] = useState<number>(1);
-
-  // Share Modal State
-  const [shareModalProduct, setShareModalProduct] = useState<ProductDetailItem | null>(null);
-
-  // Mobile Filter Drawer
-  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
-
-  // Expert Modal State
-  const [isExpertModalOpen, setIsExpertModalOpen] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [expertForm, setExpertForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const voice = useVoiceInput({
-    isArabic,
-    onResult: (fieldName, text) => {
-      if (fieldName === "productsSearch") {
-        setSearchQuery(text);
-        setCurrentPage(1);
-      } else {
-        setExpertForm((prev) => ({ ...prev, [fieldName]: text }));
-        if (errors[fieldName]) {
-          setErrors((prev) => ({ ...prev, [fieldName]: "" }));
-        }
-      }
-    },
-  });
-
-  // Category List with counts
-  const categoryList = useMemo(() => {
-    const counts: Record<string, number> = {};
-    allProductsData.forEach((p) => {
-      counts[p.category] = (counts[p.category] || 0) + 1;
-    });
-    return Object.entries(counts).map(([name, count]) => ({ name, count }));
-  }, []);
-
-  // Toggle Category Filter
-  const toggleCategory = (catName: string) => {
-    setSelectedCategories((prev) =>
-      prev.includes(catName)
-        ? prev.filter((c) => c !== catName)
-        : [...prev, catName]
-    );
-  };
-
-  // Reset All Filters
-  const handleResetAll = () => {
-    setSelectedCategories([]);
-    setSelectedRating("any");
-    setSearchQuery("");
-    toast.success("Filters reset to default");
-  };
-
-  // Filtered Products
+  // Filter products by search and category
   const filteredProducts = useMemo(() => {
     return allProductsData.filter((product) => {
       const matchSearch =
         searchQuery.trim() === "" ||
-        product.name.toLowerCase().includes(searchQuery.toLowerCase());
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchCategory =
-        selectedCategories.length === 0 ||
-        selectedCategories.includes(product.category);
+        selectedCategory === "All Categories" ||
+        product.category === selectedCategory;
 
-      const matchRating =
-        selectedRating === "any" || product.rating >= selectedRating;
-
-      return matchSearch && matchCategory && matchRating;
+      return matchSearch && matchCategory;
     });
-  }, [searchQuery, selectedCategories, selectedRating]);
+  }, [searchQuery, selectedCategory]);
 
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / itemsPerPage));
   const paginatedProducts = useMemo(() => {
@@ -203,1073 +45,260 @@ export default function ProductsPage() {
     return filteredProducts.slice(start, start + itemsPerPage);
   }, [filteredProducts, currentPage, itemsPerPage]);
 
-  // Open Share Modal
-  const handleOpenShare = (e: React.MouseEvent, product: ProductDetailItem) => {
-    e.stopPropagation();
-    setShareModalProduct(product);
-  };
-
-  // Share via social
-  const handleSocialShare = (platform: string) => {
-    const url = typeof window !== "undefined" ? window.location.href : "https://example.com/share-link";
-    const text = shareModalProduct?.name || "Check out this product";
-
-    let shareUrl = "";
-    if (platform === "facebook") {
-      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-    } else if (platform === "twitter") {
-      shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-    } else if (platform === "instagram") {
-      shareUrl = "https://instagram.com";
-    } else if (platform === "whatsapp") {
-      shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + " " + url)}`;
-    } else if (platform === "telegram") {
-      shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-    }
-
-    if (shareUrl) {
-      window.open(shareUrl, "_blank", "width=600,height=500");
-    }
-  };
-
-  // Copy share link
-  const handleCopyLink = () => {
-    const url = typeof window !== "undefined" ? window.location.href : "https://example.com/share-link";
-    navigator.clipboard?.writeText(url);
-    toast.success("Link copied to clipboard!");
-  };
-
-  // Handle Expert Inquiry Submit
-  const handleExpertSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors: Record<string, string> = {};
-
-    const nameErr = getFieldError("name", expertForm.name, isArabic);
-    if (nameErr) newErrors.name = nameErr;
-
-    const emailErr = getFieldError("email", expertForm.email, isArabic);
-    if (emailErr) newErrors.email = emailErr;
-
-    if (expertForm.phone.trim()) {
-      const phoneErr = getFieldError("phone", expertForm.phone, isArabic);
-      if (phoneErr) newErrors.phone = phoneErr;
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    setErrors({});
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsExpertModalOpen(false);
-      toast.success(
-        `Thank you ${expertForm.name}! Our specialist will reach out to you within 24 hours.`
-      );
-      setExpertForm({ name: "", email: "", phone: "", message: "" });
-    }, 800);
-  };
-
   return (
-    <div>
-      <CommonHeader
-        title="Our Products & Accessories"
-        breadcrumb="Products"
-        imagePath="/banners/Product_.png"
-      />
-    <div className="min-h-screen bg-[#fafbfc] text-gray-900 pb-[40px] md:pb-[56px] lg:pb-[72px]">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pt-[40px] md:pt-[56px] lg:pt-[72px]">
-
-        {/* ===================== STORE HERO BANNER ===================== */}
-        <div className="mb-8 rounded-3xl bg-gradient-to-r from-red-600 via-zinc-900 to-black p-6 sm:p-8 lg:p-10 text-white relative overflow-hidden shadow-xl border border-red-500/20">
-          <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold uppercase tracking-wider mb-3 text-red-200 border border-white/10">
-              <span>💎 100% Original Materials</span>
-              <span>•</span>
-              <span>Sharjah, UAE</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-display mb-2.5">
-              Al Rahmaniah Auto Accessories
-            </h2>
-            <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6 font-normal">
-              Revive your car’s interior with premium seat covers, crafted for comfort, style, and durability. Explore our complete collection of custom 3D diamond leather covers, colored seatbelts, genuine headliner rolls, and workshop fitment services.
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="https://api.whatsapp.com/send?phone=971558674927&text=Hello%20Al%20Rahmaniah%20Auto%20Accessories,%20I%20would%20like%20to%20inquire%20about%20your%20products%20and%20seat%20covers."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition-all shadow-lg hover:shadow-emerald-500/25"
-              >
-                <span>💬 WhatsApp Inquiry</span>
-              </a>
-              <a
-                href="tel:+971558674927"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white text-gray-900 hover:bg-gray-100 font-bold text-xs sm:text-sm transition-all shadow"
-              >
-                <span>📞 +971 55 867 4927</span>
-              </a>
-              <a
-                href="tel:0557502083"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm transition-all border border-white/20"
-              >
-                <span>📞 055-7502083</span>
-              </a>
-            </div>
-          </div>
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-15 pointer-events-none hidden lg:block bg-radial from-red-500 to-transparent"></div>
+    <main className="bg-zinc-50 min-h-screen">
+      {/* 1. Hero Section - Matching the Site's Signature Red/Black Automotive Theme */}
+      <section className="relative w-full h-[55vh] min-h-[420px] overflow-hidden flex flex-col justify-center bg-black">
+        <div className="absolute inset-0 z-0">
+          <Image
+            alt="Al Rahmaniah Auto Accessories Hero"
+            fill
+            className="object-cover object-center"
+            src="/images/services-hero.png"
+            priority
+          />
+          <div className="absolute inset-0 bg-[#1a0a05]/75" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
         </div>
 
-        {/* Mobile Filter Toggle */}
-        <div className="lg:hidden flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">All products</h1>
-            <p className="text-xs text-gray-500 mt-0.5">
-              {filteredProducts.length} products found
-            </p>
+        <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
+          {/* Eyebrow badge */}
+          <div className="flex items-center justify-center gap-2 text-red-600 font-bold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-4">
+            <span className="text-[8px]">▲</span>
+            <span>AL RAHMANIAH AUTO ACCESSORIES</span>
+            <span className="text-[8px]">▲</span>
           </div>
-          <button
-            onClick={() => setIsMobileFilterOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-gray-700 shadow-sm"
-          >
-            <SlidersHorizontal className="w-4 h-4 text-red-600" />
-            Filters
-          </button>
-        </div>
 
-        {/* Mobile search bar */}
-        <div className="lg:hidden mb-6">
-          <div className="relative flex items-center">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onFocus={() => voice.setFocusedField("productsSearch")}
-              onBlur={() => voice.setFocusedField(null)}
-              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-              placeholder="Search products…"
-              className="w-full h-11 pl-9 pr-16 rounded-full bg-white border border-gray-200 text-sm text-gray-800 placeholder:text-gray-400 focus:border-red-600 focus:ring-2 focus:ring-red-600/15 outline-none transition-all duration-200 shadow-sm"
-            />
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
-              {voice.isFieldActive("productsSearch") && (
-                <VoiceMicButton
-                  isListening={voice.listeningField === "productsSearch"}
-                  onClick={() => voice.toggleListening("productsSearch", "text")}
-                  isArabic={isArabic}
-                  size="sm"
-                />
-              )}
+          {/* Heading with Red Highlight */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-[-0.03em] leading-tight mb-4">
+            <span className="text-white">Our </span>
+            <span className="text-[#dc2626]">Products & Accessories</span>
+          </h1>
+
+          <p className="max-w-2xl mx-auto text-gray-300 text-xs sm:text-sm font-medium tracking-wide leading-relaxed opacity-90">
+            Revive your car’s interior with premium seat covers, crafted for comfort, style, and durability. 💎 100% Original Materials.
+          </p>
+        </div>
+      </section>
+
+      {/* 2. Main Content Area */}
+      <section className="py-12 sm:py-16">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Controls Bar: Category Pills + Search Box */}
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-5 mb-10 pb-6 border-b border-zinc-200">
+            {/* Category Tabs */}
+            <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 scrollbar-none">
+              {PRODUCT_CATEGORIES.map((cat) => {
+                const isActive = selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                      setCurrentPage(1);
+                    }}
+                    className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? "bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg shadow-red-600/30 border border-red-500"
+                        : "bg-white text-zinc-700 hover:text-red-600 hover:border-red-300 border border-zinc-200 shadow-2xs"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Search Box */}
+            <div className="w-full lg:w-80 relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setCurrentPage(1);
+                }}
+                placeholder="Search accessories…"
+                className="w-full h-11 pl-10 pr-10 rounded-full bg-white border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-red-600 focus:ring-2 focus:ring-red-600/20 outline-none transition-all shadow-xs"
+              />
               {searchQuery && (
                 <button
-                  onClick={() => { setSearchQuery(""); setCurrentPage(1); }}
-                  className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                  onClick={() => {
+                    setSearchQuery("");
+                    setCurrentPage(1);
+                  }}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 cursor-pointer"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  <X className="w-4 h-4" />
                 </button>
               )}
             </div>
           </div>
-        </div>
 
-        {/* Main 2-Column: Left Filters + Right Products Grid */}
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
-          {/* ===================== LEFT SIDEBAR ===================== */}
-          <aside
-            className={`w-full lg:w-64 xl:w-72 flex-shrink-0 space-y-5 ${isMobileFilterOpen
-              ? "fixed inset-0 z-50 bg-black/60 p-4 overflow-y-auto flex items-center justify-center lg:static lg:bg-transparent lg:p-0"
-              : "hidden lg:block"
-              }`}
-          >
-            <div
-              className={`w-full max-w-md lg:max-w-none space-y-5 ${isMobileFilterOpen
-                ? "bg-white p-6 rounded-3xl max-h-[90vh] overflow-y-auto shadow-2xl"
-                : ""
-                }`}
-            >
-              {/* Mobile Close */}
-              {isMobileFilterOpen && (
-                <div className="flex items-center justify-between pb-3 border-b border-gray-100 lg:hidden">
-                  <h3 className="font-bold text-lg text-gray-900">Filters</h3>
-                  <button
-                    onClick={() => setIsMobileFilterOpen(false)}
-                    className="p-1 text-gray-400 hover:text-gray-600"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-              )}
-
-              {/* FILTERS CARD */}
-              <div className="bg-white rounded-2xl border border-gray-200/80 p-5 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                {/* Header */}
-                <div className="flex items-center justify-between pb-4 border-b border-gray-100">
-                  <h2 className="text-base font-bold text-gray-900">Filters</h2>
-                  <button
-                    onClick={handleResetAll}
-                    className="text-xs font-semibold text-red-600 hover:underline cursor-pointer transition-colors"
-                  >
-                    Reset all
-                  </button>
-                </div>
-
-                {/* Section 1: CATEGORY */}
-                <div className="py-4 border-b border-gray-100">
-                  <button
-                    onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-                    className="w-full flex items-center justify-between text-left cursor-pointer group"
-                  >
-                    <span className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
-                      CATEGORY
-                    </span>
-                    {isCategoryOpen ? (
-                      <ChevronUp className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-                    )}
-                  </button>
-
-                  {isCategoryOpen && (
-                    <div className="mt-3.5 space-y-2.5">
-                      {categoryList.map((cat) => {
-                        const isChecked = selectedCategories.includes(cat.name);
-                        return (
-                          <label
-                            key={cat.name}
-                            className="flex items-center justify-between text-xs text-gray-700 cursor-pointer group py-0.5"
-                          >
-                            <div className="flex items-center gap-2.5">
-                              {/* Rounded Square Checkbox */}
-                              <div
-                                onClick={() => toggleCategory(cat.name)}
-                                className={`w-4 h-4 rounded-md flex items-center justify-center transition-all ${isChecked
-                                  ? "bg-[#01a9a0] border border-[#01a9a0] text-white"
-                                  : "border border-gray-300 group-hover:border-[#01a9a0] bg-white"
-                                  }`}
-                              >
-                                {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
-                              </div>
-                              <span
-                                className={`transition-colors ${isChecked
-                                  ? "font-semibold text-gray-900"
-                                  : "text-gray-600 group-hover:text-gray-900"
-                                  }`}
-                              >
-                                {cat.name}
-                              </span>
-                            </div>
-                            <span className="text-[11px] text-gray-400 font-medium">
-                              {cat.count}
-                            </span>
-                          </label>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-
-                {/* Section 2: RATING */}
-                <div className="pt-4">
-                  <button
-                    onClick={() => setIsRatingOpen(!isRatingOpen)}
-                    className="w-full flex items-center justify-between text-left cursor-pointer group"
-                  >
-                    <span className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
-                      RATING
-                    </span>
-                    {isRatingOpen ? (
-                      <ChevronUp className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-                    )}
-                  </button>
-
-                  {isRatingOpen && (
-                    <div className="mt-3 space-y-2.5">
-                      {/* Any Rating */}
-                      <label className="flex items-center gap-2.5 text-xs text-gray-700 cursor-pointer py-0.5">
-                        <input
-                          type="radio"
-                          name="rating"
-                          checked={selectedRating === "any"}
-                          onChange={() => setSelectedRating("any")}
-                          className="accent-[#01a9a0] w-3.5 h-3.5 cursor-pointer"
-                        />
-                        <span className="text-gray-700">Any rating</span>
-                      </label>
-
-                      {/* 5 Stars */}
-                      <label className="flex items-center gap-2.5 text-xs text-gray-700 cursor-pointer py-0.5">
-                        <input
-                          type="radio"
-                          name="rating"
-                          checked={selectedRating === 5}
-                          onChange={() => setSelectedRating(5)}
-                          className="accent-[#01a9a0] w-3.5 h-3.5 cursor-pointer"
-                        />
-                        <div className="flex items-center gap-1 text-amber-500">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-amber-500 text-amber-500"
-                            />
-                          ))}
-                        </div>
-                      </label>
-
-                      {/* 4 Stars */}
-                      <label className="flex items-center gap-2.5 text-xs text-gray-700 cursor-pointer py-0.5">
-                        <input
-                          type="radio"
-                          name="rating"
-                          checked={selectedRating === 4}
-                          onChange={() => setSelectedRating(4)}
-                          className="accent-[#01a9a0] w-3.5 h-3.5 cursor-pointer"
-                        />
-                        <div className="flex items-center gap-1">
-                          {[...Array(4)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-amber-500 text-amber-500"
-                            />
-                          ))}
-                          <Star className="w-3.5 h-3.5 fill-gray-200 text-gray-200" />
-                        </div>
-                      </label>
-
-                      {/* 3 Stars */}
-                      <label className="flex items-center gap-2.5 text-xs text-gray-700 cursor-pointer py-0.5">
-                        <input
-                          type="radio"
-                          name="rating"
-                          checked={selectedRating === 3}
-                          onChange={() => setSelectedRating(3)}
-                          className="accent-[#01a9a0] w-3.5 h-3.5 cursor-pointer"
-                        />
-                        <div className="flex items-center gap-1">
-                          {[...Array(3)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-amber-500 text-amber-500"
-                            />
-                          ))}
-                          {[...Array(2)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-gray-200 text-gray-200"
-                            />
-                          ))}
-                        </div>
-                      </label>
-
-                      {/* 2 Stars */}
-                      <label className="flex items-center gap-2.5 text-xs text-gray-700 cursor-pointer py-0.5">
-                        <input
-                          type="radio"
-                          name="rating"
-                          checked={selectedRating === 2}
-                          onChange={() => setSelectedRating(2)}
-                          className="accent-[#01a9a0] w-3.5 h-3.5 cursor-pointer"
-                        />
-                        <div className="flex items-center gap-1">
-                          {[...Array(2)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-amber-500 text-amber-500"
-                            />
-                          ))}
-                          {[...Array(3)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-gray-200 text-gray-200"
-                            />
-                          ))}
-                        </div>
-                      </label>
-
-                      {/* 1 Star */}
-                      <label className="flex items-center gap-2.5 text-xs text-gray-700 cursor-pointer py-0.5">
-                        <input
-                          type="radio"
-                          name="rating"
-                          checked={selectedRating === 1}
-                          onChange={() => setSelectedRating(1)}
-                          className="accent-[#01a9a0] w-3.5 h-3.5 cursor-pointer"
-                        />
-                        <div className="flex items-center gap-1">
-                          <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                          {[...Array(4)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-gray-200 text-gray-200"
-                            />
-                          ))}
-                        </div>
-                      </label>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {isMobileFilterOpen && (
-                <button
-                  onClick={() => setIsMobileFilterOpen(false)}
-                  className="w-full py-3 bg-[#01a9a0] text-white font-bold rounded-xl text-sm lg:hidden shadow"
-                >
-                  View {filteredProducts.length} Results
-                </button>
-              )}
-            </div>
-          </aside>
-
-          {/* ===================== RIGHT CONTENT ===================== */}
-          <main className="flex-1 w-full min-w-0">
-            {/* Top Toolbar */}
-            <div className="hidden lg:flex items-center justify-between mb-6 pb-1 gap-4">
-              <div className="shrink-0">
-                <h1 className="text-2xl font-bold font-anek text-gray-900 tracking-tight">
-                  All products
-                </h1>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  {filteredProducts.length} products found
-                </p>
-              </div>
-
-              {/* Right side controls: Search bar & Show Page */}
-              <div className="flex items-center gap-4 shrink-0">
-                {/* Search bar */}
-                <div className="w-72 xl:w-80">
-                  <div className="relative flex items-center">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onFocus={() => voice.setFocusedField("productsSearch")}
-                      onBlur={() => voice.setFocusedField(null)}
-                      onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                      placeholder="Search products…"
-                      className="w-full h-10 pl-9 pr-16 rounded-full bg-white border border-gray-200 text-sm text-gray-800 placeholder:text-gray-400 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/15 outline-none transition-all duration-200 shadow-sm"
-                    />
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                      {voice.isFieldActive("productsSearch") && (
-                        <VoiceMicButton
-                          isListening={voice.listeningField === "productsSearch"}
-                          onClick={() => voice.toggleListening("productsSearch", "text")}
-                          isArabic={isArabic}
-                          size="sm"
-                        />
-                      )}
-                      {searchQuery && (
-                        <button
-                          onClick={() => { setSearchQuery(""); setCurrentPage(1); }}
-                          className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
-                        >
-                          <X className="w-3.5 h-3.5" />
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* View Mode Switcher */}
-                <div className="hidden flex items-center gap-1.5 bg-gray-100/80 p-1 rounded-xl">
-                  <button
-                    onClick={() => setViewMode("grid")}
-                    className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all cursor-pointer ${viewMode === "grid"
-                      ? "bg-[#01a9a0] text-white shadow-xs"
-                      : "text-gray-400 hover:text-gray-600"
-                      }`}
-                    title="Grid View"
-                  >
-                    <LayoutGrid className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-
-                {/* Show Page Dropdown */}
-                <div className="relative flex items-center gap-2 text-xs text-gray-500 font-medium">
-                  <span>Show Page</span>
-                  <div className="relative">
-                    <button
-                      onClick={() => setIsPageDropdownOpen(!isPageDropdownOpen)}
-                      className="bg-white border border-gray-200 rounded-full px-3.5 py-1.5 pr-7 text-xs font-semibold text-gray-700 flex items-center gap-1 shadow-xs hover:border-[#01a9a0] cursor-pointer transition-colors"
-                    >
-                      <span>{itemsPerPage}</span>
-                      <ChevronDown className="w-3.5 h-3.5 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" />
-                    </button>
-
-                    {/* Open Dropdown Menu (showing 20, 40, 60, 80 as in design) */}
-                    {isPageDropdownOpen && (
-                      <div className="absolute right-0 top-full mt-1.5 w-20 bg-white rounded-xl shadow-lg border border-gray-100 py-1 z-30 animate-in fade-in zoom-in-95 duration-150">
-                        {[20, 40, 60, 80].map((num) => (
-                          <button
-                            key={num}
-                            onClick={() => {
-                              setItemsPerPage(num);
-                              setIsPageDropdownOpen(false);
-                            }}
-                            className={`w-full px-3 py-1.5 text-xs text-left cursor-pointer transition-colors ${itemsPerPage === num
-                              ? "bg-[#01a9a0]/10 text-[#01a9a0] font-bold"
-                              : "text-gray-700 hover:bg-gray-50"
-                              }`}
-                          >
-                            {num}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+          {/* Results Count & Reset Filter */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-red-600"></div>
+              <p className="text-xs font-bold text-zinc-600 uppercase tracking-wider">
+                Showing <span className="text-zinc-900 font-extrabold">{filteredProducts.length}</span> Products
+              </p>
             </div>
 
-            {/* Products Grid (4 columns as shown in design mockup) */}
-            {filteredProducts.length === 0 ? (
-              <div className="bg-white rounded-2xl p-12 text-center border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-800 mb-1">
-                  No products found
-                </h3>
-                <p className="text-xs text-gray-500 mb-4">
-                  {searchQuery
-                    ? `No results for "${searchQuery}". Try a different search term.`
-                    : "Try clearing some categories or selecting \"Any rating\"."}
-                </p>
-                <button
-                  onClick={handleResetAll}
-                  className="px-4 py-2 bg-[#01a9a0] text-white font-semibold rounded-xl text-xs hover:opacity-90 transition-opacity"
-                >
-                  Reset Filters
-                </button>
-              </div>
-            ) : (
-              <div
-                className={`grid gap-4 sm:gap-5 ${viewMode === "grid"
-                  ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                  : "grid-cols-1"
-                  }`}
+            {(selectedCategory !== "All Categories" || searchQuery) && (
+              <button
+                onClick={() => {
+                  setSelectedCategory("All Categories");
+                  setSearchQuery("");
+                  setCurrentPage(1);
+                }}
+                className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline cursor-pointer"
               >
-                {paginatedProducts.map((product) => {
-                  const isSelected = selectedCardId === product.id;
-                  const isShareOpen = shareModalProduct?.id === product.id;
-
-                  return (
-                    <div
-                      key={product.id}
-                      onClick={() => {
-                        setSelectedCardId(product.id);
-                      }}
-                      className={`relative rounded-2xl transition-all duration-200 p-3 sm:p-3.5 flex flex-col group ${isShareOpen ? "z-30" : isSelected ? "z-20" : "z-10 hover:z-20"
-                        } ${isSelected
-                          ? "bg-[#f0fdfa]/50 border-2 border-[#01a9a0] shadow-[0_4px_16px_rgba(1,169,160,0.12)]"
-                          : "bg-white border border-gray-200/90 hover:border-gray-300 shadow-[0_2px_6px_rgba(0,0,0,0.02)] hover:shadow-md"
-                        }`}
-                    >
-                      {/* Top Product Image Container */}
-                      <div className="relative w-full aspect-square bg-[#f6f7f9] rounded-xl overflow-hidden flex items-center justify-center p-3 mb-3">
-                        <Link
-                          href={`/products/${product.id}`}
-                          className="w-full h-full flex items-center justify-center cursor-pointer"
-                        >
-                          <Image
-                            src={product.image}
-                            alt={product.name}
-                            width={200}
-                            height={200}
-                            className="max-h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                          />
-                        </Link>
-
-                        {/* Top-Right Controls: Share Button (Rating Removed) */}
-                        <div
-                          className={`absolute top-2.5 right-2.5 flex items-center z-10 transition-opacity duration-200 ${isSelected || isShareOpen
-                            ? "opacity-100"
-                            : "opacity-0 group-hover:opacity-100"
-                            }`}
-                        >
-                          <button
-                            type="button"
-                            onClick={(e) => handleOpenShare(e, product)}
-                            className="w-7 h-7 rounded-full bg-white/95 backdrop-blur-xs border border-gray-100 hover:border-[#01a9a0] flex items-center justify-center text-gray-500 hover:text-[#01a9a0] transition-transform hover:scale-110 shadow-xs cursor-pointer"
-                            title="Share product"
-                          >
-                            <Share2 className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Product Details */}
-                      <div className="flex flex-col flex-1 pb-1">
-                        {/* Category & Price Badge */}
-                        <div className="flex items-center justify-between gap-2 mb-1.5">
-                          <span className="text-[10px] font-extrabold uppercase tracking-wider text-red-600 bg-red-50 px-2 py-0.5 rounded-full border border-red-100 truncate max-w-[150px]">
-                            {product.category}
-                          </span>
-                          {product.price && (
-                            <span className="text-xs font-bold text-gray-900 bg-gray-100 px-2 py-0.5 rounded-md shrink-0">
-                              {product.price}
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Product Name */}
-                        <Link
-                          href={`/products/${product.id}`}
-                          className="group/title block"
-                        >
-                          <h3 className="text-sm sm:text-[15px] font-bold font-anek text-gray-900 tracking-tight leading-snug group-hover/title:text-red-600 transition-colors line-clamp-1">
-                            {product.name}
-                          </h3>
-                        </Link>
-
-                        {/* Product Description */}
-                        <p className="text-xs text-gray-500 leading-relaxed mt-1 line-clamp-2">
-                          {product.description}
-                        </p>
-
-                        {/* Rating & Reviews */}
-                        <div className="flex items-center gap-1.5 mt-2.5">
-                          <div className="flex items-center gap-0.5 text-amber-500">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`w-3 h-3 ${
-                                  i < Math.floor(product.rating)
-                                    ? "fill-amber-500 text-amber-500"
-                                    : "fill-gray-200 text-gray-200"
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-[11px] font-bold text-gray-800">
-                            {product.rating}
-                          </span>
-                          <span className="text-[11px] text-gray-400">
-                            ({product.reviewsCount})
-                          </span>
-                        </div>
-
-                        {/* Actions: View Details + WhatsApp */}
-                        <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
-                          <Link
-                            href={`/products/${product.id}`}
-                            className="text-xs font-bold text-gray-700 hover:text-red-600 transition-colors"
-                          >
-                            Details →
-                          </Link>
-                          <a
-                            href={`https://api.whatsapp.com/send?phone=971558674927&text=${encodeURIComponent(
-                              `Hello Al Rahmaniah Auto Accessories, I am inquiring about: ${product.name}`
-                            )}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white text-[11px] font-bold transition-all border border-emerald-200 shadow-xs cursor-pointer"
-                          >
-                            <span>WhatsApp</span>
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* ===================== TOOLTIP SHARE POPOVER (Relative to this product card) ===================== */}
-                      {isShareOpen && (
-                        <>
-                          {/* Click outside backdrop to close */}
-                          <div
-                            className="fixed inset-0 z-40 cursor-default"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setShareModalProduct(null);
-                            }}
-                          />
-
-                          {/* Tooltip Card anchored relative to this product */}
-                          <div
-                            className="absolute top-2 right-2 z-50 w-72 sm:w-80 bg-[#01a9a0] rounded-2xl p-4 sm:p-5 shadow-[0_12px_40px_rgba(1,169,160,0.35)] border border-[#01a9a0]/30 animate-in fade-in zoom-in-95 duration-150 text-left cursor-default"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            {/* Header */}
-                            <div className="flex items-center justify-between mb-3">
-                              <h3 className="text-sm sm:text-base font-bold text-white">
-                                Share Now
-                              </h3>
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setShareModalProduct(null);
-                                }}
-                                className="w-6 h-6 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center text-white transition-colors cursor-pointer"
-                              >
-                                <X className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-
-                            {/* Subtitle */}
-                            <p className="text-[11px] text-white/80 font-medium mb-2.5">
-                              Share this link via
-                            </p>
-
-                            {/* Social Icons Row (5 colored circles matching screenshot) */}
-                            <div className="flex items-center justify-between gap-1.5 mb-4">
-                              {/* Facebook */}
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleSocialShare("facebook");
-                                }}
-                                className="w-9 h-9 rounded-full bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-[#1877F2] transition-transform hover:scale-110 cursor-pointer"
-                                title="Facebook"
-                              >
-                                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                                </svg>
-                              </button>
-
-                              {/* Twitter / X */}
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleSocialShare("twitter");
-                                }}
-                                className="w-9 h-9 rounded-full bg-sky-50 hover:bg-sky-100 flex items-center justify-center text-[#1DA1F2] transition-transform hover:scale-110 cursor-pointer"
-                                title="Twitter"
-                              >
-                                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.936 9.936 0 0024 4.59z" />
-                                </svg>
-                              </button>
-
-                              {/* Instagram */}
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleSocialShare("instagram");
-                                }}
-                                className="w-9 h-9 rounded-full bg-pink-50 hover:bg-pink-100 flex items-center justify-center text-[#E4405F] transition-transform hover:scale-110 cursor-pointer"
-                                title="Instagram"
-                              >
-                                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                </svg>
-                              </button>
-
-                              {/* WhatsApp */}
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleSocialShare("whatsapp");
-                                }}
-                                className="w-9 h-9 rounded-full bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center text-[#25D366] transition-transform hover:scale-110 cursor-pointer"
-                                title="WhatsApp"
-                              >
-                                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347m-5.421 7.403" />
-                                </svg>
-                              </button>
-
-                              {/* Telegram */}
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleSocialShare("telegram");
-                                }}
-                                className="w-9 h-9 rounded-full bg-cyan-50 hover:bg-cyan-100 flex items-center justify-center text-[#0088cc] transition-transform hover:scale-110 cursor-pointer"
-                                title="Telegram"
-                              >
-                                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                  <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.942z" />
-                                </svg>
-                              </button>
-                            </div>
-
-                            {/* Copy Link Section */}
-                            <p className="text-[11px] text-white/80 font-medium mb-1.5">
-                              Or copy link
-                            </p>
-                            <div className="flex items-center gap-2 p-1 pl-2.5 border border-white/30 rounded-full bg-white/15 backdrop-blur-sm focus-within:border-white/60">
-                              <Link2 className="w-3 h-3 text-white/70 flex-shrink-0" />
-                              <input
-                                type="text"
-                                readOnly
-                                value="example.com/share-link"
-                                className="w-full text-[11px] text-white bg-transparent outline-none truncate placeholder:text-white/50"
-                              />
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleCopyLink();
-                                }}
-                                className="px-3.5 py-1 bg-white hover:bg-white/90 text-[#01a9a0] text-[11px] font-semibold rounded-full transition-colors flex-shrink-0 cursor-pointer shadow-xs"
-                              >
-                                Copy
-                              </button>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+                Clear all filters
+              </button>
             )}
+          </div>
 
-            {/* ===================== PAGINATION BAR ===================== */}
-            <div className="mt-10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-xs sm:text-sm text-gray-500 font-medium">
-                Showing {filteredProducts.length === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1} to{" "}
-                {Math.min(currentPage * itemsPerPage, filteredProducts.length)} of {filteredProducts.length}
-              </span>
-
-              {totalPages > 1 && (
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  {/* Previous (<<) */}
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className="w-8 h-8 rounded-lg bg-[#e6f7f5] text-[#01a9a0] border border-[#b2e5e1] hover:bg-[#d4f2ef] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors cursor-pointer"
-                    title="Previous Page"
-                  >
-                    <ChevronsLeft className="w-4 h-4" />
-                  </button>
-
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                    <button
-                      key={pageNum}
-                      onClick={() => setCurrentPage(pageNum)}
-                      className={`w-8 h-8 rounded-lg font-medium text-xs sm:text-sm flex items-center justify-center transition-all cursor-pointer ${currentPage === pageNum
-                        ? "bg-[#01a9a0] text-white font-bold shadow-xs"
-                        : "bg-[#e6f7f5] text-[#01a9a0] border border-[#b2e5e1] hover:bg-[#d4f2ef]"
-                        }`}
-                    >
-                      {pageNum}
-                    </button>
-                  ))}
-
-                  {/* Next (>>) */}
-                  <button
-                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                    className="w-8 h-8 rounded-lg bg-[#e6f7f5] text-[#01a9a0] border border-[#b2e5e1] hover:bg-[#d4f2ef] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors cursor-pointer"
-                    title="Next Page"
-                  >
-                    <ChevronsRight className="w-4 h-4" />
-                  </button>
-                </div>
-              )}
-            </div>
-          </main>
-        </div>
-      </div>
-
-      {/* FAQ Section */}
-      <FaqSection
-        faqs={PRODUCT_LISTING_FAQS}
-        isArabic={isArabic}
-        subtitle="Find clear answers to common questions about product specifications, bulk trade supply, and applications."
-        subtitleAr="إجابات واضحة على الأسئلة الشائعة حول مواصفات المنتجات والتوريد التجاري بالجملة وطرق التطبيق."
-      />
-
-      {/* ===================== EXPERT MODAL ===================== */}
-      {isExpertModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl border border-gray-200">
-            <div className="bg-[#01a9a0] p-6 text-white relative">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-3">
-                <Headphones className="w-5 h-5 text-white" />
+          {/* Products Grid */}
+          {filteredProducts.length === 0 ? (
+            <div className="bg-white rounded-2xl p-14 text-center border border-zinc-200 shadow-sm max-w-xl mx-auto my-8">
+              <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-3">
+                <Search className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold font-anek">Talk to an Expert</h3>
-              <p className="text-xs text-white/90 mt-1">
-                Get custom advice and product recommendations tailored to your setup.
+              <h3 className="text-lg font-bold text-zinc-900 mb-1">No products found</h3>
+              <p className="text-xs text-zinc-500 mb-5 leading-relaxed">
+                We couldn&apos;t find any items matching your filter. Try searching for other terms or view all categories.
               </p>
               <button
-                onClick={() => setIsExpertModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-black/20 hover:bg-black/30 flex items-center justify-center text-white absolute top-6 right-6 transition-colors"
+                onClick={() => {
+                  setSelectedCategory("All Categories");
+                  setSearchQuery("");
+                  setCurrentPage(1);
+                }}
+                className="px-6 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-full text-xs font-bold tracking-wider uppercase transition-all shadow-md shadow-red-600/30"
               >
-                <X className="w-4 h-4" />
+                View All Products
               </button>
             </div>
-
-            <form onSubmit={handleExpertSubmit} noValidate className="p-6 space-y-4">
-              <div>
-                <label className={`block text-xs font-semibold mb-1 transition-colors ${
-                  errors.name ? "text-red-500" : "text-gray-700"
-                }`}>
-                  Full Name *
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="e.g. John Doe"
-                    value={expertForm.name}
-                    onFocus={() => voice.setFocusedField("name")}
-                    onBlur={() => voice.setFocusedField(null)}
-                    onChange={(e) => {
-                      setExpertForm({ ...expertForm, name: e.target.value });
-                      if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
-                    }}
-                    className={`w-full ${isArabic ? "pl-20 pr-4 text-right" : "pr-20 pl-4 text-left"} py-2.5 rounded-full border text-sm focus:outline-none transition-all ${
-                      errors.name
-                        ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
-                    }`}
-                  />
-                  <div className={`absolute top-1/2 -translate-y-1/2 flex items-center gap-1 z-10 ${isArabic ? "left-3" : "right-3"}`}>
-                    {voice.isFieldActive("name") && (
-                      <VoiceMicButton
-                        isListening={voice.listeningField === "name"}
-                        onClick={() => voice.toggleListening("name", "text")}
-                        isArabic={isArabic}
-                        size="sm"
-                      />
-                    )}
-                    <InputValidationTick
-                      isValid={isValidText(expertForm.name, 2) && !errors.name}
-                      isArabic={isArabic}
-                      className="!static !translate-y-0 !left-auto !right-auto"
-                    />
-                  </div>
-                </div>
-                {voice.listeningField === "name" && <VoiceListeningBadge isArabic={isArabic} />}
-                <FormFieldError error={errors.name} />
-              </div>
-
-              <div>
-                <label className={`block text-xs font-semibold mb-1 transition-colors ${
-                  errors.email ? "text-red-500" : "text-gray-700"
-                }`}>
-                  Email Address *
-                </label>
-                <div className="relative">
-                  <input
-                    type="email"
-                    placeholder="name@company.com"
-                    value={expertForm.email}
-                    onFocus={() => voice.setFocusedField("email")}
-                    onBlur={() => voice.setFocusedField(null)}
-                    onChange={(e) => {
-                      setExpertForm({ ...expertForm, email: e.target.value });
-                      if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
-                    }}
-                    className={`w-full ${isArabic ? "pl-20 pr-4 text-right" : "pr-20 pl-4 text-left"} py-2.5 rounded-full border text-sm focus:outline-none transition-all ${
-                      errors.email
-                        ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
-                    }`}
-                  />
-                  <div className={`absolute top-1/2 -translate-y-1/2 flex items-center gap-1 z-10 ${isArabic ? "left-3" : "right-3"}`}>
-                    {voice.isFieldActive("email") && (
-                      <VoiceMicButton
-                        isListening={voice.listeningField === "email"}
-                        onClick={() => voice.toggleListening("email", "email")}
-                        isArabic={isArabic}
-                        size="sm"
-                      />
-                    )}
-                    <InputValidationTick
-                      isValid={isValidEmail(expertForm.email) && !errors.email}
-                      isArabic={isArabic}
-                      className="!static !translate-y-0 !left-auto !right-auto"
-                    />
-                  </div>
-                </div>
-                {voice.listeningField === "email" && <VoiceListeningBadge isArabic={isArabic} />}
-                <FormFieldError error={errors.email} />
-              </div>
-
-              <div>
-                <label className={`block text-xs font-semibold mb-1 transition-colors ${
-                  errors.phone ? "text-red-500" : "text-gray-700"
-                }`}>
-                  Phone Number
-                </label>
-                <div className="relative">
-                  <input
-                    type="tel"
-                    placeholder="+971 55 617 3300"
-                    value={expertForm.phone}
-                    onFocus={() => voice.setFocusedField("phone")}
-                    onBlur={() => voice.setFocusedField(null)}
-                    onChange={(e) => {
-                      setExpertForm({ ...expertForm, phone: e.target.value });
-                      if (errors.phone) setErrors((prev) => ({ ...prev, phone: "" }));
-                    }}
-                    className={`w-full ${isArabic ? "pl-20 pr-4 text-right" : "pr-20 pl-4 text-left"} py-2.5 rounded-full border text-sm focus:outline-none transition-all ${
-                      errors.phone
-                        ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
-                    }`}
-                  />
-                  <div className={`absolute top-1/2 -translate-y-1/2 flex items-center gap-1 z-10 ${isArabic ? "left-3" : "right-3"}`}>
-                    {voice.isFieldActive("phone") && (
-                      <VoiceMicButton
-                        isListening={voice.listeningField === "phone"}
-                        onClick={() => voice.toggleListening("phone", "phone")}
-                        isArabic={isArabic}
-                        size="sm"
-                      />
-                    )}
-                    <InputValidationTick
-                      isValid={isValidPhone(expertForm.phone) && !errors.phone}
-                      isArabic={isArabic}
-                      className="!static !translate-y-0 !left-auto !right-auto"
-                    />
-                  </div>
-                </div>
-                {voice.listeningField === "phone" && <VoiceListeningBadge isArabic={isArabic} />}
-                <FormFieldError error={errors.phone} />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">
-                  What gear are you looking for?
-                </label>
-                <div className="relative">
-                  <textarea
-                    rows={3}
-                    placeholder="Tell us about your requirements or preferences..."
-                    value={expertForm.message}
-                    onFocus={() => voice.setFocusedField("message")}
-                    onBlur={() => voice.setFocusedField(null)}
-                    onChange={(e) =>
-                      setExpertForm({ ...expertForm, message: e.target.value })
-                    }
-                    className={`w-full px-4 ${isArabic ? "pl-12 text-right" : "pr-12 text-left"} py-3 rounded-2xl border border-stone-300 text-sm focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20 focus:outline-none transition-all resize-none`}
-                  />
-                  <div className={`absolute top-3 z-10 ${isArabic ? "left-3" : "right-3"}`}>
-                    {voice.isFieldActive("message") && (
-                      <VoiceMicButton
-                        isListening={voice.listeningField === "message"}
-                        onClick={() => voice.toggleListening("message", "textarea")}
-                        isArabic={isArabic}
-                        size="sm"
-                      />
-                    )}
-                  </div>
-                </div>
-                {voice.listeningField === "message" && <VoiceListeningBadge isArabic={isArabic} />}
-              </div>
-
-              <div className="pt-2 flex items-center justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsExpertModalOpen(false)}
-                  className="px-5 py-2.5 rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 text-xs sm:text-sm font-semibold cursor-pointer"
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {paginatedProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="bg-white rounded-2xl border border-zinc-200/90 hover:border-red-600/50 p-5 flex flex-col group hover:shadow-2xl hover:shadow-red-950/10 transition-all duration-300"
                 >
-                  Cancel
-                </button>
+                  {/* Product Image Frame */}
+                  <div className="relative w-full aspect-square bg-zinc-50 rounded-xl overflow-hidden mb-5 p-5 flex items-center justify-center border border-zinc-100 group-hover:border-red-100 transition-colors">
+                    <Link
+                      href={`/products/${product.id}`}
+                      className="w-full h-full flex items-center justify-center cursor-pointer"
+                    >
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={350}
+                        height={350}
+                        className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </Link>
+
+                    {/* Original Red Badge */}
+                    <span className="absolute top-3 left-3 px-3 py-1 bg-gradient-to-r from-red-600 to-red-700 text-white text-[10px] font-extrabold uppercase tracking-wider rounded-full shadow-md shadow-red-600/30">
+                      💎 100% Original
+                    </span>
+                  </div>
+
+                  {/* Category & Price */}
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100 truncate max-w-[170px]">
+                      {product.category}
+                    </span>
+                    {product.price && (
+                      <span className="text-sm font-black text-red-600 bg-zinc-50 px-2.5 py-1 rounded-md border border-zinc-200 shrink-0">
+                        {product.price}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Product Title */}
+                  <Link href={`/products/${product.id}`} className="block group/title mb-2">
+                    <h3 className="text-base sm:text-lg font-bold font-display text-zinc-900 tracking-tight leading-snug group-hover/title:text-red-600 transition-colors line-clamp-1">
+                      {product.name}
+                    </h3>
+                  </Link>
+
+                  {/* Description */}
+                  <p className="text-xs text-zinc-500 leading-relaxed line-clamp-2 mb-5">
+                    {product.description}
+                  </p>
+
+                  {/* Action Buttons */}
+                  <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center justify-between gap-3">
+                    <Link
+                      href={`/products/${product.id}`}
+                      className="text-xs font-bold text-zinc-800 hover:text-red-600 flex items-center gap-1 transition-colors"
+                    >
+                      <span>Details</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+
+                    <a
+                      href={`https://api.whatsapp.com/send?phone=971558674927&text=${encodeURIComponent(
+                        `Hello Al Rahmaniah Auto Accessories, I am inquiring about: ${product.name}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-bold transition-all shadow-md shadow-red-600/25 hover:shadow-red-600/40 cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp Quote</span>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-14 flex items-center justify-center gap-2">
+              <button
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="w-10 h-10 rounded-full bg-white border border-zinc-200 text-zinc-600 hover:bg-zinc-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors cursor-pointer"
+                title="Previous Page"
+              >
+                <ChevronsLeft className="w-4 h-4" />
+              </button>
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                 <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-6 py-2.5 bg-[#01a9a0] text-white text-xs sm:text-sm font-semibold rounded-full hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer shadow disabled:opacity-50"
+                  key={pageNum}
+                  onClick={() => setCurrentPage(pageNum)}
+                  className={`w-10 h-10 rounded-full font-bold text-xs flex items-center justify-center transition-all cursor-pointer ${
+                    currentPage === pageNum
+                      ? "bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg shadow-red-600/30 border border-red-500"
+                      : "bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-100 hover:text-red-600"
+                  }`}
                 >
-                  {isSubmitting ? "Sending..." : "Submit Request"}
-                  <Send className="w-3.5 h-3.5" />
+                  {pageNum}
                 </button>
-              </div>
-            </form>
-          </div>
+              ))}
+
+              <button
+                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+                className="w-10 h-10 rounded-full bg-white border border-zinc-200 text-zinc-600 hover:bg-zinc-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors cursor-pointer"
+                title="Next Page"
+              >
+                <ChevronsRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
         </div>
-      )}
-    </div>
-    </div>
+      </section>
+    </main>
   );
 }

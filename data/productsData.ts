@@ -1,13 +1,3 @@
-export interface ProductReview {
-  id: string;
-  author: string;
-  initials: string;
-  date: string;
-  rating: number;
-  verified: boolean;
-  comment: string;
-}
-
 export interface ProductSpecification {
   label: string;
   value: string;
@@ -33,12 +23,6 @@ export interface ProductDetailItem {
     column1: ProductSpecification[];
     column2: ProductSpecification[];
   };
-  ratingBreakdown: {
-    stars: number;
-    count: number;
-    percentage: number;
-  }[];
-  reviews: ProductReview[];
 }
 
 export const PRODUCT_CATEGORIES = [
@@ -46,10 +30,8 @@ export const PRODUCT_CATEGORIES = [
   "Car Seat Covers",
   "Upholstery Leather & Fabrics",
   "Custom Colored Seatbelts",
-  "Floor Carpets & 3D Mats",
+  "Floor Carpets & Mats",
   "Roof Headliners",
-  "Adhesives & Stitching Materials",
-  "Custom Tailoring Services",
 ] as const;
 
 export const allProductsData: ProductDetailItem[] = [
@@ -100,35 +82,6 @@ export const allProductsData: ProductDetailItem[] = [
         { label: "Warranty", value: "2 Years Workmanship & Material Warranty" },
       ],
     },
-    ratingBreakdown: [
-      { stars: 5, count: 110, percentage: 86 },
-      { stars: 4, count: 14, percentage: 11 },
-      { stars: 3, count: 3, percentage: 2 },
-      { stars: 2, count: 1, percentage: 1 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-1",
-        author: "Tariq Al Hammadi",
-        initials: "TH",
-        date: "October 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Fitted my Land Cruiser with the diamond tan covers at Al Rahmaniah Auto Sharjah. The stitching and fitment look genuinely OEM. Doesn't get burning hot in the afternoon.",
-      },
-      {
-        id: "rev-2",
-        author: "Kashif Mehmood",
-        initials: "KM",
-        date: "September 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Very high quality PVC leather with thick foam inside. They finished installation in a few hours. Top notch service!",
-      },
-    ],
   },
   {
     id: 2,
@@ -175,30 +128,54 @@ export const allProductsData: ProductDetailItem[] = [
         { label: "Durability Rating", value: "100,000+ Martindale Rub Cycles" },
       ],
     },
-    ratingBreakdown: [
-      { stars: 5, count: 90, percentage: 94 },
-      { stars: 4, count: 6, percentage: 6 },
-      { stars: 3, count: 0, percentage: 0 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-3",
-        author: "Faisal Al Nuaimi",
-        initials: "FN",
-        date: "September 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Transformed my Nissan Patrol interior completely. The tan and black dual-tone looks better than the factory leather and the stitching is perfection.",
-      },
-    ],
   },
   {
     id: 3,
-    name: "Rahmaniah Collection 2025 Automotive Leather Swatches",
-    longName: "Rahmaniah Collection 2025 Luxury Automotive Leatherette Swatches",
+    name: "Luxury Quilted Ergonomic Leather Seat Covers",
+    longName: "Luxury Quilted Ergonomic Leather Car Seat Cover Set",
+    category: "Car Seat Covers",
+    subcategory: "QUILTED LUXURY",
+    categoryPath: ["Home", "Products", "Car Seat Covers", "Luxury Quilted Ergonomic Seat Covers"],
+    image: "/fb-posts/580575558_122191406348549942_4454035087039568744_n.jpg",
+    additionalImages: [
+      "/fb-posts/580575558_122191406348549942_4454035087039568744_n.jpg",
+      "/fb-posts/581519632_122191279118549942_7579179045438295882_n.jpg",
+      "/fb-posts/611304648_122199913940549942_4994234153758255283_n.jpg",
+    ],
+    description:
+      "Ergonomically contoured executive quilted leather seat covers engineered for long-distance driving support, premium cabin aesthetics, and complete protection of factory seats.",
+    longDescription: [
+      "Crafted with precision quilt work and deep bolster padding, these seat covers elevate vehicle interiors to executive class. Built with high-density foam laminates and reinforced stitching, they cushion pressure points on long journeys.",
+    ],
+    overviewTitle: "Ergonomic Support & Sophisticated Craftsmanship",
+    overviewContent: [
+      "Contoured lumbar and lateral side bolsters reduce driving fatigue",
+      "Reinforced multi-needle quilt stitching in black and burgundy tones",
+      "Flame-laminated cushioning maintains shape over years of daily use",
+      "Full coverage design protects OEM upholstery from wear, spills, and desert sand",
+    ],
+    rating: 4.9,
+    reviewsCount: 88,
+    price: "From AED 550",
+    specifications: {
+      column1: [
+        { label: "Style", value: "Ergonomic Chevron / Diamond Quilt" },
+        { label: "Material", value: "Premium Grain Napa Leatherette" },
+        { label: "Padding", value: "High-Resilience Lumbar Foam" },
+        { label: "Fitment", value: "Universal & Custom Tailored Options" },
+      ],
+      column2: [
+        { label: "Airbag Safe", value: "Yes, Dedicated Breakaway Seams" },
+        { label: "Cleaning", value: "Wipe Clean with Damp Cloth" },
+        { label: "Colors Available", value: "Burgundy, Black, Cognac, Camel Tan" },
+        { label: "Warranty", value: "2 Years" },
+      ],
+    },
+  },
+  {
+    id: 4,
+    name: "Rahmaniah Collection 2025 Automotive Leather Swatches & Rolls",
+    longName: "Rahmaniah Collection 2025 Luxury Automotive Leatherette Swatches & Rolls",
     category: "Upholstery Leather & Fabrics",
     subcategory: "LEATHERETTE ROLLS",
     categoryPath: ["Home", "Products", "Upholstery Leather & Fabrics", "Rahmaniah Collection 2025"],
@@ -240,28 +217,96 @@ export const allProductsData: ProductDetailItem[] = [
         { label: "Recommended Use", value: "Seats, Door Cards, Dashboards, Center Consoles" },
       ],
     },
-    ratingBreakdown: [
-      { stars: 5, count: 76, percentage: 90 },
-      { stars: 4, count: 6, percentage: 7 },
-      { stars: 3, count: 2, percentage: 3 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-4",
-        author: "Hamad Al Mazrouei",
-        initials: "HM",
-        date: "September 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "We run an upholstery workshop in Dubai and purchase our leatherette rolls from Al Rahmaniah Auto Sharjah. Consistent quality, best shade range, and competitive wholesale prices.",
-      },
-    ],
   },
   {
-    id: 4,
+    id: 5,
+    name: "Microfiber Suede & Alcantara Automotive Interior Fabric",
+    longName: "Premium Microfiber Suede & Alcantara-Style Automotive Interior Rolls",
+    category: "Upholstery Leather & Fabrics",
+    subcategory: "MICROFIBER SUEDE",
+    categoryPath: ["Home", "Products", "Upholstery Leather & Fabrics", "Microfiber Suede Fabric"],
+    image: "/fb-posts/592746335_122194714862549942_8464117864862490904_n.jpg",
+    additionalImages: [
+      "/fb-posts/592746335_122194714862549942_8464117864862490904_n.jpg",
+      "/fb-posts/593463700_122194846754549942_643382399179757249_n.jpg",
+      "/fb-posts/589562554_122194717010549942_1996671199089425578_n.jpg",
+    ],
+    description:
+      "Ultra-soft, non-glare automotive microfiber suede engineered for sports car headliners, pillars, dashboard covers, and seat inserts. Superior tactile grip and sun-resistant rich matte finish.",
+    longDescription: [
+      "Give your vehicle cabin the race-ready ambiance of high-performance supercars. Our Microfiber Suede fabric combines velvety texture with extreme wear resistance, making it ideal for wrapping pillars, headliners, center consoles, and steering wheels.",
+      "The matte nap absorbs windshield glare and remains cool to the touch even under blistering midday sun.",
+    ],
+    overviewTitle: "Motorsport Touch & Luxurious Non-Glare Finish",
+    overviewContent: [
+      "Superb suede nap texture identical to European luxury supercar interiors",
+      "Non-directional grain enables clean, seamless wrapping",
+      "Stain-resistant and hydrophobic treatment repels everyday dust and water droplets",
+      "Available with or without foam lamination for flexible applications",
+    ],
+    rating: 4.9,
+    reviewsCount: 71,
+    price: "AED 85 / Meter",
+    specifications: {
+      column1: [
+        { label: "Fabric Type", value: "High-Density Microfiber Polyester / Polyurethane Suede" },
+        { label: "Roll Width", value: "1.45 Meters (57 inches)" },
+        { label: "Weight", value: "380 gsm (Unbacked) / 480 gsm (Foam-Backed)" },
+        { label: "Rub Resistance", value: "80,000+ Martindale Cycles" },
+      ],
+      column2: [
+        { label: "Colors in Stock", value: "Deep Anthracite, Jet Black, Charcoal, Cognac, Crimson" },
+        { label: "Sun Glare Reduction", value: "100% Matte Anti-Reflective Surface" },
+        { label: "Applications", value: "Dashboards, Sunvisors, Headliners, Steering Wheels, Seat Inserts" },
+        { label: "Cleaning", value: "Dry Brush or Damp Microfiber Towel" },
+      ],
+    },
+  },
+  {
+    id: 6,
+    name: "Diamond-Perforated Automotive Leatherette Rolls",
+    longName: "Diamond Micro-Perforated Breathable Automotive Leatherette Rolls",
+    category: "Upholstery Leather & Fabrics",
+    subcategory: "PERFORATED LEATHER",
+    categoryPath: ["Home", "Products", "Upholstery Leather & Fabrics", "Perforated Leatherette Rolls"],
+    image: "/fb-posts/592743969_122194708214549942_1469620853049452467_n.jpg",
+    additionalImages: [
+      "/fb-posts/592743969_122194708214549942_1469620853049452467_n.jpg",
+      "/fb-posts/606888448_122199076580549942_6594976849503329056_n.jpg",
+      "/fb-posts/625122334_122203622084549942_6357118430980927124_n.jpg",
+    ],
+    description:
+      "Precision diamond-perforated automotive synthetic leather engineered for seat center panels and ventilated air-conditioned car seats. Maximizes air circulation while retaining structural tensile integrity.",
+    longDescription: [
+      "Essential for hot Middle Eastern weather, this micro-perforated material channels cooling air from OEM seat blowers. Features laser-punched diamond matrix perforations that will not stretch or deform under seat loads.",
+    ],
+    overviewTitle: "Breathable Comfort for Ventilated Seats",
+    overviewContent: [
+      "Precision 1.0mm micro-hole perforations in diamond staggered formation",
+      "Maximizes AC ventilation through seat cushions",
+      "Heavy backing scrim prevents hole deformation under tension",
+      "Matches factory luxury vehicle interiors (Mercedes, Lexus, Porsche)",
+    ],
+    rating: 4.8,
+    reviewsCount: 62,
+    price: "AED 65 / Meter",
+    specifications: {
+      column1: [
+        { label: "Hole Size", value: "1.0mm Micro-Perforation" },
+        { label: "Roll Width", value: "1.40 Meters" },
+        { label: "Pattern", value: "Diamond Staggered Matrix" },
+        { label: "Air Permeability", value: "High Flow-Through Rate" },
+      ],
+      column2: [
+        { label: "Backing", value: "Thin Breathable Knit Scrim" },
+        { label: "Applications", value: "Ventilated Seats, Door Panels, Steering Grips" },
+        { label: "Available Colors", value: "Onyx Black, Cognac Tan, Porcelain Cream" },
+        { label: "Warranty", value: "2 Years" },
+      ],
+    },
+  },
+  {
+    id: 7,
     name: "Luxury Custom Colored Seatbelts & Designer Webbing",
     longName: "Luxury Custom Colored Seatbelts & Designer Monogram Webbing",
     category: "Custom Colored Seatbelts",
@@ -304,33 +349,14 @@ export const allProductsData: ProductDetailItem[] = [
         { label: "Warranty", value: "Lifetime Webbing Integrity Warranty" },
       ],
     },
-    ratingBreakdown: [
-      { stars: 5, count: 105, percentage: 94 },
-      { stars: 4, count: 7, percentage: 6 },
-      { stars: 3, count: 0, percentage: 0 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-5",
-        author: "Sultan Al Suwaidi",
-        initials: "SS",
-        date: "October 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Installed the M-Power tri-stripe seatbelts in my BMW M4. The color saturation is vibrant and the retractors operate smoothly like stock. Highly recommend ARA!",
-      },
-    ],
   },
   {
-    id: 5,
-    name: "CARFECT Premium Deep-Pile Automotive Carpet Rolls",
+    id: 8,
+    name: "CARFECT Premium Deep-Pile Automotive Carpet Rolls & Mats",
     longName: "CARFECT Luxury Deep-Pile Velvet Automotive Carpet Rolls & Matting",
-    category: "Floor Carpets & 3D Mats",
+    category: "Floor Carpets & Mats",
     subcategory: "AUTOMOTIVE CARPETS",
-    categoryPath: ["Home", "Products", "Floor Carpets & 3D Mats", "CARFECT Automotive Carpets"],
+    categoryPath: ["Home", "Products", "Floor Carpets & Mats", "CARFECT Automotive Carpets"],
     image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
     additionalImages: [
       "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
@@ -367,28 +393,9 @@ export const allProductsData: ProductDetailItem[] = [
         { label: "Applications", value: "Car Floors, Boot / Trunk Liners, Subwoofer Enclosures" },
       ],
     },
-    ratingBreakdown: [
-      { stars: 5, count: 55, percentage: 85 },
-      { stars: 4, count: 8, percentage: 12 },
-      { stars: 3, count: 2, percentage: 3 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-6",
-        author: "Omar Al Qasimi",
-        initials: "OQ",
-        date: "August 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Re-carpeted the floor of my classic Lexus LS400 with this CARFECT velvet roll. Cabin is noticeably quieter and feels brand new underfoot.",
-      },
-    ],
   },
   {
-    id: 6,
+    id: 9,
     name: "Genuine USA Foam-Backed Automotive Roof Headliner Rolls",
     longName: "Genuine USA Automotive Foam-Backed Roof Headliner Rolls",
     category: "Roof Headliners",
@@ -431,402 +438,6 @@ export const allProductsData: ProductDetailItem[] = [
         { label: "Compatibility", value: "All American, Japanese, German & European Cars" },
       ],
     },
-    ratingBreakdown: [
-      { stars: 5, count: 70, percentage: 90 },
-      { stars: 4, count: 7, percentage: 9 },
-      { stars: 3, count: 1, percentage: 1 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-7",
-        author: "Bader Al Shehhi",
-        initials: "BS",
-        date: "August 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "My Range Rover headliner was falling down. Used this material with XCHEM adhesive, and the result is stunning. Perfect color match and hasn't sagged despite parking in the sun.",
-      },
-    ],
-  },
-  {
-    id: 7,
-    name: "XCHEM ENIFIX SP 300 Sprayable Contact Adhesive",
-    longName: "XCHEM ENIFIX SP 300 High-Heat Sprayable Automotive Contact Adhesive",
-    category: "Adhesives & Stitching Materials",
-    subcategory: "CONTACT ADHESIVE",
-    categoryPath: ["Home", "Products", "Adhesives & Stitching Materials", "XCHEM ENIFIX SP 300"],
-    image: "/fb-posts/616292721_122201960192549942_1622826748855130685_n.jpg",
-    additionalImages: [
-      "/fb-posts/616292721_122201960192549942_1622826748855130685_n.jpg",
-      "/fb-posts/616529329_122201960264549942_4294963320968128239_n.jpg",
-    ],
-    description:
-      "Professional-grade sprayable contact adhesive formulated specifically for automotive interiors, leather wrapping, dashboard re-skinning, and headliner bonding with extreme temperature tolerance.",
-    longDescription: [
-      "XCHEM ENIFIX SP 300 is the benchmark contact adhesive used by leading automotive trimmers across the UAE. Formulated with high-strength polychloroprene elastomers, it delivers instant tack and an unbreakable bond that withstands summer cabin temperatures reaching +120°C.",
-      "Its fine, uniform spray pattern eliminates glue telegraphing through thin leather and headliner fabrics, ensuring smooth, professional interior finishes.",
-    ],
-    overviewTitle: "Extreme Heat Resistance for Middle East Upholstery",
-    overviewContent: [
-      "Temperature resistance up to +120°C (prevents roof and dashboard lifting)",
-      "Fast flash-off time: ready to bond in 2 to 5 minutes",
-      "Fine web spray mist prevents soaking into delicate fabrics",
-      "Bonds leather, vinyl, foam, carpet, wood, metal, and molded plastics",
-      "Available in bulk workshop canisters and drums",
-    ],
-    rating: 5.0,
-    reviewsCount: 52,
-    price: "AED 185 / Canister",
-    specifications: {
-      column1: [
-        { label: "Manufacturer / Brand", value: "XCHEM International" },
-        { label: "Product Code", value: "ENIFIX SP 300" },
-        { label: "Base Polymer", value: "Synthetic Polychloroprene Rubber" },
-        { label: "Heat Resistance", value: "+120°C Continuous Peak Resistance" },
-      ],
-      column2: [
-        { label: "Open Time / Tack", value: "2 - 15 Minutes depending on temperature" },
-        { label: "Viscosity", value: "Spray Grade / Low Viscosity for Pneumatic Guns" },
-        { label: "Packaging", value: "15kg Canisters / 200L Industrial Drums" },
-        { label: "Application", value: "Headliners, Leather Dashboards, Door Panels, Carpets" },
-      ],
-    },
-    ratingBreakdown: [
-      { stars: 5, count: 49, percentage: 94 },
-      { stars: 4, count: 3, percentage: 6 },
-      { stars: 3, count: 0, percentage: 0 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-8",
-        author: "Zubair Ahmad",
-        initials: "ZA",
-        date: "July 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "The best headliner adhesive in UAE by far. Regular glues melt in summer heat, but ENIFIX SP 300 holds firm. Al Rahmaniah always has fresh stock.",
-      },
-    ],
-  },
-  {
-    id: 8,
-    name: "Fevicol Fast Tack Sprayable Foam & Upholstery Adhesive",
-    longName: "Fevicol Fast Tack Sprayable Synthetic Rubber Foam Adhesive",
-    category: "Adhesives & Stitching Materials",
-    subcategory: "FOAM ADHESIVE",
-    categoryPath: ["Home", "Products", "Adhesives & Stitching Materials", "Fevicol Fast Tack"],
-    image: "/fb-posts/616529329_122201960264549942_4294963320968128239_n.jpg",
-    additionalImages: [
-      "/fb-posts/616529329_122201960264549942_4294963320968128239_n.jpg",
-      "/fb-posts/616292721_122201960192549942_1622826748855130685_n.jpg",
-    ],
-    description:
-      "Rapid-bonding sprayable adhesive designed for high-density foam bonding, car seat padding reinforcement, and acoustic deadener installation. Instant green strength with zero sink-in.",
-    longDescription: [
-      "Fevicol Fast Tack delivers quick, dependable bonding for foam-to-foam, foam-to-fabric, and foam-to-metal vehicle seat assemblies. Its high-solids formulation yields superior coverage with minimal solvent odor and rapid handling strength.",
-      "Essential for auto seat restorers rebuilding collapsed side bolsters or laminating multi-density foam cushions.",
-    ],
-    overviewTitle: "Fast Green Strength & Soft Glue-Line for Seat Comfort",
-    overviewContent: [
-      "Zero glue-line hardening — keeps seat cushions soft and comfortable",
-      "Instant green bond allows immediate handling and stitching",
-      "High solids formulation provides up to 30% greater area coverage",
-      "Safe on flexible polyurethane foams, latex, bonded foam, and scrim fabrics",
-    ],
-    rating: 4.8,
-    reviewsCount: 41,
-    price: "AED 160 / Can",
-    specifications: {
-      column1: [
-        { label: "Brand", value: "Fevicol Fast Tack Automotive Series" },
-        { label: "Application Method", value: "Spray Gun (1.8mm - 2.5mm Tip)" },
-        { label: "Solids Content", value: "High Solids Rubber Blend (~28%)" },
-        { label: "Drying Time", value: "60 to 90 Seconds" },
-      ],
-      column2: [
-        { label: "Glue Line Flexibility", value: "100% Flexible Soft Seam (No Hard Spots)" },
-        { label: "Color", value: "Translucent Light Amber" },
-        { label: "Flammability", value: "Standard Industrial Safety Coded" },
-        { label: "Suitable For", value: "Seat Cushioning, Armrests, Headrests, Foam Shapers" },
-      ],
-    },
-    ratingBreakdown: [
-      { stars: 5, count: 35, percentage: 85 },
-      { stars: 4, count: 5, percentage: 12 },
-      { stars: 3, count: 1, percentage: 3 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-9",
-        author: "Mohammad Riaz",
-        initials: "MR",
-        date: "July 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Very clean spray pattern and doesn't make the seat foam crusty or stiff. Great price for workshops.",
-      },
-    ],
-  },
-  {
-    id: 9,
-    name: "ARA Heavy-Duty Bonded Nylon & Polyester Stitching Thread",
-    longName: "ARA Heavy-Duty Bonded Nylon & Polyester Upholstery Stitching Threads",
-    category: "Adhesives & Stitching Materials",
-    subcategory: "STITCHING THREADS",
-    categoryPath: ["Home", "Products", "Adhesives & Stitching Materials", "ARA Heavy-Duty Stitching Thread"],
-    image: "/fb-posts/625000072_122203468760549942_9148929700562058684_n.jpg",
-    additionalImages: [
-      "/fb-posts/625000072_122203468760549942_9148929700562058684_n.jpg",
-      "/fb-posts/626124573_122203468610549942_6790340746446751625_n.jpg",
-    ],
-    description:
-      "High-tensile bonded nylon and continuous filament polyester thread spools in all automotive colors. Engineered for heavy industrial sewing machines, diamond quilting, and leather seat seams.",
-    longDescription: [
-      "Standard domestic threads snap under the tension of automotive leather and the rigors of heavy daily wear. ARA Heavy-Duty Bonded Nylon threads are resin-bonded to prevent ply separation and fraying even during high-speed sewing through multiple layers of heavy vinyl and leather.",
-      "Resistant to rot, mildew, perspiration, and intense UV sun exposure on steering wheels and seat tops.",
-    ],
-    overviewTitle: "Uncompromising Seam Strength for Heavy Leather",
-    overviewContent: [
-      "Bonded resin treatment prevents untwisting and needle eye friction",
-      "Exceptional breaking strength for heavy load-bearing seat seams",
-      "Available in thread sizes V69, V92, and V138",
-      "Over 40 color spools in stock for perfect match or high-contrast top-stitching",
-    ],
-    rating: 4.9,
-    reviewsCount: 59,
-    price: "AED 35 / Spool",
-    specifications: {
-      column1: [
-        { label: "Material", value: "Continuous Filament Bonded Nylon 6.6 / Polyester" },
-        { label: "Thread Sizes", value: "Tex 70 (V-69), Tex 90 (V-92), Tex 135 (V-138)" },
-        { label: "Tensile Strength", value: "Up to 11.5 kg Breaking Strength (V-138)" },
-        { label: "Spool Length", value: "2,500m to 4,000m Industrial Cones" },
-      ],
-      column2: [
-        { label: "UV Resistance", value: "UV Inhibited Lubricated Finish" },
-        { label: "Needle Recommendation", value: "Size 110/18 to 140/22 Leather Point" },
-        { label: "Color Palette", value: "Black, Red, Orange, Gold, Tan, Blue, Silver, White" },
-        { label: "Applications", value: "Car Seats, Steering Wheels, Saddles, Convertible Tops" },
-      ],
-    },
-    ratingBreakdown: [
-      { stars: 5, count: 52, percentage: 88 },
-      { stars: 4, count: 6, percentage: 10 },
-      { stars: 3, count: 1, percentage: 2 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-10",
-        author: "Farhan Siddiqui",
-        initials: "FS",
-        date: "June 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Zero needle breaks on our Juki walking-foot machines. Contrast red stitching on black leather looks crisp and super sharp.",
-      },
-    ],
-  },
-  {
-    id: 10,
-    name: "CNC Precision Leather Punching & Perforation Service",
-    longName: "Industrial CNC Precision Leather Punching & Diamond Perforation Service",
-    category: "Custom Tailoring Services",
-    subcategory: "PERFORATION SERVICE",
-    categoryPath: ["Home", "Products", "Custom Tailoring Services", "CNC Precision Leather Perforation"],
-    image: "/fb-posts/625122334_122203622084549942_6357118430980927124_n.jpg",
-    additionalImages: [
-      "/fb-posts/625122334_122203622084549942_6357118430980927124_n.jpg",
-      "/fb-posts/592743969_122194708214549942_1469620853049452467_n.jpg",
-      "/fb-posts/606888448_122199076580549942_6594976849503329056_n.jpg",
-    ],
-    description:
-      "Automated industrial CNC leather punching and micro-perforation services. Transform solid leather rolls into breathable, ventilated, diamond-patterned panels for cooling car seats.",
-    longDescription: [
-      "Ventilated and air-conditioned car seats require precision-perforated leather to channel cooling airflow. Al Rahmaniah Auto operates computer-controlled multi-needle perforation machinery in Sharjah capable of micro-punching leather and leatherette rolls with mathematical accuracy.",
-      "Choose from classic round micro-holes (Mercedes AMG style), hexagon dots, dual diamonds, or custom branded corporate patterns.",
-    ],
-    overviewTitle: "Breathable Ventilation for Cooled Seat Performance",
-    overviewContent: [
-      "High-speed CNC punching accurate to 0.1mm across full 1.4m rolls",
-      "Essential for ventilated and AC seats in UAE climate",
-      "Custom hole sizes: 0.8mm, 1.0mm, 1.2mm, and decorative slot patterns",
-      "Contract punching available for third-party upholsterers and luxury coachbuilders",
-    ],
-    rating: 5.0,
-    reviewsCount: 47,
-    price: "Custom Quote / Wholesale",
-    specifications: {
-      column1: [
-        { label: "Punching Technology", value: "Industrial CNC Multi-Die Automated Perforator" },
-        { label: "Max Material Width", value: "1,600mm Roll Capacity" },
-        { label: "Hole Diameters", value: "0.8mm, 1.0mm, 1.2mm, 1.5mm" },
-        { label: "Patterns Available", value: "Standard Grid, Diamond Staggered, Hexagon, Starburst" },
-      ],
-      column2: [
-        { label: "Compatible Materials", value: "Genuine Leather Hides, Napa Vinyl, Alcantara, Suede" },
-        { label: "Turnaround Time", value: "Same-Day / 24h for In-Stock Rolls" },
-        { label: "Air Permeability", value: "Compliant with OEM Ventilated Blower Specs" },
-        { label: "Location", value: "Industrial Area 4 / 5, Sharjah, UAE" },
-      ],
-    },
-    ratingBreakdown: [
-      { stars: 5, count: 44, percentage: 94 },
-      { stars: 4, count: 3, percentage: 6 },
-      { stars: 3, count: 0, percentage: 0 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-11",
-        author: "Rashid Al Shamsi",
-        initials: "RS",
-        date: "June 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Had our Napa hides perforated here for an S-Class seat rebuild. The hole spacing is laser-exact and AC air blows through strongly. Excellent service.",
-      },
-    ],
-  },
-  {
-    id: 11,
-    name: "Microfiber Suede & Alcantara Automotive Interior Fabric",
-    longName: "Premium Microfiber Suede & Alcantara-Style Automotive Interior Rolls",
-    category: "Upholstery Leather & Fabrics",
-    subcategory: "MICROFIBER SUEDE",
-    categoryPath: ["Home", "Products", "Upholstery Leather & Fabrics", "Microfiber Suede Fabric"],
-    image: "/fb-posts/592746335_122194714862549942_8464117864862490904_n.jpg",
-    additionalImages: [
-      "/fb-posts/592746335_122194714862549942_8464117864862490904_n.jpg",
-      "/fb-posts/593463700_122194846754549942_643382399179757249_n.jpg",
-      "/fb-posts/589562554_122194717010549942_1996671199089425578_n.jpg",
-    ],
-    description:
-      "Ultra-soft, non-glare automotive microfiber suede engineered for sports car headliners, pillars, dashboard covers, and seat inserts. Superior tactile grip and sun-resistant rich matte finish.",
-    longDescription: [
-      "Give your vehicle cabin the race-ready ambiance of high-performance supercars. Our Microfiber Suede fabric combines velvety texture with extreme wear resistance, making it ideal for wrapping pillars, headliners, center consoles, and steering wheels.",
-      "The matte nap absorbs windshield glare and remains cool to the touch even under blistering midday sun.",
-    ],
-    overviewTitle: "Motorsport Touch & Luxurious Non-Glare Finish",
-    overviewContent: [
-      "Superb suede nap texture identical to European luxury supercar interiors",
-      "Non-directional grain enables clean, seamless wrapping",
-      "Stain-resistant and hydrophobic treatment repels everyday dust and water droplets",
-      "Available with or without foam lamination for flexible applications",
-    ],
-    rating: 4.9,
-    reviewsCount: 71,
-    price: "AED 85 / Meter",
-    specifications: {
-      column1: [
-        { label: "Fabric Type", value: "High-Density Microfiber Polyester / Polyurethane Suede" },
-        { label: "Roll Width", value: "1.45 Meters (57 inches)" },
-        { label: "Weight", value: "380 gsm (Unbacked) / 480 gsm (Foam-Backed)" },
-        { label: "Rub Resistance", value: "80,000+ Martindale Cycles" },
-      ],
-      column2: [
-        { label: "Colors in Stock", value: "Deep Anthracite, Jet Black, Charcoal, Cognac, Crimson" },
-        { label: "Sun Glare Reduction", value: "100% Matte Anti-Reflective Surface" },
-        { label: "Applications", value: "Dashboards, Sunvisors, Headliners, Steering Wheels, Seat Inserts" },
-        { label: "Cleaning", value: "Dry Brush or Damp Microfiber Towel" },
-      ],
-    },
-    ratingBreakdown: [
-      { stars: 5, count: 64, percentage: 90 },
-      { stars: 4, count: 6, percentage: 8 },
-      { stars: 3, count: 1, percentage: 2 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-12",
-        author: "Adel Al Marzouqi",
-        initials: "AM",
-        date: "May 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Wrapped my Corvette C8 dashboard and roof in this black suede. It completely eradicated windshield reflection and looks ultra-premium.",
-      },
-    ],
-  },
-  {
-    id: 12,
-    name: "Full Vehicle Interior Fitment & Detailing Workshop Service",
-    longName: "Al Rahmaniah Complete Vehicle Interior Fitment, Upholstery & Mechanical Care",
-    category: "Custom Tailoring Services",
-    subcategory: "WORKSHOP SERVICE",
-    categoryPath: ["Home", "Products", "Custom Tailoring Services", "Full Vehicle Interior Fitment"],
-    image: "/fb-posts/772559987_122227343354549942_111308005383529435_n.jpg",
-    additionalImages: [
-      "/fb-posts/772559987_122227343354549942_111308005383529435_n.jpg",
-      "/fb-posts/461850483_122102006072549942_7120796472205083476_n.jpg",
-      "/fb-posts/468444244_122121132014553903_3240018591782060146_n.jpg",
-    ],
-    description:
-      "Full turnkey interior transformation and mechanical workshop support at Al Rahmaniah Auto Sharjah. Complete seat upholstery, roof lining restoration, floor carpeting, steering re-wrapping, plus engine diagnostics, AC service, and brake care.",
-    longDescription: [
-      "Experience comprehensive automotive craftsmanship under one roof. At Al Rahmaniah Auto Accessories & Workshop in Sharjah Industrial Area, we combine master interior upholstery with advanced workshop mechanical care.",
-      "Whether you are restoring a classic 4x4 or modernizing a family SUV, our expert technicians deliver flawless fitment, OEM precision, and reliable maintenance.",
-    ],
-    overviewTitle: "Complete Car Care & Interior Overhaul Under One Roof",
-    overviewContent: [
-      "Complete cabin strip-down, deep cleaning, and insulation installation",
-      "Seat cover tailoring and precision wrinkle-free fitting",
-      "Roof headliner renewal and pillar re-trimming",
-      "Custom colored seatbelt conversion with full safety checks",
-      "Full mechanical support: Computer Diagnostics, AC Refrigerant Gas, Oil Services, Brake Pads",
-    ],
-    rating: 5.0,
-    reviewsCount: 154,
-    price: "From AED 950 / Package",
-    specifications: {
-      column1: [
-        { label: "Workshop Location", value: "Industrial Area 4, Sharjah, UAE" },
-        { label: "Service Scope", value: "Seats, Roof, Floor, Belts, Steering & Mechanical Care" },
-        { label: "Diagnostic Equipment", value: "Advanced Computer Scanning for All Makes & Models" },
-        { label: "Materials Used", value: "100% Original Certified Materials" },
-      ],
-      column2: [
-        { label: "Direct Booking Phone", value: "+971 55 867 4927 / +971 55 887 5678" },
-        { label: "WhatsApp Inquiry", value: "Available 7 Days a Week" },
-        { label: "Turnaround Time", value: "Same-Day to 48 Hours Depending on Scope" },
-        { label: "Warranty", value: "Comprehensive Workmanship & Parts Warranty" },
-      ],
-    },
-    ratingBreakdown: [
-      { stars: 5, count: 145, percentage: 94 },
-      { stars: 4, count: 9, percentage: 6 },
-      { stars: 3, count: 0, percentage: 0 },
-      { stars: 2, count: 0, percentage: 0 },
-      { stars: 1, count: 0, percentage: 0 },
-    ],
-    reviews: [
-      {
-        id: "rev-13",
-        author: "Khalid Bin Thani",
-        initials: "KT",
-        date: "October 2026",
-        rating: 5,
-        verified: true,
-        comment:
-          "Had my Prado completely revamped here: new diamond seat covers, red seatbelts, roof headliner, and an AC service. The car feels brand new. Friendly staff and fair pricing.",
-      },
-    ],
   },
 ];
 
