@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     "Al Rahmaniah auto workshop"
   ],
   icons: {
-    icon: "/images/logo.png",
-    apple: "/images/logo.png",
+    icon: "/images/alrahmaniah-logo.jpg",
+    apple: "/images/alrahmaniah-logo.jpg",
   },
   openGraph: {
     title: "Best Car Workshop in Sharjah | Al Rahmaniah Auto Maintenance",
     description:
       "Professional auto repair & car maintenance in Sharjah Industrial Area 5. We specialize in oil changes, brake repair, AC service, and computer diagnostics.",
-    images: ["/images/logo.png"],
+    images: ["/images/alrahmaniah-logo.jpg"],
   },
 };
 
@@ -55,8 +55,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${barlowCondensed.variable} scroll-smooth`}>
       <head>
-        <link rel="icon" href="/images/logo.png" sizes="any" />
-        <link rel="apple-touch-icon" href="/images/logo.png" />
+        <link rel="icon" href="/images/alrahmaniah-logo.jpg" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/alrahmaniah-logo.jpg" />
       </head>
       <body className="antialiased bg-white text-zinc-900 font-sans selection:bg-red-600 selection:text-white">
         <LanguageProvider>

@@ -636,7 +636,7 @@ export default function JobDetailsModal({
           <div className="flex items-center gap-3.5 min-w-0 pr-4 rtl:pr-0 rtl:pl-4">
             <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white border border-[#01a9a0]/20 flex items-center justify-center flex-shrink-0 shadow-xs">
               <Image
-                src="/logo.png"
+                src="/images/alrahmaniah-logo.jpg"
                 alt="Taj Al Rahmah"
                 width={36}
                 height={36}

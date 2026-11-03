@@ -341,7 +341,7 @@ function VideoCard({
             title={isArabic ? "الرئيسية" : "Home"}
           >
             <Image
-              src="/logo.png"
+              src="/images/alrahmaniah-logo.jpg"
               alt="Taj Al Rahmah"
               width={26}
               height={26}

@@ -16,7 +16,8 @@ export default function Footer() {
                 alt="Al Rahmaniah Auto Logo"
                 fill
                 className="object-contain"
-                src="/images/logo.png"
+                src="/images/alrahmaniah-logo.jpg"
+                unoptimized
               />
             </div>
           </Link>

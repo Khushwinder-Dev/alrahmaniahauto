@@ -50,7 +50,8 @@ export default function Navbar() {
               <Link href="/" className="block">
                 <div className="relative h-12 lg:h-16 w-32 lg:w-40">
                   <Image
-                    src="/images/logo.png"
+                    src="/images/alrahmaniah-logo.jpg"
+                    unoptimized
                     alt="Al Rahmaniah Auto Logo"
                     fill
                     priority
@@ -117,7 +118,8 @@ export default function Navbar() {
             <div className="flex justify-between items-center mb-12">
               <div className="h-10 w-24 relative">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/alrahmaniah-logo.jpg"
+                    unoptimized
                   alt="Logo"
                   fill
                   className="object-contain"
