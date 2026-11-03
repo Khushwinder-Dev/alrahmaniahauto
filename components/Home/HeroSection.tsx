@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Play, Pause, Volume2, VolumeX, Image as ImageIcon } from "lucide-react";
+import { ArrowRight, Play, Pause } from "lucide-react";
 import { AnimatePresence, motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import BookMeetingModal from "@/components/BookMeetingModal";
@@ -175,11 +175,10 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
     >
       {/* 1. Background Image Banner (This Project's Automotive Workshop Images) */}
       <div
-        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${
-          isPlayingVideo && !isVideoPaused
+        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${isPlayingVideo && !isVideoPaused
             ? "opacity-0 pointer-events-none"
             : "opacity-100"
-        }`}
+          }`}
       >
         {/* Desktop / Tablet Supercar Workshop Banner */}
         <Image
@@ -207,11 +206,10 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
 
       {/* 2. Background Video Banner (4K Car Workshop Repair Video) */}
       <div
-        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${
-          isPlayingVideo && !isVideoPaused
+        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${isPlayingVideo && !isVideoPaused
             ? "opacity-100"
             : "opacity-0 pointer-events-none"
-        }`}
+          }`}
       >
         <video
           ref={videoRef}
@@ -241,9 +239,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
 
       {/* 4. Left Vertical Slider / Pill Indicators */}
       <div
-        className={`flex flex-col items-center gap-2.5 absolute top-1/2 -translate-y-1/2 z-30 ${
-          isArabic ? "right-3 sm:right-5 xl:right-7" : "left-3 sm:left-5 xl:left-7"
-        }`}
+        className={`flex flex-col items-center gap-2.5 absolute top-1/2 -translate-y-1/2 z-30 ${isArabic ? "right-3 sm:right-5 xl:right-7" : "left-3 sm:left-5 xl:left-7"
+          }`}
       >
         {slides.map((_, index) => {
           const active = index === slideIndex;
@@ -254,11 +251,10 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
               onClick={() => goToSlide(index)}
               aria-label={`${isArabic ? "الشريحة" : "Go to slide"} ${index + 1}`}
               aria-current={active}
-              className={`rounded-full transition-all duration-300 cursor-pointer ${
-                active
+              className={`rounded-full transition-all duration-300 cursor-pointer ${active
                   ? "w-1.5 h-8 bg-red-600 shadow-[0_0_14px_rgba(220,38,38,0.9)]"
                   : "w-1.5 h-7 border border-white/40 bg-white/10 hover:border-red-500 hover:bg-red-600/30"
-              }`}
+                }`}
             />
           );
         })}
@@ -266,7 +262,7 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
 
       {/* 5. Video Mode Status Badge & Sound Toggle */}
       {isPlayingVideo && (
-        <div className="absolute top-24 sm:top-28 right-5 sm:right-10 z-30 flex items-center gap-2.5 bg-black/60 backdrop-blur-lg border border-red-500/30 px-3.5 py-1.5 rounded-full text-white text-xs font-semibold shadow-2xl transition-all">
+        <div className="hidden absolute top-24 sm:top-28 right-5 sm:right-10 z-30 flex items-center gap-2.5 bg-black/60 backdrop-blur-lg border border-red-500/30 px-3.5 py-1.5 rounded-full text-white text-xs font-semibold shadow-2xl transition-all">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
@@ -301,9 +297,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
 
       {/* 6. Main Hero Content Container */}
       <div
-        className={`relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 sm:pt-40 lg:pt-44 flex-1 flex flex-col justify-center ${
-          isArabic ? "pr-10 sm:pr-12" : "pl-10 sm:pl-12"
-        }`}
+        className={`relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 sm:pt-40 lg:pt-44 flex-1 flex flex-col justify-center ${isArabic ? "pr-10 sm:pr-12" : "pl-10 sm:pl-12"
+          }`}
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           {/* Left Text & CTAs (Columns 1-8) */}
@@ -353,9 +348,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
                 <span>{isArabic ? "احجز موعداً" : "BOOK APPOINTMENT"}</span>
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white text-red-600 flex items-center justify-center transition-transform group-hover:translate-x-0.5">
                   <ArrowRight
-                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] ${
-                      isArabic ? "rotate-180" : ""
-                    }`}
+                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] ${isArabic ? "rotate-180" : ""
+                      }`}
                   />
                 </span>
               </button>
