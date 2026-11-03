@@ -1,82 +1,421 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ArrowRight, Play, Pause, Volume2, VolumeX, Image as ImageIcon } from "lucide-react";
+import { AnimatePresence, motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import BookMeetingModal from "@/components/BookMeetingModal";
+
+// Animated counter with spring physics
+const AnimatedCounter = ({
+  value,
+  suffix = "+",
+}: {
+  value: number;
+  suffix?: string;
+}) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
+    damping: 35,
+    stiffness: 90,
+  });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value);
+    }
+  }, [isInView, motionValue, value]);
+
+  useEffect(() => {
+    const unsubscribe = springValue.on("change", (latest: number) => {
+      setDisplayValue(Math.floor(latest));
+    });
+    return () => unsubscribe();
+  }, [springValue]);
+
+  return (
+    <span ref={ref}>
+      {displayValue.toLocaleString()}
+      {suffix}
+    </span>
+  );
+};
+
+const SLIDE_VARIANTS = {
+  enter: (direction: number) => ({
+    opacity: 0,
+    y: direction > 0 ? 28 : -28,
+  }),
+  center: {
+    opacity: 1,
+    y: 0,
+  },
+  exit: (direction: number) => ({
+    opacity: 0,
+    y: direction > 0 ? -28 : 28,
+  }),
+};
 
 export default function HeroSection({ s }: { s?: Record<string, string> }) {
-  const stats = [
+  const router = useRouter();
+  const { t, isArabic } = useLanguage();
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+  const [isVideoPaused, setIsVideoPaused] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isBookMeetingOpen, setIsBookMeetingOpen] = useState(false);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Automotive Slides matching Al Rahmaniah Auto
+  const slides = [
     {
-      target: s?.home_stat1_target || "5,000",
-      suffix: s?.home_stat1_suffix || "+",
-      label: s?.home_stat1_label || "Happy Clients",
+      titlePart1: isArabic ? "دقة الصيانة و" : "Dealership Quality &",
+      titlePart2: isArabic ? "خدمات سيارات متكاملة" : "Expert Auto Maintenance",
+      description: isArabic
+        ? "نقدم أعلى معايير فحص وتصليح السيارات، صيانة المحركات، والأنظمة الكهربائية في المنطقة الصناعية 5، الشارقة."
+        : "Delivering dealership-grade auto repair, advanced computer diagnostics, engine overhauls, and complete car care in Sharjah Industrial Area 5.",
     },
     {
-      target: s?.home_stat2_target || "15",
-      suffix: s?.home_stat2_suffix || "+",
-      label: s?.home_stat2_label || "Years Experience",
+      titlePart1: isArabic ? "فحص كمبيوتر متقدم و" : "Advanced Computer",
+      titlePart2: isArabic ? "إصلاح ميكانيكي شامل" : "Diagnostics & Repair",
+      description: isArabic
+        ? "أحدث أجهزة فحص الأعطال، صيانة الجير والأنظمة الميكانيكية، وتجديد العفشة لجميع ماركات السيارات العالمية."
+        : "Specialized ECU scanning, transmission service, suspension overhaul, mechanical repair, and certified multi-brand service.",
     },
     {
-      target: s?.home_stat3_target || "20",
-      suffix: s?.home_stat3_suffix || "+",
-      label: s?.home_stat3_label || "Services Offered",
-    },
-    {
-      target: s?.home_stat4_target || "98",
-      suffix: s?.home_stat4_suffix || "%",
-      label: s?.home_stat4_label || "Satisfaction Rate",
+      titlePart1: isArabic ? "صيانة تكييف و" : "Car AC, Brake &",
+      titlePart2: isArabic ? "فرامل وقطع غيار أصلية" : "Genuine Parts Service",
+      description: isArabic
+        ? "فحص تسريب غاز المكيف، غسيل دورة التبريد، خرط الهوبات وتبديل السفايف، وتوفير قطع غيار مضمونة بأفضل الأسعار."
+        : "Precision AC leak detection, gas refill, brake disc skimming, pad replacements, and guaranteed genuine spare parts.",
     },
   ];
 
+  const activeSlide = slides[slideIndex];
+
+  const goToSlide = (index: number) => {
+    if (index === slideIndex) return;
+    setDirection(index > slideIndex ? 1 : -1);
+    setSlideIndex(index);
+  };
+
+  useEffect(() => {
+    if (isPlayingVideo && !isVideoPaused) return;
+    const timer = setInterval(() => {
+      setDirection(1);
+      setSlideIndex((current) => (current + 1) % slides.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [isPlayingVideo, isVideoPaused, slides.length, slideIndex]);
+
+  // Workshop Stats
+  const statsData = [
+    { value: 15, suffix: "+", label: isArabic ? "سنوات خبرة" : (t?.hero?.stat1 || "Years Experience") },
+    { value: 5000, suffix: "+", label: isArabic ? "سيارة تمت صيانتها" : (t?.hero?.stat2 || "Cars Serviced") },
+    { value: 20, suffix: "+", label: isArabic ? "خدمة متخصصة" : (t?.hero?.stat3 || "Expert Services") },
+    { value: 98, suffix: "%", label: isArabic ? "نسبة رضا العملاء" : (t?.hero?.stat4 || "Satisfaction Rate") },
+  ];
+
+  // Video playback toggling
+  const handleToggleVideo = () => {
+    if (!isPlayingVideo) {
+      setIsPlayingVideo(true);
+      setIsVideoPaused(false);
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current
+          .play()
+          .catch((err) => console.log("Video playback error:", err));
+      }
+    } else {
+      if (videoRef.current) {
+        if (videoRef.current.paused) {
+          videoRef.current
+            .play()
+            .then(() => setIsVideoPaused(false))
+            .catch((err) => console.log("Video resume error:", err));
+        } else {
+          videoRef.current.pause();
+          setIsVideoPaused(true);
+        }
+      }
+    }
+  };
+
+  // Return to photo banner
+  const handleSwitchToImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    setIsPlayingVideo(false);
+    setIsVideoPaused(false);
+  };
+
+  // Toggle audio
+  const handleToggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
+
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-      {/* Background Hero Image */}
-      <div className="absolute inset-0 z-0">
+    <section
+      className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0a0a0c]"
+      dir={isArabic ? "rtl" : "ltr"}
+    >
+      {/* 1. Background Image Banner (This Project's Automotive Workshop Images) */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${
+          isPlayingVideo && !isVideoPaused
+            ? "opacity-0 pointer-events-none"
+            : "opacity-100"
+        }`}
+      >
+        {/* Desktop / Tablet Supercar Workshop Banner */}
         <Image
           src="/images/home-hero.png"
-          alt="Workshop Hero"
+          alt="Al Rahmaniah Auto Maintenance Workshop"
           fill
           priority
-          className="object-cover"
+          quality={100}
+          className="hidden md:block object-cover object-center"
+          sizes="(min-width: 768px) 100vw, 1px"
+          unoptimized
+        />
+        {/* Mobile Portrait Workshop Banner */}
+        <Image
+          src="/images/home-hero-mobile.png"
+          alt="Al Rahmaniah Auto Workshop Mobile"
+          fill
+          priority
+          quality={100}
+          className="block md:hidden object-cover object-center"
+          sizes="(max-width: 767px) 100vw, 1px"
+          unoptimized
         />
       </div>
 
-      {/* Hero Headline Content */}
-      <div className="relative z-20 text-center px-4 mb-20 max-w-[1000px]">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="font-display text-[clamp(3.2rem,7.5vw,6rem)] font-extrabold text-white leading-[1.05] tracking-[-0.01em] uppercase mb-[1.25rem] drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]"
-        >
-          {s?.home_hero_title || "Al Rahmaniah Auto Maintenance Workshop"}
-        </motion.h1>
-        <motion.h3
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-white text-xl md:text-2xl font-bold tracking-wider opacity-90 drop-shadow-lg"
-        >
-          {s?.home_hero_subtitle || "Trusted Car Maintenance in Sharjah"}
-        </motion.h3>
+      {/* 2. Background Video Banner (4K Car Workshop Repair Video) */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${
+          isPlayingVideo && !isVideoPaused
+            ? "opacity-100"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <video
+          ref={videoRef}
+          src="/Hero.mp4"
+          loop
+          playsInline
+          muted={isMuted}
+          className="w-full h-full object-cover object-center"
+        />
       </div>
 
-      {/* Glassmorphism Stats Bar */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-full max-w-[1200px] px-6 z-30">
-        <div className="hero-stats-glass rounded-xl md:rounded-2xl grid grid-cols-2 lg:grid-cols-4 overflow-hidden border border-white/10 bg-[#0006]">
-          {stats.map((stat, idx) => (
+      {/* 3. Deep Carbon & Racing Red Gradient Overlays */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(10, 10, 12, 0.88) 0%, rgba(14, 14, 18, 0.75) 40%, rgba(20, 10, 10, 0.50) 70%, rgba(0, 0, 0, 0.25) 100%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(8, 8, 10, 0.55) 0%, transparent 25%, transparent 65%, rgba(10, 10, 12, 0.90) 100%)",
+        }}
+      />
+
+      {/* 4. Left Vertical Slider / Pill Indicators */}
+      <div
+        className={`flex flex-col items-center gap-2.5 absolute top-1/2 -translate-y-1/2 z-30 ${
+          isArabic ? "right-3 sm:right-5 xl:right-7" : "left-3 sm:left-5 xl:left-7"
+        }`}
+      >
+        {slides.map((_, index) => {
+          const active = index === slideIndex;
+          return (
+            <button
+              key={index}
+              type="button"
+              onClick={() => goToSlide(index)}
+              aria-label={`${isArabic ? "الشريحة" : "Go to slide"} ${index + 1}`}
+              aria-current={active}
+              className={`rounded-full transition-all duration-300 cursor-pointer ${
+                active
+                  ? "w-1.5 h-8 bg-red-600 shadow-[0_0_14px_rgba(220,38,38,0.9)]"
+                  : "w-1.5 h-7 border border-white/40 bg-white/10 hover:border-red-500 hover:bg-red-600/30"
+              }`}
+            />
+          );
+        })}
+      </div>
+
+      {/* 5. Video Mode Status Badge & Sound Toggle */}
+      {isPlayingVideo && (
+        <div className="absolute top-24 sm:top-28 right-5 sm:right-10 z-30 flex items-center gap-2.5 bg-black/60 backdrop-blur-lg border border-red-500/30 px-3.5 py-1.5 rounded-full text-white text-xs font-semibold shadow-2xl transition-all">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+          </span>
+          <span className="hidden sm:inline text-white/90">
+            {isVideoPaused
+              ? (isArabic ? "الفيديو متوقف" : "Video Paused")
+              : (isArabic ? "فيديو الورشة" : "Workshop Video")}
+          </span>
+          <button
+            onClick={handleToggleMute}
+            aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+            className="p-1 hover:text-red-500 transition-colors cursor-pointer"
+            title={isMuted ? "Unmute audio" : "Mute audio"}
+          >
+            {isMuted ? (
+              <VolumeX className="w-4 h-4 text-white/80 hover:text-white" />
+            ) : (
+              <Volume2 className="w-4 h-4 text-red-500" />
+            )}
+          </button>
+          <button
+            onClick={handleSwitchToImage}
+            className="pl-2 border-l border-white/20 hover:text-red-500 transition-colors flex items-center gap-1.5 cursor-pointer text-white/80 hover:text-white"
+            title="Return to photo banner"
+          >
+            <ImageIcon className="w-3.5 h-3.5" />
+            <span className="text-[11px] font-medium">{isArabic ? "صورة" : "Photo"}</span>
+          </button>
+        </div>
+      )}
+
+      {/* 6. Main Hero Content Container */}
+      <div
+        className={`relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 sm:pt-40 lg:pt-44 flex-1 flex flex-col justify-center ${
+          isArabic ? "pr-10 sm:pr-12" : "pl-10 sm:pl-12"
+        }`}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+          {/* Left Text & CTAs (Columns 1-8) */}
+          <div className="lg:col-span-8 flex flex-col items-start text-start min-h-[280px] sm:min-h-[320px] lg:min-h-[340px]">
+            {/* Eyebrow with Brand Red Accent */}
+            <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
+              <span className="w-6 sm:w-8 h-[2px] bg-red-600" />
+              <span className="text-red-500 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
+                {isArabic ? "ورشة صيانة سيارات معتمدة في الشارقة" : "TRUSTED CAR WORKSHOP IN SHARJAH"}
+              </span>
+            </div>
+
+            {/* Slider Content */}
+            <div className="relative w-full overflow-hidden min-h-[190px] sm:min-h-[230px] lg:min-h-[260px]">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={slideIndex}
+                  custom={direction}
+                  variants={SLIDE_VARIANTS}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <h1 className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-[62px] xl:text-[70px] font-extrabold leading-[1.08] tracking-tight">
+                    {activeSlide.titlePart1} <br />
+                    <span className="text-red-600 drop-shadow-[0_2px_24px_rgba(220,38,38,0.6)]">
+                      {activeSlide.titlePart2}
+                    </span>
+                  </h1>
+
+                  <p className="text-white/85 text-sm sm:text-base md:text-lg max-w-xl font-normal leading-relaxed mt-4 sm:mt-5 mb-7 sm:mb-9">
+                    {activeSlide.description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Dual CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+              {/* Button 1: BOOK AN APPOINTMENT */}
+              <button
+                type="button"
+                onClick={() => router.push("/booking")}
+                className="group pl-5 sm:pl-7 pr-2 sm:pr-2.5 py-2 sm:py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-3 transition-all duration-300 shadow-[0_4px_22px_rgba(220,38,38,0.5)] hover:shadow-[0_6px_28px_rgba(220,38,38,0.7)] hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <span>{isArabic ? "احجز موعداً" : "BOOK APPOINTMENT"}</span>
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white text-red-600 flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+                  <ArrowRight
+                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] ${
+                      isArabic ? "rotate-180" : ""
+                    }`}
+                  />
+                </span>
+              </button>
+
+              {/* Button 2: EXPLORE SERVICES */}
+              <Link
+                href="/services"
+                className="group pl-5 sm:pl-7 pr-2 sm:pr-2.5 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-zinc-900 border border-white/20 font-bold text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-3 transition-all duration-300 backdrop-blur-md hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <span>{isArabic ? "استكشف الخدمات" : "EXPLORE SERVICES"}</span>
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-red-600 text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
+                </span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Circular Automotive Video Play Button */}
+          <div className="lg:col-span-4 flex items-center justify-center lg:justify-start lg:pl-6 pt-4 lg:pt-0">
+            <div className="relative group">
+              {/* Ambient Pulsing Red Halo */}
+              {(!isPlayingVideo || isVideoPaused) && (
+                <span className="absolute inset-0 rounded-full bg-red-600/30 animate-ping duration-1000 pointer-events-none" />
+              )}
+
+              {/* Play / Pause Toggle Button */}
+              <button
+                onClick={handleToggleVideo}
+                aria-label={
+                  isPlayingVideo
+                    ? isVideoPaused
+                      ? (isArabic ? "تشغيل الفيديو" : "Resume workshop video")
+                      : (isArabic ? "إيقاف مؤقت" : "Pause workshop video")
+                    : (isArabic ? "مشاهدة فيديو الورشة" : "Watch workshop video")
+                }
+                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-red-600 hover:bg-red-700 border-2 border-white/40 flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 shadow-[0_0_35px_rgba(220,38,38,0.55)] hover:shadow-[0_0_55px_rgba(220,38,38,0.85)] focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+              >
+                {isPlayingVideo && !isVideoPaused ? (
+                  <Pause className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white fill-white" />
+                ) : (
+                  <Play className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white fill-white ml-0.5 sm:ml-1" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 7. Bottom Glassmorphic Stats Section */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 mt-12 sm:mt-14 pb-8 sm:pb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3.5 lg:gap-4 max-w-4xl">
+          {statsData.map((stat, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center justify-center py-8 md:py-10 border-white/10 lg:[&:not(:last-child)]:border-r max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(-n+2)]:border-b"
+              className="rounded-xl px-4 py-3 sm:px-5 sm:py-3.5 bg-black/50 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:border-red-600/40 hover:bg-white/[0.08] hover:-translate-y-1 group"
             >
-              <div className="flex items-baseline">
-                <span className="font-display text-4xl md:text-5xl font-black text-white">
-                  {stat.target}
-                </span>
-                <span className="font-display text-2xl md:text-3xl font-black text-brand ml-1">
-                  {stat.suffix}
-                </span>
+              <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight flex items-baseline">
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="mt-1 text-[10px] md:text-xs font-bold text-zinc-300 uppercase tracking-widest text-center">
+              <p className="text-[10px] sm:text-xs text-zinc-300 font-semibold uppercase tracking-wider mt-0.5">
                 {stat.label}
               </p>
             </div>
@@ -84,13 +423,11 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
         </div>
       </div>
 
-      {/* Scroll Down Cue */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 z-30 pointer-events-none">
-        <span className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">
-          Scroll Down
-        </span>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-brand to-transparent" />
-      </div>
+      {/* 8. Booking Modal */}
+      <BookMeetingModal
+        isOpen={isBookMeetingOpen}
+        onClose={() => setIsBookMeetingOpen(false)}
+      />
     </section>
   );
 }
