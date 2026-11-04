@@ -1,100 +1,159 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ArrowRight, Sparkles, ShieldCheck, Star } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Services() {
   const router = useRouter();
-  const { t } = useLanguage();
+  const { isArabic } = useLanguage();
 
-  const handleReadMore = (serviceId: number) => {
-    router.push(`/services-details?service=${serviceId}`);
-  };
-
-  const services = t.services.items.map((item, idx) => {
-    const originals = [
-      { id:1, icon:"/landing/services/6.svg", featured:true },
-      { id:2, icon:"/landing/services/1.svg", featured:true },
-      { id:3, icon:"/landing/services/2.svg", featured:true },
-      { id:4, icon:"/landing/services/3.svg", featured:true },
-      { id:5, icon:"/landing/services/4.svg", featured:true },
-      { id:6, icon:"/landing/services/5.svg", featured:true },
-    ];
-    return { ...originals[idx], title:item.title, description:item.description };
-  });
+  const productCategories = [
+    {
+      id: 1,
+      title: isArabic ? "أغطية المقاعد الجلدية المخصصة" : "Custom Leather Seat Covers",
+      description: isArabic
+        ? "تفصيل جلود نابا وألكانتارا وخياطة دايموند 3D مع تطابق تام لمقاسات المقاعد وحماية من حرارة الصيف."
+        : "Precision tailored German Napa & diamond-stitched leather covers engineered to withstand intense UAE heat.",
+      image: "/media/categories/unsplash_C60nkEu-6EQ (1).png",
+      badge: isArabic ? "الأكثر طلباً" : "Best Seller",
+    },
+    {
+      id: 2,
+      title: isArabic ? "دعاسات 7D لكافة الأحوال الجوية" : "7D All-Weather Floor Mats",
+      description: isArabic
+        ? "تصميم 7D مقولب ثلاثي الأبعاد لحماية كاملة للأرضيات من الرمال والماء والأتربة مع سهولة التنظيف."
+        : "Custom molded deep-dish floor liners providing 100% waterproof and sandproof protection for your cabin.",
+      image: "/media/categories/unsplash_C60nkEu-6EQ.png",
+      badge: isArabic ? "مقاوم للماء" : "100% Waterproof",
+    },
+    {
+      id: 3,
+      title: isArabic ? "أحزمة الأمان الملونة المخصصة" : "Custom-Colored Seatbelts",
+      description: isArabic
+        ? "ألوان رياضية وجذابة متوافقة مع معايير الأمان الدولية واختبارات الشد وقوة التحمل."
+        : "Vibrant sport-spec seatbelt webbing certified for safety, strength, and flawless factory OEM retractor fit.",
+      image: "/images/service-3.png",
+      badge: isArabic ? "مطابق للمواصفات" : "OEM Certified",
+    },
+    {
+      id: 4,
+      title: isArabic ? "نجوم السقف روز رايز (ستارلايت)" : "Starlight Roof Headliner",
+      description: isArabic
+        ? "ألياف ضوئية متطورة مع تحكم عبر الهاتف ومؤثرات وميض وشهب تمنح مقصورتك فخامة استثنائية."
+        : "Premium optic fiber constellations with smartphone app controls, shooting star effects, and ambient modes.",
+      image: "/images/service-4.png",
+      badge: isArabic ? "فخامة حصرية" : "Luxury Upgrade",
+    },
+    {
+      id: 5,
+      title: isArabic ? "شاشات أندرويد وإلكترونيات السيارات" : "Car Electronics & Android Screens",
+      description: isArabic
+        ? "شاشات لمس عالية الدقة تدعم Apple CarPlay و Android Auto وكاميرات 360 درجة وأنظمة صوت DSP."
+        : "High-definition touchscreens featuring Apple CarPlay, Android Auto, 360 cameras, and DSP audio tuning.",
+      image: "/images/service-2.png",
+      badge: isArabic ? "تقنية حديثة" : "Smart Tech",
+    },
+    {
+      id: 6,
+      title: isArabic ? "إضاءات ليزر LED وعدسات فائقة" : "Laser LED Headlights & Fog Lamps",
+      description: isArabic
+        ? "إضاءة ليلية فائقة الوضوح مع عدسات ليزر معتمدة مقاومة للحرارة وموفرة للطاقة لضمان أعلى مستويات الأمان."
+        : "Ultra-high-lumen LED projector lenses and laser fog beams delivering crystal-clear nighttime highway vision.",
+      image: "/images/service-1.png",
+      badge: isArabic ? "إضاءة فائقة" : "High Output",
+    },
+  ];
 
   return (
-    <section className="w-full py-[40px] md:py-[56px] lg:py-[72px] px-4 md:px-8 lg:px-16 bg-white">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold theme-text-main mb-4">
-            {t.services.title}
+    <section className="w-full py-16 lg:py-24 bg-white border-b border-zinc-200" dir={isArabic ? "rtl" : "ltr"}>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center justify-center gap-2 mb-3">
+            <span className="w-6 h-[2px] bg-red-600 rounded-full" />
+            <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-red-600">
+              {isArabic ? "تشكيلة المنتجات" : "OUR PRODUCTS"}
+            </span>
+            <span className="w-6 h-[2px] bg-red-600 rounded-full" />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-zinc-900 tracking-tight leading-[1.15]">
+            {isArabic ? "أفضل منتجات وإكسسوارات " : "Premium Auto "}
+            <span className="text-red-600">{isArabic ? "السيارات في الشارقة" : "Accessories Catalog"}</span>
           </h2>
-          <p className="text-lg text-stone-900 max-w-2xl mx-auto">
-            {t.services.subtitle}
+
+          <p className="mt-4 text-zinc-600 text-sm sm:text-base leading-relaxed">
+            {isArabic
+              ? "استكشف مجموعتنا الواسعة من منتجات تزيين السيارات، أغطية المقاعد، دعاسات الأرضيات، وأنظمة الصوت والإلكترونيات."
+              : "Discover our industry-leading range of bespoke car styling accessories, interior leathercraft, and vehicle electronic upgrades."}
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {productCategories.map((product) => (
             <div
-              key={service.id}
-              className="group rounded-2xl p-6 text-center transition-all duration-500 hover:shadow-2xl hover:scale-105 border border-stone-400 bg-white hover:bg-[#01a9a0] cursor-pointer flex flex-col h-full"
+              key={product.id}
+              className="group bg-white rounded-2xl border border-zinc-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-red-500/40 transition-all duration-300 flex flex-col"
             >
-              {/* Icon */}
-              <div className="flex justify-center mb-4">
-                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-[#01a9a0]/80 group-hover:bg-white/20 transition-all duration-500">
-                  <Image
-                    src={service.icon}
-                    alt={service.title}
-                    width={28}
-                    height={28}
-                    className="filter brightness-0 invert transition-all duration-500"
-                  />
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-100">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                    {product.badge}
+                  </span>
                 </div>
               </div>
 
-              {/* Title */}
-              <h3 className="text-xl font-bold mb-4 text-gray-900 group-hover:text-white transition-colors duration-500">
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <div className="flex-grow">
-                <div className="flex-grow">
-                  <p className="text-sm leading-relaxed mb-6 text-gray-800 group-hover:text-white/90 transition-colors duration-500">
-                    {service.description}
+              <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-zinc-900 group-hover:text-red-600 transition-colors mb-2 leading-snug">
+                    {product.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed mb-5">
+                    {product.description}
                   </p>
                 </div>
-              </div>
 
-              {/* Get Started Button */}
-              <div className="mt-auto">
-                <button
-                  onClick={() => handleReadMore(service.id)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 text-[#01a9a0] group-hover:text-white cursor-pointer text-base lg:text-[16px]"
-                >
-                  {t.services.getStarted}
-                  <svg
-                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                <div className="flex items-center justify-between pt-4 border-t border-zinc-100">
+                  <Link
+                    href={`/get-a-quote?product=${encodeURIComponent(product.title)}`}
+                    className="inline-flex items-center gap-2 text-xs font-bold text-red-600 hover:text-red-700 transition-colors uppercase tracking-wider"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </button>
+                    <span>{isArabic ? "طلب تسعيرة" : "Get a Quote"}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <Link
+                    href="/products"
+                    className="text-xs font-semibold text-zinc-400 hover:text-zinc-700 transition-colors"
+                  >
+                    {isArabic ? "عرض المزيد" : "View All"}
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View All Products CTA */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-sm tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+          >
+            <span>{isArabic ? "تصفح جميع المنتجات والإكسسوارات" : "Explore All Products & Accessories"}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

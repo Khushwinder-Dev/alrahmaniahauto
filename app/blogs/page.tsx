@@ -22,10 +22,11 @@ export default function BlogsPage() {
 
   const categories = [
     "All Categories",
-    "Maintenance",
-    "Repair",
-    "Safety",
-    "Inspection",
+    "Seat Covers",
+    "Floor Mats",
+    "Lighting",
+    "Interior Styling",
+    "Electronics",
   ];
 
   const filteredPosts = BLOG_POSTS.filter((post) => {
@@ -46,7 +47,7 @@ export default function BlogsPage() {
       <section className="relative w-full h-[55vh] min-h-[420px] overflow-hidden flex flex-col justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <Image
-            alt="Al Rahmaniah Workshop Technicians"
+            alt="Al Rahmaniah Auto Accessories Specialists"
             fill
             className="object-cover object-center"
             src="/images/services-hero.png"
@@ -68,7 +69,7 @@ export default function BlogsPage() {
           </h1>
 
           <p className="max-w-2xl mx-auto text-zinc-300 text-xs sm:text-sm font-medium tracking-wide leading-relaxed">
-            Essential tips on car maintenance, AC performance, engine diagnostics, and road safety from our master technicians in Sharjah.
+            Essential guides on custom seat covers, 7D floor mats, LED headlight retrofits, and car styling from our master craftsmen in Sharjah.
           </p>
         </div>
       </section>
@@ -248,10 +249,10 @@ export default function BlogsPage() {
             <Wrench className="w-6 h-6" />
           </div>
           <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-zinc-900 mb-2">
-            Have a Specific Automotive Problem?
+            Looking for Custom Accessories or Interior Styling?
           </h3>
           <p className="text-zinc-600 text-xs sm:text-sm max-w-lg mx-auto mb-6">
-            Get an instant diagnostic assessment and transparent quote from our certified technicians in Sharjah.
+            Get an instant custom accessories recommendation and transparent quote from our auto styling specialists in Sharjah.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

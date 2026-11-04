@@ -162,7 +162,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="text-xs font-bold text-emerald-600 hover:underline block mt-1"
               >
-                Chat with Technicians
+                Chat with Product Specialists
               </a>
             </div>
           </div>

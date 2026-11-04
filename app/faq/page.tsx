@@ -22,7 +22,7 @@ export default function FAQPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/services-hero.png"
-            alt="FAQs Al Rahmaniah Auto Workshop"
+            alt="FAQs Al Rahmaniah Auto Accessories"
             fill
             priority
             className="object-cover"
@@ -39,7 +39,7 @@ export default function FAQPage() {
             Frequently Asked <span className="text-red-600">Questions</span>
           </h1>
           <p className="max-w-xl mx-auto text-zinc-300 text-sm md:text-base font-normal leading-relaxed">
-            Everything you need to know about our vehicle repairs, pricing, genuine parts, and workshop appointments in Sharjah.
+            Everything you need to know about our auto accessories, custom leather seat covers, 7D floor mats, and expert fitment in Sharjah.
           </p>
         </div>
       </section>
@@ -55,10 +55,10 @@ export default function FAQPage() {
             <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-[42px] font-black text-zinc-900 tracking-tight leading-[1.15]">
-            Popular Workshop <span className="text-red-600">Inquiries</span>
+            Popular Product & Fitment <span className="text-red-600">Inquiries</span>
           </h2>
           <p className="mt-3 text-zinc-500 text-xs sm:text-sm md:text-base leading-relaxed">
-            Quick, reliable answers compiled by our certified master mechanics in Sharjah.
+            Quick, reliable answers compiled by our certified auto accessories specialists in Sharjah.
           </p>
         </div>
 
@@ -83,7 +83,7 @@ export default function FAQPage() {
               Still Have Questions?
             </h3>
             <p className="text-zinc-400 text-xs sm:text-sm mb-6 leading-relaxed">
-              Our service advisors are available Saturday to Thursday to assist you with customized quotes and vehicle questions.
+              Our product specialists are available Saturday to Thursday to assist you with customized quotes and fitment questions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

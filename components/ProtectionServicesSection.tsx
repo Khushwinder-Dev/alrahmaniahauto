@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ShieldCheck, Flame, Droplets, Sun, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface ProtectionServicesSectionProps {
@@ -15,184 +15,112 @@ export default function ProtectionServicesSection({
 }: ProtectionServicesSectionProps = {}) {
   const { isArabic } = useLanguage();
 
-  const services = [
+  const protectionHighlights = [
     {
       id: 1,
-      image: "/servicesSubServicesContent/services/waterproofing/subservices/grp-fiberglass/thumbnail/thumbnail.jpeg",
-      icon: "/media/protection/fi_7368818.svg",
-      title: isArabic ? "عزل GRP والألياف الزجاجية" : "GRP & Fiberglass Waterproofing",
+      image: "/media/categories/unsplash_C60nkEu-6EQ (1).png",
+      title: isArabic ? "مقاومة فائقة لحرارة وشمس الإمارات" : "Extreme UAE UV & Heat Resistance",
       description: isArabic
-        ? "طبقة عزل سلسة وصحية مثالية لخزانات المياه والأسطح المعرضة للرطوبة."
-        : "Seamless Food-Grade Lining for Water Tanks & Exposed Roofs",
-      link: "/services?service=1&sub=grp-fiberglass-waterproofing",
+        ? "جلود نابا معالجة خصيصاً لمقاومة الأشعة فوق البنفسجية والتشقق حتى درجات حرارة تتجاوز 50 درجة مئوية."
+        : "Automotive-grade leather engineered to withstand 50°C+ summer heat without cracking or fading.",
+      link: "/products",
+      tag: isArabic ? "حماية حرارية" : "Thermal Guard",
     },
     {
       id: 2,
-      image: "/servicesSubServicesContent/services/waterproofing/subservices/combo-system/thumbnail/ree.jpeg",
-      icon: "/media/protection/fi_11495742.svg",
-      title: isArabic ? "نظام الكومبو للأسطح" : "Combo System Roof Waterproofing",
+      image: "/media/categories/unsplash_C60nkEu-6EQ.png",
+      title: isArabic ? "عزل مائي وحماية 100% من الرمال" : "100% Waterproof & Sandproof 7D Protection",
       description: isArabic
-        ? "نظام عزل مزدوج يجمع العزل المائي والحراري في طبقة واحدة متكاملة."
-        : "Dual Water & Thermal Insulation in One Integrated System",
-      link: "/services?service=1&sub=combo-system-roof-waterproofing",
+        ? "دعاسات أرضيات مقولبة بحواف عميقة تمنع تسرب السوائل وحبيبات الرمل إلى أرضية الوكالة الأصلية."
+        : "Deep-dish molded floor liners that contain liquid spills, mud, and desert sand completely.",
+      link: "/products",
+      tag: isArabic ? "مقاوم للماء" : "100% Waterproof",
     },
     {
       id: 3,
-      image: "/servicesSubServicesContent/services/waterproofing/subservices/epoxy-floor-coating/thumbnail/thumbnail.png",
-      icon: "/media/protection/fi_18882906.svg",
-      title: isArabic ? "طلاء أرضيات الإيبوكسي" : "Epoxy Floor Coating",
+      image: "/images/service-3.png",
+      title: isArabic ? "توافق تام مع وسائد الأمان الهوائية" : "OEM Airbag-Safe Precision Stitching",
       description: isArabic
-        ? "حلول أرضيات متينة وسلسة وعالية الأداء للمنشآت والمستودعات."
-        : "Durable, Seamless & High-Performance Flooring Solutions",
-      link: "/services?service=1&sub=epoxy-floor-coating",
+        ? "خياطة حاسوبية مخصصة تضمن انفتاح الوسائد الهوائية الجانبية في أجزاء من الثانية دون أي عائق."
+        : "Computerized seam engineering certified for instant side-airbag deployment in emergencies.",
+      link: "/products",
+      tag: isArabic ? "أمان معتمد" : "Safety Certified",
     },
     {
       id: 4,
-      image: "/servicesSubServicesContent/services/waterproofing/subservices/bitumen-membrane/thumbnail/thumbnail.png",
-      icon: "/media/protection/fi_14850017.svg",
-      title: isArabic ? "عزل الغشاء البيتوميني" : "Bitumen Membrane Waterproofing",
+      image: "/images/service-4.png",
+      title: isArabic ? "ألياف ضوئية وإلكترونيات آمنة" : "Automotive-Grade Fire-Safe Electronics",
       description: isArabic
-        ? "لفائح بيتومينية مسلحة مثالية للأسطح والأساسات والمناطق الرطبة."
-        : "Reinforced Torch-Applied Rolls for Foundations & Wet Areas",
-      link: "/services?service=1&sub=bitumen-membrane-waterproofing",
-    },
-    {
-      id: 5,
-      image: "/servicesSubServicesContent/services/waterproofing/subservices/polyurea-coating/thumbnail/thumbnail.png",
-      icon: "/media/protection/fi_12071074.svg",
-      title: isArabic ? "عزل البولي يوريا" : "Polyurea Waterproofing",
-      description: isArabic
-        ? "حماية متقدمة للأسطح الممتدة وسريعة الجفاف للمتانة طويلة الأمد."
-        : "Advanced Protection for Durable Seamless & Long Surfaces",
-      link: "/services?service=1&sub=polyurea-coating-waterproofing",
-    },
-    {
-      id: 6,
-      image: "/servicesSubServicesContent/services/waterproofing/subservices/injection-waterproofing/thumbnail/thumbnail.png",
-      icon: "/media/protection/fi_16076200.svg",
-      title: isArabic ? "عزل الحقن المائي" : "Injection Waterproofing",
-      description: isArabic
-        ? "حقن وسد دقيق للشقوق الخرسانية لحماية دائمة من تسرب المياه."
-        : "Precision Sealing for Lasting Water Protection",
-      link: "/services?service=1&sub=injection-waterproofing",
+        ? "أسلاك وفيوزات معزولة بالكامل متوافقة مع أنظمة كهرباء السيارة دون التأثير على ضمان الوكالة."
+        : "Plug-and-play wiring harnesses with integrated fuses that preserve factory electrical warranty.",
+      link: "/products",
+      tag: isArabic ? "حماية كهربائية" : "Plug & Play Safe",
     },
   ];
 
-  const orderedServices = servicesOrder
-    ? servicesOrder
-      .map((id) => services.find((s) => s.id === id))
-      .filter((s): s is (typeof services)[number] => Boolean(s))
-    : services;
-
   return (
-    <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8 bg-[#E6F7F6] overflow-hidden">
-      <div className="max-w-8xl mx-auto">
-        {/* ============================================================
-            SECTION HEADER
-            ============================================================ */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-12 sm:mb-16">
-          {/* Left Title & Eyebrow */}
-          <div>
-            {/* Eyebrow / Category Tag */}
-            <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
-              <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#01a9a0] rounded-full" />
-              <span className="text-xs sm:text-sm font-extrabold tracking-[0.16em] uppercase text-[#01a9a0]">
-                {isArabic ? "خدماتنا" : "OUR SERVICES"}
-              </span>
-            </div>
-
-            {/* Main Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-extrabold text-stone-900 tracking-tight leading-[1.14]">
-              <span>{isArabic ? "حماية شاملة لكل" : "Complete Protection For"}</span>
-              <br />
-              <span className="text-[#01a9a0]">
-                {isArabic ? "الأسطح والمباني" : "Every Surface"}
-              </span>
-            </h2>
+    <section className="w-full py-16 lg:py-24 bg-white border-b border-zinc-200" dir={isArabic ? "rtl" : "ltr"}>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center justify-center gap-2 mb-3">
+            <span className="w-6 h-[2px] bg-red-600 rounded-full" />
+            <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-red-600">
+              {isArabic ? "معايير الجودة والحماية" : "QUALITY & PROTECTION"}
+            </span>
+            <span className="w-6 h-[2px] bg-red-600 rounded-full" />
           </div>
 
-          {/* Right CTA Button */}
-          <div className="flex-shrink-0">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-3.5 bg-[#009e90] hover:bg-[#01887e] text-white pl-6 pr-2.5 py-2.5 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_4px_16px_rgba(0,158,144,0.25)] hover:shadow-[0_6px_22px_rgba(0,158,144,0.35)] transition-all duration-300 group"
-            >
-              <span>{isArabic ? "عرض جميع الخدمات" : "VIEW ALL SERVICES"}</span>
-              <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#009e90] group-hover:scale-105 transition-transform duration-300">
-                {isArabic ? (
-                  <ArrowLeft className="w-4 h-4 text-[#009e90] group-hover:-translate-x-0.5 transition-transform duration-300" />
-                ) : (
-                  <ArrowRight className="w-4 h-4 text-[#009e90] group-hover:translate-x-0.5 transition-transform duration-300" />
-                )}
-              </span>
-            </Link>
-          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-zinc-900 tracking-tight leading-[1.15]">
+            {isArabic ? "حماية فائقة وعمر افتراضي " : "Engineered for Extreme "}
+            <span className="text-red-600">{isArabic ? "أطول لسيارتك" : "Durability & Climate"}</span>
+          </h2>
+
+          <p className="mt-4 text-zinc-600 text-sm sm:text-base leading-relaxed">
+            {isArabic
+              ? "صُنعت جميع منتجاتنا وإكسسواراتنا لتمنح سيارتك حماية تدوم لسنوات ومظهراً فخماً يليق بذوقك."
+              : "Every accessory we design is tested under desert sun and daily driving conditions to ensure lasting luxury."}
+          </p>
         </div>
 
-        {/* ============================================================
-            SERVICES 6-CARD GRID
-            ============================================================ */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 sm:gap-y-14 gap-x-6 lg:gap-x-8">
-          {orderedServices.map((service, index) => (
-            <Link
-              key={service.id}
-              href={service.link}
-              className=""
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {protectionHighlights.map((item) => (
+            <div
+              key={item.id}
+              className="group bg-white rounded-2xl border border-zinc-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-red-500/40 transition-all duration-300 flex flex-col"
             >
-              <div
-                data-aos="fade-up"
-                data-aos-delay={100 + index * 50}
-                className="group flex flex-col cursor-pointer"
-              >
-                {/* Card Image Container */}
-                <div className="relative w-full h-[220px] sm:h-[240px] md:h-[250px] lg:h-[260px] rounded-3xl overflow-hidden shadow-[0_8px_25px_-10px_rgba(0,0,0,0.12)] bg-stone-100">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    unoptimized
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
-
-                {/* Overlapping Floating Info Card */}
-                <div className="relative -mt-14 sm:-mt-16 mx-4 sm:mx-5 bg-white rounded-2xl p-5 sm:p-6 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.1)] border border-stone-100/90 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_38px_-8px_rgba(1,169,160,0.18)]">
-                  {/* Header: Icon + Title */}
-                  <div className="flex items-center gap-3.5 mb-2.5">
-                    <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center">
-                      <Image
-                        src={service.icon}
-                        alt={service.title}
-                        width={36}
-                        height={36}
-                        className="w-8 h-8 sm:w-9 sm:h-9 object-contain"
-                      />
-                    </div>
-                    <h3 className="text-base sm:text-[17px] lg:text-[18px] font-bold text-stone-900 leading-snug tracking-tight group-hover:text-[#01a9a0] transition-colors duration-300 line-clamp-1 card-main-title">
-                      {service.title}
-                    </h3>
-                  </div>
-
-                  {/* Subtitle / Description */}
-                  <p className="text-xs sm:text-[13px] lg:text-[16px] text-stone-500 font-normal leading-relaxed min-h-[38px] line-clamp-2">
-                    {service.description}
-                  </p>
-
-                  {/* CTA Link: Get Started */}
-                  <div className="mt-4 pt-1">
-                    <div className="inline-flex items-center gap-2 text-sm sm:text-base lg:text-[16px] font-bold text-[#01a9a0] hover:text-[#01887e] transition-colors duration-200 group/link">
-                      <span>{isArabic ? "ابدأ الآن" : "Get Started"}</span>
-                      {isArabic ? (
-                        <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover/link:-translate-x-1" />
-                      ) : (
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-                      )}
-                    </div>
-                  </div>
+              <div className="relative aspect-[16/11] w-full overflow-hidden bg-zinc-100">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="px-2.5 py-1 rounded-md bg-zinc-950/85 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider">
+                    {item.tag}
+                  </span>
                 </div>
               </div>
-            </Link>
+
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-zinc-900 group-hover:text-red-600 transition-colors mb-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-zinc-500 leading-relaxed mb-4">
+                    {item.description}
+                  </p>
+                </div>
+
+                <Link
+                  href={item.link}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-700 uppercase tracking-wider pt-2 border-t border-zinc-100"
+                >
+                  <span>{isArabic ? "استكشف المنتجات" : "Explore Products"}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
       </div>

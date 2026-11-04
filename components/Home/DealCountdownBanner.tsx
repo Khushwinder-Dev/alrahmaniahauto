@@ -59,7 +59,7 @@ export default function DealCountdownBanner() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Wrench className="w-4 h-4 text-red-600" />
-                  <span>Master Technicians</span>
+                  <span>Master Craftsmanship</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-red-600" />

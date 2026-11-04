@@ -32,7 +32,7 @@ export default function HomeFaqSection() {
 
           {/* Subtitle */}
           <p className="mt-3 text-zinc-500 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-            Everything you need to know about our vehicle repairs, transparent pricing, genuine parts, and workshop appointments in Sharjah.
+            Everything you need to know about our auto accessories, custom leather seat covers, 7D floor mats, and expert fitment in Sharjah.
           </p>
         </div>
 

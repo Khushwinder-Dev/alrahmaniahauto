@@ -355,8 +355,8 @@ export const WORKSHOP_FAQS = [
 ];
 
 export const WORKSHOP_INFO = {
-  name: "Al Rahmaniah Auto Maintenance & Accessories",
-  tagline: "Expert Care for Your Car, Every Time You Drive",
+  name: "Al Rahmaniah Auto Accessories",
+  tagline: "Premium Auto Accessories, Custom Seat Covers & Styling",
   address: "Industrial Area 4, Sharjah, UAE",
   phones: ["+971 55 887 5678", "+971 55 867 4927", "+971 55 750 2083", "+971 56 440 6456"],
   whatsapp: "+971558674927",

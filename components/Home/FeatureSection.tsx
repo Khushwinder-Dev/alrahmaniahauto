@@ -29,7 +29,7 @@ export default function FeatureSection() {
             Elevating Your Car With <br /> Bespoke Accessories
           </h2>
           <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-8 max-w-3xl">
-            At Al Rahmaniah Auto Accessories, we blend speed with precision. Our certified technicians use cutting-edge equipment to deliver results that exceed expectations — every single time.
+            At Al Rahmaniah Auto Accessories, we blend speed with precision. Our master craftsmen and fitment specialists use cutting-edge equipment to deliver results that exceed expectations — every single time.
           </p>
           <div className="space-y-4 w-full mb-10">
             <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-zinc-200 shadow-xs group transition-all hover:border-red-500 hover:shadow-md">

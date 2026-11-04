@@ -8,11 +8,11 @@ export const metadata: Metadata = {
     "Explore rewarding automotive career opportunities for certified car upholstery artisans, accessories sales advisors, auto electronics fitters, and e-commerce specialists in Sharjah, UAE.",
   keywords: [
     "automotive jobs Sharjah",
-    "car mechanic jobs UAE",
+    "car accessories jobs UAE",
     "auto electrician jobs Sharjah",
     "car upholstery craftsman UAE",
     "Al Rahmaniah Auto careers",
-    "workshop technician vacancy",
+    "car upholstery fitter vacancy",
   ],
 };
 

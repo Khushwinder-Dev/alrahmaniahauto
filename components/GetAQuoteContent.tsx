@@ -204,7 +204,7 @@ export default function GetAQuoteContent() {
                     Quote Request Received!
                   </h2>
                   <p className="text-zinc-600 max-w-md mx-auto text-sm leading-relaxed">
-                    Thank you, <span className="text-zinc-900 font-bold">{formData.name}</span>! Our lead technician at Al Rahmaniah Auto is reviewing your vehicle details. We will send your transparent price estimate shortly.
+                    Thank you, <span className="text-zinc-900 font-bold">{formData.name}</span>! Our auto styling and fitment specialist at Al Rahmaniah Auto is reviewing your vehicle details. We will send your transparent price estimate shortly.
                   </p>
                   
                   <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center">

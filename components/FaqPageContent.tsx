@@ -50,8 +50,8 @@ export default function FaqPageContent() {
           </h1>
           <p className="max-w-xl mx-auto text-zinc-300 text-sm md:text-base font-normal leading-relaxed">
             {isArabic
-              ? "كل ما تحتاج معرفته حول خدمات صيانة السيارات والأسعار الشفافة وقطع الغيار الأصلية في الشارقة."
-              : "Everything you need to know about our vehicle repairs, pricing, genuine parts, and workshop appointments in Sharjah."}
+              ? "كل ما تحتاج معرفته حول إكسسوارات السيارات، تفصيل المقاعد الجلدية، دعاسات 7D، والضمانات المعتمدة في الشارقة."
+              : "Everything you need to know about our auto accessories, custom leather seat covers, 7D floor mats, and expert fitment in Sharjah."}
           </p>
         </div>
       </section>
@@ -73,14 +73,14 @@ export default function FaqPageContent() {
               </>
             ) : (
               <>
-                Popular Workshop <span className="text-red-600">Inquiries</span>
+                Popular Product & Fitment <span className="text-red-600">Inquiries</span>
               </>
             )}
           </h2>
           <p className="mt-3 text-zinc-500 text-xs sm:text-sm md:text-base leading-relaxed">
             {isArabic
-              ? "إجابات دقيقة ومفصلة أعدها فريق المهندسين والفنيين المعتمدين في ورشة الرحمانية بالشارقة."
-              : "Quick, reliable answers compiled by our certified master mechanics in Sharjah."}
+              ? "إجابات دقيقة ومفصلة أعدها فريق خبراء تزيين وتفصيل إكسسوارات السيارات في الرحمانية بالشارقة."
+              : "Quick, reliable answers compiled by our certified auto accessories specialists in Sharjah."}
           </p>
         </div>
 
@@ -107,8 +107,8 @@ export default function FaqPageContent() {
             </h3>
             <p className="text-zinc-400 text-xs sm:text-sm mb-6 leading-relaxed">
               {isArabic
-                ? "مستشارو الخدمة لدينا متاحون من السبت إلى الخميس لمساعدتك في الحصول على عروض أسعار واستشارات مجانية."
-                : "Our service advisors are available Saturday to Thursday to assist you with customized quotes and vehicle questions."}
+                ? "خبراء المنتجات والإكسسوارات لدينا متاحون من السبت إلى الخميس لمساعدتك في الحصول على عروض أسعار واستشارات مجانية."
+                : "Our product specialists are available Saturday to Thursday to assist you with customized quotes and fitment questions."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

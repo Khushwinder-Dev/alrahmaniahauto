@@ -108,12 +108,10 @@ export default function CareerPageContent() {
 
   const departments = [
     "All",
-    "Diagnostics & Electronics",
-    "Climate & Cooling Systems",
-    "Accessories & Interior Styling",
-    "Underbody & Safety",
-    "Powertrain & Drivetrain",
-    "Customer Service & Operations",
+    "Upholstery & Interior Tailoring",
+    "Smart Tech & Lighting",
+    "Retail & Wholesale Sales",
+    "Digital Marketing & Operations",
   ];
 
   const filteredJobs =
@@ -132,7 +130,7 @@ export default function CareerPageContent() {
     setTimeout(() => {
       setIsSubmitting(false);
       toast.success(
-        `Application received for ${selectedJob?.title}! Our workshop manager will reach out.`
+        `Application received for ${selectedJob?.title}! Our operations team will reach out.`
       );
       setSelectedJob(null);
       setApplicantName("");
@@ -144,7 +142,7 @@ export default function CareerPageContent() {
 
   const getWhatsAppApplyUrl = (jobTitle: string) => {
     const text = encodeURIComponent(
-      `Hello Al Rahmaniah Auto Workshop HR! I would like to apply for the position: "${jobTitle}". Please let me know how I can submit my CV.`
+      `Hello Al Rahmaniah Auto Accessories HR! I would like to apply for the position: "${jobTitle}". Please let me know how I can submit my CV.`
     );
     return `https://wa.me/971507860161?text=${text}`;
   };
@@ -155,7 +153,7 @@ export default function CareerPageContent() {
       <section className="relative w-full h-[55vh] min-h-[420px] overflow-hidden flex flex-col justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <Image
-            alt="Al Rahmaniah Workshop Technicians"
+            alt="Al Rahmaniah Auto Accessories Specialists"
             fill
             className="object-cover object-center"
             src="/images/services-hero.png"
@@ -176,7 +174,7 @@ export default function CareerPageContent() {
           </h1>
 
           <p className="max-w-2xl mx-auto text-zinc-300 text-xs sm:text-sm font-medium tracking-wide leading-relaxed">
-            Elevate your automotive career in Sharjah’s top-equipped workshop. Work alongside certified master mechanics on prestigious vehicle marques with exceptional growth packages.
+            Elevate your automotive career in Sharjah’s premier auto accessories and upholstery studio. Work alongside certified master craftsmen on bespoke styling projects with exceptional growth packages.
           </p>
         </div>
       </section>
@@ -188,7 +186,7 @@ export default function CareerPageContent() {
             Why Work With Us
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-zinc-900">
-            Technician &amp; Staff Benefits
+            Craftsmen &amp; Staff Benefits
           </h2>
         </div>
 
@@ -209,7 +207,7 @@ export default function CareerPageContent() {
             </div>
             <h3 className="font-bold text-base text-zinc-900 mb-2">State-of-the-Art Tools</h3>
             <p className="text-xs text-zinc-500 leading-relaxed">
-              High-end Bosch diagnostic scanners, hydraulic lifts, computerized AC machines, and laser alignment.
+              Computerized laser cutting tables, industrial automated sewing machines, and specialized fitting bays.
             </p>
           </div>
 
@@ -219,7 +217,7 @@ export default function CareerPageContent() {
             </div>
             <h3 className="font-bold text-base text-zinc-900 mb-2">Skill Advancement</h3>
             <p className="text-xs text-zinc-500 leading-relaxed">
-              Continuous specialized training on latest European, Japanese, hybrid, and electric vehicle architectures.
+              Continuous specialized training on precision upholstery, leathercraft, automotive electronics, and bespoke restyling.
             </p>
           </div>
 
