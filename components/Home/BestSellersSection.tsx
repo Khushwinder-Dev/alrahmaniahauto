@@ -1,35 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Star, Flame, ArrowRight, MessageCircle, ShieldCheck, Heart } from "lucide-react";
+import { Star, Flame, ArrowRight, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { allProductsData, ProductDetailItem } from "@/data/productsData";
 
 export default function BestSellersSection() {
   const { isArabic } = useLanguage();
-  const [activeFilter, setActiveFilter] = useState<string>("All");
 
-  const filterTabs = [
-    "All",
-    "Car Seat Covers",
-    "Floor Carpets & Mats",
-    "Custom Colored Seatbelts",
-    "Roof Headliners",
-  ];
-
-  const products = allProductsData
-    .filter((p: ProductDetailItem) => {
-      if (activeFilter === "All") return true;
-      return p.category.toLowerCase().includes(activeFilter.toLowerCase());
-    })
-    .slice(0, 8);
+  const products = allProductsData.slice(0, 8);
 
   return (
     <section className="py-20 bg-white border-b border-zinc-200" dir={isArabic ? "rtl" : "ltr"}>
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-        {/* Header */}
+        {/* Header without filter pills */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
             <div className="inline-flex items-center gap-2 mb-3">
@@ -51,22 +37,13 @@ export default function BestSellersSection() {
             </p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap gap-2">
-            {filterTabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveFilter(tab)}
-                className={`text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition-all duration-200 cursor-pointer ${
-                  activeFilter === tab
-                    ? "bg-red-600 text-white shadow-md shadow-red-600/25"
-                    : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-red-600 hover:text-red-700 transition-colors"
+          >
+            <span>{isArabic ? "تصفح جميع المنتجات" : "View Complete Catalog"}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
         {/* Products Grid */}
