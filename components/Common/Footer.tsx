@@ -21,9 +21,7 @@ export default function Footer() {
               />
             </div>
           </Link>
-          <p className="text-sm leading-relaxed text-gray-400">
-            Al Rahmaniah Auto Maintenance Workshop, our workshop stands as a symbol of precision, quality, and trust for all your car care needs.
-          </p>
+          <p className="text-sm leading-relaxed text-gray-400">Al Rahmaniah Auto Accessories is Sharjah’s trusted destination for custom leather seat covers, 7D floor mats, automotive lighting, car electronics, and premium interior & exterior styling accessories.</p>
           <div className="flex items-center gap-4">
             <span className="text-sm font-medium text-white">Follow us :</span>
             <div className="flex gap-2">
@@ -94,13 +92,10 @@ export default function Footer() {
           </div>
           <ul className="space-y-3">
             {[
-              { label: "Home", href: "/" },
-              { label: "About Us", href: "/about-us" },
               { label: "Products & Accessories", href: "/products" },
-              { label: "Services", href: "/services" },
-              { label: "Gallery", href: "/gallery" },
-              { label: "Brands", href: "/brands" },
-              { label: "Book Appointment", href: "/booking" },
+              { label: "About Us", href: "/about-us" },
+              { label: "Get a Quote", href: "/get-a-quote" },
+              { label: "Careers", href: "/career" },
               { label: "Contact Us", href: "/contact" },
             ].map((link) => (
               <li key={link.label}>
@@ -208,7 +203,7 @@ export default function Footer() {
         <p>
           © Copyright 2026{" "}
           <span className="text-red-600 font-bold">
-            Al Rahmaniah Auto Maintenance Workshop
+            Al Rahmaniah Auto Accessories
           </span>
           . All rights reserved.
         </p>

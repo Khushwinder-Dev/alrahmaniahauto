@@ -73,28 +73,28 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
   const [direction, setDirection] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Automotive Slides matching Al Rahmaniah Auto
+  // Auto Accessories Slides matching Al Rahmaniah Auto
   const slides = [
     {
-      titlePart1: isArabic ? "دقة الصيانة و" : "Dealership Quality &",
-      titlePart2: isArabic ? "خدمات سيارات متكاملة" : "Expert Auto Maintenance",
+      titlePart1: isArabic ? "فخامة وأناقة و" : "Crafted Luxury &",
+      titlePart2: isArabic ? "إكسسوارات سيارات حصرية" : "Custom Car Accessories",
       description: isArabic
-        ? "نقدم أعلى معايير فحص وتصليح السيارات، صيانة المحركات، والأنظمة الكهربائية في المنطقة الصناعية 5، الشارقة."
-        : "Delivering dealership-grade auto repair, advanced computer diagnostics, engine overhauls, and complete car care in Sharjah Industrial Area 5.",
+        ? "أرقى تشكيلات أغطية المقاعد الجلدية، دعاسات 7D الفاخرة، والإلكترونيات المصممة لأقسى درجات حرارة الإمارات."
+        : "Discover bespoke 3D leather seat covers, precision 7D floor mats, advanced car electronics, and styling accessories engineered for extreme UAE durability in Sharjah.",
     },
     {
-      titlePart1: isArabic ? "فحص كمبيوتر متقدم و" : "Advanced Computer",
-      titlePart2: isArabic ? "إصلاح ميكانيكي شامل" : "Diagnostics & Repair",
+      titlePart1: isArabic ? "تفصيل مقاعد فاخرة و" : "Tailored Seat Covers &",
+      titlePart2: isArabic ? "تجديد شامل للفرش" : "Interior Restoration",
       description: isArabic
-        ? "أحدث أجهزة فحص الأعطال، صيانة الجير والأنظمة الميكانيكية، وتجديد العفشة لجميع ماركات السيارات العالمية."
-        : "Specialized ECU scanning, transmission service, suspension overhaul, mechanical repair, and certified multi-brand service.",
+        ? "تفصيل جلود نابا وألكانتارا، أحزمة أمان ملونة، ونجوم سقف روز رايز مخصصة لموديل سيارتك بدقة متناهية."
+        : "Hand-crafted German Napa leather, diamond-quilted PVC, custom colored seatbelts, and starlight headliners precision-fitted to your exact vehicle model.",
     },
     {
-      titlePart1: isArabic ? "صيانة تكييف و" : "Car AC, Brake &",
-      titlePart2: isArabic ? "فرامل وقطع غيار أصلية" : "Genuine Parts Service",
+      titlePart1: isArabic ? "إلكترونيات متطورة و" : "Automotive Electronics &",
+      titlePart2: isArabic ? "إضاءات ليزر LED فائقة" : "Laser LED Lighting",
       description: isArabic
-        ? "فحص تسريب غاز المكيف، غسيل دورة التبريد، خرط الهوبات وتبديل السفايف، وتوفير قطع غيار مضمونة بأفضل الأسعار."
-        : "Precision AC leak detection, gas refill, brake disc skimming, pad replacements, and guaranteed genuine spare parts.",
+        ? "شاشات أندرويد فائقة الوضوح، أنظمة صوت DSP، عدسات وإضاءات ليزر LED قوية، وإضاءات محيطية داخلية."
+        : "Upgrade your driving experience with crystal-clear Android touchscreens, DSP sound systems, high-lumen laser LED headlights, and ambient interior lighting.",
     },
   ];
 
@@ -115,12 +115,12 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
     return () => clearInterval(timer);
   }, [isPlayingVideo, isVideoPaused, slides.length, slideIndex]);
 
-  // Workshop Stats
+  // Accessories Stats
   const statsData = [
     { value: 15, suffix: "+", label: isArabic ? "سنوات خبرة" : (t?.hero?.stat1 || "Years Experience") },
-    { value: 5000, suffix: "+", label: isArabic ? "سيارة تمت صيانتها" : (t?.hero?.stat2 || "Cars Serviced") },
-    { value: 20, suffix: "+", label: isArabic ? "خدمة متخصصة" : (t?.hero?.stat3 || "Expert Services") },
-    { value: 98, suffix: "%", label: isArabic ? "نسبة رضا العملاء" : (t?.hero?.stat4 || "Satisfaction Rate") },
+    { value: 20000, suffix: "+", label: isArabic ? "سيارة تم تزيينها" : "Vehicles Upgraded" },
+    { value: 500, suffix: "+", label: isArabic ? "منتج وإكسسوار متوفر" : "Top Accessories" },
+    { value: 99, suffix: "%", label: isArabic ? "نسبة رضا العملاء" : (t?.hero?.stat4 || "Satisfaction Rate") },
   ];
 
   // Video playback toggling
@@ -255,7 +255,7 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
             <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
               <span className="w-6 sm:w-8 h-[2px] bg-red-600" />
               <span className="text-red-500 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
-                {isArabic ? "ورشة صيانة سيارات معتمدة في الشارقة" : "TRUSTED CAR WORKSHOP IN SHARJAH"}
+                {isArabic ? "أفضل متجر إكسسوارات سيارات في الشارقة" : "PREMIUM AUTO ACCESSORIES IN SHARJAH"}
               </span>
             </div>
 
@@ -287,13 +287,13 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
 
             {/* Dual CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 sm:gap-5">
-              {/* Button 1: BOOK AN APPOINTMENT */}
+              {/* Button 1: EXPLORE PRODUCTS */}
               <button
                 type="button"
-                onClick={() => router.push("/booking")}
+                onClick={() => router.push("/products")}
                 className="group pl-5 sm:pl-7 pr-2 sm:pr-2.5 py-2 sm:py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-3 transition-all duration-300 shadow-[0_4px_22px_rgba(220,38,38,0.5)] hover:shadow-[0_6px_28px_rgba(220,38,38,0.7)] hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <span>{isArabic ? "احجز موعداً" : "BOOK APPOINTMENT"}</span>
+                <span>{isArabic ? "استكشف المنتجات" : "EXPLORE PRODUCTS"}</span>
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white text-red-600 flex items-center justify-center transition-transform group-hover:translate-x-0.5">
                   <ArrowRight
                     className={`w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] ${isArabic ? "rotate-180" : ""
@@ -302,12 +302,12 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
                 </span>
               </button>
 
-              {/* Button 2: EXPLORE SERVICES */}
+              {/* Button 2: GET A QUOTE */}
               <Link
-                href="/services"
+                href="/get-a-quote"
                 className="group pl-5 sm:pl-7 pr-2 sm:pr-2.5 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-zinc-900 border border-white/20 font-bold text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-3 transition-all duration-300 backdrop-blur-md hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <span>{isArabic ? "استكشف الخدمات" : "EXPLORE SERVICES"}</span>
+                <span>{isArabic ? "طلب تسعيرة" : "GET A QUOTE"}</span>
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-red-600 text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5">
                   <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
                 </span>

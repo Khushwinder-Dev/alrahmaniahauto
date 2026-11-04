@@ -20,7 +20,7 @@ export default function AppointmentFormSection() {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      toast.success("Thank you! Your message has been sent.");
+      toast.success("Thank you! Your quotation request has been sent.");
       setFormData({
         name: "",
         email: "",
@@ -48,14 +48,14 @@ export default function AppointmentFormSection() {
         <div className="relative z-10 max-w-8xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12">
           <div className="max-w-2xl">
             <span className="text-red-600 font-bold text-xs uppercase tracking-widest mb-3 block">
-              Direct Workshop Booking
+              Custom Accessories Inquiry
             </span>
             <h2 className="text-3xl md:text-5xl font-black text-zinc-900 leading-[1.15] uppercase tracking-tight">
-              Experience Premium Care – <span className="text-red-600">Al Rahmaniah Auto</span> <br className="hidden md:block" />
-              Maintenance Workshop
+              Transform Your Vehicle – <span className="text-red-600">Al Rahmaniah Auto</span> <br className="hidden md:block" />
+              Accessories & Styling
             </h2>
             <p className="mt-4 text-zinc-600 text-sm md:text-base leading-relaxed max-w-xl">
-              Schedule your fast-track service inspection, AC diagnostics, or custom upholstery fitting in Industrial Area 5, Sharjah.
+              Request a custom price estimate for leather seat covers, 7D floor mats, LED lights, or electronics tailored to your exact car model.
             </p>
           </div>
 

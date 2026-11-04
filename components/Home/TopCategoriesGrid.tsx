@@ -17,67 +17,67 @@ interface CategoryCard {
 const CATEGORIES: CategoryCard[] = [
   {
     id: 1,
-    title: "Brake Systems & Calipers",
-    tagline: "Brembo / OEM pads & disc skimming",
-    image: "/images/service-1.png",
-    badge: "Essential",
-    href: "/get-a-quote?service=brakes",
+    title: "Custom Car Seat Covers",
+    tagline: "3D diamond quilted, Napa & perforated leather",
+    image: "/images/service-6.png",
+    badge: "Best Seller",
+    href: "/products?category=seat-covers",
   },
   {
     id: 2,
-    title: "Engine Diagnostics & Tuning",
-    tagline: "Bosch computerized multi-point scan",
-    image: "/images/service-2.png",
-    badge: "Computer Scan",
-    href: "/get-a-quote?service=engine-diagnostics",
+    title: "7D / 5D Molded Floor Mats",
+    tagline: "Waterproof all-weather complete coverage",
+    image: "/images/service-10.png",
+    badge: "All-Weather",
+    href: "/products?category=mats",
   },
   {
     id: 3,
-    title: "Car AC & Climate Control",
-    tagline: "Gas recharge, compressor & flush",
-    image: "/images/service-3.png",
-    badge: "UAE Summer Special",
-    href: "/get-a-quote?service=ac-repair",
+    title: "Custom Colored Seatbelts",
+    tagline: "High-tensile certified racing & styling belts",
+    image: "/images/service-8.png",
+    badge: "Custom Colors",
+    href: "/products?category=seatbelts",
   },
   {
     id: 4,
-    title: "Suspension & Steering",
-    tagline: "Shocks, bushings & 3D laser alignment",
-    image: "/images/service-4.png",
-    badge: "Precision",
-    href: "/get-a-quote?service=suspension",
+    title: "Starlight Roof Headliners",
+    tagline: "Rolls-Royce optic fiber stars & Alcantara",
+    image: "/images/service-7.png",
+    badge: "VIP Luxury",
+    href: "/products?category=headliners",
   },
   {
     id: 5,
-    title: "Transmission & Gearbox",
-    tagline: "Fluid flush, mechatronic calibration",
-    image: "/images/service-5.png",
-    badge: "Smooth Shift",
-    href: "/get-a-quote?service=transmission",
+    title: "Car Electronics & Audio",
+    tagline: "Android touchscreens, DSP amps & dashcams",
+    image: "/images/service-2.png",
+    badge: "Smart Tech",
+    href: "/products?category=electronics",
   },
   {
     id: 6,
-    title: "Electrical & Battery Care",
-    tagline: "Alternator, battery testing & ECU repairs",
-    image: "/images/service-6.png",
-    badge: "High Voltage",
-    href: "/get-a-quote?service=electrical",
+    title: "Laser LED Headlamps",
+    tagline: "High-lumen laser bulbs & ambient interior lights",
+    image: "/images/service-9.png",
+    badge: "Ultra Bright",
+    href: "/products?category=lighting",
   },
   {
     id: 7,
-    title: "Oil & Filter Express",
-    tagline: "Mobil 1 / Castrol synthetic lubricants",
-    image: "/images/service-7.png",
-    badge: "Under 30 Mins",
-    href: "/get-a-quote?service=oil-change",
+    title: "Upholstery Leather & Fabrics",
+    tagline: "Ultra-durable anti-UV German PVC & Napa",
+    image: "/images/service-1.png",
+    badge: "UV Resistant",
+    href: "/products?category=upholstery",
   },
   {
     id: 8,
-    title: "Custom Upholstery & Covers",
-    tagline: "Handcrafted 3D diamond leather seats",
-    image: "/fb-posts/469317378_122127198956549942_2454514240647818107_n.jpg",
-    badge: "Custom Fit",
-    href: "/products",
+    title: "Car Styling & Care Kits",
+    tagline: "Sunshades, ceramic coatings & styling accents",
+    image: "/images/service-3.png",
+    badge: "Protection",
+    href: "/products?category=styling",
   },
 ];
 
@@ -104,10 +104,10 @@ export default function TopCategoriesGrid() {
           </div>
 
           <Link
-            href="/services"
+            href="/products"
             className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-zinc-900 hover:text-red-600 transition-colors group self-start md:self-auto border-b border-zinc-300 pb-1 hover:border-red-600"
           >
-            <span>View All Services</span>
+            <span>View All 500+ Accessories</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
         </div>

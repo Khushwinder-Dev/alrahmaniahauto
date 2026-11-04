@@ -29,16 +29,16 @@ export default function PromoSplitBanners() {
                 <span>Special Offer - Up to 30% OFF</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-zinc-900 leading-tight">
-                AC System Flush &amp; Gas Recharge
+                Custom 3D Leather Seat Covers
               </h3>
               <p className="text-zinc-600 text-xs sm:text-sm mt-3 max-w-xs leading-relaxed">
-                Beat the UAE heat with computerized refrigerant recharge, antibacterial cabin cleanse &amp; leak detection.
+                Precision-tailored to your vehicle model with heat-resistant anti-cracking PVC and Napa leather.
               </p>
             </div>
 
             <div className="relative z-10 pt-6">
               <Link
-                href="/get-a-quote?service=ac-repair"
+                href="/get-a-quote?category=seat-covers"
                 className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full transition-all group-hover:gap-3 shadow-md shadow-red-600/30"
               >
                 <span>Claim Offer</span>
@@ -74,7 +74,7 @@ export default function PromoSplitBanners() {
 
             <div className="relative z-10 pt-6">
               <Link
-                href="/get-a-quote?service=major-service"
+                href="/get-a-quote?category=floor-mats"
                 className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-red-600 text-white font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full transition-all group-hover:gap-3 shadow-md"
               >
                 <span>Book Service</span>

@@ -7,23 +7,23 @@ export default function WolmartTrustBar() {
   const trustItems = [
     {
       icon: <Zap className="w-6 h-6 text-red-600 group-hover:text-white transition-colors flex-shrink-0" />,
-      title: "Express Turnaround",
-      subtitle: "Under 60-min express servicing",
+      title: "Fast UAE Delivery",
+      subtitle: "Express dispatch across all Emirates",
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-red-600 group-hover:text-white transition-colors flex-shrink-0" />,
-      title: "100% Genuine OEM",
-      subtitle: "Certified authentic parts & warranty",
+      title: "100% Genuine Quality",
+      subtitle: "Certified authentic car accessories",
     },
     {
       icon: <Wrench className="w-6 h-6 text-red-600 group-hover:text-white transition-colors flex-shrink-0" />,
-      title: "Master Technicians",
-      subtitle: "Dealer-trained specialists in UAE",
+      title: "Custom Fit Guaranteed",
+      subtitle: "Tailored to your vehicle specs",
     },
     {
       icon: <PhoneCall className="w-6 h-6 text-red-600 group-hover:text-white transition-colors flex-shrink-0" />,
-      title: "24/7 Roadside Support",
-      subtitle: "Fast recovery & towing service",
+      title: "24/7 Expert Support",
+      subtitle: "Fitment guidance & assistance",
     },
   ];
 

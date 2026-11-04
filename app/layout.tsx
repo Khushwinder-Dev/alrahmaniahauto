@@ -23,26 +23,27 @@ const barlowCondensed = Barlow_Condensed({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alrahmaniahauto.ae"),
-  title: "Best Car Workshop in Sharjah | Al Rahmaniah Auto Maintenance",
+  title: "Al Rahmaniah Auto Accessories | Premium Car Accessories & Styling in Sharjah, UAE",
   description:
-    "Professional auto repair & car maintenance in Sharjah Industrial Area 5. We specialize in oil changes, brake repair, AC service, and computer diagnostics.",
+    "Shop premium auto accessories, custom leather seat covers, 7D floor mats, car electronics, laser LED lighting, and interior styling at Al Rahmaniah Auto Accessories in Sharjah Industrial Area 4 & 5.",
   keywords: [
-    "car maintenance Sharjah",
-    "auto repair Sharjah",
-    "car workshop Sharjah",
-    "car AC repair Sharjah",
-    "oil change Sharjah",
-    "brake repair Sharjah",
-    "Al Rahmaniah auto workshop"
+    "car accessories Sharjah",
+    "auto accessories UAE",
+    "custom car seat covers",
+    "7D floor mats Sharjah",
+    "car styling UAE",
+    "car electronics Sharjah",
+    "automotive LED lights",
+    "Al Rahmaniah Auto Accessories"
   ],
   icons: {
     icon: "/images/alrahmaniah-logo.jpg",
     apple: "/images/alrahmaniah-logo.jpg",
   },
   openGraph: {
-    title: "Best Car Workshop in Sharjah | Al Rahmaniah Auto Maintenance",
+    title: "Al Rahmaniah Auto Accessories | Premium Car Accessories & Styling in Sharjah, UAE",
     description:
-      "Professional auto repair & car maintenance in Sharjah Industrial Area 5. We specialize in oil changes, brake repair, AC service, and computer diagnostics.",
+      "Shop premium auto accessories, custom leather seat covers, 7D floor mats, car electronics, laser LED lighting, and interior styling at Al Rahmaniah Auto Accessories in Sharjah Industrial Area 4 & 5.",
     images: ["/images/alrahmaniah-logo.jpg"],
   },
 };

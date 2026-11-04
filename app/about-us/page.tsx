@@ -24,8 +24,8 @@ export default function AboutUsPage() {
   const reasons = [
     {
       icon: <UserCheck className="w-6 h-6 text-red-600" strokeWidth={2.5} />,
-      title: "Certified Master Mechanics",
-      desc: "ASE & factory certified technicians with over 12 years of hands-on expertise across European, Japanese & American marques.",
+      title: "Custom Fitment & Precision Craftsmanship",
+      desc: "Laser-tailored seat covers, 7D molded mats, and accessories crafted for exact factory contours and flawless finish.",
     },
     {
       icon: <Handshake className="w-6 h-6 text-red-600" strokeWidth={2.5} />,
@@ -34,13 +34,13 @@ export default function AboutUsPage() {
     },
     {
       icon: <Zap className="w-6 h-6 text-red-600" strokeWidth={2.5} />,
-      title: "Fast Lane Express Service",
-      desc: "Routine lube, brake disc skimming, and computerized scanning completed in under 60 minutes in our Sharjah facility.",
+      title: "Fast UAE Delivery & Showroom Fitting",
+      desc: "Express courier delivery across all 7 Emirates, plus dedicated showroom fitting bays in Sharjah Industrial Area 4 & 5.",
     },
     {
       icon: <Star className="w-6 h-6 text-red-600" strokeWidth={2.5} />,
-      title: "100% Genuine OEM Parts",
-      desc: "Only certified original replacement parts and high-specification synthetic lubricants from Mobil 1, Castrol, and Liqui Moly.",
+      title: "Extreme Heat & UV Durability",
+      desc: "Engineered specifically for the harsh Gulf climate using anti-cracking, UV-resistant Napa leather and high-grade materials.",
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-red-600" strokeWidth={2.5} />,
@@ -55,8 +55,8 @@ export default function AboutUsPage() {
   ];
 
   const milestones = [
-    { number: "15,000+", label: "Vehicles Serviced", desc: "Across Sharjah, Dubai & Northern Emirates" },
-    { number: "12+", label: "Years of Excellence", desc: "Established workshop in Industrial Area 5" },
+    { number: "20,000+", label: "Vehicles Styled & Upgraded", desc: "Across Sharjah, Dubai & Northern Emirates" },
+    { number: "15+", label: "Years of Excellence", desc: "Established showroom in Industrial Area 4 & 5" },
     { number: "99.4%", label: "Customer Satisfaction", desc: "Based on 2,500+ verified customer reviews" },
     { number: "100%", label: "Genuine OEM Parts", desc: "Strict quality assurance guarantee" },
   ];
@@ -153,7 +153,7 @@ export default function AboutUsPage() {
                 </div>
               </div>
               <Link
-                href="/services"
+                href="/products"
                 className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-red-600 hover:text-red-700"
               >
                 <span>Services</span>

@@ -14,13 +14,13 @@ export default function WhyUsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="flex flex-col items-start max-w-2xl">
             <span className="text-red-600 font-bold text-[11px] tracking-[0.15em] uppercase mb-6">
-              Al Rahmaniah Auto Maintenance Workshop
+              Al Rahmaniah Auto Accessories
             </span>
             <h2 className="font-display text-4xl md:text-6xl font-black text-zinc-900 leading-[1.1] mb-8 uppercase tracking-tight">
-              Professional Car Maintenance in Sharjah
+              Premier Auto Accessories & Customization in Sharjah
             </h2>
             <p className="text-zinc-600 text-base leading-relaxed mb-10">
-              Al Rahmaniah Auto Maintenance Workshop is dedicated to keeping your vehicle running smoothly and efficiently. We offer a comprehensive range of automotive services — from mechanical repairs and diagnostics to full detailing solutions — using advanced equipment and skilled craftsmanship to ensure your car performs at its best.
+              Al Rahmaniah Auto Accessories is dedicated to keeping your vehicle running smoothly and efficiently. We offer a comprehensive range of automotive services — from mechanical repairs and diagnostics to full detailing solutions — using advanced equipment and skilled craftsmanship to ensure your car performs at its best.
             </p>
             <div className="w-full bg-zinc-50 border border-zinc-100 rounded-xl p-8 mb-10 flex items-start gap-6">
               <div className="flex-shrink-0 bg-white shadow-sm p-3 rounded-lg">
@@ -28,18 +28,18 @@ export default function WhyUsSection() {
               </div>
               <div>
                 <h4 className="font-bold text-zinc-900 text-lg mb-1">
-                  Trusted Expertise
+                  15+ Years of Craftsmanship
                 </h4>
                 <p className="text-zinc-500 text-sm leading-relaxed">
-                  From routine maintenance to major repairs, we provide seamless automotive solutions tailored to each vehicle.
+                  From custom leather upholstery to ambient cabin lighting, we deliver flawless transformations for sedans, SUVs, and luxury sports cars.
                 </p>
               </div>
             </div>
             <button
-              onClick={() => router.push("/services")}
+              onClick={() => router.push("/products")}
               className="bg-brand hover:bg-brand-dark text-white font-bold text-sm px-10 py-5 rounded-lg uppercase tracking-widest transition-all shadow-lg shadow-brand/20 active:scale-95 cursor-pointer"
             >
-              View All Services
+              Explore Accessories Catalog
             </button>
           </div>
           <div className="relative flex gap-6 h-[600px] items-center">

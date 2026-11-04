@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import CareerPageContent from "@/components/CareerPageContent";
 
 export const metadata: Metadata = {
-  title: "Careers at Al Rahmaniah Auto | Automotive Workshop Jobs in Sharjah",
+  title: "Careers at Al Rahmaniah Auto | Auto Accessories & Upholstery Jobs in Sharjah",
   description:
-    "Explore rewarding automotive career opportunities for certified auto mechanics, diagnostic specialists, auto electricians, AC technicians, and car upholstery craftsmen in Sharjah, UAE.",
+    "Explore rewarding automotive career opportunities for certified car upholstery artisans, accessories sales advisors, auto electronics fitters, and e-commerce specialists in Sharjah, UAE.",
   keywords: [
     "automotive jobs Sharjah",
     "car mechanic jobs UAE",

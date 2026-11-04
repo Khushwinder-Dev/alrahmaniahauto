@@ -22,14 +22,14 @@ export default function FeatureSection() {
         <div className="flex flex-col items-start lg:pl-10">
           <div className="inline-block px-3 py-1.5 rounded-full border border-red-200 bg-red-50 mb-6">
             <span className="text-red-600 text-[10px] font-black tracking-[0.2em] uppercase">
-              Al Rahmaniah Auto Maintenance Workshop
+              Al Rahmaniah Auto Accessories
             </span>
           </div>
           <h2 className="font-display text-2xl md:text-5xl font-bold text-zinc-900 leading-tight mb-6 tracking-tight">
-            We Go Beyond Just a <br /> Car Maintenance
+            Elevating Your Car With <br /> Bespoke Accessories
           </h2>
           <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-8 max-w-3xl">
-            At Al Rahmaniah Auto Maintenance Workshop, we blend speed with precision. Our certified technicians use cutting-edge equipment to deliver results that exceed expectations — every single time.
+            At Al Rahmaniah Auto Accessories, we blend speed with precision. Our certified technicians use cutting-edge equipment to deliver results that exceed expectations — every single time.
           </p>
           <div className="space-y-4 w-full mb-10">
             <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-zinc-200 shadow-xs group transition-all hover:border-red-500 hover:shadow-md">
@@ -38,10 +38,10 @@ export default function FeatureSection() {
               </div>
               <div>
                 <h4 className="text-zinc-900 font-bold text-base mb-1 tracking-wide">
-                  Express Service
+                  Precision Custom Fitment
                 </h4>
                 <p className="text-zinc-500 text-xs md:text-sm leading-snug max-w-lg">
-                  Most services completed in under 60 minutes without sacrificing quality.
+                  Laser-tailored seat covers, mats, and accessories crafted for exact factory contours.
                 </p>
               </div>
             </div>
@@ -52,10 +52,10 @@ export default function FeatureSection() {
               </div>
               <div>
                 <h4 className="text-zinc-900 font-bold text-base mb-1 tracking-wide">
-                  100% Genuine OEM Parts
+                  Premium Certified Materials
                 </h4>
                 <p className="text-zinc-500 text-xs md:text-sm leading-snug max-w-lg">
-                  We use only high-grade certified spare parts and premium synthetic lubricants.
+                  Ultra-durable anti-UV Napa leather, high-tensile safety belts, and tested electronics.
                 </p>
               </div>
             </div>
@@ -66,7 +66,7 @@ export default function FeatureSection() {
               </div>
               <div>
                 <h4 className="text-zinc-900 font-bold text-base mb-1 tracking-wide">
-                  Transparent Upfront Pricing
+                  Direct Wholesale & Retail Pricing
                 </h4>
                 <p className="text-zinc-500 text-xs md:text-sm leading-snug max-w-lg">
                   No surprise bills or hidden fees. We provide digital estimates before starting work.

@@ -7,27 +7,27 @@ export default function FourStepProcessSection() {
   const steps = [
     {
       num: "01",
-      emoji: "🗓️",
-      title: "Book Online",
-      desc: "Choose your service and pick a convenient date and time from our booking form.",
+      emoji: "🛍️",
+      title: "Browse Catalog",
+      desc: "Explore 500+ genuine auto accessories, custom seat covers, and styling products.",
     },
     {
       num: "02",
-      emoji: "🚗",
-      title: "Drop Your Car",
-      desc: "Drive in or we'll arrange pickup. Our team greets you and takes over.",
+      emoji: "📐",
+      title: "Select & Custom Fit",
+      desc: "Choose your exact vehicle make, model, color trim, or custom leather specifications.",
     },
     {
       num: "03",
-      emoji: "⚙️",
-      title: "Expert Service",
-      desc: "Our certified technicians complete the job with precision and care.",
+      emoji: "✂️",
+      title: "Precision Crafting",
+      desc: "Our master artisans hand-tailor your order with anti-UV materials and laser accuracy.",
     },
     {
       num: "04",
-      emoji: "✅",
-      title: "Pick Up & Go",
-      desc: "Get your car back sparkling clean and perfectly maintained.",
+      emoji: "🚀",
+      title: "Fast Delivery / Fitting",
+      desc: "Get door-to-door UAE delivery or visit our Sharjah showroom for expert fitment.",
     },
   ];
 

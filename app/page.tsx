@@ -5,11 +5,9 @@ import TopCategoriesGrid from "@/components/Home/TopCategoriesGrid";
 import PromoSplitBanners from "@/components/Home/PromoSplitBanners";
 import FeaturedProductsShowcase from "@/components/Home/FeaturedProductsShowcase";
 import DealCountdownBanner from "@/components/Home/DealCountdownBanner";
-import ServicesSection from "@/components/Home/ServicesSection";
 import FeatureSection from "@/components/Home/FeatureSection";
 import WhyUsSection from "@/components/Home/WhyUsSection";
 import AppointmentFormSection from "@/components/Home/AppointmentFormSection";
-import WorkProcessSection from "@/components/Home/WorkProcessSection";
 import RecentWorkSection from "@/components/Home/RecentWorkSection";
 import PartnershipSection from "@/components/Home/PartnershipSection";
 import FaqSection from "@/components/Home/FaqSection";
@@ -41,10 +39,7 @@ export default function Home() {
         {/* 1f. Wolmart Demo 15 Limited-Time Deal Countdown Banner */}
         <DealCountdownBanner />
 
-        {/* 2. Professional Services Grid */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <ServicesSection />
-        </div>
+
 
         {/* 3. "We Go Beyond Just a Car Maintenance" */}
         <div data-aos="fade-up" data-aos-delay="200">
@@ -61,10 +56,7 @@ export default function Home() {
           <AppointmentFormSection />
         </div>
 
-        {/* 6. Work Process ("How We Work") */}
-        <div data-aos="fade-up" data-aos-delay="200">
-          <WorkProcessSection />
-        </div>
+
 
         {/* 7. "Our Recent Work" Portfolio Carousel */}
         <div data-aos="fade-up" data-aos-delay="200">

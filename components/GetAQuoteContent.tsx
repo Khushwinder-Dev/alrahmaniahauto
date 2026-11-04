@@ -39,52 +39,52 @@ const VEHICLE_MAKES = [
 
 const SERVICE_OPTIONS = [
   {
-    id: "oil-service",
-    title: "Periodic Oil & Filter Service",
-    desc: "Mobil 1 / Castrol synthetic oil + OEM filter + 25-pt safety check",
-    tag: "Fast Turnaround",
+    id: "seat-covers",
+    title: "Custom Car Seat Covers",
+    desc: "3D diamond quilted, perforated Napa leather, suede & sport custom tailoring",
+    tag: "Best Seller",
   },
   {
-    id: "ac-repair",
-    title: "Car AC Repair & Gas Recharge",
-    desc: "Computerized refrigerant refill, leak test & evaporator sanitization",
-    tag: "Summer Essential",
+    id: "floor-mats",
+    title: "7D / 5D Luxury Floor Mats",
+    desc: "Full cabin & trunk all-weather waterproof custom molded protection",
+    tag: "All-Weather",
   },
   {
-    id: "brake-service",
-    title: "Brake Pads & Disc Skimming",
-    desc: "Brembo / OEM pads replacement, computerized disc rotor lathe",
-    tag: "Safety Critical",
+    id: "colored-seatbelts",
+    title: "Custom Colored Seatbelts",
+    desc: "FIA-certified high-tensile safety webbing in Racing Red, Yellow, Blue & Neon",
+    tag: "Custom Styling",
   },
   {
-    id: "engine-diagnostics",
-    title: "Computer Diagnostic Scan",
-    desc: "Bosch OBD-II full ECU system diagnostics & fault clearing",
-    tag: "High Precision",
+    id: "roof-headliner",
+    title: "Starlight Headliner & Roof Suede",
+    desc: "Rolls-Royce style optic fiber twinkling stars & Alcantara headliner revamp",
+    tag: "VIP Luxury",
   },
   {
-    id: "transmission",
-    title: "Gearbox & Transmission Service",
-    desc: "Fluid replacement, valve body inspection & mechatronics repair",
-    tag: "Powertrain",
+    id: "car-electronics",
+    title: "Car Electronics & Android Screens",
+    desc: "Touchscreens, Apple CarPlay / Android Auto, DSP amplifiers & dashcams",
+    tag: "Smart Tech",
   },
   {
-    id: "suspension",
-    title: "Suspension, Bushings & Shocks",
-    desc: "Shock absorbers, control arms, ball joints & 3D laser alignment",
-    tag: "Smooth Ride",
+    id: "led-lighting",
+    title: "Laser LED Headlamps & Ambient Lights",
+    desc: "High-lumen laser LED conversion kits & app-controlled cabin ambient strips",
+    tag: "Ultra Bright",
   },
   {
-    id: "custom-upholstery",
-    title: "Custom Seat Covers & Leather",
-    desc: "3D diamond quilted leather seats, custom belts & interior revamp",
-    tag: "Luxury Craft",
+    id: "car-care-styling",
+    title: "Styling Kits & Protection Film",
+    desc: "Window tints, ceramic surface coatings, sunshades & aero body accessories",
+    tag: "Protection",
   },
   {
-    id: "battery-electrical",
-    title: "Battery, Starter & Alternator",
-    desc: "High-crank battery replacement with warranty & electrical diagnostics",
-    tag: "Electrical",
+    id: "wholesale-accessories",
+    title: "Wholesale & Bulk Accessories",
+    desc: "B2B shop supplies, commercial fleet accessories & GCC export orders",
+    tag: "Wholesale",
   },
 ];
 
@@ -182,7 +182,7 @@ export default function GetAQuoteContent() {
           </h1>
 
           <p className="max-w-2xl mx-auto text-zinc-300 text-xs sm:text-sm font-medium tracking-wide leading-relaxed">
-            Get an upfront, honest price estimate for maintenance, diagnostics, AC service, or custom automotive accessories. 100% Genuine OEM parts with zero hidden fees.
+            Get an upfront, honest price estimate for custom leather seat covers, 7D floor mats, lighting upgrades, or bulk automotive accessories. 100% genuine quality with precision vehicle fitment.
           </p>
         </div>
       </section>

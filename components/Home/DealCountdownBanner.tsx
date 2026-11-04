@@ -41,21 +41,21 @@ export default function DealCountdownBanner() {
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600 text-white text-xs font-bold uppercase tracking-wider shadow-sm">
                 <Flame className="w-3.5 h-3.5" />
-                <span>Limited-Time Workshop Promotion</span>
+                <span>Limited-Time Accessories Bundle</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-zinc-900 leading-tight">
-                UAE Summer Prep: <span className="text-red-600">50-Point Safety Check</span> + AC Gas Recharge
+                Exclusive Interior Bundle: <span className="text-red-600">Custom Napa Seat Covers</span> + 7D Floor Mats
               </h2>
 
               <p className="text-zinc-600 text-sm sm:text-base max-w-xl leading-relaxed">
-                Protect your vehicle against the desert climate. Includes computerized engine diagnostics, brake inspection, battery load test, and AC cooling efficiency optimization.
+                Elevate your car interior with tailor-made 3D diamond quilted seat covers and matching all-weather 7D molded floor liners. Save up to 35% this season.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-2 text-xs font-semibold text-zinc-700">
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-red-600" />
-                  <span>100% Genuine Fluids</span>
+                  <span>100% Genuine OEM Fit</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Wrench className="w-4 h-4 text-red-600" />
