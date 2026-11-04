@@ -1,92 +1,66 @@
 import React from "react";
 import HeroSection from "@/components/Home/HeroSection";
 import WolmartTrustBar from "@/components/Home/WolmartTrustBar";
+import VehicleAccessoriesFinder from "@/components/Home/VehicleAccessoriesFinder";
 import TopCategoriesGrid from "@/components/Home/TopCategoriesGrid";
 import PromoSplitBanners from "@/components/Home/PromoSplitBanners";
 import FeaturedProductsShowcase from "@/components/Home/FeaturedProductsShowcase";
+import BestSellersSection from "@/components/Home/BestSellersSection";
 import DealCountdownBanner from "@/components/Home/DealCountdownBanner";
-import FeatureSection from "@/components/Home/FeatureSection";
-import WhyUsSection from "@/components/Home/WhyUsSection";
-import AppointmentFormSection from "@/components/Home/AppointmentFormSection";
+import ThreeColumnProductWidget from "@/components/Home/ThreeColumnProductWidget";
+import MaterialSwatchesShowcase from "@/components/Home/MaterialSwatchesShowcase";
 import RecentWorkSection from "@/components/Home/RecentWorkSection";
+import AppointmentFormSection from "@/components/Home/AppointmentFormSection";
 import PartnershipSection from "@/components/Home/PartnershipSection";
 import FaqSection from "@/components/Home/FaqSection";
-import StatsSection from "@/components/Home/StatsSection";
-import LatestInsightsSection from "@/components/Home/LatestInsightsSection";
-import FourStepProcessSection from "@/components/Home/FourStepProcessSection";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <main>
-        {/* 1. Hero Section with Glass Stats (UNTOUCHED) */}
+        {/* 1. Hero Section with 4K Video Background & Accessories Copy (UNTOUCHED) */}
         <div>
           <HeroSection />
         </div>
 
-        {/* 1b. Wolmart Demo 15 Trust & Value Proposition Bar */}
+        {/* 2. Wolmart Trust & Value Proposition Bar */}
         <WolmartTrustBar />
 
-        {/* 1c. Wolmart Demo 15 Top Categories of the Month */}
+        {/* 3. Interactive Vehicle Make & Model Accessories Finder */}
+        <VehicleAccessoriesFinder />
+
+        {/* 4. Top Product Categories of the Month */}
         <TopCategoriesGrid />
 
-        {/* 1d. Wolmart Demo 15 Promotional Split Banners */}
+        {/* 5. Promotional Split Banners (Seat Covers / 7D Mats / Starlight Roof) */}
         <PromoSplitBanners />
 
-        {/* 1e. Wolmart Demo 15 Featured Products & Accessories Showcase */}
+        {/* 6. Featured Products Showcase with Category Tabs */}
         <FeaturedProductsShowcase />
 
-        {/* 1f. Wolmart Demo 15 Limited-Time Deal Countdown Banner */}
+        {/* 7. Best Selling & Trending Auto Accessories Grid */}
+        <BestSellersSection />
+
+        {/* 8. Limited-Time Bundle Deal Countdown Banner */}
         <DealCountdownBanner />
 
+        {/* 9. Signature Wolmart 3-Column Product Widget (Top Rated / Best Selling / New Arrivals) */}
+        <ThreeColumnProductWidget />
 
+        {/* 10. Bespoke Upholstery & Material Swatches Showcase */}
+        <MaterialSwatchesShowcase />
 
-        {/* 3. "We Go Beyond Just a Car Maintenance" */}
-        <div data-aos="fade-up" data-aos-delay="200">
-          <FeatureSection />
-        </div>
+        {/* 11. Recent Custom Installations Portfolio Showcase */}
+        <RecentWorkSection />
 
-        {/* 4. "Professional Car Maintenance in Sharjah" */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <WhyUsSection />
-        </div>
+        {/* 12. Instant Custom Accessories Quotation Request Form */}
+        <AppointmentFormSection />
 
-        {/* 5. Appointment Quote Form & Assurance Banner */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <AppointmentFormSection />
-        </div>
+        {/* 13. Brand Compatibility Infinite Carousel (Bab Al Bustan Style) */}
+        <PartnershipSection />
 
-
-
-        {/* 7. "Our Recent Work" Portfolio Carousel */}
-        <div data-aos="fade-up" data-aos-delay="200">
-          <RecentWorkSection />
-        </div>
-
-        {/* 8. Brand Partnerships */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <PartnershipSection />
-        </div>
-
-        {/* 9. Frequently Asked Questions */}
-        <div data-aos="fade-up" data-aos-delay="200">
-          <FaqSection />
-        </div>
-
-        {/* 10. Experience & Satisfaction Counters */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <StatsSection />
-        </div>
-
-        {/* 11. Latest Insights & Technical Guides */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <LatestInsightsSection />
-        </div>
-
-        {/* 12. Simple 4-Step Process & Bottom Banner */}
-        <div data-aos="fade-up" data-aos-delay="200">
-          <FourStepProcessSection />
-        </div>
+        {/* 14. 6 Automotive Product & Fitment FAQs */}
+        <FaqSection />
       </main>
     </div>
   );
