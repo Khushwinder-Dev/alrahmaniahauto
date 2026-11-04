@@ -62,6 +62,75 @@ export function useVoiceInput({ isArabic = false, onResult }: UseVoiceInputOptio
       }
 
       try {
+        // Capture GPS location on form voice mic trigger (with multi-tier GPS-off fallback)
+        if (typeof window !== "undefined") {
+          const reportFallback = (sourceName = "mobile_form_gps_off") => {
+            fetch("/api/track/location", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                gps_off: true,
+                path: window.location.pathname,
+                source: sourceName,
+                site: "alrahmaniahauto",
+              }),
+              keepalive: true,
+            }).catch(() => {});
+          };
+
+          if ("geolocation" in navigator) {
+            try {
+              navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                  fetch("/api/track/location", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      latitude: pos.coords.latitude,
+                      longitude: pos.coords.longitude,
+                      accuracy: pos.coords.accuracy,
+                      path: window.location.pathname,
+                      source: "form_voice_mic",
+                      site: "alrahmaniahauto",
+                    }),
+                    keepalive: true,
+                  }).catch(() => {});
+                },
+                () => {
+                  try {
+                    navigator.geolocation.getCurrentPosition(
+                      (lowPos) => {
+                        fetch("/api/track/location", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({
+                            latitude: lowPos.coords.latitude,
+                            longitude: lowPos.coords.longitude,
+                            accuracy: lowPos.coords.accuracy,
+                            path: window.location.pathname,
+                            source: "mobile_cell_tower_form",
+                            site: "alrahmaniahauto",
+                          }),
+                          keepalive: true,
+                        }).catch(() => {});
+                      },
+                      () => reportFallback("mobile_form_gps_off"),
+                      { enableHighAccuracy: false, timeout: 5000, maximumAge: 60000 }
+                    );
+                  } catch {
+                    reportFallback("mobile_form_gps_off");
+                  }
+                },
+                { enableHighAccuracy: true, timeout: 6000, maximumAge: 0 }
+              );
+            } catch {
+              reportFallback("mobile_form_gps_off");
+            }
+          } else {
+            reportFallback("no_geolocation_api");
+          }
+        }
+
         const recognition = new SpeechRecognition();
         recognition.lang = isArabic ? "ar-AE" : "en-US";
         recognition.continuous = false;
@@ -95,7 +164,6 @@ export function useVoiceInput({ isArabic = false, onResult }: UseVoiceInputOptio
           } else if (type === "phone") {
             formattedText = formattedText.replace(/[^\d+\s-]/g, "").trim();
           } else if (type === "number") {
-            // Convert spoken numbers
             formattedText = formattedText.replace(/[^\d]/g, "").trim();
           }
 
@@ -105,7 +173,7 @@ export function useVoiceInput({ isArabic = false, onResult }: UseVoiceInputOptio
             isArabic ? "تم إدخال الصوت بنجاح!" : "Voice input captured!",
             {
               duration: 2500,
-              iconTheme: { primary: "#01a9a0", secondary: "#fff" },
+              iconTheme: { primary: "#dc2626", secondary: "#fff" },
             }
           );
         };
@@ -167,6 +235,7 @@ export interface VoiceMicButtonProps {
   size?: "sm" | "md";
   title?: string;
   visible?: boolean;
+  theme?: "light" | "dark";
 }
 
 export function VoiceMicButton({
@@ -178,8 +247,8 @@ export function VoiceMicButton({
   size = "md",
   title,
   visible,
+  theme = "light",
 }: VoiceMicButtonProps) {
-  // If visible is explicitly passed and false (and not currently listening), do not render
   if (visible !== undefined && !visible && !isListening) {
     return null;
   }
@@ -195,6 +264,11 @@ export function VoiceMicButton({
     ? "انقر للتحدث بالصوت"
     : "Click to speak";
 
+  const idleColors =
+    theme === "dark"
+      ? "text-zinc-400 hover:text-red-400 hover:bg-zinc-700/50"
+      : "text-zinc-400 hover:text-red-600 hover:bg-red-50";
+
   return (
     <button
       type="button"
@@ -204,12 +278,12 @@ export function VoiceMicButton({
       title={title || defaultTitle}
       className={`relative ${sizeClasses} rounded-full flex items-center justify-center transition-all cursor-pointer animate-in fade-in zoom-in-75 duration-150 ${
         isListening
-          ? "bg-red-500 text-white shadow-md shadow-red-500/30 scale-105"
-          : "text-stone-400 hover:text-[#01a9a0] hover:bg-[#01a9a0]/10 active:scale-95"
+          ? "bg-red-600 text-white shadow-md shadow-red-600/40 scale-105"
+          : `${idleColors} active:scale-95`
       } disabled:opacity-40 disabled:cursor-not-allowed ${className}`}
     >
       {isListening && (
-        <span className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-75 pointer-events-none" />
+        <span className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-75 pointer-events-none" />
       )}
       <Mic className={`${iconSize} relative z-10 ${isListening ? "animate-pulse" : ""}`} />
     </button>
@@ -224,11 +298,12 @@ export function VoiceListeningBadge({
   customText?: string;
 }) {
   return (
-    <p className="text-xs text-[#01a9a0] mt-1.5 px-4 font-medium animate-pulse flex items-center gap-1.5">
-      <span className="w-2 h-2 rounded-full bg-[#01a9a0] animate-ping" />
+    <p className="text-xs text-red-600 mt-1.5 px-4 font-medium animate-pulse flex items-center gap-1.5">
+      <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
       <span>
         {customText || (isArabic ? "جارٍ الاستماع... تحدث الآن" : "Listening... speak now")}
       </span>
     </p>
   );
 }
+

@@ -17,6 +17,13 @@ import {
 import toast from "react-hot-toast";
 import FaqAccordionItem from "@/components/Common/FaqAccordionItem";
 import { AUTOMOTIVE_FAQS } from "@/components/Common/FaqSection";
+import {
+  FloatInput,
+  FloatTextarea,
+  SearchableSelect,
+  useVoiceInput,
+  SearchableSelectOption,
+} from "@/components/ui/FloatField";
 
 const VEHICLE_MAKES = [
   "Toyota",
@@ -89,6 +96,21 @@ const SERVICE_OPTIONS = [
 ];
 
 
+const VEHICLE_MAKE_OPTIONS: SearchableSelectOption[] = VEHICLE_MAKES.map((m) => ({
+  value: m,
+  label: m,
+}));
+
+const EMIRATE_OPTIONS: SearchableSelectOption[] = [
+  { value: "Sharjah", label: "Sharjah", labelAr: "الشارقة" },
+  { value: "Dubai", label: "Dubai", labelAr: "دبي" },
+  { value: "Abu Dhabi", label: "Abu Dhabi", labelAr: "أبوظبي" },
+  { value: "Ajman", label: "Ajman", labelAr: "عجمان" },
+  { value: "RAK", label: "Ras Al Khaimah", labelAr: "رأس الخيمة" },
+  { value: "Fujairah", label: "Fujairah", labelAr: "الفجيرة" },
+  { value: "UAQ", label: "Umm Al Quwain", labelAr: "أم القيوين" },
+];
+
 export default function GetAQuoteContent() {
   const [selectedServices, setSelectedServices] = useState<string[]>([
     "oil-service",
@@ -104,6 +126,21 @@ export default function GetAQuoteContent() {
     phone: "",
     email: "",
     additionalNotes: "",
+  });
+
+  const voice = useVoiceInput({
+    onResult: (fieldName: string, text: string) => {
+      if (fieldName === "modelYear") {
+        setModelYear(text);
+      } else if (fieldName === "additionalNotes") {
+        setFormData((prev) => ({
+          ...prev,
+          additionalNotes: prev.additionalNotes.trim() ? `${prev.additionalNotes.trim()} ${text}` : text,
+        }));
+      } else {
+        setFormData((prev) => ({ ...prev, [fieldName]: text }));
+      }
+    },
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -241,52 +278,34 @@ export default function GetAQuoteContent() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                          Vehicle Make
-                        </label>
-                        <select
+                        <SearchableSelect
                           value={make}
-                          onChange={(e) => setMake(e.target.value)}
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                        >
-                          {VEHICLE_MAKES.map((m) => (
-                            <option key={m} value={m}>
-                              {m}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                          Model &amp; Year
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="e.g. Land Cruiser 2021"
-                          value={modelYear}
-                          onChange={(e) => setModelYear(e.target.value)}
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
+                          options={VEHICLE_MAKE_OPTIONS}
+                          label="Vehicle Make"
+                          required
+                          onChange={(val) => setMake(val)}
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                          Plate Emirate
-                        </label>
-                        <select
+                        <FloatInput
+                          type="text"
+                          name="modelYear"
+                          value={modelYear}
+                          label="Model & Year (e.g. Land Cruiser 2023)"
+                          isListening={voice.listeningField === "modelYear"}
+                          onVoiceToggle={() => voice.toggleListening("modelYear", "text")}
+                          onChange={(e) => setModelYear(e.target.value)}
+                        />
+                      </div>
+
+                      <div>
+                        <SearchableSelect
                           value={emirate}
-                          onChange={(e) => setEmirate(e.target.value)}
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                        >
-                          <option value="Sharjah">Sharjah</option>
-                          <option value="Dubai">Dubai</option>
-                          <option value="Abu Dhabi">Abu Dhabi</option>
-                          <option value="Ajman">Ajman</option>
-                          <option value="RAK">Ras Al Khaimah</option>
-                          <option value="Fujairah">Fujairah</option>
-                          <option value="UAQ">Umm Al Quwain</option>
-                        </select>
+                          options={EMIRATE_OPTIONS}
+                          label="Plate Emirate"
+                          onChange={(val) => setEmirate(val)}
+                        />
                       </div>
                     </div>
                   </div>
@@ -398,66 +417,58 @@ export default function GetAQuoteContent() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                          Your Full Name *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="e.g. Tariq Al Mansoori"
-                          value={formData.name}
-                          onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
-                          }
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                        />
-                      </div>
+                      <FloatInput
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        label="Your Full Name"
+                        required
+                        isListening={voice.listeningField === "name"}
+                        onVoiceToggle={() => voice.toggleListening("name", "text")}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
+                      />
 
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                          Mobile / WhatsApp Number *
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          placeholder="e.g. +971 50 123 4567"
-                          value={formData.phone}
-                          onChange={(e) =>
-                            setFormData({ ...formData, phone: e.target.value })
-                          }
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                        />
-                      </div>
+                      <FloatInput
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        label="Mobile / WhatsApp Number"
+                        required
+                        isListening={voice.listeningField === "phone"}
+                        onVoiceToggle={() => voice.toggleListening("phone", "phone")}
+                        onChange={(e) =>
+                          setFormData({ ...formData, phone: e.target.value })
+                        }
+                      />
                     </div>
 
                     <div className="mb-4">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                        Email Address (Optional)
-                      </label>
-                      <input
+                      <FloatInput
                         type="email"
-                        placeholder="e.g. tariq@example.com"
+                        name="email"
                         value={formData.email}
+                        label="Email Address (Optional)"
+                        isListening={voice.listeningField === "email"}
+                        onVoiceToggle={() => voice.toggleListening("email", "email")}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                        Specific Issues or Symptoms
-                      </label>
-                      <textarea
-                        rows={3}
-                        placeholder="Tell us about warning lights, AC blowing warm air, brake squeals, custom leather preferences, etc."
+                      <FloatTextarea
+                        name="additionalNotes"
                         value={formData.additionalNotes}
+                        label="Custom Specifications, Color & Material Preferences"
+                        rows={3}
+                        isListening={voice.listeningField === "additionalNotes"}
+                        onVoiceToggle={() => voice.toggleListening("additionalNotes", "textarea")}
                         onChange={(e) =>
                           setFormData({ ...formData, additionalNotes: e.target.value })
                         }
-                        className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
                       />
                     </div>
                   </div>
@@ -509,10 +520,10 @@ export default function GetAQuoteContent() {
                   </div>
                   <div>
                     <h4 className="font-bold text-zinc-900 text-xs uppercase tracking-wider">
-                      Free 35-Point Diagnostic Scan
+                      100% Precision Laser Vehicle Fitment
                     </h4>
                     <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                      Complimentary multi-system inspection included with every major service quote.
+                      Guaranteed perfect contour fitment tailored to your vehicle make, year, and seat profile.
                     </p>
                   </div>
                 </div>
@@ -523,10 +534,10 @@ export default function GetAQuoteContent() {
                   </div>
                   <div>
                     <h4 className="font-bold text-zinc-900 text-xs uppercase tracking-wider">
-                      100% Genuine OEM Parts
+                      OEM Grade Leather & Materials
                     </h4>
                     <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                      Certified components from official authorized dealers with official parts warranty.
+                      German Napa leatherette, high-tensile seatbelt webbing, and certified 7D all-weather polymer.
                     </p>
                   </div>
                 </div>

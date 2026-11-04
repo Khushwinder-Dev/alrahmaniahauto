@@ -13,15 +13,49 @@ import {
   Navigation,
 } from "lucide-react";
 import toast from "react-hot-toast";
+import { useLanguage } from "@/context/LanguageContext";
+import {
+  FloatInput,
+  FloatTextarea,
+  SearchableSelect,
+  useVoiceInput,
+  SearchableSelectOption,
+} from "@/components/ui/FloatField";
+
+const PRODUCT_INQUIRY_OPTIONS: SearchableSelectOption[] = [
+  { value: "Custom Seat Covers", label: "Custom Car Seat Covers (Napa / PVC / Fabric)", labelAr: "تفصيل مقاعد السيارات (جلد نابا / PVC / قماش)" },
+  { value: "Floor Mats", label: "7D / 5D Molded Luxury Floor Mats", labelAr: "دعاسات أرضيات 7D و 5D فاخرة ومقاومة للماء" },
+  { value: "Colored Seatbelts", label: "Custom Colored Safety Belts", labelAr: "أحزمة أمان ملونة رياضية معتمدة" },
+  { value: "Roof Headliners", label: "Starlight Ceiling & Suede Headliner", labelAr: "سقف نجوم وسقف شامواه فايبر أوبتيك" },
+  { value: "Car Electronics", label: "Android Screens & DSP Audio Upgrades", labelAr: "شاشات أندرويد وأنظمة صوتية متطورة" },
+  { value: "LED Headlights", label: "Laser LED Headlamps & Ambient Strips", labelAr: "إضاءات ليزر LED وإنارة داخلية محيطية" },
+  { value: "Car Care & Styling", label: "Sunshades, Window Tints & Aero Kits", labelAr: "ستائر متحركة وتظليل وحزم حماية وزينة" },
+  { value: "Wholesale Inquiry", label: "Wholesale Supply & Bulk Ordering", labelAr: "طلبات الجملة والتوريد للمحلات والمعارض" },
+];
 
 export default function ContactPage() {
+  const { isArabic } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     vehicleModel: "",
-    serviceNeeded: "Routine Maintenance",
+    serviceNeeded: "Custom Seat Covers",
     message: "",
+  });
+
+  const voice = useVoiceInput({
+    isArabic,
+    onResult: (fieldName: string, text: string) => {
+      if (fieldName === "message") {
+        setFormData((prev) => ({
+          ...prev,
+          message: prev.message.trim() ? `${prev.message.trim()} ${text}` : text,
+        }));
+      } else {
+        setFormData((prev) => ({ ...prev, [fieldName]: text }));
+      }
+    },
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -189,95 +223,77 @@ export default function ContactPage() {
                 Fill in the details below, and our workshop manager will contact you with pricing and schedule availability.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Sultan Al Nuaimi"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                    />
-                  </div>
+                  <FloatInput
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    label={isArabic ? "الاسم الكامل" : "Full Name"}
+                    required
+                    isArabic={isArabic}
+                    isListening={voice.listeningField === "name"}
+                    onVoiceToggle={() => voice.toggleListening("name", "text")}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
 
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="e.g. +971 50 123 4567"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                    />
-                  </div>
+                  <FloatInput
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    label={isArabic ? "رقم الهاتف" : "Phone Number"}
+                    required
+                    isArabic={isArabic}
+                    isListening={voice.listeningField === "phone"}
+                    onVoiceToggle={() => voice.toggleListening("phone", "phone")}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                      Email (Optional)
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="e.g. sultan@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                    />
-                  </div>
+                  <FloatInput
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    label={isArabic ? "البريد الإلكتروني (اختياري)" : "Email (Optional)"}
+                    isArabic={isArabic}
+                    isListening={voice.listeningField === "email"}
+                    onVoiceToggle={() => voice.toggleListening("email", "email")}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
 
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                      Vehicle Model &amp; Year
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Nissan Patrol 2020"
-                      value={formData.vehicleModel}
-                      onChange={(e) => setFormData({ ...formData, vehicleModel: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                    />
-                  </div>
+                  <FloatInput
+                    type="text"
+                    name="vehicleModel"
+                    value={formData.vehicleModel}
+                    label={isArabic ? "طراز وسنة السيارة" : "Vehicle Model & Year"}
+                    isArabic={isArabic}
+                    isListening={voice.listeningField === "vehicleModel"}
+                    onVoiceToggle={() => voice.toggleListening("vehicleModel", "text")}
+                    onChange={(e) => setFormData({ ...formData, vehicleModel: e.target.value })}
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                    Product / Accessory Inquired
-                  </label>
-                  <select
+                  <SearchableSelect
                     value={formData.serviceNeeded}
-                    onChange={(e) => setFormData({ ...formData, serviceNeeded: e.target.value })}
-                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
-                  >
-                    <option value="Custom Seat Covers">Custom Car Seat Covers (Napa / PVC / Fabric)</option>
-                    <option value="Floor Mats">7D / 5D Molded Luxury Floor Mats</option>
-                    <option value="Colored Seatbelts">Custom Colored Safety Belts</option>
-                    <option value="Roof Headliners">Starlight Ceiling &amp; Suede Headliner</option>
-                    <option value="Car Electronics">Android Screens &amp; DSP Audio Upgrades</option>
-                    <option value="LED Headlights">Laser LED Headlamps &amp; Ambient Strips</option>
-                    <option value="Car Care &amp; Styling">Sunshades, Window Tints &amp; Aero Kits</option>
-                    <option value="Wholesale Inquiry">Wholesale Supply &amp; Bulk Ordering</option>
-                  </select>
+                    options={PRODUCT_INQUIRY_OPTIONS}
+                    label={isArabic ? "المنتج أو الإكسسوار المطلوب" : "Product / Accessory Inquired"}
+                    isArabic={isArabic}
+                    onChange={(val) => setFormData({ ...formData, serviceNeeded: val })}
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                    Message / Product Specifications or Vehicle Details
-                  </label>
-                  <textarea
-                    rows={4}
-                    placeholder="Describe your vehicle make, model, desired color, or custom accessories needed..."
+                  <FloatTextarea
+                    name="message"
                     value={formData.message}
+                    label={isArabic ? "تفاصيل إضافية، تفضيل اللون أو نوع الجلد..." : "Message / Product Specifications or Vehicle Details"}
+                    rows={4}
+                    isArabic={isArabic}
+                    isListening={voice.listeningField === "message"}
+                    onVoiceToggle={() => voice.toggleListening("message", "textarea")}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
                   />
                 </div>
 

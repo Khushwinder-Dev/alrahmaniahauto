@@ -6,9 +6,9 @@ import { VoiceMicButton, VoiceListeningBadge } from "@/components/ui/VoiceMicBut
 
 // ── Shared styles ─────────────────────────────────────────────────────────────
 const inputBase = `
-  peer w-full rounded-full border bg-white
+  peer w-full rounded-full border
   px-5 pt-5 pb-2
-  text-sm sm:text-[15px] text-stone-800
+  text-sm sm:text-[15px]
   focus:outline-none
   transition-all duration-200
   disabled:opacity-50 disabled:cursor-not-allowed
@@ -20,6 +20,7 @@ export interface FloatInputProps {
   name: string;
   value: string;
   label: string;
+  placeholder?: string;
   required?: boolean;
   disabled?: boolean;
   isArabic?: boolean;
@@ -31,6 +32,13 @@ export interface FloatInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  variant?: "light" | "dark";
+  size?: "default" | "sm";
+  className?: string;
+  containerClassName?: string;
+  autoComplete?: string;
+  min?: string | number;
+  max?: string | number;
 }
 
 export function FloatInput({
@@ -38,6 +46,7 @@ export function FloatInput({
   name,
   value,
   label,
+  placeholder = " ",
   required,
   disabled,
   isArabic = false,
@@ -49,9 +58,20 @@ export function FloatInput({
   onChange,
   onFocus,
   onBlur,
+  variant = "light",
+  size = "default",
+  className = "",
+  containerClassName = "",
+  autoComplete,
+  min,
+  max,
 }: FloatInputProps) {
   const [focused, setFocused] = useState(false);
-  const lifted = focused || value.length > 0;
+  const isDark = variant === "dark";
+  const isSm = size === "sm";
+
+  // Date and time inputs always show native controls, so label must stay lifted
+  const lifted = focused || value.length > 0 || type === "date" || type === "time";
   const isInvalid = Boolean(error || hasError);
 
   const isValid =
@@ -59,10 +79,50 @@ export function FloatInput({
       ? isValidEmail(value)
       : type === "tel"
       ? isValidPhone(value)
+      : type === "date"
+      ? Boolean(value)
       : isValidText(value);
 
+  const paddingClasses = onVoiceToggle
+    ? isArabic
+      ? isSm ? "pl-16 text-right" : "pl-20 text-right"
+      : isSm ? "pr-16 text-left" : "pr-20 text-left"
+    : isArabic
+    ? isSm ? "pl-8 text-right" : "pl-11 text-right"
+    : isSm ? "pr-8 text-left" : "pr-11 text-left";
+
+  const heightPadding = isSm
+    ? "h-11 px-4.5 pt-3.5 pb-1 text-xs sm:text-[13.5px]"
+    : "px-5 pt-5 pb-2 text-sm sm:text-[15px]";
+
+  const inputBaseClasses = `
+    peer w-full rounded-full border
+    ${heightPadding}
+    focus:outline-none
+    transition-all duration-200
+    disabled:opacity-50 disabled:cursor-not-allowed
+  `;
+
+  const colorClasses = isDark
+    ? `bg-zinc-800/80 text-white ${
+        isInvalid
+          ? "border-red-500 ring-2 ring-red-500/20 focus:border-red-500 focus:ring-red-500/25"
+          : lifted
+          ? "border-zinc-600 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+          : "border-white/10 hover:border-zinc-600 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+      }`
+    : `bg-white text-zinc-900 ${
+        isInvalid
+          ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
+          : lifted
+          ? "border-zinc-300 focus:border-red-600 focus:ring-2 focus:ring-red-600/20"
+          : "border-zinc-300 hover:border-zinc-400 focus:border-red-600 focus:ring-2 focus:ring-red-600/20"
+      }`;
+
+  const labelBg = isDark ? "bg-zinc-900" : "bg-white";
+
   return (
-    <div className="w-full">
+    <div className={`w-full ${containerClassName}`}>
       <div className="relative w-full">
         <input
           type={type}
@@ -70,37 +130,49 @@ export function FloatInput({
           value={value}
           required={required}
           disabled={disabled}
+          autoComplete={autoComplete}
+          min={min}
+          max={max}
           onChange={onChange}
-          onFocus={() => { setFocused(true); onFocus?.(); }}
-          onBlur={() => { setFocused(false); onBlur?.(); }}
+          onFocus={() => {
+            setFocused(true);
+            onFocus?.();
+          }}
+          onBlur={() => {
+            setFocused(false);
+            onBlur?.();
+          }}
           dir={isArabic ? "rtl" : "ltr"}
-          placeholder=" "
-          className={`${inputBase} ${
-            onVoiceToggle
-              ? isArabic ? "pl-20 text-right" : "pr-20 text-left"
-              : isArabic ? "pl-11 text-right" : "pr-11 text-left"
-          } ${
-            isInvalid
-              ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
-              : lifted
-              ? "border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
-              : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
-          }`}
+          placeholder={placeholder}
+          className={`${inputBaseClasses} ${paddingClasses} ${colorClasses} ${className}`}
         />
         <label
           className={`
-            pointer-events-none absolute bg-white px-1
-            ${isArabic ? "right-5" : "left-5"}
+            pointer-events-none absolute px-1.5
+            ${isArabic ? (isSm ? "right-4.5" : "right-5") : (isSm ? "left-4.5" : "left-5")}
             transition-all duration-200
-            ${lifted
-              ? `-top-2 text-[11px] font-semibold ${isInvalid ? "text-red-500" : "text-[#01a9a0]"}`
-              : `top-1/2 -translate-y-1/2 text-sm ${isInvalid ? "text-red-500 font-medium" : "text-stone-400"}`
+            ${
+              lifted
+                ? `-top-2 ${isSm ? "text-[10px]" : "text-[11px]"} font-semibold ${labelBg} ${
+                    isInvalid
+                      ? "text-red-500"
+                      : isDark
+                      ? "text-red-400"
+                      : "text-red-600"
+                  }`
+                : `top-1/2 -translate-y-1/2 ${isSm ? "text-xs sm:text-[13px]" : "text-sm"} bg-transparent ${
+                    isInvalid
+                      ? "text-red-500 font-medium"
+                      : isDark
+                      ? "text-zinc-400"
+                      : "text-zinc-400"
+                  }`
             }
           `}
         >
-          {label}
+          {label} {required && <span className="text-red-500">*</span>}
         </label>
-        
+
         {/* Actions container: Mic button + Validation tick / icon */}
         <div
           className={`absolute top-1/2 -translate-y-1/2 flex items-center gap-1 z-10 ${
@@ -112,14 +184,21 @@ export function FloatInput({
               isListening={!!isListening}
               onClick={onVoiceToggle}
               isArabic={isArabic}
+              theme={variant}
               size="sm"
             />
           )}
           {isValid && !isInvalid ? (
-            <InputValidationTick isValid={true} isArabic={isArabic} className="!static !translate-y-0 !left-auto !right-auto" />
+            <InputValidationTick
+              isValid={true}
+              isArabic={isArabic}
+              className="!static !translate-y-0 !left-auto !right-auto"
+            />
           ) : icon ? (
             <div
-              className="pointer-events-none flex items-center justify-center text-[#00DDCF] transition-opacity duration-150"
+              className={`pointer-events-none flex items-center justify-center transition-opacity duration-150 ${
+                isDark ? "text-zinc-400" : "text-zinc-400"
+              }`}
             >
               {icon}
             </div>
@@ -152,6 +231,10 @@ export interface FloatTextareaProps {
   isListening?: boolean;
   onVoiceToggle?: () => void;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  variant?: "light" | "dark";
+  size?: "default" | "sm";
+  className?: string;
+  containerClassName?: string;
 }
 
 export function FloatTextarea({
@@ -167,13 +250,37 @@ export function FloatTextarea({
   isListening,
   onVoiceToggle,
   onChange,
+  variant = "light",
+  size = "default",
+  className = "",
+  containerClassName = "",
 }: FloatTextareaProps) {
   const [focused, setFocused] = useState(false);
+  const isDark = variant === "dark";
+  const isSm = size === "sm";
   const lifted = focused || value.length > 0;
   const isInvalid = Boolean(error || hasError);
 
+  const colorClasses = isDark
+    ? `bg-zinc-800/80 text-white ${
+        isInvalid
+          ? "border-red-500 ring-2 ring-red-500/20 focus:border-red-500 focus:ring-red-500/25"
+          : lifted
+          ? "border-zinc-600 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+          : "border-white/10 hover:border-zinc-600 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+      }`
+    : `bg-white text-zinc-900 ${
+        isInvalid
+          ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
+          : lifted
+          ? "border-zinc-300 focus:border-red-600 focus:ring-2 focus:ring-red-600/20"
+          : "border-zinc-300 hover:border-zinc-400 focus:border-red-600 focus:ring-2 focus:ring-red-600/20"
+      }`;
+
+  const labelBg = isDark ? "bg-zinc-900" : "bg-white";
+
   return (
-    <div className="w-full">
+    <div className={`w-full ${containerClassName}`}>
       <div className="relative w-full">
         <textarea
           name={name}
@@ -187,38 +294,48 @@ export function FloatTextarea({
           dir={isArabic ? "rtl" : "ltr"}
           placeholder=" "
           className={`
-            peer w-full rounded-2xl border bg-white
-            px-5 pt-6 pb-2
-            text-sm sm:text-[15px] text-stone-800
+            peer w-full ${isSm ? "rounded-xl px-4.5 pt-4 pb-1.5 text-xs sm:text-[13px]" : "rounded-2xl px-5 pt-6 pb-2 text-sm sm:text-[15px]"} border
             focus:outline-none
             transition-all duration-200 resize-none
             disabled:opacity-50 disabled:cursor-not-allowed
-            ${
-              isInvalid
-                ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
-                : lifted
-                ? "border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
-                : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
-            }
+            ${colorClasses}
             ${
               onVoiceToggle
-                ? isArabic ? "pl-12 text-right" : "pr-12 text-left"
-                : isArabic ? "text-right" : "text-left"
+                ? isArabic
+                  ? "pl-12 text-right"
+                  : "pr-12 text-left"
+                : isArabic
+                ? "text-right"
+                : "text-left"
             }
+            ${className}
           `}
         />
         <label
           className={`
-            pointer-events-none absolute bg-white px-1
-            ${isArabic ? "right-5" : "left-5"}
+            pointer-events-none absolute px-1.5
+            ${isArabic ? (isSm ? "right-4" : "right-5") : (isSm ? "left-4" : "left-5")}
             transition-all duration-200
-            ${lifted
-              ? `-top-2 text-[11px] font-semibold ${isInvalid ? "text-red-500" : "text-[#01a9a0]"}`
-              : `top-4 text-sm ${isInvalid ? "text-red-500 font-medium" : "text-stone-400"}`
+            ${
+              lifted
+                ? `-top-2 ${isSm ? "text-[10px]" : "text-[11px]"} font-semibold ${labelBg} ${
+                    isInvalid
+                      ? "text-red-500"
+                      : isDark
+                      ? "text-red-400"
+                      : "text-red-600"
+                  }`
+                : `${isSm ? "top-3 text-xs sm:text-[13px]" : "top-4 text-sm"} bg-transparent ${
+                    isInvalid
+                      ? "text-red-500 font-medium"
+                      : isDark
+                      ? "text-zinc-400"
+                      : "text-zinc-400"
+                  }`
             }
           `}
         >
-          {label}
+          {label} {required && <span className="text-red-500">*</span>}
         </label>
         {onVoiceToggle && (focused || isListening) && (
           <div className={`absolute top-3 z-10 ${isArabic ? "left-3" : "right-3"}`}>
@@ -226,6 +343,7 @@ export function FloatTextarea({
               isListening={!!isListening}
               onClick={onVoiceToggle}
               isArabic={isArabic}
+              theme={variant}
               size="sm"
             />
           </div>
@@ -245,3 +363,7 @@ export function FloatTextarea({
 
 export { default as SearchableSelect } from "./SearchableSelect";
 export type { SearchableSelectOption, SearchableSelectProps } from "./SearchableSelect";
+export { VoiceMicButton, useVoiceInput, VoiceListeningBadge } from "./VoiceMicButton";
+export type { VoiceFieldType, UseVoiceInputOptions, VoiceMicButtonProps } from "./VoiceMicButton";
+export { InputValidationTick, isValidEmail, isValidPhone, isValidText, getFieldError, FormFieldError } from "./InputValidationTick";
+

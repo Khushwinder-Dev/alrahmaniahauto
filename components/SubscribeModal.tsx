@@ -305,7 +305,7 @@ function SubscribeModalContent({
         onClick={(e) => e.stopPropagation()}
       >
         {/* ── Top Glow Accent Bar ── */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-[#009e90] via-[#01a9a0] to-[#00c2b2]" />
+        <div className="h-1.5 w-full bg-gradient-to-r from-[#b91c1c] via-[#dc2626] to-[#ef4444]" />
 
         {/* ── Close Button ── */}
         <button
@@ -348,7 +348,7 @@ function SubscribeModalContent({
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="inline-flex items-center gap-2 px-7 py-2.5 rounded-full bg-[#01a9a0] hover:bg-[#00968e] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#01a9a0]/20 transition-all cursor-pointer hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 px-7 py-2.5 rounded-full bg-[#dc2626] hover:bg-[#b91c1c] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#dc2626]/20 transition-all cursor-pointer hover:-translate-y-0.5"
                 >
                   <span>{isArabic ? "إغلاق النافذة" : "Done"}</span>
                   <ArrowRight className={`w-3.5 h-3.5 ${isArabic ? "rotate-180" : ""}`} />
@@ -360,8 +360,8 @@ function SubscribeModalContent({
             <div>
               {/* Header */}
               <div className="space-y-2 mb-6 sm:mb-8 pe-8 rtl:pe-0 rtl:ps-8">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#01a9a0]/10 text-[#01a9a0] text-xs font-bold uppercase tracking-wider mb-1">
-                  <Sparkles className="w-3.5 h-3.5 text-[#01a9a0]" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#dc2626]/10 text-[#dc2626] text-xs font-bold uppercase tracking-wider mb-1">
+                  <Sparkles className="w-3.5 h-3.5 text-[#dc2626]" />
                   <span>{isArabic ? "النشرة الإخبارية والتحديثات" : "Taj Al Rahmah Updates"}</span>
                 </div>
                 <h2 className="text-xl sm:text-2xl md:text-[26px] font-extrabold text-stone-900 tracking-tight leading-snug">
@@ -394,10 +394,10 @@ function SubscribeModalContent({
                         isArabic ? "pl-16 text-right" : "pr-16 text-left"
                       } ${
                         listeningField === "email"
-                          ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                          ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                           : errors.email
                           ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500"
-                          : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                          : "border-stone-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                       }`}
                     />
                     <label
@@ -408,8 +408,8 @@ function SubscribeModalContent({
                         errors.email
                           ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-red-500"
                           : formData.email || focusedField === "email" || listeningField === "email"
-                          ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#01a9a0]"
-                          : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                          ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#dc2626]"
+                          : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                       }`}
                     >
                       {isArabic ? "البريد الإلكتروني" : "Email Address"}{" "}
@@ -460,10 +460,10 @@ function SubscribeModalContent({
                           isArabic ? "pl-16 text-right" : "pr-16 text-left"
                         } ${
                           listeningField === "firstName"
-                            ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                            ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                             : errors.firstName
                             ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500"
-                            : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                            : "border-stone-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                         }`}
                       />
                       <label
@@ -474,8 +474,8 @@ function SubscribeModalContent({
                           errors.firstName
                             ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-red-500"
                             : formData.firstName || focusedField === "firstName" || listeningField === "firstName"
-                            ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#01a9a0]"
-                            : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                            ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#dc2626]"
+                            : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                         }`}
                       >
                         {isArabic ? "الاسم الأول" : "First Name"}{" "}
@@ -524,10 +524,10 @@ function SubscribeModalContent({
                           isArabic ? "pl-16 text-right" : "pr-16 text-left"
                         } ${
                           listeningField === "lastName"
-                            ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                            ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                             : errors.lastName
                             ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500"
-                            : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                            : "border-stone-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                         }`}
                       />
                       <label
@@ -538,8 +538,8 @@ function SubscribeModalContent({
                           errors.lastName
                             ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-red-500"
                             : formData.lastName || focusedField === "lastName" || listeningField === "lastName"
-                            ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#01a9a0]"
-                            : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                            ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#dc2626]"
+                            : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                         }`}
                       >
                         {isArabic ? "اسم العائلة" : "Last Name"}{" "}
@@ -604,10 +604,10 @@ function SubscribeModalContent({
                         isArabic ? "pl-16 text-right" : "pr-16 text-left"
                       } ${
                         listeningField === "company"
-                          ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                          ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                           : errors.company
                           ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500"
-                          : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                          : "border-stone-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                       }`}
                     />
                     <label
@@ -618,8 +618,8 @@ function SubscribeModalContent({
                         errors.company
                           ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-red-500"
                           : formData.company || focusedField === "company" || listeningField === "company"
-                          ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#01a9a0]"
-                          : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                          ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#dc2626]"
+                          : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                       }`}
                     >
                       {isArabic ? "الشركة" : "Company"}{" "}
@@ -670,10 +670,10 @@ function SubscribeModalContent({
                           isArabic ? "pl-16 text-right" : "pr-16 text-left"
                         } ${
                           listeningField === "department"
-                            ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                            ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                             : errors.department
                             ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500"
-                            : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                            : "border-stone-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                         }`}
                       />
                       <label
@@ -684,8 +684,8 @@ function SubscribeModalContent({
                           errors.department
                             ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-red-500"
                             : formData.department || focusedField === "department" || listeningField === "department"
-                            ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#01a9a0]"
-                            : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                            ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#dc2626]"
+                            : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                         }`}
                       >
                         {isArabic ? "القسم / الإدارة" : "Department"}{" "}
@@ -734,10 +734,10 @@ function SubscribeModalContent({
                           isArabic ? "pl-16 text-right" : "pr-16 text-left"
                         } ${
                           listeningField === "jobTitle"
-                            ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                            ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                             : errors.jobTitle
                             ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500"
-                            : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                            : "border-stone-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                         }`}
                       />
                       <label
@@ -748,8 +748,8 @@ function SubscribeModalContent({
                           errors.jobTitle
                             ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-red-500"
                             : formData.jobTitle || focusedField === "jobTitle" || listeningField === "jobTitle"
-                            ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#01a9a0]"
-                            : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                            ? "-top-2.5 translate-y-0 text-[11px] font-semibold text-[#dc2626]"
+                            : "top-1/2 -translate-y-1/2 text-xs sm:text-sm text-stone-400 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                         }`}
                       >
                         {isArabic ? "المسمى الوظيفي" : "Job Title"}{" "}
@@ -787,11 +787,11 @@ function SubscribeModalContent({
                   {isArabic ? (
                     <>
                       بالضغط على اشتراك، فإنك توافق على{" "}
-                      <Link href="/terms" className="text-[#01a9a0] underline underline-offset-2 hover:text-[#008c80]">
+                      <Link href="/terms" className="text-[#dc2626] underline underline-offset-2 hover:text-[#991b1b]">
                         شروط الاستخدام
                       </Link>{" "}
                       و
-                      <Link href="/privacy" className="text-[#01a9a0] underline underline-offset-2 hover:text-[#008c80]">
+                      <Link href="/privacy" className="text-[#dc2626] underline underline-offset-2 hover:text-[#991b1b]">
                         سياسة الخصوصية
                       </Link>
                       .
@@ -799,11 +799,11 @@ function SubscribeModalContent({
                   ) : (
                     <>
                       By submitting, you agree to our{" "}
-                      <Link href="/terms" className="text-[#01a9a0] underline underline-offset-2 hover:text-[#008c80]">
+                      <Link href="/terms" className="text-[#dc2626] underline underline-offset-2 hover:text-[#991b1b]">
                         Terms of Use
                       </Link>{" "}
                       and{" "}
-                      <Link href="/privacy" className="text-[#01a9a0] underline underline-offset-2 hover:text-[#008c80]">
+                      <Link href="/privacy" className="text-[#dc2626] underline underline-offset-2 hover:text-[#991b1b]">
                         Privacy Policy
                       </Link>
                       .
@@ -824,7 +824,7 @@ function SubscribeModalContent({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center justify-center gap-2 px-7 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#01a9a0] to-[#009e90] hover:from-[#00968e] hover:to-[#008c80] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#01a9a0]/25 hover:shadow-lg hover:shadow-[#01a9a0]/30 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5 active:translate-y-0"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#dc2626] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#dc2626]/25 hover:shadow-lg hover:shadow-[#dc2626]/30 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5 active:translate-y-0"
                   >
                     {isSubmitting ? (
                       <>

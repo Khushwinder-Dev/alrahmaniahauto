@@ -10,7 +10,7 @@ import { useVoiceInput, VoiceMicButton, VoiceListeningBadge } from "@/components
 
 // Cooldown period: Once shown, do not auto-open again for 10 minutes
 const COOLDOWN_DURATION_MS = 10 * 60 * 1000; // 10 minutes in milliseconds
-const LAST_SHOWN_KEY = "taj_welcome_modal_last_shown";
+const LAST_SHOWN_KEY = "alrahmaniah_welcome_modal_last_shown";
 
 interface FormData {
   name: string;
@@ -158,7 +158,7 @@ export default function WelcomeOfferModal({
             projectType: formData.projectType,
             service: formData.projectType,
             offerDetails: "10% Welcome Discount Offer",
-            message: `[Welcome Offer - 10% Discount Request]\nProject Type: ${formData.projectType}\nClient Name: ${formData.name.trim()}\nPhone: ${formData.phone.trim()}`,
+            message: `[Welcome Offer - 10% Discount Request]\nProduct / Accessory: ${formData.projectType}\nClient Name: ${formData.name.trim()}\nPhone: ${formData.phone.trim()}`,
           }),
         });
       } catch (err) {
@@ -190,12 +190,14 @@ export default function WelcomeOfferModal({
   if (!isOpen) return null;
 
   const projectTypeOptions = [
-    { value: "Waterproofing", label: "Waterproofing", labelAr: "العزل المائي" },
-    { value: "Roofing", label: "Roofing", labelAr: "الأسقف والأسطح" },
-    { value: "Repair", label: "Repair", labelAr: "الإصلاح والترميم" },
-    { value: "Insulation", label: "Insulation", labelAr: "العزل الحراري" },
-    { value: "Flooring", label: "Flooring", labelAr: "حلول الأرضيات" },
-    { value: "Other", label: "Other", labelAr: "أخرى" },
+    { value: "Seat Covers", label: "Custom Fit Seat Covers (Napa / PVC)", labelAr: "تفصيل مقاعد جلود نابا و PVC" },
+    { value: "7D Floor Mats", label: "7D / 5D Molded Floor Mats", labelAr: "دعاسات 7D مقاومة للماء والرمال" },
+    { value: "Colored Seatbelts", label: "Custom Colored Sport Seatbelts", labelAr: "أحزمة أمان ملونة رياضية معتمدة" },
+    { value: "Starlight Roof", label: "Starlight Roof Headliner (VIP)", labelAr: "سقف نجوم فايبر أوبتيك رولز رويس" },
+    { value: "Android & Audio", label: "Android Screens & DSP Audio", labelAr: "شاشات أندرويد وأنظمة صوتية" },
+    { value: "Laser Lights", label: "Laser LED Headlights & Fog", labelAr: "إنارة ليزر LED وعدسات فائقة" },
+    { value: "Full Cabin Leather", label: "Full Cabin Leather Restyling", labelAr: "تنجيد وتجديد كامل للمقصورة" },
+    { value: "Other", label: "Other Automotive Accessories", labelAr: "إكسسوارات سيارات أخرى" },
   ];
 
   return (
@@ -206,7 +208,7 @@ export default function WelcomeOfferModal({
     >
       {/* Modal Card */}
       <div
-        className="relative w-full max-w-lg md:max-w-2xl lg:max-w-[700px] xl:max-w-[740px] bg-[#E6F7F6] rounded-2xl sm:rounded-[32px] overflow-y-auto md:overflow-hidden shadow-2xl border border-[#01a9a0]/25 grid grid-cols-1 md:grid-cols-12 max-h-[90vh] md:max-h-[92vh] animate-in zoom-in-95 duration-300"
+        className="relative w-full max-w-lg md:max-w-2xl lg:max-w-[700px] xl:max-w-[740px] bg-zinc-50 rounded-2xl sm:rounded-[32px] overflow-y-auto md:overflow-hidden shadow-2xl border border-[#dc2626]/25 grid grid-cols-1 md:grid-cols-12 max-h-[90vh] md:max-h-[92vh] animate-in zoom-in-95 duration-300"
         onClick={(e) => e.stopPropagation()}
         style={{ direction: isArabic ? "rtl" : "ltr" }}
       >
@@ -218,7 +220,7 @@ export default function WelcomeOfferModal({
             type="button"
             onClick={handleClose}
             aria-label={isArabic ? "إغلاق" : "Close"}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white text-stone-700 hover:text-stone-950 border border-stone-200/80 shadow-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#01a9a0]"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white text-zinc-700 hover:text-stone-950 border border-zinc-200 shadow-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#dc2626]"
           >
             <X className="w-5 h-5 stroke-[2.5]" />
           </button>
@@ -235,39 +237,39 @@ export default function WelcomeOfferModal({
         {/* ========================================================= */}
         {/* LEFT COLUMN: WELCOME & PROMO OFFER                       */}
         {/* ========================================================= */}
-        <div className="md:col-span-6 p-5 sm:p-7 md:p-8 lg:p-8 xl:p-9 flex flex-col justify-start md:justify-center gap-3.5 sm:gap-4.5 lg:gap-5 bg-[#E6F7F6] border-b md:border-b-0 md:border-r rtl:md:border-r-0 rtl:md:border-l border-[#01a9a0]/15 overflow-visible md:overflow-y-auto">
+        <div className="md:col-span-6 p-5 sm:p-7 md:p-8 lg:p-8 xl:p-9 flex flex-col justify-start md:justify-center gap-3.5 sm:gap-4.5 lg:gap-5 bg-zinc-50 border-b md:border-b-0 md:border-r rtl:md:border-r-0 rtl:md:border-l border-[#dc2626]/15 overflow-visible md:overflow-y-auto">
           {/* Top text block */}
           <div>
             {/* Eyebrow */}
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-5 sm:w-6 h-[2.5px] bg-[#01a9a0] rounded-full" />
-              <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-[#01a9a0]">
+              <span className="w-5 sm:w-6 h-[2.5px] bg-[#dc2626] rounded-full" />
+              <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-[#dc2626]">
                 {isArabic ? "مرحباً بكم" : "WELCOME"}
               </span>
             </div>
 
             {/* Main Headline */}
-            <h2 className="text-xl sm:text-2xl lg:text-[23px] font-black text-stone-900 tracking-tight leading-tight mb-2">
+            <h2 className="text-xl sm:text-2xl lg:text-[23px] font-black text-zinc-900 tracking-tight leading-tight mb-2">
               {isArabic
-                ? "احمِ مشروعك بالحل المناسب"
-                : "Protect Your Project With the Right Solution"}
+                ? "فخامة وأناقة تليق بسيارتك مع خصم خاص"
+                : "Upgrade Your Ride With 10% Off First Custom Fit"}
             </h2>
 
             {/* Subtitle / Description */}
-            <p className="text-xs sm:text-[12.5px] text-stone-700 leading-relaxed">
+            <p className="text-xs sm:text-[12.5px] text-zinc-700 leading-relaxed">
               {isArabic
-                ? "هل تبحث عن حلول موثوقة لعزل المياه، أو الأسقف، أو الإصلاح، أو العزل الحراري، أو الأرضيات؟ فريقنا ذو الخبرة مستعد لمساعدتك في العثور على الحل المناسب لمشروعك."
-                : "Looking for reliable waterproofing, roofing, repair, insulation, or flooring solutions? Our experienced team is ready to help you find the right solution for your project."}
+                ? "تفصيل مقاعد جلود نابا، دعاسات 7D مقولبة، سقف نجوم رولز رويس، وأحزمة أمان ملونة مع ضمان 3 سنوات في الشارقة ودبي."
+                : "Experience bespoke car craftsmanship in Sharjah: German Napa leatherette covers, laser-cut 7D floor liners, and custom sport seatbelts with a 3-year warranty."}
             </p>
           </div>
 
           {/* Offer Highlight Box */}
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-[#01a9a0]/25 shadow-xs flex items-start gap-3">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#01a9a0] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-[#dc2626]/25 shadow-xs flex items-start gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#dc2626] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
               <Tag className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h3 className="text-sm sm:text-base font-bold text-stone-900 leading-snug">
+              <h3 className="text-sm sm:text-base font-bold text-zinc-900 leading-snug">
                 {isArabic ? "احصل على خصم 10% على مشروعك الأول" : "Get 10% Off Your First Project"}
               </h3>
               <p className="text-xs text-stone-600 leading-relaxed mt-0.5">
@@ -279,21 +281,21 @@ export default function WelcomeOfferModal({
           </div>
 
           {/* Key Benefits Grid */}
-          <div className="grid grid-cols-2 gap-2.5 sm:gap-3 pt-0.5 text-[11px] sm:text-xs text-stone-700 font-medium">
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3 pt-0.5 text-[11px] sm:text-xs text-zinc-700 font-medium">
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#01a9a0] shrink-0" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#dc2626] shrink-0" />
               <span>{isArabic ? "استشارة مجانية" : "Free Consultation"}</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#01a9a0] shrink-0" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#dc2626] shrink-0" />
               <span>{isArabic ? "ضمان حتى 25 سنة" : "Up to 25Y Warranty"}</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#01a9a0] shrink-0" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#dc2626] shrink-0" />
               <span>{isArabic ? "استجابة سريعة 24/7" : "24/7 Response"}</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#01a9a0] shrink-0" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#dc2626] shrink-0" />
               <span>{isArabic ? "فريق عمل معتمد" : "Certified Experts"}</span>
             </div>
           </div>
@@ -304,11 +306,11 @@ export default function WelcomeOfferModal({
         {/* ========================================================= */}
         <div className="md:col-span-6 p-5 sm:p-7 md:p-8 lg:p-8 xl:p-9 pb-8 sm:pb-8 md:pb-8 flex flex-col justify-start md:justify-center gap-3 sm:gap-4 lg:gap-4.5 bg-white overflow-visible md:overflow-y-auto md:max-h-none">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#01a9a0]/10 text-[#01a9a0] text-[11px] font-bold uppercase tracking-wider mb-1.5">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#dc2626]/10 text-[#dc2626] text-[11px] font-bold uppercase tracking-wider mb-1.5">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{isArabic ? "طلب استشارة سريعة" : "Quick Consultation"}</span>
             </div>
-            <h3 className="text-base sm:text-lg font-black text-stone-900 tracking-tight">
+            <h3 className="text-base sm:text-lg font-black text-zinc-900 tracking-tight">
               {isArabic ? "أدخل تفاصيل مشروعك" : "Enter Your Project Details"}
             </h3>
             <p className="text-[11.5px] sm:text-xs text-stone-500 leading-snug">
@@ -325,7 +327,7 @@ export default function WelcomeOfferModal({
                 <CheckCircle2 className="w-7 h-7" />
               </div>
               <div>
-                <h4 className="font-bold text-base sm:text-lg text-stone-900 mb-1">
+                <h4 className="font-bold text-base sm:text-lg text-zinc-900 mb-1">
                   {isArabic ? "شكراً لتواصلك معنا!" : "Thank You For Reaching Out!"}
                 </h4>
                 <p className="text-xs sm:text-sm text-stone-600 max-w-sm">
@@ -337,7 +339,7 @@ export default function WelcomeOfferModal({
               <button
                 type="button"
                 onClick={handleClose}
-                className="mt-2 text-xs font-semibold text-[#01a9a0] hover:underline cursor-pointer"
+                className="mt-2 text-xs font-semibold text-[#dc2626] hover:underline cursor-pointer"
               >
                 {isArabic ? "إغلاق النافذة" : "Close window"}
               </button>
@@ -359,14 +361,14 @@ export default function WelcomeOfferModal({
                       placeholder=" "
                       disabled={isSubmitting}
                       dir={isArabic ? "rtl" : "ltr"}
-                      className={`peer h-10 w-full bg-white border rounded-full px-4 pt-3 pb-0.5 text-stone-800 text-xs sm:text-[13px] focus:outline-none transition-all placeholder-transparent ${
+                      className={`peer h-10 w-full bg-white border rounded-full px-4 pt-3 pb-0.5 text-zinc-800 text-xs sm:text-[13px] focus:outline-none transition-all placeholder-transparent ${
                         isArabic ? "pl-16 text-right" : "pr-16 text-left"
                       } ${
                         listeningField === "name"
-                          ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                          ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                           : errors.name
                           ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                          : "border-zinc-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                       }`}
                     />
                     <label
@@ -376,8 +378,8 @@ export default function WelcomeOfferModal({
                         errors.name
                           ? "-top-2 text-[10.5px] font-semibold text-red-500"
                           : formData.name || focusedField === "name" || listeningField === "name"
-                          ? "-top-2 translate-y-0 text-[10.5px] font-semibold text-[#01a9a0]"
-                          : "top-1/2 -translate-y-1/2 text-xs text-stone-400 peer-focus:-top-2 peer-focus:translate-y-0 peer-focus:text-[10.5px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                          ? "-top-2 translate-y-0 text-[10.5px] font-semibold text-[#dc2626]"
+                          : "top-1/2 -translate-y-1/2 text-xs text-zinc-400 peer-focus:-top-2 peer-focus:translate-y-0 peer-focus:text-[10.5px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                       }`}
                     >
                       {isArabic ? "الاسم" : "Name"} <span className="text-red-500">*</span>
@@ -413,14 +415,14 @@ export default function WelcomeOfferModal({
                       placeholder=" "
                       disabled={isSubmitting}
                       dir={isArabic ? "rtl" : "ltr"}
-                      className={`peer h-10 w-full bg-white border rounded-full px-4 pt-3 pb-0.5 text-stone-800 text-xs sm:text-[13px] focus:outline-none transition-all placeholder-transparent ${
+                      className={`peer h-10 w-full bg-white border rounded-full px-4 pt-3 pb-0.5 text-zinc-800 text-xs sm:text-[13px] focus:outline-none transition-all placeholder-transparent ${
                         isArabic ? "pl-16 text-right" : "pr-16 text-left"
                       } ${
                         listeningField === "phone"
-                          ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                          ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                           : errors.phone
                           ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                          : "border-zinc-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                       }`}
                     />
                     <label
@@ -430,8 +432,8 @@ export default function WelcomeOfferModal({
                         errors.phone
                           ? "-top-2 text-[10.5px] font-semibold text-red-500"
                           : formData.phone || focusedField === "phone" || listeningField === "phone"
-                          ? "-top-2 translate-y-0 text-[10.5px] font-semibold text-[#01a9a0]"
-                          : "top-1/2 -translate-y-1/2 text-xs text-stone-400 peer-focus:-top-2 peer-focus:translate-y-0 peer-focus:text-[10.5px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                          ? "-top-2 translate-y-0 text-[10.5px] font-semibold text-[#dc2626]"
+                          : "top-1/2 -translate-y-1/2 text-xs text-zinc-400 peer-focus:-top-2 peer-focus:translate-y-0 peer-focus:text-[10.5px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                       }`}
                     >
                       {isArabic ? "رقم الهاتف" : "Phone"} <span className="text-red-500">*</span>
@@ -467,14 +469,14 @@ export default function WelcomeOfferModal({
                       placeholder=" "
                       disabled={isSubmitting}
                       dir={isArabic ? "rtl" : "ltr"}
-                      className={`peer h-10 w-full bg-white border rounded-full px-4 pt-3 pb-0.5 text-stone-800 text-xs sm:text-[13px] focus:outline-none transition-all placeholder-transparent ${
+                      className={`peer h-10 w-full bg-white border rounded-full px-4 pt-3 pb-0.5 text-zinc-800 text-xs sm:text-[13px] focus:outline-none transition-all placeholder-transparent ${
                         isArabic ? "pl-16 text-right" : "pr-16 text-left"
                       } ${
                         listeningField === "email"
-                          ? "border-[#01a9a0] ring-2 ring-[#01a9a0]/25"
+                          ? "border-[#dc2626] ring-2 ring-[#dc2626]/25"
                           : errors.email
                           ? "border-red-500 ring-2 ring-red-500/15 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/20"
+                          : "border-zinc-300 focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20"
                       }`}
                     />
                     <label
@@ -484,8 +486,8 @@ export default function WelcomeOfferModal({
                         errors.email
                           ? "-top-2 text-[10.5px] font-semibold text-red-500"
                           : formData.email || focusedField === "email" || listeningField === "email"
-                          ? "-top-2 translate-y-0 text-[10.5px] font-semibold text-[#01a9a0]"
-                          : "top-1/2 -translate-y-1/2 text-xs text-stone-400 peer-focus:-top-2 peer-focus:translate-y-0 peer-focus:text-[10.5px] peer-focus:font-semibold peer-focus:text-[#01a9a0]"
+                          ? "-top-2 translate-y-0 text-[10.5px] font-semibold text-[#dc2626]"
+                          : "top-1/2 -translate-y-1/2 text-xs text-zinc-400 peer-focus:-top-2 peer-focus:translate-y-0 peer-focus:text-[10.5px] peer-focus:font-semibold peer-focus:text-[#dc2626]"
                       }`}
                     >
                       {isArabic ? "البريد الإلكتروني" : "Email"} <span className="text-red-500">*</span>
@@ -508,13 +510,13 @@ export default function WelcomeOfferModal({
                   <FormFieldError error={errors.email} />
                 </div>
 
-                {/* Field 4: Project Type * */}
+                {/* Field 4: Product / Accessory * */}
                 <div>
                   <SearchableSelect
                     name="projectType"
                     value={formData.projectType}
                     options={projectTypeOptions}
-                    label={isArabic ? "نوع المشروع" : "Project Type"}
+                    label={isArabic ? "نوع المنتج أو الإكسسوار" : "Product / Accessory"}
                     required
                     disabled={isSubmitting}
                     isArabic={isArabic}
@@ -535,7 +537,7 @@ export default function WelcomeOfferModal({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#01a9a0] hover:bg-[#008f86] text-white font-bold h-11 sm:h-11 px-5 rounded-full text-xs sm:text-sm tracking-wider shadow-md hover:shadow-lg hover:shadow-[#01a9a0]/25 transition-all duration-200 flex items-center justify-center gap-2 active:scale-[0.99] cursor-pointer disabled:opacity-70"
+                  className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-11 sm:h-11 px-5 rounded-full text-xs sm:text-sm tracking-wider shadow-md hover:shadow-lg hover:shadow-[#dc2626]/25 transition-all duration-200 flex items-center justify-center gap-2 active:scale-[0.99] cursor-pointer disabled:opacity-70"
                 >
                   {isSubmitting ? (
                     <>

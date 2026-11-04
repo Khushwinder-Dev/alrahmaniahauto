@@ -22,6 +22,7 @@ export interface SearchableSelectProps {
   isArabic?: boolean;
   className?: string;
   variant?: "rounded-full" | "rounded-xl";
+  theme?: "light" | "dark";
   size?: "default" | "sm";
   error?: string;
   hasError?: boolean;
@@ -40,6 +41,7 @@ export default function SearchableSelect({
   isArabic = false,
   className = "",
   variant = "rounded-full",
+  theme = "light",
   size = "default",
   error,
   hasError,
@@ -100,7 +102,6 @@ export default function SearchableSelect({
   // Focus search input when opened
   useEffect(() => {
     if (isOpen) {
-      // Small delay to ensure dropdown is rendered in DOM
       const timer = setTimeout(() => {
         searchInputRef.current?.focus();
       }, 50);
@@ -132,10 +133,12 @@ export default function SearchableSelect({
   const roundedClass = variant === "rounded-full" ? "rounded-full" : "rounded-xl";
   const heightPadding =
     size === "sm"
-      ? "h-11 px-4 pt-4 pb-1 text-xs sm:text-[13px]"
+      ? "h-11 px-5 pt-4 pb-1 text-xs sm:text-[13px]"
       : "px-5 pt-5 pb-2 text-sm sm:text-[15px]";
 
-  const defaultSearchPlaceholder = isArabic ? "بحث في الخيارات..." : "Search...";
+  const defaultSearchPlaceholder = isArabic ? "بحث في الخيارات..." : "Search options...";
+
+  const isDark = theme === "dark";
 
   return (
     <div
@@ -163,23 +166,37 @@ export default function SearchableSelect({
         }}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className={`w-full bg-white border ${roundedClass} ${heightPadding} text-stone-800 transition-all duration-200 cursor-pointer text-left flex items-center justify-between ${
-          isOpen
-            ? isInvalid
-              ? "border-red-500 ring-2 ring-red-500/20 shadow-xs"
-              : "border-[#01a9a0] ring-2 ring-[#01a9a0]/20 shadow-xs"
-            : isInvalid
-            ? "border-red-500 ring-2 ring-red-500/15"
-            : isLifted
-            ? "border-stone-300"
-            : "border-stone-300 hover:border-stone-400"
-        } ${disabled ? "opacity-50 cursor-not-allowed bg-stone-50" : ""} ${
-          isArabic ? "text-right" : "text-left"
-        }`}
+        className={`w-full border ${roundedClass} ${heightPadding} transition-all duration-200 cursor-pointer text-left flex items-center justify-between ${
+          isDark
+            ? `bg-zinc-800/80 text-white ${
+                isOpen
+                  ? isInvalid
+                    ? "border-red-500 ring-2 ring-red-500/20"
+                    : "border-red-500 ring-2 ring-red-500/20"
+                  : isInvalid
+                  ? "border-red-500 ring-2 ring-red-500/15"
+                  : isLifted
+                  ? "border-zinc-600"
+                  : "border-white/10 hover:border-zinc-500"
+              } ${disabled ? "opacity-50 cursor-not-allowed bg-zinc-900" : ""}`
+            : `bg-white text-zinc-900 ${
+                isOpen
+                  ? isInvalid
+                    ? "border-red-500 ring-2 ring-red-500/20 shadow-xs"
+                    : "border-red-600 ring-2 ring-red-600/20 shadow-xs"
+                  : isInvalid
+                  ? "border-red-500 ring-2 ring-red-500/15"
+                  : isLifted
+                  ? "border-zinc-300"
+                  : "border-zinc-300 hover:border-zinc-400"
+              } ${disabled ? "opacity-50 cursor-not-allowed bg-zinc-50" : ""}`
+        } ${isArabic ? "text-right" : "text-left"}`}
       >
         <span
           className={`block truncate ${
-            selectedOption ? "text-stone-800 font-medium" : "text-transparent"
+            selectedOption
+              ? isDark ? "text-white font-medium" : "text-zinc-900 font-medium"
+              : "text-transparent"
           }`}
         >
           {displaySelectedText || placeholder || "Select"}
@@ -191,8 +208,8 @@ export default function SearchableSelect({
             <Check className="w-3.5 h-3.5 text-emerald-500 stroke-[2.5] animate-in fade-in zoom-in-75 duration-150" />
           )}
           <ChevronDown
-            className={`w-4 h-4 text-stone-400 shrink-0 transition-transform duration-200 ${
-              isOpen ? "rotate-180 text-[#01a9a0]" : ""
+            className={`w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 ${
+              isOpen ? "rotate-180 text-red-600" : ""
             }`}
           />
         </div>
@@ -204,14 +221,20 @@ export default function SearchableSelect({
         onClick={() => {
           if (!disabled) setIsOpen(true);
         }}
-        className={`absolute bg-white px-1 transition-all duration-200 cursor-pointer pointer-events-none ${
+        className={`absolute px-1 transition-all duration-200 cursor-pointer pointer-events-none ${
           isArabic ? "right-5" : "left-5"
         } ${
-          isLifted
+          isDark
+            ? isLifted
+              ? size === "sm"
+                ? `-top-2 text-[10.5px] font-semibold bg-zinc-900 ${isInvalid ? "text-red-400" : "text-red-400"}`
+                : `-top-2.5 text-[11px] font-semibold bg-zinc-900 ${isInvalid ? "text-red-400" : "text-red-400"}`
+              : `top-1/2 -translate-y-1/2 text-sm bg-transparent ${isInvalid ? "text-red-400 font-medium" : "text-zinc-400"}`
+            : isLifted
             ? size === "sm"
-              ? `-top-2 text-[10.5px] font-semibold ${isInvalid ? "text-red-500" : "text-[#01a9a0]"}`
-              : `-top-2.5 text-[11px] font-semibold ${isInvalid ? "text-red-500" : "text-[#01a9a0]"}`
-            : `top-1/2 -translate-y-1/2 text-sm ${isInvalid ? "text-red-500 font-medium" : "text-stone-400"}`
+              ? `-top-2 text-[10.5px] font-semibold bg-white ${isInvalid ? "text-red-500" : "text-red-600"}`
+              : `-top-2.5 text-[11px] font-semibold bg-white ${isInvalid ? "text-red-500" : "text-red-600"}`
+            : `top-1/2 -translate-y-1/2 text-sm bg-transparent ${isInvalid ? "text-red-500 font-medium" : "text-zinc-400"}`
         }`}
       >
         {label} {required && <span className="text-red-500">*</span>}
@@ -220,11 +243,19 @@ export default function SearchableSelect({
       {/* Dropdown Menu */}
       {isOpen && (
         <div
-          className={`absolute left-0 right-0 z-50 mt-1.5 bg-white border border-stone-200 rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150`}
+          className={`absolute left-0 right-0 z-50 mt-1.5 border rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150 ${
+            isDark
+              ? "bg-zinc-900 border-zinc-700 text-white"
+              : "bg-white border-zinc-200 text-zinc-900"
+          }`}
           style={{ minWidth: "100%" }}
         >
           {/* Search Box Header */}
-          <div className="p-2.5 border-b border-stone-100 bg-stone-50/70">
+          <div
+            className={`p-2.5 border-b ${
+              isDark ? "border-zinc-800 bg-zinc-950/60" : "border-zinc-100 bg-zinc-50/80"
+            }`}
+          >
             <div className="relative flex items-center">
               <input
                 ref={searchInputRef}
@@ -234,9 +265,11 @@ export default function SearchableSelect({
                 onBlur={() => voice.setFocusedField(null)}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={searchPlaceholder || defaultSearchPlaceholder}
-                className={`w-full bg-white border border-stone-300 focus:border-[#01a9a0] focus:ring-2 focus:ring-[#01a9a0]/15 rounded-xl py-2 text-xs sm:text-sm text-stone-800 outline-none transition-all placeholder:text-stone-400 ${
-                  isArabic ? "pr-3 pl-16 text-right" : "pl-3 pr-16 text-left"
-                }`}
+                className={`w-full border rounded-xl py-2 text-xs sm:text-sm outline-none transition-all placeholder:text-zinc-400 ${
+                  isDark
+                    ? "bg-zinc-800 border-zinc-700 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                    : "bg-white border-zinc-300 text-zinc-900 focus:border-red-600 focus:ring-2 focus:ring-red-600/15"
+                } ${isArabic ? "pr-3 pl-16 text-right" : "pl-3 pr-16 text-left"}`}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && filteredOptions.length > 0) {
                     e.preventDefault();
@@ -254,10 +287,11 @@ export default function SearchableSelect({
                     isListening={voice.listeningField === "selectSearch"}
                     onClick={() => voice.toggleListening("selectSearch", "text")}
                     isArabic={isArabic}
+                    theme={theme}
                     size="sm"
                   />
                 )}
-                <Search className="w-4 h-4 text-stone-400 pointer-events-none" />
+                <Search className="w-4 h-4 text-zinc-400 pointer-events-none" />
               </div>
             </div>
           </div>
@@ -267,7 +301,9 @@ export default function SearchableSelect({
             ref={listRef}
             role="listbox"
             tabIndex={-1}
-            className="max-h-60 overflow-y-auto py-1.5 divide-y divide-stone-50 scrollbar-thin scrollbar-thumb-stone-200"
+            className={`max-h-60 overflow-y-auto py-1.5 divide-y scrollbar-thin ${
+              isDark ? "divide-zinc-800/60" : "divide-zinc-100"
+            }`}
           >
             {filteredOptions.length > 0 ? (
               filteredOptions.map((opt) => {
@@ -280,14 +316,18 @@ export default function SearchableSelect({
                     onClick={() => handleSelect(opt.value)}
                     className={`px-4 py-2.5 text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between ${
                       isSelected
-                        ? "bg-stone-100/90 text-stone-900 font-semibold"
-                        : "text-stone-700 hover:bg-[#f0faf9] hover:text-[#01a9a0]"
+                        ? isDark
+                          ? "bg-zinc-800 text-white font-semibold"
+                          : "bg-red-50/80 text-red-900 font-semibold"
+                        : isDark
+                        ? "text-zinc-200 hover:bg-zinc-800/70 hover:text-red-400"
+                        : "text-zinc-700 hover:bg-red-50/60 hover:text-red-600"
                     } ${isArabic ? "text-right" : "text-left"}`}
                   >
                     <span className="truncate">{getOptionLabel(opt)}</span>
                     {isSelected && (
                       <Check
-                        className={`w-4 h-4 text-[#01a9a0] shrink-0 ${
+                        className={`w-4 h-4 text-red-600 shrink-0 ${
                           isArabic ? "mr-2" : "ml-2"
                         }`}
                       />
@@ -296,7 +336,7 @@ export default function SearchableSelect({
                 );
               })
             ) : (
-              <li className="px-4 py-6 text-center text-xs sm:text-sm text-stone-400">
+              <li className="px-4 py-6 text-center text-xs sm:text-sm text-zinc-400">
                 {isArabic ? "لا توجد نتائج مطابقة" : "No options found"}
               </li>
             )}
@@ -313,3 +353,4 @@ export default function SearchableSelect({
     </div>
   );
 }
+
