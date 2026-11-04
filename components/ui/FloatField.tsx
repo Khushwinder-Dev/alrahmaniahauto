@@ -188,21 +188,13 @@ export function FloatInput({
               size="sm"
             />
           )}
-          {isValid && !isInvalid ? (
+          {isValid && !isInvalid && (
             <InputValidationTick
               isValid={true}
               isArabic={isArabic}
               className="!static !translate-y-0 !left-auto !right-auto"
             />
-          ) : icon ? (
-            <div
-              className={`pointer-events-none flex items-center justify-center transition-opacity duration-150 ${
-                isDark ? "text-zinc-400" : "text-zinc-400"
-              }`}
-            >
-              {icon}
-            </div>
-          ) : null}
+          )}
         </div>
       </div>
 

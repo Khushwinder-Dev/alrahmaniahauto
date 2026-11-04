@@ -193,7 +193,6 @@ export default function NewsletterSection() {
                         required
                         disabled={isSubmitting}
                         isArabic={isArabic}
-                        icon={<Mail className="w-4 h-4" />}
                         isListening={voice.listeningField === "newsletterEmail"}
                         onVoiceToggle={() =>
                           voice.toggleListening("newsletterEmail", "email")

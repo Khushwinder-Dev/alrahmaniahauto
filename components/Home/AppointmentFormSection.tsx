@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { User, Mail, Phone, Car, Tag, MessageSquare, Send } from "lucide-react";
+import { MessageSquare, Send } from "lucide-react";
 import toast from "react-hot-toast";
 import { useLanguage } from "@/context/LanguageContext";
 import { FloatInput, FloatTextarea, useVoiceInput } from "@/components/ui/FloatField";
@@ -102,7 +102,6 @@ export default function AppointmentFormSection() {
                     label={isArabic ? "الاسم الكامل" : "Your Name"}
                     required
                     isArabic={isArabic}
-                    icon={<User className="w-4 h-4" />}
                     isListening={voice.listeningField === "name"}
                     onVoiceToggle={() => voice.toggleListening("name", "text")}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -114,7 +113,6 @@ export default function AppointmentFormSection() {
                     label={isArabic ? "البريد الإلكتروني" : "Your Email"}
                     required
                     isArabic={isArabic}
-                    icon={<Mail className="w-4 h-4" />}
                     isListening={voice.listeningField === "email"}
                     onVoiceToggle={() => voice.toggleListening("email", "email")}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -129,7 +127,6 @@ export default function AppointmentFormSection() {
                     label={isArabic ? "رقم الهاتف" : "Your Phone"}
                     required
                     isArabic={isArabic}
-                    icon={<Phone className="w-4 h-4" />}
                     isListening={voice.listeningField === "phone"}
                     onVoiceToggle={() => voice.toggleListening("phone", "phone")}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -141,7 +138,6 @@ export default function AppointmentFormSection() {
                     label={isArabic ? "نوع وسنة السيارة" : "Vehicle Make & Year"}
                     required
                     isArabic={isArabic}
-                    icon={<Car className="w-4 h-4" />}
                     isListening={voice.listeningField === "vehicle"}
                     onVoiceToggle={() => voice.toggleListening("vehicle", "text")}
                     onChange={(e) => setFormData({ ...formData, vehicle: e.target.value })}
@@ -155,7 +151,6 @@ export default function AppointmentFormSection() {
                   label={isArabic ? "المنتج أو الإكسسوار المطلوب" : "Product / Customization Inquired"}
                   required
                   isArabic={isArabic}
-                  icon={<Tag className="w-4 h-4" />}
                   isListening={voice.listeningField === "subject"}
                   onVoiceToggle={() => voice.toggleListening("subject", "text")}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}

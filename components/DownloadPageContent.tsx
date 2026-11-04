@@ -564,7 +564,6 @@ export default function DownloadPageContent() {
                   required
                   isArabic={isArabic}
                   error={errors.name}
-                  icon={<User className="w-4 h-4" />}
                   isListening={voice.listeningField === "name"}
                   onVoiceToggle={() => voice.toggleListening("name", "text")}
                   onChange={(e) => {
@@ -580,7 +579,6 @@ export default function DownloadPageContent() {
                   value={form.companyName}
                   label={isArabic ? "اسم الشركة" : "Company Name"}
                   isArabic={isArabic}
-                  icon={<Building2 className="w-4 h-4" />}
                   isListening={voice.listeningField === "companyName"}
                   onVoiceToggle={() => voice.toggleListening("companyName", "text")}
                   onChange={(e) => setForm((p) => ({ ...p, companyName: e.target.value }))}
@@ -595,7 +593,6 @@ export default function DownloadPageContent() {
                   required
                   isArabic={isArabic}
                   error={errors.phone}
-                  icon={<Phone className="w-4 h-4" />}
                   isListening={voice.listeningField === "phone"}
                   onVoiceToggle={() => voice.toggleListening("phone", "phone")}
                   onChange={(e) => {
@@ -613,7 +610,6 @@ export default function DownloadPageContent() {
                   required
                   isArabic={isArabic}
                   error={errors.email}
-                  icon={<Mail className="w-4 h-4" />}
                   isListening={voice.listeningField === "email"}
                   onVoiceToggle={() => voice.toggleListening("email", "email")}
                   onChange={(e) => {
