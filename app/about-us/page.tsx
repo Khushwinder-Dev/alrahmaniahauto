@@ -156,7 +156,7 @@ export default function AboutUsPage() {
                 href="/products"
                 className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-red-600 hover:text-red-700"
               >
-                <span>Services</span>
+                <span>Products &amp; Accessories</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -280,7 +280,7 @@ export default function AboutUsPage() {
                   href="/get-a-quote"
                   className="px-6 py-3 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-bold text-xs uppercase tracking-widest rounded-full transition-all border border-zinc-200"
                 >
-                  Book Service Inspection
+                  Request Product Quotation
                 </Link>
               </div>
             </div>

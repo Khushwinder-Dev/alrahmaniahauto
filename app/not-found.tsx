@@ -35,11 +35,11 @@ export default function NotFound() {
           <span>Back to Home</span>
         </Link>
         <Link
-          href="/services"
+          href="/products"
           className="bg-white hover:bg-zinc-100 text-zinc-800 border border-zinc-200 font-bold text-xs uppercase tracking-widest px-8 py-3.5 rounded-full transition-colors flex items-center gap-2"
         >
           <Wrench className="w-4 h-4 text-red-600" />
-          <span>Our Services</span>
+          <span>Our Products</span>
         </Link>
       </div>
     </div>

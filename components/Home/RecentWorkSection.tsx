@@ -7,14 +7,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 
 const slides = [
-  { category: "PAINT PROTECTION", title: "Paint Protection Film", image: "/images/service-2.png" },
-  { category: "AC SERVICE", title: "Full AC Service", image: "/images/service-3.png" },
-  { category: "FULL SERVICE", title: "Complete Car Service", image: "/images/service-4.png" },
-  { category: "ENGINE REPAIR", title: "Major Overhaul", image: "/images/service-2.png" },
-  { category: "DETAILING", title: "Interior Deep Clean", image: "/images/service-3.png" },
-  { category: "BRAKE SERVICE", title: "Performance Brakes", image: "/images/service-4.png" },
-  { category: "ELECTRICAL", title: "Computer Diagnostics", image: "/images/service-2.png" },
-  { category: "SUSPENSION", title: "Shock Absorbers", image: "/images/service-3.png" },
+  { category: "CUSTOM SEAT COVERS", title: "3D Diamond Napa Leather", image: "/images/service-6.png" },
+  { category: "7D FLOOR MATS", title: "Custom Molded All-Weather Protection", image: "/images/service-10.png" },
+  { category: "COLORED SEATBELTS", title: "Racing Red & Yellow Belts", image: "/images/service-8.png" },
+  { category: "STARLIGHT ROOF", title: "VIP Celestial Starlight Headliner", image: "/images/service-7.png" },
+  { category: "CAR ELECTRONICS", title: "Android 4K Touchscreen & DSP Audio", image: "/images/service-2.png" },
+  { category: "LASER LED LIGHTS", title: "High-Lumen Laser Headlamp Conversion", image: "/images/service-9.png" },
+  { category: "LEATHER UPHOLSTERY", title: "Full Cabin Leather Restyling", image: "/images/service-1.png" },
+  { category: "CAR STYLING", title: "Aero Styling Kits & Sunshades", image: "/images/service-3.png" },
 ];
 
 export default function RecentWorkSection() {
@@ -28,13 +28,13 @@ export default function RecentWorkSection() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
           <div className="relative z-30 bg-white flex flex-col items-start lg:pr-10 lg:sticky lg:top-32">
             <span className="text-red-600 font-bold text-xs uppercase tracking-widest mb-3 block">
-              WORKSHOP PORTFOLIO
+              PRODUCT SHOWCASE
             </span>
             <h2 className="font-display text-4xl md:text-5xl font-[900] text-zinc-900 leading-none uppercase tracking-tight mb-6">
               Our Recent Work
             </h2>
             <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-8 max-w-xs">
-              We take pride in offering you the best services available and 100% Satisfaction Guarantee.
+              We take pride in offering you the best automotive accessories and styling products with 100% Satisfaction Guarantee.
             </p>
             <button
               className="bg-red-600 hover:bg-red-700 transition-colors text-white font-bold text-xs px-8 py-4 uppercase tracking-widest rounded-full mb-12 shadow-md shadow-red-600/30 cursor-pointer"

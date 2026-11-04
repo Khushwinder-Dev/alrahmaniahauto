@@ -183,7 +183,7 @@ export default function ContactPage() {
                 <span>Send Us a Message</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-zinc-900 mb-2">
-                Have a Question or Need Service?
+                Have a Question or Inquiring About Products?
               </h2>
               <p className="text-xs sm:text-sm text-zinc-500 mb-8 leading-relaxed">
                 Fill in the details below, and our workshop manager will contact you with pricing and schedule availability.
@@ -250,31 +250,31 @@ export default function ContactPage() {
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                    Service Required
+                    Product / Accessory Inquired
                   </label>
                   <select
                     value={formData.serviceNeeded}
                     onChange={(e) => setFormData({ ...formData, serviceNeeded: e.target.value })}
                     className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
                   >
-                    <option value="Routine Maintenance">Routine Maintenance &amp; Oil Change</option>
-                    <option value="AC Repair">Car AC Recharge &amp; Compressor Repair</option>
-                    <option value="Brake Service">Brake Pads &amp; Disc Skimming</option>
-                    <option value="Engine Diagnostics">Engine Diagnostics &amp; Computer Scan</option>
-                    <option value="Transmission Service">Transmission &amp; Gearbox Service</option>
-                    <option value="Custom Seat Covers">Custom Seat Covers &amp; Interior Upholstery</option>
-                    <option value="Suspension">Suspension &amp; Wheel Alignment</option>
-                    <option value="Other">Other Repairs / General Inquiry</option>
+                    <option value="Custom Seat Covers">Custom Car Seat Covers (Napa / PVC / Fabric)</option>
+                    <option value="Floor Mats">7D / 5D Molded Luxury Floor Mats</option>
+                    <option value="Colored Seatbelts">Custom Colored Safety Belts</option>
+                    <option value="Roof Headliners">Starlight Ceiling &amp; Suede Headliner</option>
+                    <option value="Car Electronics">Android Screens &amp; DSP Audio Upgrades</option>
+                    <option value="LED Headlights">Laser LED Headlamps &amp; Ambient Strips</option>
+                    <option value="Car Care &amp; Styling">Sunshades, Window Tints &amp; Aero Kits</option>
+                    <option value="Wholesale Inquiry">Wholesale Supply &amp; Bulk Ordering</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">
-                    Message / Description of the Issue
+                    Message / Product Specifications or Vehicle Details
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Describe any sounds, dashboard lights, or customization requests..."
+                    placeholder="Describe your vehicle make, model, desired color, or custom accessories needed..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"

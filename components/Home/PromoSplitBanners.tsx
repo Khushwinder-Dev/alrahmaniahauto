@@ -52,7 +52,7 @@ export default function PromoSplitBanners() {
             <div className="absolute right-0 bottom-0 w-2/3 h-full opacity-20 group-hover:opacity-30 transition-opacity pointer-events-none">
               <Image
                 src="/images/service-7.png"
-                alt="Major Service"
+                alt="7D All-Weather Floor Mats"
                 fill
                 className="object-cover object-right group-hover:scale-105 transition-transform duration-700"
               />
@@ -62,13 +62,13 @@ export default function PromoSplitBanners() {
             <div className="relative z-10">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Free 35-Point Diagnostic Scan</span>
+                <span>Precision OEM Molded Fit</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-zinc-900 leading-tight">
-                Comprehensive Major Service
+                7D All-Weather Luxury Floor Mats
               </h3>
               <p className="text-zinc-600 text-xs sm:text-sm mt-3 max-w-xs leading-relaxed">
-                Full synthetic oil change, spark plug inspection, brake fluid flush, and computerized engine scan.
+                Full-coverage waterproof, anti-skid protection molded specifically for your vehicle floor pan.
               </p>
             </div>
 
@@ -77,7 +77,7 @@ export default function PromoSplitBanners() {
                 href="/get-a-quote?category=floor-mats"
                 className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-red-600 text-white font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full transition-all group-hover:gap-3 shadow-md"
               >
-                <span>Book Service</span>
+                <span>Explore Product</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

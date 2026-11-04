@@ -45,7 +45,7 @@ export default function BrandsPage() {
             <div data-aos="zoom-out" data-aos-delay="200" className="mb-4">
               <h1 className="text-3xl md:text-[50px] font-display font-bold tracking-[-0.04em] leading-[0.9] flex items-center justify-center gap-4 max-w-[800px]">
                 <span className="text-white">Brands</span>
-                <span className="text-[#e11d23]">We Service</span>
+                <span className="text-[#e11d23]">We Upgrade &amp; Style</span>
               </h1>
             </div>
             <p

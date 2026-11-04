@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import ProductsPage from "@/app/products/page";
 
 export default function ServicesPage() {
-  redirect("/products");
+  return <ProductsPage />;
 }

@@ -108,7 +108,7 @@ export default function AppointmentFormSection() {
                 <input
                   type="text"
                   required
-                  placeholder="Subject / Service Needed"
+                  placeholder="Subject / Products Inquired"
                   className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3.5 text-zinc-900 text-sm outline-none focus:border-red-600 focus:bg-white transition-colors"
                   name="subject"
                   value={formData.subject}
