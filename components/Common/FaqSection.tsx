@@ -5,68 +5,68 @@ import FaqAccordionItem from "@/components/Common/FaqAccordionItem";
 
 export interface FaqItem {
   id: number;
-  question?: string;
-  answer?: string;
+  question: string;
+  answer: string;
   questionAr?: string;
   answerAr?: string;
   questionEn?: string;
   answerEn?: string;
 }
 
-export const DEFAULT_WATERPROOFING_FAQS: FaqItem[] = [
+export const AUTOMOTIVE_FAQS: FaqItem[] = [
   {
     id: 1,
-    question: "How do you determine the best waterproofing solution for a specific project?",
-    questionAr: "كيف تحددون أفضل حل للعزل المائي لمشروع معين؟",
+    question: "What types of vehicles and car brands do you service?",
+    questionAr: "ما هي أنواع وماركات السيارات التي تقدمون لها خدمات الصيانة؟",
     answer:
-      "We conduct a thorough technical site assessment analyzing structural blueprints, groundwater table levels, thermal exposure, slab slopes, and substrate conditions before recommending a tailored system that meets UAE Municipality and Civil Defense standards.",
+      "We specialize in comprehensive maintenance, mechanical repairs, and interior customization for all vehicle types, including luxury European (Mercedes-Benz, BMW, Audi, Porsche, VW), Japanese (Toyota, Lexus, Nissan, Honda), and American cars, using factory-grade computerized diagnostic tools and certified master technicians.",
     answerAr:
-      "نقوم بإجراء تقييم فني شامل للموقع من خلال تحليل المخططات الإنشائية، ومناسيب المياه الجوفية، والتعرض الحراري، وميول الخرسانة، وحالة الأسطح قبل التوصية بنظام مخصص يلبي معايير بلديات الإمارات والدفاع المدني.",
+      "نحن متخصصون في الصيانة الشاملة والإصلاحات الميكانيكية وتفصيل الفرش الداخلي لجميع فئات السيارات، بما في ذلك السيارات الأوروبية الفاخرة (مرسيدس، بي إم دبليو، أودي، بورش، فولكس فاجن)، واليابانية (تويوتا، لكزس، نيسان، هوندا)، والأمريكية، باستخدام أحدث أجهزة الفحص المبرمجة وفنيين معتمدين.",
   },
   {
     id: 2,
-    question: "How does the Combo Waterproofing & Thermal Insulation System perform in UAE climate?",
-    questionAr: "كيف يعمل نظام العزل المائي والحراري المدمج (كومبو) في مناخ الإمارات؟",
+    question: "Where is your workshop located, and what are your operating hours?",
+    questionAr: "أين يقع مركز الصيانة الخاص بكم وما هي ساعات العمل؟",
     answer:
-      "The Combo System provides dual-action high-density polyurethane insulation and elastomeric waterproofing in a single monolithic barrier. It reduces indoor HVAC loads by up to 40% and withstands UAE surface temperatures exceeding 65°C without degradation.",
+      "Our main workshop and accessories facility is located in Industrial Area 4 & 5, Sharjah, UAE. We are open Saturday through Thursday from 8:00 AM to 9:00 PM, and on Friday from 2:00 PM to 9:00 PM, with dedicated customer reception, express inspection bays, and free parking.",
     answerAr:
-      "يوفر نظام الكومبو عزلاً مزدوجاً من البولي يوريثان عالي الكثافة والعزل المائي المرن في طبقة متكاملة بدون فواصل، مما يقلل أحمال التكييف بنسبة تصل إلى 40% ويقاوم حرارة الأسطح في الإمارات التي تتجاوز 65 درجة مئوية.",
+      "يقع مركز الصيانة ومتجر الإكسسوارات في المنطقة الصناعية 4 و 5 بالشارقة، الإمارات. نستقبلكم من السبت إلى الخميس من 8:00 صباحاً حتى 9:00 مساءً، ويوم الجمعة من 2:00 ظهراً حتى 9:00 مساءً، مع استراحة مريحة للعملاء ومواقف مخصصة.",
   },
   {
     id: 3,
-    question: "Why is polyurea spray coating superior for heavy-traffic and exposed surfaces?",
-    questionAr: "لماذا يعتبر طلاء البولي يوريا بالرش فائق التميز للمساحات المكشوفة وعالية الحركة؟",
+    question: "Do you offer transparent upfront quotes before starting repairs?",
+    questionAr: "هل تقدمون عروض أسعار وتقديرات واضحة قبل البدء بالإصلاح؟",
     answer:
-      "Pure polyurea cures in under 15 seconds to form an impenetrable, seamless elastomeric membrane with 400%+ tensile elongation. It resists vehicular abrasion, harsh UV degradation, fuel spills, and heavy foot traffic on parking decks and podiums.",
+      "Yes! 100% price transparency is our core promise. Every service begins with a comprehensive multi-point diagnostic inspection. We provide an itemized digital quotation detailing parts and labor for your approval before turning a single wrench, with zero hidden charges.",
     answerAr:
-      "يتصلب البولي يوريا النقي خلال أقل من 15 ثانية ليشكل غشاءً مرناً متصلاً بدون فواصل مع استطالة تتجاوز 400%، مما يجعله مقاوماً لحركة المركبات، والأشعة فوق البنفسجية، وتسرب الوقود في مواقف السيارات والمنصات.",
+      "نعم بكل تأكيد! الشفافية التامة هي التزامنا الأساسي. تبدأ كل خدمة بفحص فني شامل، ونقدم تقريراً مفصلاً وعرض أسعار واضح لقطع الغيار وأجور اليد لاعتماده من قِبلكم قبل بدء أي عمل وبدون أي رسوم خفية.",
   },
   {
     id: 4,
-    question: "Can waterproofing be applied over existing roofs without removing old tiles?",
-    questionAr: "هل يمكن تطبيق العزل المائي فوق الأسطح القائمة دون إزالة البلاط القديم؟",
+    question: "How long does a standard oil change or routine minor service take?",
     answer:
-      "Yes, utilizing advanced liquid-applied polyurethane or polyurea systems and specialized bonding primers, we can encapsulate existing tiled terraces and roof decks without demolition, eliminating noise and preserving structural integrity.",
+      "Our express maintenance services—such as synthetic oil and OEM filter changes, brake inspections, fluid top-ups, and battery tests—are typically completed in under 30 to 45 minutes in our dedicated fast-track service bays.",
+    questionAr: "كم يستغرق تغيير الزيت أو الصيانة الدورية السريعة؟",
     answerAr:
-      "نعم، باستخدام أنظمة البولي يوريثان أو البولي يوريا السائلة مع بادئات التصاق متطورة، يمكننا عزل الأسطح والبلاط القديم دون الحاجة إلى التكسير والإزالة، مما يمنع الإزعاج ويحافظ على سلامة المنشأة.",
+      "خدمات الصيانة السريعة لدينا — مثل تغيير زيت المحرك التخليقي وفلتر الوكالة وفحص الفرامل والبطارية — تستغرق عادة ما بين 30 إلى 45 دقيقة فقط في مسارات الخدمة السريعة.",
   },
   {
     id: 5,
-    question: "How do you protect basements and substructures from high groundwater pressure?",
-    questionAr: "كيف تحمون الأقبية والأساسات من ضغط المياه الجوفية العالي؟",
+    question: "Do you provide warranty on your repair work and custom seat covers?",
+    questionAr: "هل تقدمون ضماناً على أعمال الصيانة وأغطية المقاعد المخصصة؟",
     answer:
-      "We deploy multi-stage tanking systems combining pre-applied bentonite or HDPE self-adhesive membranes, crystalline capillary waterproofing admixtures, and hydrophilic waterstops at construction joints to withstand extreme hydrostatic pressures.",
+      "Absolutely. All mechanical repairs and OEM replacement parts are covered by our 6 to 12-month workshop warranty. Our custom-tailored leather seat covers and interior upholstery come with up to 3 years warranty against cracking, stitching failure, and UV fading.",
     answerAr:
-      "نطبق أنظمة حماية متعددة المراحل تجمع بين أغشية البنتونايت أو HDPE ذاتية الالتصاق، ومضافات العزل البلوري، وموانع تسرب المياه المنتفخة عند فواصل التمدد لمقاومة أعلى ضغوط المياه الجوفية.",
+      "بالتأكيد. جميع الإصلاحات الميكانيكية وقطع الغيار الأصلية مشمولة بضمان الورشة من 6 إلى 12 شهراً. كما نوفر ضماناً يصل إلى 3 سنوات على تفصيل المقاعد الجلدية والفرش الداخلي ضد التشقق وتفكك الخياطة أو تغير اللون.",
   },
   {
     id: 6,
-    question: "What warranty duration and municipality certifications are provided?",
-    questionAr: "ما هي مدة الضمان والاعتمادات البلدية التي تقدمونها؟",
+    question: "Do you offer vehicle recovery, pickup, and delivery across UAE?",
+    questionAr: "هل توفرون خدمة سحب ونقل السيارات واستلامها من المنزل؟",
     answer:
-      "We offer comprehensive 10 to 25-year transferable warranties backed by major international chemical manufacturers. All installations are certified and approved by Dubai Municipality, Trakhees, and Civil Defense authorities.",
+      "Yes, we provide dedicated flatbed recovery and vehicle pickup & drop-off services across Sharjah, Dubai, and Ajman. You can book an appointment online or contact our service advisors directly on WhatsApp at +971 50 786 0161 for immediate assistance.",
     answerAr:
-      "نقدم ضمانات شاملة قابلة للتحويل تتراوح بين 10 إلى 25 عاماً مدعومة من كبرى الشركات العالمية للمواد الكيميائية، مع اعتماد واختبار جميع الأعمال لدى بلدية دبي، وتراخيص، والدفاع المدني.",
+      "نعم، نوفر سطحات نقل واستلام وتسليم السيارات من وإلى موقعكم في الشارقة ودبي وعجمان. يمكنك حجز موعد عبر الموقع أو التواصل مباشرة عبر الواتساب على 0507860161 لتنسيق النقل.",
   },
 ];
 
@@ -85,23 +85,25 @@ export interface FaqSectionProps {
 }
 
 export default function FaqSection({
-  faqs = DEFAULT_WATERPROOFING_FAQS,
+  faqs = AUTOMOTIVE_FAQS,
   titlePrefix = "Frequently Asked",
   titlePrefixAr = "الأسئلة",
   titleHighlight = "Questions",
   titleHighlightAr = "الشائعة",
-  subtitle = "Find clear answers to common questions about our engineered waterproofing systems, application methods, and warranties.",
-  subtitleAr = "إجابات واضحة وشاملة حول حلول العزل المتكاملة، أساليب التطبيق، والضمانات المعتمدة.",
+  subtitle = "Find clear answers to common questions about our automotive maintenance, repair services, and warranties.",
+  subtitleAr = "إجابات واضحة وشاملة حول خدمات صيانة السيارات، قطع الغيار الأصلية، والضمانات المعتمدة.",
   isArabic = false,
   className = "",
-  bgClassName = "bg-[#F8FAFC]",
-  pyClassName = "py-[40px] md:py-[56px] lg:py-[72px]",
+  bgClassName = "bg-white",
+  pyClassName = "py-16 md:py-24",
 }: FaqSectionProps) {
-  const [openId, setOpenId] = useState<number | null>(faqs[0]?.id ?? null);
+  // Take only 6 FAQs
+  const displayFaqs = faqs.slice(0, 6);
+  const [openId, setOpenId] = useState<number | null>(displayFaqs[0]?.id ?? 1);
 
   useEffect(() => {
-    if (faqs && faqs.length > 0) {
-      setOpenId(faqs[0].id);
+    if (displayFaqs && displayFaqs.length > 0) {
+      setOpenId(displayFaqs[0].id);
     }
   }, [faqs]);
 
@@ -114,45 +116,45 @@ export default function FaqSection({
       className={`relative w-full ${pyClassName} ${bgClassName} ${className} overflow-hidden`}
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8">
-        {/* Section Header (Matching Design Reference media_1790098744511.png) */}
-        <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-14">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Taj Al Rahmah Style Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
           {/* Tagline: — FAQ — */}
-          <div className="inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-3">
-            <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#00c4b4] rounded-full" />
-            <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-[#00c4b4]">
+          <div className="inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-3">
+            <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
+            <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-red-600">
               {isArabic ? "الأسئلة الشائعة" : "FAQ"}
             </span>
-            <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#00c4b4] rounded-full" />
+            <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
           </div>
 
           {/* Heading */}
-          <h2 className="text-2xl sm:text-4xl md:text-[44px] font-black text-[#0B1C24] tracking-tight leading-[1.15]">
+          <h2 className="text-2xl sm:text-4xl md:text-[44px] font-black text-zinc-900 tracking-tight leading-[1.15]">
             {isArabic ? (
               <>
                 {titlePrefixAr}{" "}
-                <span className="text-[#00c4b4]">{titleHighlightAr}</span>
+                <span className="text-red-600">{titleHighlightAr}</span>
               </>
             ) : (
               <>
                 {titlePrefix}{" "}
-                <span className="text-[#00c4b4]">{titleHighlight}</span>
+                <span className="text-red-600">{titleHighlight}</span>
               </>
             )}
           </h2>
 
           {/* Subtitle */}
-          <p className="mt-2.5 sm:mt-3.5 text-stone-500 text-xs sm:text-sm md:text-[14.5px] lg:text-[17px] max-w-xl mx-auto leading-relaxed section-subtitle">
+          <p className="mt-2.5 sm:mt-3.5 text-zinc-500 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed">
             {isArabic ? subtitleAr : subtitle}
           </p>
         </div>
 
-        {/* Single-Column Accordion List */}
-        <div className="space-y-2.5 sm:space-y-4">
-          {faqs.map((faq) => (
+        {/* Taj Al Rahmah Style Single-Column Accordion List (Exactly 6 FAQs) */}
+        <div className="space-y-3 sm:space-y-4">
+          {displayFaqs.map((faq, idx) => (
             <FaqAccordionItem
-              key={faq.id}
-              number={faq.id}
+              key={faq.id || idx + 1}
+              number={idx + 1}
               question={
                 (isArabic && faq.questionAr
                   ? faq.questionAr
@@ -163,8 +165,8 @@ export default function FaqSection({
                   ? faq.answerAr
                   : faq.answerEn || faq.answer) || ""
               }
-              isOpen={openId === faq.id}
-              onToggle={() => toggleFaq(faq.id)}
+              isOpen={openId === (faq.id || idx + 1)}
+              onToggle={() => toggleFaq(faq.id || idx + 1)}
               isArabic={isArabic}
             />
           ))}

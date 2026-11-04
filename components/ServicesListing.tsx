@@ -11,6 +11,7 @@ import { InputValidationTick, isValidEmail, isValidPhone, isValidText, getFieldE
 import { VoiceMicButton, VoiceListeningBadge, useVoiceInput } from "@/components/ui/VoiceMicButton";
 import { servicesDataEn, servicesDataAr, ServiceItem, SubServiceItem } from "@/data/servicesData";
 import { ServiceIcon } from "@/components/ServiceIcon";
+import FaqSection from "@/components/Common/FaqSection";
 import FaqAccordionItem from "@/components/Common/FaqAccordionItem";
 import {
   TemplateDefault,
@@ -815,59 +816,8 @@ function ServicesContent({ enableSlider }: { enableSlider?: boolean }) {
         </section>
       }
 
-      {/* ══ FAQ SECTION (Single Column Matching Reference media_1790098744511.png) ══ */}
-      <section
-        className="relative w-full bg-[#F8FAFC] py-[40px] md:py-[56px] lg:py-[72px] px-3 sm:px-6 lg:px-8 overflow-hidden"
-        dir={isArabic ? "rtl" : "ltr"}
-      >
-        <div className="max-w-4xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-14">
-            <div className="inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-3">
-              <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#00c4b4] rounded-full" />
-              <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-[#00c4b4]">
-                {isArabic ? "الأسئلة الشائعة" : "FAQ"}
-              </span>
-              <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#00c4b4] rounded-full" />
-            </div>
-
-            <h2 className="text-2xl sm:text-4xl md:text-[44px] font-black text-[#0B1C24] tracking-tight leading-[1.15]">
-              {isArabic ? (
-                <>
-                  الأسئلة{" "}
-                  <span className="text-[#00c4b4]">الشائعة</span>
-                </>
-              ) : (
-                <>
-                  Frequently Asked{" "}
-                  <span className="text-[#00c4b4]">Questions</span>
-                </>
-              )}
-            </h2>
-
-            <p className="mt-2.5 sm:mt-3.5 text-stone-500 text-xs sm:text-sm md:text-[14.5px] max-w-xl mx-auto leading-relaxed">
-              {isArabic
-                ? "اعثر على إجابات للأسئلة الشائعة حول خدمات العزل المائي وحلول حماية المباني في الإمارات."
-                : "Find clear answers to common questions about our engineered waterproofing systems, application methods, and warranties."}
-            </p>
-          </div>
-
-          {/* Single Column Accordion List */}
-          <div className="space-y-2.5 sm:space-y-4">
-            {SERVICES_FAQS.map((item) => (
-              <FaqAccordionItem
-                key={item.id}
-                number={item.id}
-                question={isArabic ? item.questionAr : item.question}
-                answer={isArabic ? item.answerAr : item.answer}
-                isOpen={openFaqId === item.id}
-                onToggle={() => setOpenFaqId(openFaqId === item.id ? null : item.id)}
-                isArabic={isArabic}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ══ FAQ SECTION (Taj Al Rahmah Style - Exactly 6 FAQs) ══ */}
+      <FaqSection isArabic={isArabic} />
 
       {/* ══ BOOK A VISIT CTA BANNER ══════════════════════════════ */}
       <section className="w-full bg-white py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8">

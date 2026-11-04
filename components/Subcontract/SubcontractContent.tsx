@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Handshake } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import FaqSection from "@/components/Common/FaqSection";
 import FaqAccordionItem from "@/components/Common/FaqAccordionItem";
 import CommonHeader from "@/components/Common/CommonHeader";
 
@@ -729,54 +730,8 @@ export default function SubcontractContent() {
         </div>
       </section>
 
-      {/* ─── SECTION 8: SUBCONTRACT FAQS ───────────────────────────────── */}
-      <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-[#F8FAFC] border-t border-slate-200/60">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
-            <div className="inline-flex items-center justify-center gap-3 mb-3">
-              <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#01a9a0] rounded-full" />
-              <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-[#01a9a0]">
-                {isAr ? "الأسئلة الشائعة" : "FAQ"}
-              </span>
-              <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#01a9a0] rounded-full" />
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.2]">
-              {isAr ? (
-                <>
-                  الأسئلة الشائعة حول <span className="text-[#01a9a0]">المقاولات من الباطن</span>
-                </>
-              ) : (
-                <>
-                  Subcontracting <span className="text-[#01a9a0]">Frequently Asked Questions</span>
-                </>
-              )}
-            </h2>
-
-            <p className="mt-3 text-stone-500 text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
-              {isAr
-                ? "إجابات واضحة ومباشرة عن نطاق خدماتنا، معايير الامتثال، الضمانات، وإجراءات التعاقد والتنفيذ."
-                : "Find clear answers to common questions about our subcontracting capabilities, compliance standards, warranty terms, and execution process."}
-            </p>
-          </div>
-
-          {/* Accordion FAQ Cards */}
-          <div className="space-y-3 sm:space-y-3.5">
-            {SUBCONTRACT_FAQS.map((faq) => (
-              <FaqAccordionItem
-                key={faq.id}
-                number={faq.id}
-                question={isAr ? faq.questionAr : faq.questionEn}
-                answer={isAr ? faq.answerAr : faq.answerEn}
-                isOpen={openFaqId === faq.id}
-                onToggle={() => toggleFaq(faq.id)}
-                isArabic={isAr}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ─── SECTION 8: SUBCONTRACT FAQS (Taj Al Rahmah Style - Exactly 6 FAQs) ─── */}
+      <FaqSection isArabic={isAr} />
 
       {/* ─── SECTION 9: BOTTOM CTA — LOOKING FOR A RELIABLE SUBCONTRACTOR? ─── */}
       <section className="relative w-full overflow-hidden min-h-[160px] sm:min-h-[180px] lg:min-h-[200px] flex items-center">

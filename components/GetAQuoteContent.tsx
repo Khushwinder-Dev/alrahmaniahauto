@@ -15,6 +15,8 @@ import {
   HelpCircle,
 } from "lucide-react";
 import toast from "react-hot-toast";
+import FaqAccordionItem from "@/components/Common/FaqAccordionItem";
+import { AUTOMOTIVE_FAQS } from "@/components/Common/FaqSection";
 
 const VEHICLE_MAKES = [
   "Toyota",
@@ -86,28 +88,6 @@ const SERVICE_OPTIONS = [
   },
 ];
 
-const FAQS = [
-  {
-    q: "How fast will I receive my repair or service quotation?",
-    a: "Our certified service advisors calculate accurate estimates within 15 to 30 minutes during workshop operating hours (8:00 AM - 10:00 PM). You will receive your quote via WhatsApp and Email.",
-  },
-  {
-    q: "Do you supply genuine OEM parts or aftermarket alternatives?",
-    a: "We strictly provide 100% genuine OEM replacement parts backed by manufacturer warranty. Upon request, we can also provide premium German or Japanese certified aftermarket options to suit your budget.",
-  },
-  {
-    q: "Do you offer vehicle recovery, pickup, and delivery?",
-    a: "Yes! We offer convenient flatbed recovery and pickup/drop-off services across Sharjah, Dubai, and Ajman. Let us know in your quote request if you need transport assistance.",
-  },
-  {
-    q: "What warranty comes with repairs at Al Rahmaniah Auto?",
-    a: "All major mechanical and electrical repairs are backed by our 6-month to 12-month workshop warranty on labor and parts. Our custom interior seat covers come with up to 3 years warranty against cracking and UV peeling.",
-  },
-  {
-    q: "Can I drop by the Sharjah workshop without an appointment?",
-    a: "Walk-ins are always welcome at our Industrial Area 5 workshop! However, submitting this quote form or booking in advance secures priority fast-track service with no waiting time.",
-  },
-];
 
 export default function GetAQuoteContent() {
   const [selectedServices, setSelectedServices] = useState<string[]>([
@@ -128,7 +108,7 @@ export default function GetAQuoteContent() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [activeFaq, setActiveFaq] = useState<number | null>(1);
 
   const toggleService = (id: string) => {
     if (selectedServices.includes(id)) {
@@ -611,45 +591,37 @@ export default function GetAQuoteContent() {
 
         </div>
 
-        {/* 3. Automotive Quotation FAQ Section */}
+        {/* 3. Automotive Quotation FAQ Section (Taj Al Rahmah Style - Exactly 6 FAQs) */}
         <div className="mt-20 max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 text-red-600 text-xs font-bold uppercase tracking-widest mb-3">
-              <HelpCircle className="w-4 h-4" />
-              <span>Quotation &amp; Service FAQ</span>
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+            <div className="inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-3">
+              <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
+              <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-red-600">
+                FAQ
+              </span>
+              <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
             </div>
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-zinc-900">
-              Frequently Asked Questions
+
+            <h2 className="text-2xl sm:text-4xl md:text-[44px] font-black text-zinc-900 tracking-tight leading-[1.15]">
+              Frequently Asked <span className="text-red-600">Questions</span>
             </h2>
+
+            <p className="mt-2.5 sm:mt-3.5 text-zinc-500 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+              Everything you need to know about our vehicle repairs, transparent pricing, warranties, and workshop turnaround in Sharjah.
+            </p>
           </div>
 
-          <div className="space-y-4">
-            {FAQS.map((faq, idx) => {
-              const isOpen = activeFaq === idx;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-2xl border border-zinc-200 bg-white shadow-xs overflow-hidden transition-colors"
-                >
-                  <button
-                    onClick={() => setActiveFaq(isOpen ? null : idx)}
-                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-bold text-zinc-900 text-sm sm:text-base hover:text-red-600 transition-colors cursor-pointer"
-                  >
-                    <span>{faq.q}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-zinc-400 transition-transform duration-300 flex-shrink-0 ${
-                        isOpen ? "rotate-180 text-red-600" : ""
-                      }`}
-                    />
-                  </button>
-                  {isOpen && (
-                    <div className="px-5 pb-6 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t border-zinc-100 pt-4">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+          <div className="space-y-3 sm:space-y-4">
+            {AUTOMOTIVE_FAQS.slice(0, 6).map((faq, idx) => (
+              <FaqAccordionItem
+                key={faq.id}
+                number={idx + 1}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={activeFaq === faq.id}
+                onToggle={() => setActiveFaq(activeFaq === faq.id ? null : faq.id)}
+              />
+            ))}
           </div>
         </div>
 

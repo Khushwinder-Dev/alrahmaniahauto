@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import FaqSection from "@/components/Common/FaqSection";
 import FaqAccordionItem from "@/components/Common/FaqAccordionItem";
 import CommonHeader from "./Common/CommonHeader";
 
@@ -648,54 +649,7 @@ export default function SolutionsPageContent() {
       {/* ══════════════════════════════════════════════════════════════
           6. SECTION: FREQUENTLY ASKED QUESTIONS (FAQ)
       ══════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-[#F8FAFC]">
-        <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8">
-
-          {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-14">
-            <div className="inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-3">
-              <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#00c4b4] rounded-full" />
-              <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-[#00c4b4]">
-                {isArabic ? "الأسئلة الشائعة" : "FAQ"}
-              </span>
-              <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#00c4b4] rounded-full" />
-            </div>
-
-            <h2 className="text-2xl sm:text-4xl md:text-[42px] font-extrabold text-[#0B1C24] tracking-tight leading-[1.18]">
-              {isArabic ? (
-                <>
-                  الأسئلة <span className="text-[#00c4b4]">الشائعة</span>
-                </>
-              ) : (
-                <>
-                  Frequently Asked <span className="text-[#00c4b4]">Questions</span>
-                </>
-              )}
-            </h2>
-
-            <p className="mt-2.5 sm:mt-3 text-stone-500 text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
-              {isArabic
-                ? "إجابات واضحة وشاملة حول حلول العزل المتكاملة، أساليب التطبيق، والضمانات المعتمدة في الإمارات."
-                : "Find clear answers to common questions about our engineered waterproofing systems, application methods, and warranties."}
-            </p>
-          </div>
-
-          {/* Site-Standard Accordion FAQ Cards */}
-          <div className="space-y-2.5 sm:space-y-3.5">
-            {SOLUTIONS_FAQS.map((faq) => (
-              <FaqAccordionItem
-                key={faq.id}
-                number={faq.id}
-                question={isArabic ? faq.questionAr : faq.questionEn}
-                answer={isArabic ? faq.answerAr : faq.answerEn}
-                isOpen={openFaqId === faq.id}
-                onToggle={() => toggleFaq(faq.id)}
-                isArabic={isArabic}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <FaqSection isArabic={isArabic} />
 
     </div>
   );

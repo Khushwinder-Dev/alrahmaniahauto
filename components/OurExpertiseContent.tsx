@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   CheckCircle2,
 } from "lucide-react";
+import FaqSection from "@/components/Common/FaqSection";
 import FaqAccordionItem from "@/components/Common/FaqAccordionItem";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -465,79 +466,8 @@ export default function OurExpertiseContent() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          5. SECTION: FREQUENTLY ASKED QUESTIONS (Matching Mockup)
-      ══════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-[#f3fcf9] overflow-hidden">
-
-        {/* Decorative Fluid Ribbons at bottom corners */}
-        <div className="absolute left-0 bottom-0 pointer-events-none select-none z-0">
-          <Image
-            src="/get-a-quote/ribbon-bottom-left.png"
-            alt=""
-            width={500}
-            height={330}
-            className="w-[260px] sm:w-[380px] md:w-[480px] h-auto opacity-75"
-          />
-        </div>
-        <div className="absolute right-0 bottom-0 pointer-events-none select-none z-0">
-          <Image
-            src="/get-a-quote/ribbon-bottom-right.png"
-            alt=""
-            width={550}
-            height={330}
-            className="w-[260px] sm:w-[380px] md:w-[500px] h-auto opacity-75"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* Section Header */}
-          <div className="text-center mb-10 sm:mb-12">
-            <div className="flex items-center justify-center gap-2 mb-2.5">
-              <span className="w-5 h-[1.5px] bg-[#00A896]" />
-              <span className="text-[11px] sm:text-[12px] font-extrabold tracking-[0.2em] text-[#00A896] uppercase">
-                {isArabic ? "الأسئلة الشائعة" : "FAQ"}
-              </span>
-              <span className="w-5 h-[1.5px] bg-[#00A896]" />
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0d2438] tracking-tight mb-3">
-              {isArabic ? (
-                <>
-                  الأسئلة <span className="text-[#00A896]">الشائعة</span>
-                </>
-              ) : (
-                <>
-                  Frequently Asked <span className="text-[#00A896]">Questions</span>
-                </>
-              )}
-            </h2>
-
-            <p className="text-stone-500 text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
-              {isArabic
-                ? "إجابات على الأسئلة الشائعة حول حلول العزل والمواد والتنفيذ. هل لا تزال بحاجة لمساعدة؟"
-                : "Find answers to common questions about our industry solutions, materials, and services. Still need help?"}
-            </p>
-          </div>
-
-          {/* 5 Accordion FAQ Cards */}
-          <div className="space-y-3 sm:space-y-3.5">
-            {EXPERTISE_FAQS.map((faq) => (
-              <FaqAccordionItem
-                key={faq.id}
-                number={faq.id}
-                question={isArabic ? faq.questionAr : faq.questionEn}
-                answer={isArabic ? faq.answerAr : faq.answerEn}
-                isOpen={openFaqIds.includes(faq.id)}
-                onToggle={() => toggleFaq(faq.id)}
-                isArabic={isArabic}
-              />
-            ))}
-          </div>
-
-        </div>
-      </section>
+      {/* ══ 5. SECTION: FREQUENTLY ASKED QUESTIONS (Taj Al Rahmah Style - Exactly 6 FAQs) ══ */}
+      <FaqSection isArabic={isArabic} />
 
       {/* ══════════════════════════════════════════════════════════════
           6. SECTION: EXPERTISE ACROSS EVERY SECTOR (5 Sector Cards)

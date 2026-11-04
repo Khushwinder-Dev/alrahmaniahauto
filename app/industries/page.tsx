@@ -526,13 +526,8 @@ export default function IndustriesPage() {
         </div>
       </div>
 
-      {/* ══ FAQ SECTION (Single Column Matching Reference media_1790098744511.png) ══ */}
-      <FaqSection
-        faqs={INDUSTRIES_FAQS}
-        isArabic={isArabic}
-        subtitle="Find clear answers to common questions about our industrial waterproofing, protective coatings, and turnkey turnaround services."
-        subtitleAr="إجابات واضحة وشاملة حول حلول العزل الصناعي والطلاءات الواقية وخدمات الصيانة الشاملة للمنشآت."
-      />
+      {/* ══ FAQ SECTION (Taj Al Rahmah Style - Exactly 6 FAQs) ══ */}
+      <FaqSection isArabic={isArabic} />
     </div>
   );
 }

@@ -32,27 +32,27 @@ export default function FaqAccordionItem({
 
   return (
     <div
-      className={`rounded-xl sm:rounded-2xl bg-white border border-slate-100/90 shadow-[0_2px_12px_rgba(15,23,42,0.03)] sm:shadow-[0_4px_20px_rgba(15,23,42,0.04)] overflow-hidden transition-all duration-300 ${className}`}
+      className={`rounded-xl sm:rounded-2xl bg-white border border-zinc-200 shadow-sm hover:border-red-300 hover:shadow-md overflow-hidden transition-all duration-300 ${className}`}
     >
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="w-full flex items-center gap-2.5 sm:gap-4 px-3.5 sm:px-6 py-3 sm:py-[18px] text-left rtl:text-right cursor-pointer group"
+        className="w-full flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5 text-left rtl:text-right cursor-pointer group"
       >
         {formattedNum && (
-          <span className="text-xs sm:text-base font-semibold text-slate-400 tabular-nums shrink-0 transition-colors group-hover:text-[#01a9a0]">
+          <span className="text-sm sm:text-base font-bold text-zinc-400 tabular-nums shrink-0 transition-colors group-hover:text-red-600">
             {formattedNum}
           </span>
         )}
-        <span className="flex-1 text-[13px] sm:text-base font-bold text-[#0B1C24] leading-snug">
+        <span className="flex-1 text-sm sm:text-base font-bold text-zinc-900 leading-snug group-hover:text-red-600 transition-colors">
           {question}
         </span>
         <span
           className={`w-7 h-7 sm:w-8.5 sm:h-8.5 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
             isOpen
-              ? "bg-[#01a9a0] text-white shadow-xs"
-              : "border border-[#01a9a0]/60 text-[#01a9a0] group-hover:border-[#01a9a0] group-hover:bg-[#01a9a0]/5"
+              ? "bg-red-600 text-white shadow-xs"
+              : "border border-red-600/50 text-red-600 group-hover:border-red-600 group-hover:bg-red-50"
           }`}
         >
           {isOpen ? (
@@ -70,9 +70,9 @@ export default function FaqAccordionItem({
       >
         <div className="overflow-hidden">
           <p
-            className={`px-3.5 sm:px-6 pb-3 sm:pb-5 ${
-              formattedNum ? "ps-7.5 sm:ps-[3.6rem]" : "ps-3.5 sm:ps-6"
-            } pe-3.5 sm:pe-12 text-[12px] sm:text-sm text-stone-600 leading-relaxed`}
+            className={`px-4 sm:px-6 pb-4 sm:pb-5 ${
+              formattedNum ? "ps-9 sm:ps-[3.8rem]" : "ps-4 sm:ps-6"
+            } pe-4 sm:pe-12 text-xs sm:text-sm text-zinc-600 leading-relaxed`}
           >
             {answer}
           </p>
