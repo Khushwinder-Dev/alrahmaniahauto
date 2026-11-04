@@ -1,5 +1,10 @@
 import React from "react";
 import HeroSection from "@/components/Home/HeroSection";
+import WolmartTrustBar from "@/components/Home/WolmartTrustBar";
+import TopCategoriesGrid from "@/components/Home/TopCategoriesGrid";
+import PromoSplitBanners from "@/components/Home/PromoSplitBanners";
+import FeaturedProductsShowcase from "@/components/Home/FeaturedProductsShowcase";
+import DealCountdownBanner from "@/components/Home/DealCountdownBanner";
 import ServicesSection from "@/components/Home/ServicesSection";
 import FeatureSection from "@/components/Home/FeatureSection";
 import WhyUsSection from "@/components/Home/WhyUsSection";
@@ -16,10 +21,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <main>
-        {/* 1. Hero Section with Glass Stats */}
+        {/* 1. Hero Section with Glass Stats (UNTOUCHED) */}
         <div>
           <HeroSection />
         </div>
+
+        {/* 1b. Wolmart Demo 15 Trust & Value Proposition Bar */}
+        <WolmartTrustBar />
+
+        {/* 1c. Wolmart Demo 15 Top Categories of the Month */}
+        <TopCategoriesGrid />
+
+        {/* 1d. Wolmart Demo 15 Promotional Split Banners */}
+        <PromoSplitBanners />
+
+        {/* 1e. Wolmart Demo 15 Featured Products & Accessories Showcase */}
+        <FeaturedProductsShowcase />
+
+        {/* 1f. Wolmart Demo 15 Limited-Time Deal Countdown Banner */}
+        <DealCountdownBanner />
 
         {/* 2. Professional Services Grid */}
         <div data-aos="fade-up" data-aos-delay="100">

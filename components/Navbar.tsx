@@ -8,11 +8,13 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about-us" },
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
-  { label: "Contact", href: "/contact" },
+  { label: "Careers", href: "/career" },
   { label: "Blogs", href: "/blogs" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -83,13 +85,13 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Desktop APPOINTMENT Button */}
+            {/* Desktop GET A QUOTE Button */}
             <div className="hidden lg:block">
               <button
-                onClick={() => router.push("/booking")}
+                onClick={() => router.push("/get-a-quote")}
                 className="btn-primary hover:bg-red-700 text-white px-8 py-3 rounded-full text-sm font-bold transition-colors tracking-widest cursor-pointer"
               >
-                APPOINTMENT
+                GET A QUOTE
               </button>
             </div>
 
@@ -149,12 +151,12 @@ export default function Navbar() {
 
               <button
                 onClick={() => {
-                  router.push("/booking");
+                  router.push("/get-a-quote");
                   setMobileMenuOpen(false);
                 }}
                 className="mt-8 btn-primary py-5 text-white font-bold uppercase tracking-widest rounded-full"
               >
-                APPOINTMENT
+                GET A QUOTE
               </button>
             </div>
           </motion.div>

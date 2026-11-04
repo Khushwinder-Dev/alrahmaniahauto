@@ -26,16 +26,19 @@ const brands = [
 
 export default function PartnershipSection() {
   return (
-    <section className="bg-black py-24 px-6 overflow-hidden">
+    <section className="bg-zinc-50 py-24 px-6 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16 border-b border-zinc-800 pb-12">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16 border-b border-zinc-200 pb-12">
           <div className="flex flex-col items-start">
-            <h2 className="font-display text-4xl md:text-6xl font-[900] text-white leading-none uppercase tracking-tight">
-              Our <br /> Partnership
+            <span className="text-red-600 font-bold text-xs uppercase tracking-widest mb-3 block">
+              OEM COMPATIBILITY
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl font-[900] text-zinc-900 leading-none uppercase tracking-tight">
+              Our <br /> Partnerships
             </h2>
           </div>
           <div className="max-w-xl">
-            <p className="text-zinc-400 text-base md:text-lg leading-relaxed">
+            <p className="text-zinc-600 text-base md:text-lg leading-relaxed">
               We work with the world&#x27;s leading automotive brands to bring you certified service and genuine parts. Our workshop in Sharjah is equipped to handle luxury, German, and Japanese vehicles with factory-level precision.
             </p>
           </div>
@@ -44,24 +47,21 @@ export default function PartnershipSection() {
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className="bg-white rounded-[24px] aspect-[4/3] flex flex-col items-center justify-center p-4 group transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_20px_40px_rgba(255,255,255,0.1)]"
+              className="bg-white rounded-2xl aspect-[4/3] flex flex-col items-center justify-center p-4 border border-zinc-200 shadow-xs group transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:border-red-500"
             >
               <div className="relative w-full h-1/2 mb-3">
                 <Image
                   src={brand.logo}
-                  alt={`${brand.name} repair and service Sharjah Industrial Area`}
+                  alt={brand.name}
                   fill
-                  className="object-contain transition-all duration-300 group-hover:scale-110"
+                  className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
                 />
               </div>
-              <span className="text-zinc-900 font-black text-[9px] md:text-[11px] text-center uppercase tracking-tighter">
+              <span className="text-[11px] font-bold text-zinc-700 tracking-wider uppercase group-hover:text-red-600 transition-colors text-center line-clamp-1">
                 {brand.name}
               </span>
             </div>
           ))}
-        </div>
-        <div className="sr-only">
-          Specializing in Toyota repair Sharjah, BMW service Sharjah, Mercedes maintenance UAE, Nissan repair Industrial Area 5, and all major automotive brands in Sharjah.
         </div>
       </div>
     </section>

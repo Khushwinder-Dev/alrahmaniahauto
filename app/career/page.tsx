@@ -3,21 +3,22 @@ import type { Metadata } from "next";
 import CareerPageContent from "@/components/CareerPageContent";
 
 export const metadata: Metadata = {
-  title: "Careers & Job Opportunities | Taj Al Rahmah Contracting UAE",
+  title: "Careers at Al Rahmaniah Auto | Automotive Workshop Jobs in Sharjah",
   description:
-    "Join the expert team at Taj Al Rahmah. Explore rewarding career opportunities in civil construction, insulation, structural waterproofing, and project engineering in the UAE.",
+    "Explore rewarding automotive career opportunities for certified auto mechanics, diagnostic specialists, auto electricians, AC technicians, and car upholstery craftsmen in Sharjah, UAE.",
   keywords: [
-    "Taj Al Rahmah careers",
-    "construction jobs UAE",
-    "waterproofing engineer jobs Dubai",
-    "civil engineering jobs Abu Dhabi",
-    "site supervisor jobs UAE",
+    "automotive jobs Sharjah",
+    "car mechanic jobs UAE",
+    "auto electrician jobs Sharjah",
+    "car upholstery craftsman UAE",
+    "Al Rahmaniah Auto careers",
+    "workshop technician vacancy",
   ],
 };
 
 export default function CareerPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+    <Suspense fallback={<div className="min-h-screen bg-zinc-50" />}>
       <CareerPageContent />
     </Suspense>
   );
