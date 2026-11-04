@@ -18,7 +18,7 @@ export default function ProtectionServicesSection({
   const protectionHighlights = [
     {
       id: 1,
-      image: "/media/categories/unsplash_C60nkEu-6EQ (1).png",
+      image: "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
       title: isArabic ? "مقاومة فائقة لحرارة وشمس الإمارات" : "Extreme UAE UV & Heat Resistance",
       description: isArabic
         ? "جلود نابا معالجة خصيصاً لمقاومة الأشعة فوق البنفسجية والتشقق حتى درجات حرارة تتجاوز 50 درجة مئوية."
@@ -28,7 +28,7 @@ export default function ProtectionServicesSection({
     },
     {
       id: 2,
-      image: "/media/categories/unsplash_C60nkEu-6EQ.png",
+      image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
       title: isArabic ? "عزل مائي وحماية 100% من الرمال" : "100% Waterproof & Sandproof 7D Protection",
       description: isArabic
         ? "دعاسات أرضيات مقولبة بحواف عميقة تمنع تسرب السوائل وحبيبات الرمل إلى أرضية الوكالة الأصلية."
@@ -38,7 +38,7 @@ export default function ProtectionServicesSection({
     },
     {
       id: 3,
-      image: "/images/service-3.png",
+      image: "/fb-posts/580575558_122191406348549942_4454035087039568744_n.jpg",
       title: isArabic ? "توافق تام مع وسائد الأمان الهوائية" : "OEM Airbag-Safe Precision Stitching",
       description: isArabic
         ? "خياطة حاسوبية مخصصة تضمن انفتاح الوسائد الهوائية الجانبية في أجزاء من الثانية دون أي عائق."
@@ -48,7 +48,7 @@ export default function ProtectionServicesSection({
     },
     {
       id: 4,
-      image: "/images/service-4.png",
+      image: "/fb-posts/605828125_122199913874549942_1353754870971959198_n.jpg",
       title: isArabic ? "ألياف ضوئية وإلكترونيات آمنة" : "Automotive-Grade Fire-Safe Electronics",
       description: isArabic
         ? "أسلاك وفيوزات معزولة بالكامل متوافقة مع أنظمة كهرباء السيارة دون التأثير على ضمان الوكالة."

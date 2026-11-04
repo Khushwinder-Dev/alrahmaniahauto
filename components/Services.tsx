@@ -18,7 +18,7 @@ export default function Services() {
       description: isArabic
         ? "تفصيل جلود نابا وألكانتارا وخياطة دايموند 3D مع تطابق تام لمقاسات المقاعد وحماية من حرارة الصيف."
         : "Precision tailored German Napa & diamond-stitched leather covers engineered to withstand intense UAE heat.",
-      image: "/media/categories/unsplash_C60nkEu-6EQ (1).png",
+      image: "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
       badge: isArabic ? "الأكثر طلباً" : "Best Seller",
     },
     {
@@ -27,7 +27,7 @@ export default function Services() {
       description: isArabic
         ? "تصميم 7D مقولب ثلاثي الأبعاد لحماية كاملة للأرضيات من الرمال والماء والأتربة مع سهولة التنظيف."
         : "Custom molded deep-dish floor liners providing 100% waterproof and sandproof protection for your cabin.",
-      image: "/media/categories/unsplash_C60nkEu-6EQ.png",
+      image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
       badge: isArabic ? "مقاوم للماء" : "100% Waterproof",
     },
     {
@@ -36,7 +36,7 @@ export default function Services() {
       description: isArabic
         ? "ألوان رياضية وجذابة متوافقة مع معايير الأمان الدولية واختبارات الشد وقوة التحمل."
         : "Vibrant sport-spec seatbelt webbing certified for safety, strength, and flawless factory OEM retractor fit.",
-      image: "/images/service-3.png",
+      image: "/fb-posts/588668836_122194707920549942_6964088685681111711_n.jpg",
       badge: isArabic ? "مطابق للمواصفات" : "OEM Certified",
     },
     {
@@ -45,7 +45,7 @@ export default function Services() {
       description: isArabic
         ? "ألياف ضوئية متطورة مع تحكم عبر الهاتف ومؤثرات وميض وشهب تمنح مقصورتك فخامة استثنائية."
         : "Premium optic fiber constellations with smartphone app controls, shooting star effects, and ambient modes.",
-      image: "/images/service-4.png",
+      image: "/fb-posts/605828125_122199913874549942_1353754870971959198_n.jpg",
       badge: isArabic ? "فخامة حصرية" : "Luxury Upgrade",
     },
     {
@@ -54,7 +54,7 @@ export default function Services() {
       description: isArabic
         ? "شاشات لمس عالية الدقة تدعم Apple CarPlay و Android Auto وكاميرات 360 درجة وأنظمة صوت DSP."
         : "High-definition touchscreens featuring Apple CarPlay, Android Auto, 360 cameras, and DSP audio tuning.",
-      image: "/images/service-2.png",
+      image: "/fb-posts/469317378_122127198956549942_2454514240647818107_n.jpg",
       badge: isArabic ? "تقنية حديثة" : "Smart Tech",
     },
     {
@@ -63,7 +63,7 @@ export default function Services() {
       description: isArabic
         ? "إضاءة ليلية فائقة الوضوح مع عدسات ليزر معتمدة مقاومة للحرارة وموفرة للطاقة لضمان أعلى مستويات الأمان."
         : "Ultra-high-lumen LED projector lenses and laser fog beams delivering crystal-clear nighttime highway vision.",
-      image: "/images/service-1.png",
+      image: "/fb-posts/580575558_122191406348549942_4454035087039568744_n.jpg",
       badge: isArabic ? "إضاءة فائقة" : "High Output",
     },
   ];

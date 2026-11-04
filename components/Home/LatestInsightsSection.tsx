@@ -10,7 +10,7 @@ export default function LatestInsightsSection() {
     date: "Mar 1, 2026",
     author: "Al Rahmaniah Auto Accessories",
     title: "How Custom Napa Leather Seat Covers Protect Interiors from Extreme UAE Summer Heat",
-    image: "/media/categories/unsplash_C60nkEu-6EQ (1).png",
+    image: "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
     badge: "SEAT COVERS",
     icon: Sparkles,
   };
@@ -20,7 +20,7 @@ export default function LatestInsightsSection() {
       date: "Feb 20, 2026",
       author: "Al Rahmaniah Auto Accessories",
       title: "Why 7D Molded All-Weather Floor Mats Are Essential for Desert Sand & Spills",
-      image: "/media/categories/unsplash_C60nkEu-6EQ.png",
+      image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
       badge: "FLOOR MATS",
       icon: Layers,
     },

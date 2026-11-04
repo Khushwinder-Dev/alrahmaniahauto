@@ -40,7 +40,7 @@ export default function ServicesSection() {
         "Heat & UV Crack Resistant",
         "3-Year Written Warranty",
       ],
-      image: "/media/categories/unsplash_C60nkEu-6EQ (1).png",
+      image: "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
     },
     {
       id: "7d-mats",
@@ -54,7 +54,7 @@ export default function ServicesSection() {
         "Anti-Slip Fastening Clips",
         "Double-Layer Removable Carpet",
       ],
-      image: "/media/categories/unsplash_C60nkEu-6EQ.png",
+      image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
     },
     {
       id: "colored-seatbelts",

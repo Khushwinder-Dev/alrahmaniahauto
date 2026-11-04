@@ -23,7 +23,7 @@ const MATERIALS = [
     ],
     colors: ["Obsidian Black", "Cognac Tan", "Saddle Brown", "Royal Crimson", "Pure Ivory"],
     colorHexes: ["#18181b", "#92400e", "#78350f", "#991b1b", "#fef3c7"],
-    image: "/media/categories/unsplash_C60nkEu-6EQ (1).png",
+    image: "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
     recommendedFor: "Sedans, Luxury Coupes & Executive SUVs",
   },
   {
@@ -42,7 +42,7 @@ const MATERIALS = [
     ],
     colors: ["Black / Red Stitch", "Tan / Gold Stitch", "Black / Blue Stitch", "Grey / Silver Stitch"],
     colorHexes: ["#09090b", "#b45309", "#1e3a8a", "#4b5563"],
-    image: "/fb-posts/469317378_122127198956549942_2454514240647818107_n.jpg",
+    image: "/fb-posts/605828125_122199913874549942_1353754870971959198_n.jpg",
     recommendedFor: "Desert Cruisers, Patrol, Land Cruiser & Trucks",
   },
   {
@@ -61,7 +61,7 @@ const MATERIALS = [
     ],
     colors: ["Black Diamond", "Coffee Brown", "Beige Quilted", "Carbon Grain Black"],
     colorHexes: ["#18181b", "#451a03", "#d97706", "#27272a"],
-    image: "/media/categories/unsplash_C60nkEu-6EQ.png",
+    image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
     recommendedFor: "All Weather Protection Across Sharjah & UAE",
   },
   {
@@ -80,7 +80,7 @@ const MATERIALS = [
     ],
     colors: ["Ferrari Red", "Porsche Yellow", "M-Power Blue", "Toxic Green", "Miami Blue"],
     colorHexes: ["#dc2626", "#eab308", "#2563eb", "#16a34a", "#0284c7"],
-    image: "/images/service-3.png",
+    image: "/fb-posts/588668836_122194707920549942_6964088685681111711_n.jpg",
     recommendedFor: "Sports Cars, German Marques & Custom Restyling",
   },
 ];
