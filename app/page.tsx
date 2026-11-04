@@ -8,7 +8,7 @@ import BestSellersSection from "@/components/Home/BestSellersSection";
 import DealCountdownBanner from "@/components/Home/DealCountdownBanner";
 import ThreeColumnProductWidget from "@/components/Home/ThreeColumnProductWidget";
 import MaterialSwatchesShowcase from "@/components/Home/MaterialSwatchesShowcase";
-import RecentWorkSection from "@/components/Home/RecentWorkSection";
+import NewArrivalsSection from "@/components/Home/NewArrivalsSection";
 import AppointmentFormSection from "@/components/Home/AppointmentFormSection";
 import PartnershipSection from "@/components/Home/PartnershipSection";
 import FaqSection from "@/components/Home/FaqSection";
@@ -46,8 +46,8 @@ export default function Home() {
         {/* 9. Bespoke Upholstery & Material Swatches Showcase */}
         <MaterialSwatchesShowcase />
 
-        {/* 10. Recent Custom Installations Portfolio Showcase */}
-        <RecentWorkSection />
+        {/* 10. Fresh New Arrivals & Auto Accessories Showcase */}
+        <NewArrivalsSection />
 
         {/* 11. Instant Custom Accessories Quotation Request Form */}
         <AppointmentFormSection />

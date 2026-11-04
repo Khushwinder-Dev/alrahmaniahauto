@@ -62,7 +62,7 @@ export default function AppointmentFormSection() {
           <div className="relative flex justify-end">
             <div className="w-full max-w-lg bg-white/95 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-zinc-200 shadow-2xl">
               <h3 className="text-xl font-display font-bold text-zinc-900 mb-6">
-                Book An Appointment
+                Request a Custom Quote
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -116,7 +116,7 @@ export default function AppointmentFormSection() {
                 />
                 <textarea
                   rows={3}
-                  placeholder="Additional Notes or Symptoms..."
+                  placeholder="Vehicle year, color preference, or custom notes..."
                   className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3.5 text-zinc-900 text-sm outline-none focus:border-red-600 focus:bg-white transition-colors"
                   name="message"
                   value={formData.message}
@@ -127,7 +127,7 @@ export default function AppointmentFormSection() {
                   disabled={isSubmitting}
                   className="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md shadow-red-600/30 cursor-pointer disabled:opacity-50"
                 >
-                  {isSubmitting ? "Submitting..." : "Confirm Appointment"}
+                  {isSubmitting ? "Submitting..." : "Submit Quotation Request"}
                 </button>
               </form>
             </div>

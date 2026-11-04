@@ -39,7 +39,7 @@ export default function FeaturedProductsShowcase() {
           <div>
             <div className="flex items-center gap-2 text-red-600 font-bold uppercase tracking-[0.25em] text-xs mb-3">
               <span className="w-2 h-2 rounded-full bg-red-600" />
-              <span>Wolmart Inspired Catalog</span>
+              <span>Handpicked Selection</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-zinc-900">
               Featured <span className="text-red-600">Products &amp; Accessories</span>
