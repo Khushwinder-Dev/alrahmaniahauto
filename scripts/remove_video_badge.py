@@ -58,3 +58,4 @@ with open('components/Home/HeroSection.tsx', 'w', encoding='utf-8') as f:
     f.write(c_lf)
 
 print("Saved components/Home/HeroSection.tsx")
+
