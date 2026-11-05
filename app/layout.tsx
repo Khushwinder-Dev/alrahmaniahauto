@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Common/Footer";
 import FloatingChatWidget from "@/components/Common/FloatingChatWidget";
+import WelcomeOfferModal from "@/components/WelcomeOfferModal";
 import { Toaster } from "react-hot-toast";
 import AosInit from "@/components/AosInit";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -88,8 +89,11 @@ export default function RootLayout({
           </main>
           <Footer />
 
-          {/* Floating WhatsApp Quick Action Button */}
+          {/* Floating Chat & Contact Action Widget */}
           <FloatingChatWidget />
+
+          {/* Welcome Discount Offer Modal (10% Off) */}
+          <WelcomeOfferModal autoShow={true} />
         </LanguageProvider>
       </body>
     </html>

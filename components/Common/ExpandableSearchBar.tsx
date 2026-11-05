@@ -8,35 +8,24 @@ import {
   MicOff,
   ArrowRight,
   ChevronRight,
-  ChevronLeft,
   X,
-  ExternalLink,
-  Wrench,
-  Package,
-  Layers,
   Sparkles,
-  Building2,
+  Layers,
+  Car,
   ShieldCheck,
-  Droplets,
-  HardHat,
-  FileText,
+  Disc,
+  Armchair,
   HelpCircle,
-  Paintbrush,
-  Bot,
+  FileText,
   Send,
   MessageCircle,
-  Camera,
-  UploadCloud,
+  PhoneCall,
   CheckCircle2,
-  AlertCircle,
-  Loader2,
-  RefreshCw,
-  Image as ImageIcon,
 } from "lucide-react";
 import { SITE_SEARCH_INDEX, SearchResultItem } from "@/data/searchIndex";
+import { WORKSHOP_INFO } from "@/data/workshopData";
 import { useLanguage } from "@/context/LanguageContext";
 import toast from "react-hot-toast";
-
 import { createPortal } from "react-dom";
 
 interface SpeechRecognitionEvent {
@@ -86,25 +75,19 @@ interface ExpandableSearchBarProps {
 }
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  Service: { bg: "bg-teal-50", text: "text-[#009e90]", border: "border-teal-200" },
-  Product: { bg: "bg-amber-50", text: "text-amber-700", border: "border-amber-200" },
-  Subcontract: { bg: "bg-emerald-50", text: "text-emerald-700", border: "border-emerald-200" },
-  Solution: { bg: "bg-cyan-50", text: "text-cyan-700", border: "border-cyan-200" },
-  Project: { bg: "bg-sky-50", text: "text-sky-700", border: "border-sky-200" },
-  Industry: { bg: "bg-purple-50", text: "text-purple-700", border: "border-purple-200" },
-  Resource: { bg: "bg-teal-50", text: "text-[#009e90]", border: "border-teal-200" },
-  Page: { bg: "bg-slate-100", text: "text-slate-700", border: "border-slate-200" },
+  Product: { bg: "bg-red-50", text: "text-red-600", border: "border-red-200" },
+  Category: { bg: "bg-amber-50", text: "text-amber-700", border: "border-amber-200" },
+  Page: { bg: "bg-zinc-100", text: "text-zinc-700", border: "border-zinc-200" },
+  Service: { bg: "bg-red-50", text: "text-red-600", border: "border-red-200" },
 };
 
-type FilterCategory = "all" | "services" | "solutions" | "projects" | "industries" | "resources";
+type FilterCategory = "all" | "products" | "categories" | "pages";
 
 const FILTER_TABS: { key: FilterCategory; labelEn: string; labelAr: string }[] = [
   { key: "all", labelEn: "All", labelAr: "الكل" },
-  { key: "services", labelEn: "Services", labelAr: "الخدمات" },
-  { key: "solutions", labelEn: "Solutions", labelAr: "الحلول" },
-  { key: "projects", labelEn: "Projects", labelAr: "المشاريع" },
-  { key: "industries", labelEn: "Industries", labelAr: "القطاعات" },
-  { key: "resources", labelEn: "Resources", labelAr: "المصادر" },
+  { key: "products", labelEn: "Products", labelAr: "المنتجات" },
+  { key: "categories", labelEn: "Categories", labelAr: "الأقسام" },
+  { key: "pages", labelEn: "Showroom & Info", labelAr: "المعرض والمعلومات" },
 ];
 
 interface MostUsedItem {
@@ -119,245 +102,177 @@ interface MostUsedItem {
 const MOST_USED_BY_TAB: Record<FilterCategory, MostUsedItem[]> = {
   all: [
     {
-      titleEn: "Waterproofing Solutions",
-      titleAr: "حلول العزل المائي المتكاملة",
-      categoryEn: "Solutions",
-      categoryAr: "حلول",
-      href: "/solutions",
-      icon: ShieldCheck,
+      titleEn: "Custom Laser Leather Seat Covers",
+      titleAr: "أغطية وتلبيس مقاعد جلد نابا بالليزر",
+      categoryEn: "Seat Covers",
+      categoryAr: "فرش مقاعد",
+      href: "/products?search=seat",
+      icon: Armchair,
     },
     {
-      titleEn: "GRP & Fiberglass Waterproofing",
-      titleAr: "عزل الألياف الزجاجية (فيبرجلاس)",
-      categoryEn: "Services",
-      categoryAr: "خدمات",
-      href: "/services?service=1",
-      icon: Droplets,
-    },
-    {
-      titleEn: "Combo System Roof Waterproofing",
-      titleAr: "نظام كومبو المتكامل للأسطح",
-      categoryEn: "Roofing Division",
-      categoryAr: "قسم الأسطح",
-      href: "/services?service=2",
+      titleEn: "7D Precision Molded Floor Mats",
+      titleAr: "دعاسات وأرضيات 7D الفاخرة للسيارات",
+      categoryEn: "Floor Mats",
+      categoryAr: "دعاسات 7D",
+      href: "/products?search=floor",
       icon: Layers,
     },
     {
-      titleEn: "Epoxy Floor Coating",
-      titleAr: "طلاء أرضيات الإيبوكسي",
-      categoryEn: "Flooring Systems",
-      categoryAr: "أنظمة الأرضيات",
-      href: "/services?service=3",
-      icon: Paintbrush,
-    },
-    {
-      titleEn: "Subcontracting & Tenders",
-      titleAr: "مقاولات الباطن والمناقصات",
-      categoryEn: "B2B Contracting",
-      categoryAr: "مقاولات تخصصية",
-      href: "/subcontract",
-      icon: HardHat,
-    },
-    {
-      titleEn: "Commercial Landmark Projects",
-      titleAr: "مشاريع الأبراج والمنشآت التجارية",
-      categoryEn: "Portfolio",
-      categoryAr: "محفظة الأعمال",
-      href: "/project",
-      icon: Building2,
-    },
-  ],
-  services: [
-    {
-      titleEn: "GRP & Fiberglass Waterproofing",
-      titleAr: "عزل الألياف الزجاجية (فيبرجلاس)",
-      categoryEn: "Roofs & Tanks Protection",
-      categoryAr: "حماية الأسطح والخزانات",
-      href: "/services?service=1",
-      icon: Droplets,
-    },
-    {
-      titleEn: "Combo System Roof Waterproofing",
-      titleAr: "نظام كومبو المتكامل للأسطح",
-      categoryEn: "Thermal & Waterproofing",
-      categoryAr: "عزل مائي وحراري معتمد",
-      href: "/services?service=2",
-      icon: Layers,
-    },
-    {
-      titleEn: "Epoxy Floor Coating",
-      titleAr: "طلاء أرضيات الإيبوكسي الصناعي",
-      categoryEn: "Industrial Flooring",
-      categoryAr: "أرضيات صناعية وتجارية",
-      href: "/services?service=3",
-      icon: Paintbrush,
-    },
-    {
-      titleEn: "Bitumen Membrane Waterproofing",
-      titleAr: "عزل الأغشية البيتومينية",
-      categoryEn: "Basements & Substructures",
-      categoryAr: "عزل الأساسات والقواعد",
-      href: "/services?service=4",
+      titleEn: "Custom Colored Sports Seatbelts",
+      titleAr: "أحزمة أمان ملونة رياضية معتمدة",
+      categoryEn: "Seatbelts",
+      categoryAr: "أحزمة أمان",
+      href: "/products?search=seatbelt",
       icon: ShieldCheck,
     },
     {
-      titleEn: "Polyurea Fast-Curing Waterproofing",
-      titleAr: "عزل البولي يوريا فائق السرعة",
-      categoryEn: "Heavy-Duty Membranes",
-      categoryAr: "عزل فائق التحمل",
-      href: "/services?service=5",
-      icon: Droplets,
+      titleEn: "Rolls-Royce Style Starlight Roof Ceiling",
+      titleAr: "سقف نجوم ليزري رولز رويس (ألياف ضوئية)",
+      categoryEn: "Custom Styling",
+      categoryAr: "سقف نجوم",
+      href: "/products?search=starlight",
+      icon: Sparkles,
     },
     {
-      titleEn: "Injection Crack Leak Sealing",
-      titleAr: "حقن الخرسانة ومعالجة التسربات",
-      categoryEn: "Targeted Leak Sealing",
-      categoryAr: "معالجة التشققات والتسربات",
-      href: "/services?service=6",
-      icon: Wrench,
-    },
-  ],
-  solutions: [
-    {
-      titleEn: "Waterproofing Solutions",
-      titleAr: "حلول العزل المائي وحماية المنشآت",
-      categoryEn: "Moisture Protection",
-      categoryAr: "حماية متقدمة ضد الرطوبة",
-      href: "/solutions",
-      icon: ShieldCheck,
+      titleEn: "Android Touchscreens & 360 Cameras",
+      titleAr: "شاشات أندرويد وكاميرات محيطية 360",
+      categoryEn: "Electronics",
+      categoryAr: "إلكترونيات وشاشات",
+      href: "/products?search=screen",
+      icon: Disc,
     },
     {
-      titleEn: "Concrete Repair & Protection",
-      titleAr: "إصلاح وحماية الخرسانة الإنشائية",
-      categoryEn: "Structural Restoration",
-      categoryAr: "ترميم وإصلاح إنشائي",
-      href: "/solutions",
-      icon: Wrench,
+      titleEn: "Laser LED Lights & Ambient Lighting",
+      titleAr: "إضاءة ليد ليزرية وأجواء محيطية للسيارات",
+      categoryEn: "Lighting",
+      categoryAr: "إضاءة وزينة",
+      href: "/products?search=led",
+      icon: Car,
     },
     {
-      titleEn: "Roofing & Thermal Systems",
-      titleAr: "حلول الأسطح والعزل الحراري",
-      categoryEn: "High-Efficiency Roofs",
-      categoryAr: "أسطح عالية الكفاءة",
-      href: "/solutions",
-      icon: Layers,
-    },
-    {
-      titleEn: "Basement & Below-Ground Solutions",
-      titleAr: "عزل الأقبية والأساسات العميقة",
-      categoryEn: "Substructure Tanking",
-      categoryAr: "عزل منشآت تحت الأرض",
-      href: "/solutions",
-      icon: Building2,
-    },
-    {
-      titleEn: "Joint Sealing Solutions",
-      titleAr: "حلول فواصل التمدد والإنشاء",
-      categoryEn: "Elastomeric Waterstops",
-      categoryAr: "فواصل التمدد الإنشائية",
-      href: "/solutions",
-      icon: Layers,
-    },
-  ],
-  projects: [
-    {
-      titleEn: "Commercial Towers & High-Rise",
-      titleAr: "أبراج تجارية وأبراج شاهقة",
-      categoryEn: "Dubai & Abu Dhabi High-Rise",
-      categoryAr: "أبراج دبي وأبوظبي",
-      href: "/project",
-      icon: Building2,
-    },
-    {
-      titleEn: "Luxury Residential Villas & Communities",
-      titleAr: "فلل سكنية فاخرة ومجمعات سكنية",
-      categoryEn: "Residential Developments",
-      categoryAr: "مشاريع سكنية راقية",
-      href: "/project",
-      icon: Building2,
-    },
-    {
-      titleEn: "Industrial Warehouses & Logistics Hubs",
-      titleAr: "مستودعات صناعية ومراكز لوجستية",
-      categoryEn: "Logistics Parks",
-      categoryAr: "مناطق لوجستية ومستودعات",
-      href: "/project",
-      icon: Package,
-    },
-    {
-      titleEn: "Infrastructure & Public Utilities",
-      titleAr: "مشاريع البنية التحتية والمرافق العامة",
-      categoryEn: "Municipal Works",
-      categoryAr: "مشاريع حكومية ومرافق",
-      href: "/project",
-      icon: HardHat,
-    },
-  ],
-  industries: [
-    {
-      titleEn: "Commercial Buildings & Corporate Towers",
-      titleAr: "المباني التجارية والمكاتب الإدارية",
-      categoryEn: "Corporate Offices",
-      categoryAr: "مكاتب ومراكز تجارية",
-      href: "/industries",
-      icon: Building2,
-    },
-    {
-      titleEn: "Residential Communities & Private Villas",
-      titleAr: "المجتمعات السكنية والفلل الخاصة",
-      categoryEn: "Residential Developments",
-      categoryAr: "مجتمعات سكنية",
-      href: "/industries",
-      icon: Building2,
-    },
-    {
-      titleEn: "Industrial Plants & Manufacturing Hubs",
-      titleAr: "المنشآت الصناعية ومصانع الإنتاج",
-      categoryEn: "Industrial Facilities",
-      categoryAr: "منشآت صناعية",
-      href: "/industries",
-      icon: HardHat,
-    },
-    {
-      titleEn: "Hospitality, Resorts & Healthcare",
-      titleAr: "قطاع الضيافة والمنتجعات والمستشفيات",
-      categoryEn: "Hotels & Hospitals",
-      categoryAr: "فنادق ومنتجعات ومشافي",
-      href: "/industries",
-      icon: ShieldCheck,
-    },
-  ],
-  resources: [
-    {
-      titleEn: "Technical Specifications & Method Statements",
-      titleAr: "المواصفات الفنية وطرق التنفيذ المعتمدة",
-      categoryEn: "Engineering TDS & Method Statements",
-      categoryAr: "ملفات فنية ومواصفات",
-      href: "/resources",
+      titleEn: "Instant Bespoke Price Quotation",
+      titleAr: "طلب عرض سعر فوري ومخصص",
+      categoryEn: "Transparent Pricing",
+      categoryAr: "تسعيرة فورية",
+      href: "/get-a-quote",
       icon: FileText,
     },
     {
-      titleEn: "Official Approvals & Certifications",
-      titleAr: "الشهادات والاعتمادات الرسمية (دبي وأبوظبي)",
-      categoryEn: "Dubai Municipality & Civil Defense",
-      categoryAr: "اعتمادات بلدية دبي والدفاع المدني",
-      href: "/certifications",
+      titleEn: "Showrooms in Sharjah Industrial Area 4 & 5",
+      titleAr: "معارضنا في المنطقة الصناعية 4 و 5 بالشارقة",
+      categoryEn: "Location & Hours",
+      categoryAr: "موقع المعرض",
+      href: "/contact",
+      icon: HelpCircle,
+    },
+  ],
+  products: [
+    {
+      titleEn: "Custom Laser Leather Seat Covers",
+      titleAr: "أغطية وتلبيس مقاعد جلد نابا بالليزر",
+      categoryEn: "Seat Covers",
+      categoryAr: "فرش مقاعد",
+      href: "/products?search=seat",
+      icon: Armchair,
+    },
+    {
+      titleEn: "7D Precision Molded Floor Mats",
+      titleAr: "دعاسات وأرضيات 7D الفاخرة للسيارات",
+      categoryEn: "Floor Mats",
+      categoryAr: "دعاسات 7D",
+      href: "/products?search=floor",
+      icon: Layers,
+    },
+    {
+      titleEn: "Custom Colored Sports Seatbelts",
+      titleAr: "أحزمة أمان ملونة رياضية معتمدة",
+      categoryEn: "Seatbelts",
+      categoryAr: "أحزمة أمان",
+      href: "/products?search=seatbelt",
       icon: ShieldCheck,
     },
     {
-      titleEn: "10-25 Year Warranty Guidelines",
-      titleAr: "إرشادات الضمان ودليل الصيانة الوقائية",
-      categoryEn: "Certified Guarantee Protocols",
-      categoryAr: "ضمانات معتمدة طويلة الأمد",
-      href: "/resources",
+      titleEn: "Rolls-Royce Style Starlight Roof Ceiling",
+      titleAr: "سقف نجوم ليزري رولز رويس (ألياف ضوئية)",
+      categoryEn: "Custom Styling",
+      categoryAr: "سقف نجوم",
+      href: "/products?search=starlight",
+      icon: Sparkles,
+    },
+    {
+      titleEn: "Android Touchscreens & 360 Cameras",
+      titleAr: "شاشات أندرويد وكاميرات محيطية 360",
+      categoryEn: "Electronics",
+      categoryAr: "إلكترونيات وشاشات",
+      href: "/products?search=screen",
+      icon: Disc,
+    },
+  ],
+  categories: [
+    {
+      titleEn: "Custom Leather Seat Covers",
+      titleAr: "أغطية ومقاعد جلدية مخصصة",
+      categoryEn: "Category",
+      categoryAr: "قسم",
+      href: "/products?category=Seat%20Covers",
+      icon: Armchair,
+    },
+    {
+      titleEn: "7D & 5D Luxury Floor Mats",
+      titleAr: "دعاسات وأرضيات 7D و 5D فاخرة",
+      categoryEn: "Category",
+      categoryAr: "قسم",
+      href: "/products?category=Floor%20Mats",
+      icon: Layers,
+    },
+    {
+      titleEn: "Colored Seatbelts & Cockpit Styling",
+      titleAr: "أحزمة أمان ملونة وزينة المقصورة",
+      categoryEn: "Category",
+      categoryAr: "قسم",
+      href: "/products?category=Seat%20Belts",
       icon: ShieldCheck,
     },
     {
-      titleEn: "Frequently Asked Questions (FAQs)",
-      titleAr: "الأسئلة الشائعة حول العزل والمقاولات",
-      categoryEn: "Technical Q&A",
-      categoryAr: "إجابات هندسية واستفسارات",
-      href: "/faqs",
+      titleEn: "Car Audio, Android Screens & Electronics",
+      titleAr: "صوتيات السيارات وشاشات الأندرويد",
+      categoryEn: "Category",
+      categoryAr: "قسم",
+      href: "/products?category=Electronics",
+      icon: Disc,
+    },
+  ],
+  pages: [
+    {
+      titleEn: "Complete Accessories & Products Catalog",
+      titleAr: "كتالوج المنتجات والإكسسوارات الكامل",
+      categoryEn: "Products",
+      categoryAr: "كتالوج",
+      href: "/products",
+      icon: Armchair,
+    },
+    {
+      titleEn: "Get an Instant Transparent Quote",
+      titleAr: "طلب عرض سعر فوري ومباشر",
+      categoryEn: "Pricing",
+      categoryAr: "تسعيرة",
+      href: "/get-a-quote",
+      icon: FileText,
+    },
+    {
+      titleEn: "About Al Rahmaniah 15+ Years Craftsmanship",
+      titleAr: "عن شركة الرحمانية - خبرة أكثر من 15 عاماً",
+      categoryEn: "Company",
+      categoryAr: "عن الشركة",
+      href: "/about-us",
+      icon: ShieldCheck,
+    },
+    {
+      titleEn: "Showrooms in Sharjah Industrial Area 4 & 5",
+      titleAr: "موقع المعارض في صناعية الشارقة 4 و 5",
+      categoryEn: "Showrooms",
+      categoryAr: "معارضنا",
+      href: "/contact",
       icon: HelpCircle,
     },
   ],
@@ -365,28 +280,36 @@ const MOST_USED_BY_TAB: Record<FilterCategory, MostUsedItem[]> = {
 
 const AI_PRESET_QUESTIONS = [
   {
-    en: "Which waterproofing system is best for flat exposed roofs in UAE?",
-    ar: "ما هو أفضل نظام عزل مائي للأسطح الخرسانية المكشوفة في الإمارات؟",
-    ansEn: "For exposed concrete flat roofs in the UAE climate, our Combo Roofing System or Polyurea/GRP Fiberglass is recommended. The Combo System provides seamless PU foam thermal insulation plus elastomeric waterproofing with a 10 to 25-year warranty, fully approved by Dubai Municipality and Civil Defense.",
-    ansAr: "للأسطح الخرسانية المسطحة والمكشوفة في مناخ الإمارات، يُنصح بنظام الكومبو المتكامل أو عزل البولي يوريا والألياف الزجاجية GRP. يجمع نظام الكومبو بين العزل الحراري بالفوم والعزل المائي غير القابل للكسر مع ضمان يمتد من 10 إلى 25 سنة واعتماد بلدية دبي والدفاع المدني.",
+    en: "What materials do you use for custom car seat covers?",
+    ar: "ما هي خامات تفصيل وتلبيس مقاعد السيارات المتوفرة لديكم؟",
+    ansEn:
+      "At Al Rahmaniah Auto Accessories, we handcraft custom seat covers using 100% genuine German Napa leatherette, Italian micro-perforated leather, breathable sports suede, and luxury Alcantara. Every set is laser-scanned to fit your vehicle with zero wrinkles, side-airbag compatibility, and written warranty.",
+    ansAr:
+      "نوفر في شركة الرحمانية خامات أصلية 100% تشمل جلد النابا الألماني الفاخر، والجلد الإيطالي المخرم للتهوية، والكانتارا الرياضي. يتم قص وتفصيل المقاعد بالليزر لمطابقة كراسي سيارتك تماماً بدون تجاعيد مع الحفاظ التام على أكياس الهواء (Airbags) وضمان خطي معتمد.",
   },
   {
-    en: "What epoxy floor coating is recommended for heavy forklift traffic?",
-    ar: "ما هو طلاء الأرضيات الإيبوكسي المناسب للمستودعات ذات حركة الرافعات الثقيلة؟",
-    ansEn: "We apply heavy-duty solvent-free high-build epoxy or self-levelling epoxy resin (2mm to 4mm) with silica aggregate broadcast. It offers exceptional compressive strength, high abrasion resistance, and seamless chemical resistance suited for active UAE logistics warehouses.",
-    ansAr: "نطبق أنظمة الإيبوكسي عالي الكثافة خالي المذيبات أو الإيبوكسي ذاتي التسوية بسماكات 2 إلى 4 ملم مع بث رمل السيليكا المقاوم للاحتكاك، مما يمنح مقاومة عالية لحركة الرافعات الشوكية والمواد الكيميائية في المستودعات.",
+    en: "How are your 7D floor mats customized for my specific vehicle?",
+    ar: "كيف يتم تفصيل دعاسات وأرضيات 7D المخصصة لنوع سيارتي؟",
+    ansEn:
+      "Our 7D mats are custom-measured using 3D laser floor scanning for your specific car make, model, and year. They feature high raised edges protecting side carpets, heavy-duty waterproof leatherette, anti-slip backing, and a detachable curly wire coil carpet layer for effortless cleaning.",
+    ansAr:
+      "دعاسات 7D لدينا مصممة بالليزر بمقاسات حصرية لكل موديل وسنة صنع، بحواف مرتفعة تغطي كامل الأرضية وتحمي موكيت الوكالة من الأتربة والماء، مع طبقة موكيت سلكية قابلة للفك لسهولة الغسيل والتنظيف.",
   },
   {
-    en: "How do you repair active water leaks in basement retaining walls?",
-    ar: "كيف يتم معالجة تسربات المياه النشطة في الجدران الاستنادية للأقبية؟",
-    ansEn: "We utilize high-pressure polyurethane (PU) resin injection. When injected into cracks and honeycombs, the resin reacts with leaking water to expand into a dense, hydrophobic closed-cell foam that permanently stops active water ingress in minutes without structural demolition.",
-    ansAr: "نستخدم تقنية حقن راتنجات البولي يوريثان المضغوطة هيدروليكياً. يتفاعل الراتنج فوراً مع المياه المتسربة ليتمدد إلى رغوة كثيفة مانعة للماء توقف التسرب النشط في دقائق دون الحاجة لأي تكسير إنشائي.",
+    en: "Are custom colored seatbelts safe and OEM-certified in the UAE?",
+    ar: "هل أحزمة الأمان الملونة آمنة ومطابقة لمواصفات الفحص والسلامة في الإمارات؟",
+    ansEn:
+      "Yes, 100%. Our colored seatbelt webbing is high-tensile polyester certified to OEM, FIA, and UAE vehicle inspection standards (rated for 2,500+ KG tensile strength). We retain your factory pre-tensioners, buckles, and safety sensor wiring.",
+    ansAr:
+      "نعم 100%. نستخدم خيوط بوليستر عالية الشد مطابقة للمواصفات القياسية الإماراتية وهيئات الفحص المعتمدة، مع الاحتفاظ بآلية الشد وحساسات الأمان الأصلية دون المساس بنظام الحماية.",
   },
   {
-    en: "How can I get an approved method statement and official quotation?",
-    ar: "كيف يمكنني الحصول على طريقة تنفيذ معتمدة وعرض سعر رسمي لمشروعي؟",
-    ansEn: "You can request a free technical site visit and detailed commercial proposal by clicking 'Get a Quote' or contacting our engineering team directly via WhatsApp (+971 50 123 4567). We provide complete submittals, TDS, and municipality-compliant approvals within 24 hours.",
-    ansAr: "يمكنك طلب معاينة فنية مجانية للموقع وعرض سعر رسمي مفصل بالنقر على زر 'طلب عرض سعر' أو التواصل مباشرة مع فريقنا الهندسي عبر واتساب. نوفر المواصفات الفنية المعتمدة واعتمادات الدوائر المختصة خلال 24 ساعة.",
+    en: "How does a Rolls-Royce starlight ceiling work and how many stars can I get?",
+    ar: "كيف يتم تركيب سقف النجوم (ستار لايت) وكم عدد النجوم المتاحة؟",
+    ansEn:
+      "Our master interior craftsmen embed between 450 to 1,200+ optical fiber light points directly into your vehicle headliner. Features include multi-color RGBW selection, realistic twinkling stars, shooting meteor effects, and full control via Bluetooth smartphone app and wireless remote.",
+    ansAr:
+      "نقوم بتركيب ألياف ضوئية ليزرية بعدد يتراوح بين 450 إلى 1,200+ نجمة في سقف السيارة، مع خاصية الوميض (Twinkle) وشهب متحركة (Shooting Stars)، مع تحكم كامل بالألوان والإضاءة عبر تطبيق الهاتف الذكي وريموت لاسلكي.",
   },
 ];
 
@@ -395,8 +318,8 @@ export default function ExpandableSearchBar({
   placeholder,
   className = "",
   iconColor = "text-white",
-  hoverIconColor = "group-hover:text-[var(--primary)]",
-  dashedButton = false,
+  hoverIconColor = "hover:text-red-500",
+  dashedButton = true,
   isDrawer = false,
   onCloseMenu,
   isScrolled = false,
@@ -418,106 +341,7 @@ export default function ExpandableSearchBar({
   const [aiQuestion, setAiQuestion] = useState("");
   const [aiResponse, setAiResponse] = useState<string | null>(null);
 
-  // Image Search State
-  const [isImageSearchOpen, setIsImageSearchOpen] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [isAnalyzingImage, setIsAnalyzingImage] = useState(false);
-  const [imageSearchData, setImageSearchData] = useState<{
-    detectedEn: string;
-    detectedAr: string;
-    category: "Service" | "Product" | "Project" | "Solution";
-    confidence: "high" | "medium" | "low";
-    descriptionEn: string;
-    descriptionAr: string;
-    matchedItems: SearchResultItem[];
-    suggestedKeywords: string[];
-    aiSource: "gemini" | "catalog-matcher";
-  } | null>(null);
-  const [imageSearchError, setImageSearchError] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
-
-  const processImageFile = async (file: File) => {
-    if (!file) return;
-
-    if (!file.type.startsWith("image/")) {
-      setImageSearchError(
-        isAr
-          ? "يرجى اختيار ملف صورة صالح (PNG, JPG, WEBP)"
-          : "Please select a valid image file (PNG, JPG, WEBP)"
-      );
-      setIsImageSearchOpen(true);
-      return;
-    }
-
-    if (file.size > 10 * 1024 * 1024) {
-      setImageSearchError(
-        isAr
-          ? "حجم الصورة كبير جداً (الحد الأقصى 10 ميغابايت)"
-          : "Image is too large (maximum 10MB)"
-      );
-      setIsImageSearchOpen(true);
-      return;
-    }
-
-    setSelectedImageFile(file);
-    setImageSearchError(null);
-    setImageSearchData(null);
-    setIsAnalyzingImage(true);
-    setIsImageSearchOpen(true);
-    setIsExpanded(true);
-
-    const previewUrl = URL.createObjectURL(file);
-    setImagePreview(previewUrl);
-
-    try {
-      const formData = new FormData();
-      formData.append("image", file);
-      formData.append("hint", searchQuery || "");
-
-      const res = await fetch("/api/image-search", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "Failed to analyze image");
-      }
-
-      setImageSearchData(data);
-    } catch (err: any) {
-      console.error("Image search error:", err);
-      setImageSearchError(
-        isAr
-          ? "تعذر تحليل الصورة. يرجى تجربة صورة أخرى أو التحقق من الاتصال."
-          : (err.message || "Failed to analyze image. Please try another image.")
-      );
-    } finally {
-      setIsAnalyzingImage(false);
-    }
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      processImageFile(file);
-    }
-    e.target.value = "";
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      processImageFile(file);
-    }
-  };
-
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -552,7 +376,7 @@ export default function ExpandableSearchBar({
     return () => window.removeEventListener("keydown", handleGlobalKeyDown);
   }, []);
 
-  // Handle outside click
+  // Outside click listener
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -580,7 +404,6 @@ export default function ExpandableSearchBar({
 
   const handleCollapse = () => {
     setIsExpanded(false);
-    setIsImageSearchOpen(false);
     if (!isDrawer) {
       setSearchQuery("");
     }
@@ -623,118 +446,89 @@ export default function ExpandableSearchBar({
         score += 15;
       }
 
+      if (item.category === "Product" && score > 0) {
+        score += 25;
+      }
+
       if (score > 0) {
         scored.push({ item, score });
       }
     });
 
-    // Sort by score descending
     scored.sort((a, b) => b.score - a.score);
     const allMatched = scored.map((s) => s.item);
 
-    // Apply active category filter
     const filtered = allMatched.filter((it) => {
       if (activeTab === "all") return true;
-      if (activeTab === "services") return it.category === "Service";
-      if (activeTab === "solutions") return it.category === "Solution";
-      if (activeTab === "projects") return it.category === "Project";
-      if (activeTab === "industries") {
-        return it.category === "Industry" || it.href.includes("/industries");
-      }
-      if (activeTab === "resources") {
-        return (
-          it.category === "Resource" ||
-          it.href.includes("/resources") ||
-          it.href.includes("/certifications") ||
-          it.href.includes("/faqs")
-        );
-      }
+      if (activeTab === "products") return it.category === "Product" || it.category === "Service";
+      if (activeTab === "categories") return it.category === "Category";
+      if (activeTab === "pages") return it.category === "Page";
       return true;
     });
 
     return filtered.slice(0, 8);
   }, [searchQuery, activeTab]);
 
-  const handleSelectResult = (item: SearchResultItem) => {
-    if (onSearch) {
-      onSearch(item.name, item.href);
-    }
-    router.push(item.href);
-    handleCollapse();
-    onCloseMenu?.();
-  };
+  // Voice Search Handler
+  const handleVoiceSearch = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-  const handleExecuteSearch = (q: string) => {
-    const query = q.trim();
-    if (!query) return;
-
-    if (filteredResults.length > 0) {
-      handleSelectResult(filteredResults[0]);
-      return;
-    }
-
-    const lower = query.toLowerCase();
-    let target = `/products?search=${encodeURIComponent(query)}`;
-    if (lower.includes("subcontract") || lower.includes("مقاولة")) target = "/subcontract";
-    else if (lower.includes("career") || lower.includes("job") || lower.includes("وظائف")) target = "/career";
-    else if (lower.includes("service") || lower.includes("خدمة")) target = "/services";
-    else if (lower.includes("quote") || lower.includes("price") || lower.includes("تسعير")) target = "/get-a-quote";
-    else if (lower.includes("project") || lower.includes("مشروع")) target = "/project";
-    else if (lower.includes("solution") || lower.includes("حلول")) target = "/solutions";
-    else if (lower.includes("industry") || lower.includes("قطاع")) target = "/industries";
-
-    if (onSearch) {
-      onSearch(query, target);
-    }
-    router.push(target);
-    handleCollapse();
-    onCloseMenu?.();
-  };
-
-  const handleVoiceSearch = () => {
-    if (typeof window === "undefined") return;
-
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
+    if (!speechSupported) {
       toast.error(
         isAr
-          ? "خاصية الإدخال الصوتي غير مدعومة في هذا المتصفح. يرجى استخدام متصفح Chrome أو Edge أو Safari."
-          : "Voice search is not supported in this browser. Please use Chrome, Edge, or Safari.",
-        { duration: 4000 }
+          ? "البحث الصوتي غير مدعوم في متصفحك. يرجى تجربة Google Chrome."
+          : "Voice search is not supported in this browser. Please use Chrome."
       );
       return;
     }
 
-    if (isListening) {
-      try {
-        recognitionRef.current?.stop();
-      } catch { }
+    if (isListening && recognitionRef.current) {
+      recognitionRef.current.stop();
       setIsListening(false);
       return;
     }
 
     try {
-      const recognition: SpeechRecognitionInstance = new SpeechRecognition();
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return;
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = isAr ? "ar-AE" : "en-US";
       recognition.continuous = false;
       recognition.interimResults = false;
-      recognition.lang = isAr ? "ar-AE" : "en-US";
 
       recognition.onstart = () => {
         setIsListening(true);
+        toast.success(
+          isAr ? "تحدث الآن للبحث في الموقع..." : "Listening... Speak your accessory query",
+          { id: "voice-toast", duration: 4000 }
+        );
       };
+
       recognition.onresult = (event: SpeechRecognitionEvent) => {
         const transcript = event.results[0][0].transcript;
-        if (transcript) {
-          setSearchQuery(transcript);
-          setIsImageSearchOpen(false);
-          setIsListening(false);
-          handleExecuteSearch(transcript);
-        }
+        setSearchQuery(transcript);
+        setIsListening(false);
+        toast.dismiss("voice-toast");
+        handleExecuteSearch(transcript);
       };
-      recognition.onerror = () => setIsListening(false);
-      recognition.onend = () => setIsListening(false);
+
+      recognition.onerror = () => {
+        setIsListening(false);
+        toast.dismiss("voice-toast");
+        toast.error(
+          isAr
+            ? "تعذر التعرف على الصوت. يرجى المحاولة ثانية."
+            : "Could not hear audio. Please try again."
+        );
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+        toast.dismiss("voice-toast");
+      };
 
       recognitionRef.current = recognition;
       recognition.start();
@@ -743,48 +537,35 @@ export default function ExpandableSearchBar({
     }
   };
 
-  const highlightMatch = (text: string, query: string) => {
-    if (!query.trim()) return text;
-    const parts = text.split(new RegExp(`(${query})`, "gi"));
-    return (
-      <>
-        {parts.map((part, i) =>
-          part.toLowerCase() === query.toLowerCase() ? (
-            <mark key={i} className="bg-[#E6F7F6]/20 text-[#008f83] font-bold rounded-sm px-0.5">
-              {part}
-            </mark>
-          ) : (
-            part
-          )
-        )}
-      </>
-    );
+  const handleExecuteSearch = (query: string, href?: string) => {
+    if (href) {
+      router.push(href);
+      handleCollapse();
+      if (onCloseMenu) onCloseMenu();
+      return;
+    }
+
+    const trimmed = query.trim();
+    if (!trimmed) return;
+
+    if (onSearch) {
+      onSearch(trimmed);
+    } else {
+      router.push(`/products?search=${encodeURIComponent(trimmed)}`);
+    }
+
+    handleCollapse();
+    if (onCloseMenu) onCloseMenu();
   };
 
-  const handleAskAiSubmit = (q: string) => {
-    const questionText = q.trim();
-    if (!questionText) return;
+  const handleAskAi = (question: string) => {
+    setAiQuestion(question);
+    setShowAiModal(true);
 
-    // Match against preset questions or generate smart answer
-    const lower = questionText.toLowerCase();
     const matched = AI_PRESET_QUESTIONS.find(
-      (item) =>
-        lower.includes("roof") ||
-          lower.includes("combo") ||
-          lower.includes("سطح") ||
-          lower.includes("كومبو")
-          ? item.en.includes("roof")
-          : lower.includes("epoxy") ||
-            lower.includes("floor") ||
-            lower.includes("إيبوكسي") ||
-            lower.includes("أرضيات")
-            ? item.en.includes("epoxy")
-            : lower.includes("leak") ||
-              lower.includes("injection") ||
-              lower.includes("تسرب") ||
-              lower.includes("حقن")
-              ? item.en.includes("leak")
-              : false
+      (p) =>
+        p.en.toLowerCase().includes(question.toLowerCase()) ||
+        p.ar.includes(question)
     );
 
     if (matched) {
@@ -792,18 +573,22 @@ export default function ExpandableSearchBar({
     } else {
       setAiResponse(
         isAr
-          ? `بناءً على متطلبات "${questionText}"، توصي ورشة الرحمانية لصيانة السيارات بإجراء فحص شامل للمركبة واستخدام قطع غيار أصلية ومطابقة لأعلى معايير الجودة والسلامة.`
-          : `For "${questionText}", Al Rahmaniah Auto Workshop recommends a specialized inspection compliant with top UAE automotive standards, backed by our service guarantee.`
+          ? "شكراً لسؤالك! ينصح مستشارو شركة الرحمانية لإكسسوارات السيارات بزيارة معرضنا بالشارقة (المنطقة الصناعية 4) أو مراسلتنا عبر الواتساب للحصول على تفصيل مخصص وعينات أقمشة وجلود مباشرة."
+          : "Thank you for your question! Our styling advisors at Al Rahmaniah Auto Accessories recommend visiting our Sharjah showroom in Industrial Area 4, or chatting with our specialists on WhatsApp for custom swatches and fitment options."
       );
     }
   };
 
-  const defaultPlaceholder = isAr ? "ابحث عن الخدمات والحلول..." : "Search services, solutions...";
   const mostUsedItems = MOST_USED_BY_TAB[activeTab] || MOST_USED_BY_TAB.all;
+  const defaultPlaceholder = isAr ? "ابحث عن أغطية مقاعد، دعاسات 7D، سقف نجوم، إلكترونيات..." : "Search seat covers, 7D mats, starlight ceilings, electronics...";
 
   return (
-    <div className={`relative ${className}`} ref={containerRef}>
-      {/* ─── DESKTOP & DRAWER TRIGGER BUTTON ─── */}
+    <div
+      ref={containerRef}
+      className={`relative z-40 ${className}`}
+      dir={isAr ? "rtl" : "ltr"}
+    >
+      {/* ─── DESKTOP & MOBILE NAVBAR TRIGGER BUTTON ─── */}
       {!isDrawer ? (
         <div className="flex items-center">
           {dashedButton ? (
@@ -816,22 +601,24 @@ export default function ExpandableSearchBar({
                   handleExpand();
                 }
               }}
-              className={`relative p-0.5 rounded-full border border-dashed transition-all cursor-pointer hover:scale-105 ${isExpanded
-                ? isScrolled
-                  ? "border-[#01a9a0] bg-[#01a9a0]/15"
-                  : "border-white bg-white/15"
-                : isScrolled
-                  ? "border-[#01a9a0]/40 hover:border-[#01a9a0]"
-                  : "border-white/60 hover:border-white"
-                }`}
+              className={`relative p-0.5 rounded-full border border-dashed transition-all cursor-pointer hover:scale-105 ${
+                isExpanded
+                  ? isScrolled
+                    ? "border-red-600 bg-red-600/15"
+                    : "border-white bg-white/15"
+                  : isScrolled
+                    ? "border-red-600/50 hover:border-red-600"
+                    : "border-white/60 hover:border-white"
+              }`}
               aria-label={isExpanded ? "Close search" : "Open search"}
               title="Search (Ctrl + K)"
             >
               <div
-                className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-colors shadow-sm ${isScrolled
-                  ? "bg-[#01a9a0] hover:bg-[#008f88] text-white"
-                  : "bg-[#00b3a4] hover:bg-[#E6F7F6] text-white"
-                  }`}
+                className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-colors shadow-sm ${
+                  isScrolled
+                    ? "bg-red-600 hover:bg-red-700 text-white"
+                    : "bg-red-600 hover:bg-red-700 text-white"
+                }`}
               >
                 {isExpanded ? (
                   <X className="h-4 w-4 stroke-[2.5]" />
@@ -855,9 +642,9 @@ export default function ExpandableSearchBar({
               title="Search (Ctrl + K)"
             >
               {isExpanded ? (
-                <X className="h-6 w-6 stroke-2" />
+                <X className="h-5 w-5 stroke-2 text-red-500" />
               ) : (
-                <Search className="h-6 w-6 stroke-2" />
+                <Search className="h-5 w-5 stroke-2" />
               )}
             </button>
           )}
@@ -874,56 +661,60 @@ export default function ExpandableSearchBar({
                 handleExpand();
               }
             }}
-            className="w-full flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 rounded-full px-4 py-2.5 text-slate-600 transition-all cursor-pointer text-xs shadow-xs group"
+            className="w-full flex items-center justify-between bg-white hover:bg-zinc-50 border border-zinc-200 rounded-full px-4 py-2.5 text-zinc-600 transition-all cursor-pointer text-xs shadow-xs group"
           >
             <div className="flex items-center gap-2">
-              <Search className="w-4 h-4 text-[#01a9a0] group-hover:scale-110 transition-transform" />
-              <span className="text-slate-600 group-hover:text-slate-900 transition-colors font-medium">{placeholder || defaultPlaceholder}</span>
+              <Search className="w-4 h-4 text-red-600 group-hover:scale-110 transition-transform" />
+              <span className="text-zinc-600 group-hover:text-zinc-900 transition-colors font-medium">
+                {placeholder || defaultPlaceholder}
+              </span>
             </div>
-            <span className="text-[10px] text-[#01a9a0] font-bold uppercase tracking-wider bg-[#01a9a0]/10 px-2 py-0.5 rounded-full">Search</span>
+            <span className="text-[10px] text-red-600 font-bold uppercase tracking-wider bg-red-50 border border-red-200 px-2 py-0.5 rounded-full">
+              Search
+            </span>
           </button>
         </div>
       )}
 
-      {/* ─── UNIFIED SEARCH CARD (SINGLE CONTAINER) ───────────── */}
+      {/* Mobile Backdrop Overlay when opened from Navbar on mobile screen */}
+      {!isDrawer && isExpanded && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-xs lg:hidden z-40 transition-opacity"
+          onClick={handleCollapse}
+        />
+      )}
+
+      {/* ─── UNIFIED SEARCH CARD (WHITE THEME) ───────────── */}
       {isExpanded && (
         <div
-          className={`${isDrawer
-            ? "relative w-full mt-3"
-            : "absolute top-full mt-3 right-0 rtl:right-auto rtl:left-0 w-[92vw] sm:w-[500px] md:w-[540px] lg:w-[580px] max-w-[580px]"
-            } bg-white rounded-3xl shadow-[0_25px_70px_rgba(1,169,160,0.15),0_15px_35px_rgba(0,0,0,0.08)] border border-[#01a9a0]/25 p-5 sm:p-6 z-50 text-left rtl:text-right animate-in fade-in zoom-in-95 duration-200`}
+          className={`${
+            isDrawer
+              ? "relative w-full mt-3"
+              : "fixed inset-x-3 top-20 sm:absolute sm:inset-auto sm:top-full sm:mt-3 sm:right-0 rtl:sm:right-auto rtl:sm:left-0 w-[calc(100vw-1.5rem)] sm:w-[540px] md:w-[620px] lg:w-[680px] max-w-[calc(100vw-1.5rem)] sm:max-w-[680px]"
+          } bg-white rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.18),0_15px_35px_rgba(220,38,38,0.06)] border border-zinc-200/90 p-4 sm:p-6 z-50 text-left rtl:text-right animate-in fade-in zoom-in-95 duration-200 flex flex-col max-h-[85vh] sm:max-h-[620px]`}
           onClick={(e) => e.stopPropagation()}
           dir={isAr ? "rtl" : "ltr"}
         >
-          {/* 1. Integrated Search Input Box with Website Primary Theme */}
-          <div className="relative flex items-center bg-white border-2 border-[#01a9a0]/30 focus-within:border-[#01a9a0] focus-within:ring-4 focus-within:ring-[#01a9a0]/15 rounded-2xl px-4 py-3 transition-all shadow-xs gap-3">
-            <Search className="w-5 h-5 text-[#01a9a0] shrink-0 stroke-[2.2]" />
+          {/* 1. Integrated Search Input Box */}
+          <div className="relative flex items-center bg-white border-2 border-red-600/30 focus-within:border-red-600 focus-within:ring-4 focus-within:ring-red-600/15 rounded-2xl px-3.5 sm:px-4 py-2.5 sm:py-3 transition-all shadow-xs gap-2.5 sm:gap-3 shrink-0">
+            <Search className="w-5 h-5 text-red-600 shrink-0 stroke-[2.2]" />
             <input
               ref={inputRef}
               type="text"
               value={searchQuery}
               onFocus={() => setIsInputFocused(true)}
               onBlur={() => setIsInputFocused(false)}
-              onChange={(e) => {
-                const val = e.target.value;
-                setSearchQuery(val);
-                if (isImageSearchOpen) {
-                  setIsImageSearchOpen(false);
-                }
-              }}
+              onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault();
-                  if (isImageSearchOpen) {
-                    setIsImageSearchOpen(false);
-                  }
                   handleExecuteSearch(searchQuery);
                 } else if (e.key === "Escape") {
                   handleCollapse();
                 }
               }}
-              placeholder={placeholder || (isAr ? "ابحث عن الخدمات، المشاريع، الحلول..." : "Search services, projects, solutions...")}
-              className="flex-1 bg-transparent text-sm sm:text-base text-slate-900 placeholder-slate-400 outline-none min-w-0 font-medium"
+              placeholder={placeholder || defaultPlaceholder}
+              className="flex-1 bg-transparent text-sm sm:text-base text-zinc-900 placeholder-zinc-400 outline-none min-w-0 font-medium"
             />
 
             {/* Clear Query X */}
@@ -931,7 +722,7 @@ export default function ExpandableSearchBar({
               <button
                 type="button"
                 onClick={handleClearQuery}
-                className="p-1.5 text-slate-400 hover:text-[#01a9a0] hover:bg-[#f0faf9] rounded-full transition-colors shrink-0 cursor-pointer"
+                className="p-1.5 text-zinc-400 hover:text-red-600 hover:bg-zinc-100 rounded-full transition-colors shrink-0 cursor-pointer"
                 title={isAr ? "مسح النص" : "Clear text"}
                 aria-label="Clear text"
               >
@@ -939,20 +730,25 @@ export default function ExpandableSearchBar({
               </button>
             )}
 
-            {/* Voice Search (Always persistent, never vanishes on blur or camera click) */}
+            {/* Voice Search with Pulse Animation */}
             {mounted && (
               <button
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={handleVoiceSearch}
-                className={`p-1.5 rounded-full transition-all shrink-0 cursor-pointer ${isListening
-                  ? "bg-red-500 text-white animate-pulse shadow-xs"
-                  : "text-slate-400 hover:text-[#01a9a0] hover:bg-[#f0faf9]"
-                  }`}
+                className={`p-1.5 rounded-full transition-all shrink-0 cursor-pointer ${
+                  isListening
+                    ? "bg-red-600 text-white animate-pulse shadow-md shadow-red-600/30"
+                    : "text-zinc-400 hover:text-red-600 hover:bg-zinc-100"
+                }`}
                 title={
                   isListening
-                    ? (isAr ? "جارٍ الاستماع..." : "Listening...")
-                    : (isAr ? "البحث الصوتي" : "Voice search")
+                    ? isAr
+                      ? "جارٍ الاستماع..."
+                      : "Listening..."
+                    : isAr
+                      ? "البحث الصوتي"
+                      : "Voice search"
                 }
                 aria-label="Voice search"
               >
@@ -964,645 +760,234 @@ export default function ExpandableSearchBar({
               </button>
             )}
 
-            {/* Image Search Camera Button (Toggles panel; does NOT immediately force open file chooser) */}
-            <button
-              type="button"
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsImageSearchOpen((prev) => !prev);
-              }}
-              className={`p-1.5 rounded-full transition-all shrink-0 cursor-pointer group/cam relative ${isImageSearchOpen
-                ? "bg-[#01a9a0] text-white shadow-xs ring-2 ring-[#01a9a0]/30"
-                : "text-slate-400 hover:text-[#01a9a0] hover:bg-[#f0faf9]"
-                }`}
-              title={isAr ? "البحث بالصورة" : "Search by Image"}
-              aria-label="Image search"
-            >
-              <Camera className="w-4 h-4 transition-transform group-hover/cam:scale-110" />
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-
-
-            {/* Close button */}
+            {/* Close Button */}
             <button
               type="button"
               onClick={handleCollapse}
-              className="p-1 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-full transition-colors shrink-0 cursor-pointer"
-              title={isAr ? "إغلاق" : "Close"}
-              aria-label="Close search"
+              className="p-1.5 text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 rounded-full transition-colors shrink-0 cursor-pointer"
+              title={isAr ? "إغلاق (Esc)" : "Close (Esc)"}
+              aria-label="Close"
             >
-              <X className="w-4 h-4 stroke-[2.2]" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
-          {/* ─── CONDITIONAL: EMBEDDED AI IMAGE SEARCH VIEW OR REGULAR SEARCH ─── */}
-          {isImageSearchOpen ? (
-            /* EMBEDDED AI IMAGE SEARCH PANEL INSIDE SEARCH BAR */
-            <div className="mt-4 flex flex-col animate-in fade-in zoom-in-95 duration-200">
-              {/* Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+          {/* 2. Filter Tabs Row */}
+          <div className="flex items-center gap-1.5 sm:gap-2 mt-3 sm:mt-4 pb-2 border-b border-zinc-100 overflow-x-auto scrollbar-none shrink-0">
+            {FILTER_TABS.map((tab) => {
+              const active = activeTab === tab.key;
+              return (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                    active
+                      ? "bg-red-600 text-white shadow-xs"
+                      : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200/80 hover:text-zinc-900"
+                  }`}
+                >
+                  {isAr ? tab.labelAr : tab.labelEn}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* 3. Dynamic Results or Most Used Accessories Grid */}
+          <div className="flex-1 overflow-y-auto mt-3 pr-1 scrollbar-thin scrollbar-thumb-zinc-200">
+            {searchQuery.trim().length > 0 ? (
+              filteredResults.length > 0 ? (
+                <div className="space-y-2">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 px-1">
+                    {isAr
+                      ? `نتائج البحث (${filteredResults.length})`
+                      : `Search Results (${filteredResults.length})`}
+                  </div>
+                  {filteredResults.map((result) => {
+                    const badge =
+                      CATEGORY_COLORS[result.category] || CATEGORY_COLORS.Product;
+                    return (
+                      <div
+                        key={result.id}
+                        onClick={() => handleExecuteSearch(result.name, result.href)}
+                        className="group flex items-start justify-between gap-3 p-3 rounded-2xl hover:bg-red-50/70 border border-transparent hover:border-red-100 transition-all cursor-pointer"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span
+                              className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badge.bg} ${badge.text} ${badge.border}`}
+                            >
+                              {isAr ? result.categoryAr || result.category : result.category}
+                            </span>
+                            <h4 className="text-sm font-bold text-zinc-900 group-hover:text-red-600 transition-colors truncate">
+                              {isAr ? result.nameAr || result.name : result.name}
+                            </h4>
+                          </div>
+                          <p className="text-xs text-zinc-500 line-clamp-1 leading-normal">
+                            {isAr ? result.descAr || result.desc : result.desc}
+                          </p>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-red-600 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform shrink-0 mt-1 rtl:rotate-180" />
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="py-8 text-center text-zinc-400 text-xs">
+                  {isAr
+                    ? `لا توجد نتائج مطابقة لـ "${searchQuery}". جرب البحث بكلمات مثل "مقاعد"، "دعاسات"، أو "سقف نجوم".`
+                    : `No results for "${searchQuery}". Try terms like "seat covers", "7D mats", or "starlight".`}
+                </div>
+              )
+            ) : (
+              <div>
+                <div className="flex items-center justify-between mb-2 px-1">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">
+                    {isAr ? "الأكثر طلباً وتصفحاً" : "Most Popular Accessories"}
+                  </span>
+                  <span className="text-[10px] text-red-600 font-semibold">
+                    {isAr ? "الرحمانية للسيارات" : "Al Rahmaniah"}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {mostUsedItems.map((item, idx) => {
+                    const Icon = item.icon;
+                    return (
+                      <div
+                        key={idx}
+                        onClick={() => handleExecuteSearch(item.titleEn, item.href)}
+                        className="group flex items-center gap-3 p-2.5 rounded-2xl hover:bg-zinc-50 border border-zinc-100 hover:border-red-200/80 transition-all cursor-pointer"
+                      >
+                        <div className="w-9 h-9 rounded-xl bg-red-50 text-red-600 border border-red-100 flex items-center justify-center shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-xs font-bold text-zinc-800 group-hover:text-red-600 transition-colors truncate">
+                            {isAr ? item.titleAr : item.titleEn}
+                          </p>
+                          <p className="text-[10px] text-zinc-400 truncate">
+                            {isAr ? item.categoryAr : item.categoryEn}
+                          </p>
+                        </div>
+                        <ChevronRight className="w-3.5 h-3.5 text-zinc-300 group-hover:text-red-600 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-transform shrink-0 rtl:rotate-180" />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* 4. Bottom AI Assistant Banner */}
+          <div className="mt-3 pt-3 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-zinc-500 shrink-0">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+              <span className="font-semibold text-zinc-800">
+                {isAr ? "اسأل مستشار الإكسسوارات الذكي:" : "Ask AI Styling Advisor:"}
+              </span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() =>
+                  handleAskAi(
+                    isAr
+                      ? "ما هي خامات تفصيل مقاعد السيارات؟"
+                      : "What materials do you use for custom seat covers?"
+                  )
+                }
+                className="text-[11px] font-medium text-red-600 hover:text-red-700 bg-red-50/80 hover:bg-red-100 px-2.5 py-1 rounded-full transition-colors cursor-pointer"
+              >
+                {isAr ? "خامات المقاعد الجلدية" : "Custom Seat Materials"}
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  handleAskAi(
+                    isAr
+                      ? "كيف يتم تفصيل دعاسات 7D لنوع سيارتي؟"
+                      : "How are 7D floor mats customized?"
+                  )
+                }
+                className="text-[11px] font-medium text-red-600 hover:text-red-700 bg-red-50/80 hover:bg-red-100 px-2.5 py-1 rounded-full transition-colors cursor-pointer"
+              >
+                {isAr ? "تفصيل دعاسات 7D" : "7D Floor Mats"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─── ASK AI MODAL (PORTAL) ────────────────────────────────────────── */}
+      {showAiModal &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[100000] bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200"
+            onClick={() => setShowAiModal(false)}
+            dir={isAr ? "rtl" : "ltr"}
+          >
+            <div
+              className="bg-white rounded-3xl shadow-2xl border border-zinc-200 max-w-lg w-full p-6 text-left rtl:text-right animate-in zoom-in-95 duration-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between pb-3 border-b border-zinc-100 mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#01a9a0] to-[#00bfa5] flex items-center justify-center text-white shadow-sm shadow-[#01a9a0]/30 shrink-0">
-                    <Camera className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-xl bg-red-100 text-red-600 flex items-center justify-center">
+                    <Sparkles className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-xs sm:text-sm text-slate-900 leading-tight">
-                      {isAr ? "البحث بالصورة" : "Image Search"}
+                    <h3 className="text-sm font-bold text-zinc-900">
+                      {isAr ? "مستشار الرحمانية الذكي للإكسسوارات" : "Al Rahmaniah AI Styling Advisor"}
                     </h3>
-                    <p className="text-[11px] text-slate-500 mt-0.5">
-                      {isAr
-                        ? "ارفع صورة للبحث عن الخدمات والحلول المناسبة"
-                        : "Upload a photo to find matching services & solutions"}
+                    <p className="text-[11px] text-zinc-400">
+                      {isAr ? "إجابة فورية ومعتمدة من خبراء تفصيل السيارات" : "Instant expert automotive styling guidance"}
                     </p>
                   </div>
                 </div>
                 <button
                   type="button"
-                  onClick={() => setIsImageSearchOpen(false)}
-                  className="p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
-                  title={isAr ? "العودة للبحث العادي" : "Back to normal search"}
+                  onClick={() => setShowAiModal(false)}
+                  className="p-1.5 rounded-full text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 transition-colors cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Scrollable Body */}
-              <div className="mt-3 max-h-[340px] sm:max-h-[380px] overflow-y-auto slim-scrollbar pr-1.5 space-y-3">
-                {/* 1. Dropzone with Drag & Drop ("drap") and Explicit "Upload Image" Button */}
-                {!imagePreview && (
-                  <div
-                    onDragOver={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setIsDragging(true);
-                    }}
-                    onDragEnter={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setIsDragging(true);
-                    }}
-                    onDragLeave={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setIsDragging(false);
-                    }}
-                    onDrop={handleDrop}
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 group flex flex-col items-center justify-center gap-3 ${isDragging
-                      ? "border-[#01a9a0] bg-[#f0faf9] scale-[1.01] shadow-md shadow-[#01a9a0]/15"
-                      : "border-[#01a9a0]/40 hover:border-[#01a9a0] hover:bg-[#f0faf9]/60 bg-gradient-to-b from-slate-50/60 to-white"
-                      }`}
-                  >
-                    <div
-                      className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-200 shadow-inner ${isDragging
-                        ? "bg-[#01a9a0] text-white scale-110 shadow-md shadow-[#01a9a0]/30"
-                        : "bg-[#f0faf9] group-hover:bg-[#01a9a0]/15 text-[#01a9a0] group-hover:scale-105"
-                        }`}
-                    >
-                      <UploadCloud className="w-7 h-7" />
-                    </div>
-
-                    <div className="space-y-1">
-                      <p className="font-bold text-slate-800 text-xs sm:text-sm">
-                        {isDragging
-                          ? (isAr ? "أفلت الصورة هنا للبدء بالتحليل" : "Drop your image here to analyze")
-                          : (isAr ? "اسحب وأفلت الصورة هنا" : "Drag and drop your image here")}
-                      </p>
-                      <p className="text-[11px] text-slate-500 font-medium">
-                        {isAr ? "أو اضغط بالأسفل لاختيار ملف من جهازك" : "or click below to choose a file from your device"}
-                      </p>
-                    </div>
-
-                    {/* Dedicated Upload Image Button / Text Badge */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        fileInputRef.current?.click();
-                      }}
-                      className="mt-0.5 px-4 py-2 rounded-xl bg-[#01a9a0] hover:bg-[#00928a] text-white font-bold text-xs sm:text-sm inline-flex items-center gap-2 shadow-sm shadow-[#01a9a0]/25 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                    >
-                      <ImageIcon className="w-4 h-4" />
-                      <span>{isAr ? "رفع صورة" : "Upload Image"}</span>
-                    </button>
-
-                    <p className="text-[11px] text-slate-400">
-                      {isAr ? "يدعم PNG, JPG, WEBP (حتى 10 ميغابايت)" : "Supports PNG, JPG, WEBP (up to 10MB)"}
-                    </p>
-                  </div>
-                )}
-
-                {/* 2. Analyzing / Scanning State */}
-                {isAnalyzingImage && (
-                  <div className="flex flex-col items-center justify-center p-6 bg-gradient-to-b from-[#f0faf9]/60 to-white rounded-2xl border border-[#01a9a0]/20 text-center gap-3">
-                    {imagePreview && (
-                      <div className="relative w-36 h-28 rounded-xl overflow-hidden shadow-md border-2 border-[#01a9a0]/50 bg-slate-900">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={imagePreview} alt="Uploaded preview" className="w-full h-full object-cover opacity-80" />
-                        <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#00ffc8] to-transparent shadow-[0_0_15px_#00ffc8] animate-[bounce_1.5s_infinite]" />
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2 text-[#01a9a0] font-bold text-xs sm:text-sm">
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>
-                        {isAr ? "جارٍ تحليل الصورة ومطابقة المواصفات..." : "Analyzing photo & matching specifications..."}
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-slate-500 max-w-xs">
-                      {isAr
-                        ? "يتم فحص تشققات الخرسانة وعوازل الأسطح والمواد المناسبة لمعايير الإمارات"
-                        : "Matching defects against waterproofing systems, concrete repair, & epoxy coatings"}
-                    </p>
-                  </div>
-                )}
-
-                {/* 3. Error Message */}
-                {imageSearchError && !isAnalyzingImage && (
-                  <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 flex items-start gap-2.5">
-                    <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                    <div className="flex-1 text-xs">
-                      <p className="font-bold">{isAr ? "تنبيه التحليل" : "Analysis Notice"}</p>
-                      <p className="mt-0.5 text-rose-700">{imageSearchError}</p>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setImagePreview(null);
-                          setImageSearchError(null);
-                          fileInputRef.current?.click();
-                        }}
-                        className="mt-2 inline-flex items-center gap-1 font-bold text-rose-700 hover:underline cursor-pointer"
-                      >
-                        <RefreshCw className="w-3 h-3" />
-                        <span>{isAr ? "محاولة بصورة أخرى" : "Try with another image"}</span>
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* 4. Search Results Display */}
-                {imageSearchData && !isAnalyzingImage && (
-                  <div className="space-y-3">
-                    {/* Summary Card */}
-                    <div className="bg-gradient-to-br from-[#f0faf9] via-white to-slate-50 border border-[#01a9a0]/30 rounded-2xl p-3.5 shadow-2xs">
-                      <div className="flex items-start gap-3">
-                        {imagePreview && (
-                          <div className="w-16 h-16 rounded-xl overflow-hidden border border-[#01a9a0]/30 shadow-xs shrink-0 bg-slate-100">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={imagePreview} alt="Scanned item" className="w-full h-full object-cover" />
-                          </div>
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-1.5 flex-wrap mb-1">
-                            <span className="px-2 py-0.5 rounded-full text-[9.5px] font-extrabold uppercase tracking-wider bg-[#01a9a0] text-white">
-                              {imageSearchData.category}
-                            </span>
-                            <span className="px-2 py-0.5 rounded-full text-[9.5px] font-bold bg-emerald-100 text-emerald-800 flex items-center gap-1">
-                              <CheckCircle2 className="w-2.5 h-2.5" />
-                              {isAr ? "مطابقة معتمدة" : "High Match"}
-                            </span>
-                            <span className="text-[9.5px] text-slate-400 font-medium">
-                              {isAr ? "✓ فحص معتمد" : "✓ Verified Match"}
-                            </span>
-                          </div>
-                          <h4 className="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug truncate">
-                            {isAr ? imageSearchData.detectedAr : imageSearchData.detectedEn}
-                          </h4>
-                          <p className="text-[11px] text-slate-600 mt-0.5 line-clamp-2 leading-relaxed">
-                            {isAr ? imageSearchData.descriptionAr : imageSearchData.descriptionEn}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Matched Items */}
-                    <div>
-                      <div className="flex items-center justify-between mb-1.5">
-                        <p className="font-extrabold text-[11px] uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-                          <Sparkles className="w-3 h-3 text-[#01a9a0]" />
-                          <span>{isAr ? "الخدمات والحلول المطابقة بالموقع:" : "Matching Services & Solutions:"}</span>
-                        </p>
-                        <span className="text-[10px] font-bold text-slate-400">
-                          {imageSearchData.matchedItems.length} {isAr ? "نتائج" : "results"}
-                        </span>
-                      </div>
-
-                      <div className="space-y-1.5 max-h-44 overflow-y-auto slim-scrollbar pr-1.5">
-                        {imageSearchData.matchedItems.map((item, idx) => {
-                          const badge = CATEGORY_COLORS[item.category] || CATEGORY_COLORS.Page;
-                          return (
-                            <div
-                              key={idx}
-                              onClick={() => handleSelectResult(item)}
-                              className="flex items-center justify-between p-2.5 rounded-xl bg-white hover:bg-[#f0faf9] border border-slate-200 hover:border-[#01a9a0] transition-all cursor-pointer group shadow-2xs"
-                            >
-                              <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                                <div className="w-8 h-8 rounded-lg bg-[#f0faf9] group-hover:bg-[#01a9a0] text-[#01a9a0] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
-                                  {item.category === "Product" && <Package className="w-3.5 h-3.5 stroke-[2]" />}
-                                  {item.category === "Service" && <Wrench className="w-3.5 h-3.5 stroke-[2]" />}
-                                  {item.category === "Solution" && <ShieldCheck className="w-3.5 h-3.5 stroke-[2]" />}
-                                  {item.category === "Project" && <Building2 className="w-3.5 h-3.5 stroke-[2]" />}
-                                  {item.category === "Industry" && <HardHat className="w-3.5 h-3.5 stroke-[2]" />}
-                                  {item.category === "Resource" && <FileText className="w-3.5 h-3.5 stroke-[2]" />}
-                                  {item.category === "Page" && <ExternalLink className="w-3.5 h-3.5 stroke-[2]" />}
-                                </div>
-                                <div className="min-w-0 flex-1">
-                                  <div className="flex items-center gap-1.5 mb-0.5">
-                                    <span className={`text-[8.5px] font-extrabold uppercase px-1.5 py-0.2 rounded-full border ${badge.bg} ${badge.text} ${badge.border}`}>
-                                      {isAr && item.categoryAr ? item.categoryAr : item.category}
-                                    </span>
-                                    <h5 className="font-bold text-xs text-slate-900 group-hover:text-[#01a9a0] transition-colors truncate">
-                                      {isAr && item.nameAr ? item.nameAr : item.name}
-                                    </h5>
-                                  </div>
-                                  <p className="text-[10.5px] text-slate-500 truncate">
-                                    {isAr && item.descAr ? item.descAr : item.desc}
-                                  </p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-1 text-[#01a9a0] shrink-0 text-[11px] font-bold group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform ml-1 rtl:ml-0 rtl:mr-1">
-                                <span>{isAr ? "عرض" : "View"}</span>
-                                <ArrowRight className="w-3 h-3 rtl:rotate-180" />
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex items-center justify-between pt-2 border-t border-slate-100 gap-2 flex-wrap">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setImagePreview(null);
-                          setImageSearchData(null);
-                          setImageSearchError(null);
-                          fileInputRef.current?.click();
-                        }}
-                        className="px-2.5 py-1.5 rounded-xl border border-slate-200 hover:border-[#01a9a0] text-slate-700 hover:text-[#01a9a0] text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-colors"
-                      >
-                        <Camera className="w-3 h-3" />
-                        <span>{isAr ? "فحص صورة أخرى" : "Scan Another Photo"}</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          handleCollapse();
-                          router.push("/get-a-quote");
-                          onCloseMenu?.();
-                        }}
-                        className="px-3 py-1.5 rounded-xl bg-[#01a9a0] hover:bg-[#00928a] text-white text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-colors shadow-xs"
-                      >
-                        <span>{isAr ? "طلب معاينة وعرض سعر" : "Request Quote"}</span>
-                        <ArrowRight className="w-3 h-3 rtl:rotate-180" />
-                      </button>
-                    </div>
-                  </div>
-                )}
+              <div className="mb-4">
+                <p className="text-xs font-bold text-zinc-800 mb-2">{aiQuestion}</p>
+                <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl p-4 text-xs sm:text-sm text-zinc-700 leading-relaxed">
+                  {aiResponse}
+                </div>
               </div>
-            </div>
-          ) : (
-            /* REGULAR SEARCH VIEW: Filter Category Pills, Most Used / Results, Bottom Footer Bar */
-            <>
-              {/* 2. Filter Category Pills with Website Primary Theme */}
-              <div className="mt-4 flex items-center gap-2 overflow-x-auto slim-scrollbar pb-2">
-                <button
-                  type="button"
-                  onClick={() => setIsImageSearchOpen(true)}
-                  className="hidden px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-1.5 bg-gradient-to-r from-[#01a9a0] to-[#00bfa5] text-white hover:opacity-95 shadow-sm shadow-[#01a9a0]/30"
-                  title={isAr ? "البحث بالصورة الذكي" : "AI Image Search"}
+
+              <div className="flex items-center justify-between pt-2">
+                <a
+                  href={WORKSHOP_INFO.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors"
                 >
-                  <Camera className="w-3.5 h-3.5" />
-                  <span>{isAr ? "بحث بالصورة" : "Image Search"}</span>
-                  <Sparkles className="w-3 h-3 text-amber-300" />
-                </button>
-                {FILTER_TABS.map((tab) => {
-                  const isSelected = activeTab === tab.key;
-                  return (
-                    <button
-                      key={tab.key}
-                      type="button"
-                      onClick={() => {
-                        setActiveTab(tab.key);
-                        setIsImageSearchOpen(false);
-                      }}
-                      className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${isSelected
-                        ? "bg-[#E6F7F6] text-[#01a9a0] shadow-sm shadow-[#E6F7F6]/35"
-                        : "bg-slate-100 hover:bg-[#f0faf9] text-slate-700 hover:text-[#01a9a0] border border-transparent hover:border-[#E6F7F6]/25"
-                        }`}
-                    >
-                      {isAr ? tab.labelAr : tab.labelEn}
-                    </button>
-                  );
-                })}
-              </div>
+                  <MessageCircle className="w-4 h-4" />
+                  <span>{isAr ? "تواصل عبر واتساب" : "Chat on WhatsApp"}</span>
+                </a>
 
-              {/* 3. Section Header */}
-              <div className="mt-5 mb-2.5 flex items-center justify-between">
-                <p className="text-xs font-extrabold tracking-wider uppercase text-slate-800">
-                  {searchQuery.trim() === ""
-                    ? isAr
-                      ? "الأكثر استخداماً"
-                      : "Most used"
-                    : isAr
-                      ? "نتائج البحث"
-                      : "Search results"}
-                </p>
-                {searchQuery.trim() !== "" && (
-                  <span className="text-xs text-[#01a9a0] font-bold">
-                    {filteredResults.length} {isAr ? "نتيجة" : "results"}
-                  </span>
-                )}
-              </div>
-
-              {/* 4. Results List / Most Used */}
-              <div className="flex-1 overflow-y-auto slim-scrollbar min-h-0 max-h-[300px] sm:max-h-[340px] pr-1.5">
-                {searchQuery.trim() === "" ? (
-                  /* Most used items */
-                  <div className="space-y-1">
-                    {mostUsedItems.map((item, idx) => {
-                      const Icon = item.icon;
-                      return (
-                        <div
-                          key={idx}
-                          onClick={() => {
-                            if (onSearch) {
-                              onSearch(isAr ? item.titleAr : item.titleEn, item.href);
-                            }
-                            router.push(item.href);
-                            handleCollapse();
-                            onCloseMenu?.();
-                          }}
-                          className="flex items-center justify-between p-3 rounded-2xl hover:bg-[#f0faf9] transition-all cursor-pointer group"
-                        >
-                          <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                            <div className="w-11 h-11 rounded-2xl bg-[#f0faf9] text-[#01a9a0] border border-[#01a9a0]/20 group-hover:bg-[#01a9a0] group-hover:text-white group-hover:border-[#01a9a0] flex items-center justify-center shrink-0 transition-all duration-200 shadow-2xs">
-                              <Icon className="w-5 h-5 stroke-[2]" />
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <h5 className="text-sm font-bold text-slate-900 group-hover:text-[#01a9a0] transition-colors truncate">
-                                {isAr ? item.titleAr : item.titleEn}
-                              </h5>
-                              <p className="text-xs text-slate-500 font-medium truncate mt-0.5">
-                                {isAr ? item.categoryAr : item.categoryEn}
-                              </p>
-                            </div>
-                          </div>
-                          <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-[#01a9a0] group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-all shrink-0 ml-2 rtl:ml-0 rtl:mr-2 stroke-[2.2]" />
-                        </div>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  /* Filtered Search Results */
-                  <div className="space-y-1 divide-y divide-slate-100">
-                    {filteredResults.length > 0 ? (
-                      filteredResults.map((item) => {
-                        const badge = CATEGORY_COLORS[item.category] || CATEGORY_COLORS.Page;
-                        const displayName = isAr && item.nameAr ? item.nameAr : item.name;
-                        const displayDesc = isAr && item.descAr ? item.descAr : item.desc;
-                        const displayCategory = isAr && item.categoryAr ? item.categoryAr : item.category;
-
-                        return (
-                          <div
-                            key={item.id}
-                            onClick={() => handleSelectResult(item)}
-                            className="p-3 rounded-2xl hover:bg-[#f0faf9] cursor-pointer transition-colors flex items-center justify-between gap-3 group"
-                          >
-                            <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                              <div className="w-11 h-11 rounded-2xl bg-[#f0faf9] text-[#01a9a0] border border-[#01a9a0]/20 group-hover:bg-[#01a9a0] group-hover:text-white group-hover:border-[#01a9a0] flex items-center justify-center shrink-0 transition-all duration-200 shadow-2xs">
-                                {item.category === "Product" && <Package className="w-5 h-5 stroke-[2]" />}
-                                {item.category === "Service" && <Wrench className="w-5 h-5 stroke-[2]" />}
-                                {item.category === "Solution" && <ShieldCheck className="w-5 h-5 stroke-[2]" />}
-                                {item.category === "Project" && <Building2 className="w-5 h-5 stroke-[2]" />}
-                                {item.category === "Industry" && <HardHat className="w-5 h-5 stroke-[2]" />}
-                                {item.category === "Resource" && <FileText className="w-5 h-5 stroke-[2]" />}
-                                {item.category === "Page" && <ExternalLink className="w-5 h-5 stroke-[2]" />}
-                              </div>
-                              <div className="min-w-0 flex-1">
-                                <div className="flex items-center gap-2 mb-0.5">
-                                  <span
-                                    className={`text-[9.5px] font-extrabold uppercase px-2 py-0.5 rounded-full border ${badge.bg} ${badge.text} ${badge.border}`}
-                                  >
-                                    {displayCategory}
-                                  </span>
-                                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#01a9a0] transition-colors truncate">
-                                    {highlightMatch(displayName, searchQuery)}
-                                  </h4>
-                                </div>
-                                <p className="text-xs text-slate-500 line-clamp-1 leading-relaxed">
-                                  {displayDesc}
-                                </p>
-                              </div>
-                            </div>
-
-                            <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-[#01a9a0] group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-all shrink-0 ml-2 rtl:ml-0 rtl:mr-2 stroke-[2.2]" />
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className="py-8 px-4 text-center">
-                        <p className="text-sm font-bold text-slate-800">
-                          {isAr ? "لم نجد نتائج لـ" : "No results for"} "{searchQuery}"
-                        </p>
-                        <p className="text-xs text-slate-400 mt-1">
-                          {isAr
-                            ? "جرّب البحث باسم خدمة (عزل، إيبوكسي، كومبو) أو حل أو مشروع"
-                            : "Try searching for service names (epoxy, combo, waterproofing) or solutions"}
-                        </p>
-                        <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              router.push(`/services?search=${encodeURIComponent(searchQuery)}`);
-                              handleCollapse();
-                              onCloseMenu?.();
-                            }}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#f0faf9] hover:bg-[#e1f5f3] text-[#01a9a0] text-xs font-bold rounded-full transition-colors border border-[#01a9a0]/30 cursor-pointer"
-                          >
-                            <Wrench className="w-3.5 h-3.5" />
-                            <span>{isAr ? "تصفح الخدمات" : "Browse Services"}</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              router.push(`/solutions`);
-                              handleCollapse();
-                              onCloseMenu?.();
-                            }}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#f0faf9] hover:bg-[#e1f5f3] text-[#01a9a0] text-xs font-bold rounded-full transition-colors border border-[#01a9a0]/30 cursor-pointer"
-                          >
-                            <ShieldCheck className="w-3.5 h-3.5" />
-                            <span>{isAr ? "تصفح الحلول" : "Browse Solutions"}</span>
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              {/* 5. Bottom Footer Bar with Website Primary Button */}
-              <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between gap-3 shrink-0">
-                <span className="text-xs sm:text-sm text-slate-600 font-medium">
-                  {isAr ? "هل تحتاج مساعدة في البحث؟" : "Need help finding something?"}
-                </span>
-
-                {/* ASK AI Agent Button */}
                 <button
                   type="button"
                   onClick={() => {
-                    if (searchQuery.trim()) {
-                      setAiQuestion(searchQuery.trim());
-                      handleAskAiSubmit(searchQuery.trim());
-                    }
-                    setShowAiModal(true);
+                    setShowAiModal(false);
+                    router.push("/get-a-quote");
                   }}
-                  className="px-4 sm:px-5 py-2.5 rounded-xl bg-[#E6F7F6] hover:bg-[#E6F7F6]/90 text-[#01a9a0] font-bold text-xs sm:text-sm flex items-center gap-2 shadow-md shadow-[#E6F7F6]/30 hover:shadow-lg hover:shadow-[#E6F7F6]/50 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer shrink-0"
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-full text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4 text-amber-300 fill-amber-300/30" />
-                  <span>{isAr ? "اسأل المساعد الذكي" : "Ask AI Agent"}</span>
+                  {isAr ? "طلب تسعيرة مخصصة" : "Get a Quote"}
                 </button>
               </div>
-            </>
-          )}
-        </div>
-      )}
-
-      {/* ─── INTERACTIVE "ASK AI" ASSISTANT MODAL (PORTAL) ───────────── */}
-      {showAiModal && mounted && typeof document !== "undefined" && createPortal(
-        <div
-          className="fixed inset-0 z-[2147483647] bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200"
-          onClick={() => setShowAiModal(false)}
-        >
-          <div
-            className="bg-white rounded-2xl shadow-2xl border border-gray-100 max-w-lg w-full p-4 sm:p-5 text-left rtl:text-right overflow-hidden relative max-h-[90vh] flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-            dir={isAr ? "rtl" : "ltr"}
-          >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between pb-3.5 border-b border-gray-100 flex-shrink-0">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-teal-50 text-[#009e90] flex items-center justify-center">
-                  <Bot className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-gray-900">
-                    {isAr ? "المساعد الذكي لورشة الرحمانية" : "Al Rahmaniah Auto AI Assistant"}
-                  </h3>
-                  <p className="text-[11px] text-gray-500">
-                    {isAr ? "إجابات فورية لخدمات وصيانة السيارات" : "Instant auto maintenance & service answers"}
-                  </p>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowAiModal(false)}
-                className="w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
             </div>
-
-            <div className="flex-1 overflow-y-auto min-h-0 py-2">
-              {/* Quick Questions Pills */}
-              <div className="my-2">
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  {isAr ? "أسئلة مقترحة:" : "Suggested Questions:"}
-                </p>
-                <div className="flex flex-col gap-1.5">
-                  {AI_PRESET_QUESTIONS.map((preset, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => {
-                        setAiQuestion(isAr ? preset.ar : preset.en);
-                        setAiResponse(isAr ? preset.ansAr : preset.ansEn);
-                      }}
-                      className="text-left rtl:text-right text-xs text-gray-700 bg-gray-50 hover:bg-teal-50/80 hover:text-[#009e90] p-2 rounded-lg border border-gray-200/60 transition-colors cursor-pointer"
-                    >
-                      💬 {isAr ? preset.ar : preset.en}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Answer Display */}
-              {aiResponse && (
-                <div className="p-3 bg-teal-50/60 border border-teal-100 rounded-xl my-2 animate-in fade-in">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#009e90] mb-1">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>{isAr ? "التوصية الفنية المعتمدة:" : "Recommended Engineering Solution:"}</span>
-                  </div>
-                  <p className="text-xs text-gray-700 leading-relaxed font-sans">
-                    {aiResponse}
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Input Bar */}
-            <div className="flex items-center gap-2 pt-2 border-t border-gray-100 flex-shrink-0">
-              <input
-                type="text"
-                value={aiQuestion}
-                onChange={(e) => setAiQuestion(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    handleAskAiSubmit(aiQuestion);
-                  }
-                }}
-                placeholder={isAr ? "اكتب سؤالك الهندسي هنا..." : "Ask your engineering question..."}
-                className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs outline-none focus:border-[#009e90] transition-colors"
-              />
-              <button
-                type="button"
-                onClick={() => handleAskAiSubmit(aiQuestion)}
-                className="px-3 py-2 rounded-xl bg-[#009e90] hover:bg-[#008277] text-white text-xs font-bold flex items-center gap-1 cursor-pointer transition-colors"
-              >
-                <Send className="w-3.5 h-3.5 rtl:rotate-180" />
-                <span>{isAr ? "إرسال" : "Ask"}</span>
-              </button>
-            </div>
-
-            {/* Quick Actions Footer */}
-            <div className="mt-2.5 pt-2 border-t border-gray-100 flex items-center justify-between text-xs flex-shrink-0">
-              <button
-                type="button"
-                onClick={() => {
-                  setShowAiModal(false);
-                  handleCollapse();
-                  router.push("/get-a-quote");
-                  onCloseMenu?.();
-                }}
-                className="text-[#009e90] hover:underline font-bold flex items-center gap-1 cursor-pointer"
-              >
-                <span>{isAr ? "طلب عرض سعر رسمي" : "Request Official Quote"}</span>
-                <ArrowRight className="w-3 h-3 rtl:rotate-180" />
-              </button>
-              <a
-                href="https://wa.me/971501234567"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-emerald-700 hover:underline font-bold flex items-center gap-1"
-              >
-                <MessageCircle className="w-3.5 h-3.5" />
-                <span>{isAr ? "محادثة مهندس عبر واتساب" : "WhatsApp Engineer"}</span>
-              </a>
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
