@@ -100,11 +100,11 @@ export default function Footer() {
             {/* Col 1: About & Social */}
             <div className="space-y-6">
               <Link className="inline-block" href="/">
-                <div className="relative w-36 h-16">
+                <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-sm">
                   <Image
                     alt="Al Rahmaniah Auto Accessories"
                     fill
-                    className="object-contain"
+                    className="object-contain object-left rtl:object-right"
                     src="/images/alrahmaniah-logo.jpg"
                     unoptimized
                   />
