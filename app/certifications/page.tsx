@@ -67,7 +67,7 @@ export default function CertificationsPage() {
       />
 
       {/* ── SECTION 1: Cards (with sectionBg) ─────────────────── */}
-      <section className="w-full relative py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="w-full relative py-[40px] md:py-[56px] lg:py-[72px] overflow-hidden">
         {/* Section background image */}
         <Image
           src="/certifications/logos/sectionBg.png"
@@ -158,7 +158,7 @@ export default function CertificationsPage() {
       </section>
 
       {/* ── SECTION 2: Company Profile Banner (plain white bg) ── */}
-      <section className="w-full bg-white py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8 hidden">
+      <section className="w-full bg-white py-[40px] md:py-[56px] lg:py-[72px] hidden">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
 
           {/* Company Profile Banner */}

@@ -661,7 +661,7 @@ export default function NavMenuSitemap() {
       />
 
       {/* ─── 2. SEARCH & DIRECTORY MAIN CONTENT ────────────────────── */}
-      <main className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 py-[40px] md:py-[56px] lg:py-[72px]">
+      <main className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 py-[40px] md:py-[56px] lg:py-[72px]">
         {/* Search Bar (searches only regarding this page's mentioned links) */}
         <div className="max-w-2xl mx-auto mb-12 sm:mb-16">
           <div className="relative">

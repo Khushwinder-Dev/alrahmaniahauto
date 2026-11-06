@@ -245,8 +245,7 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
 
       {/* 6. Main Hero Content Container */}
       <div
-        className={`relative z-20 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 pt-32 sm:pt-40 lg:pt-44 flex-1 flex flex-col justify-center ${isArabic ? "pr-10 sm:pr-14" : "pl-10 sm:pl-14"
-          }`}
+        className="relative z-20 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 pt-32 sm:pt-40 lg:pt-44 flex-1 flex flex-col justify-center"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           {/* Left Text & CTAs (Columns 1-8) */}

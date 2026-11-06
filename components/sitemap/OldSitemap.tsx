@@ -1017,7 +1017,7 @@ export default function OldSitemap() {
         </div>
 
         {/* Content Container (Left-aligned as in reference design) */}
-        <div className="relative z-10 h-full max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col justify-center">
+        <div className="relative z-10 h-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 flex flex-col justify-center">
           <div className="max-w-xl text-left rtl:text-right">
             {/* Brand Title (White text) */}
             <p className="text-xl sm:text-2xl md:text-[28px] font-bold text-white tracking-wide mb-1 sm:mb-1.5 drop-shadow-sm">
@@ -1042,7 +1042,7 @@ export default function OldSitemap() {
       {/* ══════════════════════════════════════════════════════════════
           2. SITEMAP DIRECTORY CONTENT (Matching layout & visual design)
       ══════════════════════════════════════════════════════════════ */}
-      <main className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 py-[40px] md:py-[56px] lg:py-[72px]">
+      <main className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 py-[40px] md:py-[56px] lg:py-[72px]">
         <div className="space-y-12 sm:space-y-14">
           {sections.map((section, secIdx) => {
             const isThreeCols = section.columnsCount === 3;

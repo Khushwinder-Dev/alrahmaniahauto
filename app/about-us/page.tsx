@@ -256,7 +256,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* 4. Why Choose Us Grid */}
-      <section className="py-20 bg-zinc-50 border-y border-zinc-200 px-4 sm:px-6">
+      <section className="py-20 bg-zinc-50 border-y border-zinc-200">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           <div className="text-center mb-16 space-y-3">
             <div className="text-red-600 font-bold uppercase tracking-widest text-xs">

@@ -31,7 +31,7 @@ export default function FAQPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
         </div>
 
-        <div className="relative z-20 text-center px-6 max-w-3xl mx-auto">
+        <div className="relative z-20 text-center w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           <div className="inline-block px-4 py-1.5 rounded-full bg-red-600/20 border border-red-500/30 text-red-500 text-xs font-bold uppercase tracking-[0.25em] mb-4">
             Help &amp; Answers
           </div>
