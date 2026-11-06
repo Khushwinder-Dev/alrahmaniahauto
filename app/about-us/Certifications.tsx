@@ -37,7 +37,7 @@ const Certifications = () => {
 
     return (
         <section id="company-profile" className="w-full bg-white py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8 scroll-mt-24">
-            <div className="max-w-8xl mx-auto" dir={isArabic ? "rtl" : "ltr"}>
+            <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14" dir={isArabic ? "rtl" : "ltr"}>
 
                 {/* Company Profile Banner */}
                 <div className="relative rounded-2xl overflow-hidden min-h-[160px] sm:min-h-[180px]">

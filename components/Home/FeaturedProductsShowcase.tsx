@@ -37,7 +37,7 @@ export default function FeaturedProductsShowcase() {
 
   return (
     <section className="py-20 bg-zinc-50 text-zinc-900 relative" dir={isArabic ? "rtl" : "ltr"}>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
           <div>

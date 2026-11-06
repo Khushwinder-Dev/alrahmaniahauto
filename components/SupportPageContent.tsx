@@ -209,7 +209,7 @@ export default function SupportPageContent() {
             3. SUPPORT TOPICS: "How Can We Help You?" (4 Cards Grid)
         ══════════════════════════════════════════════════════════════ */}
         <section className="relative z-10 w-full py-[40px] md:py-[56px] lg:py-[72px]">
-          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
 
           {/* Section Subheader: Tag + Title on Left, View All Topics on Right */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
@@ -291,7 +291,7 @@ export default function SupportPageContent() {
           4. SECTION: STILL NEED HELP? (Contact Support Panel)
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
 
           <div className="relative w-full rounded-[28px] lg:rounded-[36px] overflow-hidden shadow-2xl border border-stone-100 bg-[#ebfaf6]">
 

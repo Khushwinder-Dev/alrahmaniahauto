@@ -377,7 +377,7 @@ export default function ProjectsGallery() {
       className="relative w-full bg-white py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8 overflow-hidden"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className="max-w-8xl mx-auto">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-14">
           <div className="inline-flex items-center justify-center gap-3 mb-4">
             <span className="inline-block h-[2px] w-6 sm:w-8 bg-[#01a9a0] rounded-full" />

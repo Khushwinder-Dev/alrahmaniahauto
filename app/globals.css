@@ -29,10 +29,21 @@
   --color-brand-dark: var(--brand-dark);
   --font-display: var(--font-display);
   --font-sans: var(--font-main);
+  --container-8xl: 100%;
+}
+
+@utility max-w-8xl {
+  max-width: 100%;
+}
+
+.max-w-8xl {
+  max-width: 100% !important;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -40,6 +51,8 @@ body {
   background-color: #ffffff;
   font-family: var(--font-main);
   overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }
 
 /* Headings typography reset to bold (matching reference) */

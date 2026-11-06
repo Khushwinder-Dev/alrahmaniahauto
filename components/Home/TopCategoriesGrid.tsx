@@ -117,7 +117,7 @@ export default function TopCategoriesGrid() {
       {/* Decorative subtle background elements */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-100/50 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>

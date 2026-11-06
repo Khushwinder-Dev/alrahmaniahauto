@@ -17,7 +17,7 @@ const AboutUsSection = () => {
 
   return (
     <div className="bg-white py-[40px] md:py-[56px] lg:py-[72px]">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center justify-between">
           {/* Left Content Section */}
           <div className="w-full flex flex-col gap-7" data-aos="fade-right">

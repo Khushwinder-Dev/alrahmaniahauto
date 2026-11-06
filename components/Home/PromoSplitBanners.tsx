@@ -11,7 +11,7 @@ export default function PromoSplitBanners() {
 
   return (
     <section className="py-16 bg-white text-zinc-900 relative" dir={isArabic ? "rtl" : "ltr"}>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
           {/* Banner 1: Seat Covers Promo */}

@@ -97,7 +97,7 @@ function ProductsContent() {
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
         </div>
 
-        <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-8">
+        <div className="relative z-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 text-center mt-8">
           <div className="flex items-center justify-center gap-2 text-red-500 font-bold text-xs uppercase tracking-[0.25em] mb-3">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
             <span>
@@ -122,7 +122,7 @@ function ProductsContent() {
 
       {/* 2. Main Catalog & Filter Container */}
       <section className="w-full py-12 lg:py-16 bg-white border-b border-zinc-200">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* Controls Bar */}
           <div className="bg-zinc-50 rounded-2xl p-4 sm:p-6 border border-zinc-200 mb-8 shadow-xs">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">

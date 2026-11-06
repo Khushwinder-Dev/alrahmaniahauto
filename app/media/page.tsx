@@ -743,7 +743,7 @@ export default function MediaPage() {
           />
         </div>
 
-        <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
+        <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 w-full">
           {/* Section Header (Left-Aligned as per design) */}
           <div className="max-w-3xl mb-8 sm:mb-10 text-left rtl:text-right">
             {/* Tagline: — IMAGE GALLERY */}
@@ -937,7 +937,7 @@ export default function MediaPage() {
           (Exact match to design screenshot)
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white border-t border-slate-100">
-        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 w-full">
           {/* Section Header (Left-Aligned as per design) */}
           <div className="max-w-3xl mb-8 sm:mb-10 text-left rtl:text-right">
             {/* Tagline: — VIDEO GALLERY */}
@@ -1081,7 +1081,7 @@ export default function MediaPage() {
           (Exact background: /mediaPageNew/e500da08-f078-4dec-a716-760cf969e80b (1) 1.png)
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white">
-        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           <div className="relative w-full rounded-3xl sm:rounded-[36px] overflow-hidden shadow-[0_12px_40px_rgba(0,196,180,0.12)] border border-[#00c4b4]/30 flex items-center min-h-[170px] sm:min-h-[190px] md:min-h-[210px]">
             {/* Background Graphic */}
             <div className="absolute inset-0 z-0">
@@ -1183,7 +1183,7 @@ export default function MediaPage() {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full py-[40px] md:py-[56px] lg:py-[72px]">
+        <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 w-full py-[40px] md:py-[56px] lg:py-[72px]">
           <div className="max-w-lg lg:max-w-xl">
             {/* Tagline: — NEED EXPERT HELP? — */}
             <div className="inline-flex items-center gap-2 sm:gap-2.5 mb-2.5 sm:mb-3">

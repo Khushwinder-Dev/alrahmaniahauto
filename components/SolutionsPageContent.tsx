@@ -319,7 +319,7 @@ export default function SolutionsPageContent() {
           2. SECTION: COMPLETE PROTECTION TAILORED SOLUTIONS (8 CARDS)
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
 
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -410,7 +410,7 @@ export default function SolutionsPageContent() {
           3. SECTION: SOLUTIONS FOR EVERY TYPE OF PROJECT (4 CARDS)
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-[#F2F8F7]">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
 
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -519,7 +519,7 @@ export default function SolutionsPageContent() {
           }}
         />
 
-        <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 w-full">
+        <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 w-full">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
 
             {/* Left Content */}
@@ -585,7 +585,7 @@ export default function SolutionsPageContent() {
           5. SECTION: WHY CHOOSE OUR ROOF WATERPROOFING? (4 FEATURE CARDS)
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
 
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">

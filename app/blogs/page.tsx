@@ -56,7 +56,7 @@ export default function BlogsPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
         </div>
 
-        <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
+        <div className="relative z-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 text-center mt-12">
           <div className="flex items-center justify-center gap-2 text-red-500 font-bold text-xs uppercase tracking-[0.25em] mb-4">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
             <span>{isArabic ? "مقالات وإرشادات زينة وتنجيد السيارات" : "AL RAHMANIAH AUTOMOTIVE JOURNAL & GUIDES"}</span>
@@ -78,7 +78,7 @@ export default function BlogsPage() {
       {/* 2. Featured Article Spotlight */}
       {featuredPost && (
         <section className="w-full py-12 bg-white border-b border-zinc-200">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           <div className="bg-white rounded-3xl overflow-hidden border border-zinc-200 shadow-md hover:border-red-500 transition-all duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
               
@@ -144,7 +144,7 @@ export default function BlogsPage() {
       )}
 
       {/* 3. Main Articles List & Filter Bar */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+      <section className="py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         
         {/* Controls: Category Pills & Search */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 pb-6 border-b border-zinc-200">

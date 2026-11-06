@@ -32,7 +32,7 @@ export default function WolmartTrustBar() {
 
   return (
     <section className="w-full py-8 lg:py-12 bg-white border-b border-zinc-200" dir={isArabic ? "rtl" : "ltr"}>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="bg-white rounded-3xl p-6 lg:p-8 border border-zinc-200 shadow-md">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x rtl:sm:divide-x-reverse divide-zinc-200 items-center">
             {trustItems.map((item, index) => (

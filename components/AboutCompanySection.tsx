@@ -120,7 +120,7 @@ export default function AboutCompanySection() {
       dir={isArabic ? "rtl" : "ltr"}
     >
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[40px] md:pt-[56px] lg:pt-[72px]">
+      <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 pt-[40px] md:pt-[56px] lg:pt-[72px]">
 
         {/* ── Top two-column layout ──────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-center">

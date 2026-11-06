@@ -103,7 +103,7 @@ export default function AboutUsPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
         </div>
 
-        <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
+        <div className="relative z-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 text-center mt-12">
           <div className="flex items-center justify-center gap-2 text-red-500 font-bold text-xs uppercase tracking-[0.25em] mb-4">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
             <span>{isArabic ? "الرحمانية لزينة وتنجيد السيارات" : "AL RAHMANIAH AUTO ACCESSORIES & STYLING"}</span>
@@ -124,7 +124,7 @@ export default function AboutUsPage() {
 
       {/* 2. Trust Stats Strip */}
       <section className="w-full py-12 bg-white border-b border-zinc-200">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           <div className="bg-zinc-50/80 text-zinc-900 rounded-3xl p-6 sm:p-8 border border-zinc-200 shadow-sm">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x rtl:sm:divide-x-reverse divide-zinc-200">
               {milestones.map((m, idx) => (
@@ -146,7 +146,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* 3. Main Story Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+      <section className="py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Images collage */}
           <div className="space-y-6">
@@ -257,7 +257,7 @@ export default function AboutUsPage() {
 
       {/* 4. Why Choose Us Grid */}
       <section className="py-20 bg-zinc-50 border-y border-zinc-200 px-4 sm:px-6">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           <div className="text-center mb-16 space-y-3">
             <div className="text-red-600 font-bold uppercase tracking-widest text-xs">
               {isArabic ? "لماذا تختار الرحمانية للسيارات" : "Why Choose Al Rahmaniah Auto"}
@@ -294,7 +294,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* 5. Real Transformations Banner */}
-      <section className="py-20 px-4 sm:px-6 max-w-[1400px] mx-auto">
+      <section className="py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="rounded-3xl border border-zinc-200 bg-gradient-to-r from-red-50/50 via-white to-red-50/30 p-8 lg:p-12 shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-4">

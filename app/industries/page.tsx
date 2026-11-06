@@ -276,7 +276,7 @@ export default function IndustriesPage() {
       />
 
       {/* Main Content */}
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-[40px] md:py-[56px] lg:py-[72px]">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 py-[40px] md:py-[56px] lg:py-[72px]">
         {/* Intro */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block text-xs uppercase tracking-widest font-bold theme-text-main bg-[#01a9a0]/10 px-3 py-1 rounded-full mb-3">

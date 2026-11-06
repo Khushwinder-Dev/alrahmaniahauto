@@ -340,7 +340,7 @@ export default function DownloadPageContent() {
           2. RESOURCES & DOCUMENTS SECTION (3x3 Grid of 9 Cards)
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-[1240px] mx-auto">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-[46px] font-black text-[#0B1C24] tracking-tight leading-tight">
@@ -515,7 +515,7 @@ export default function DownloadPageContent() {
           {/* ══════════════════════════════════════════════════════════════
               3. DOWNLOAD FORM SECTION (Left Heading + Right Form Card)
           ══════════════════════════════════════════════════════════════ */}
-          <div className="mt-[40px] md:mt-[56px] lg:mt-[72px] grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-[1240px] mx-auto">
+          <div className="mt-[40px] md:mt-[56px] lg:mt-[72px] grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
             {/* Left Column: Heading & Tagline */}
             <div className="text-left rtl:text-right">
               {/* Tagline */}

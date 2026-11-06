@@ -65,7 +65,7 @@ export default function AppointmentFormSection() {
           <div className="absolute inset-0 bg-white/70 backdrop-blur-xs md:bg-linear-to-r md:from-white/95 md:via-white/80 md:to-white/40" />
         </div>
 
-        <div className="relative z-10 max-w-8xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12">
+        <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12">
           <div className="max-w-2xl">
             <span className="text-red-600 font-bold text-xs uppercase tracking-widest mb-3 block">
               {isArabic ? "طلب تسعيرة وتفصيل إكسسوارات" : "Custom Accessories Inquiry"}

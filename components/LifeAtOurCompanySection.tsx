@@ -96,7 +96,7 @@ export default function LifeAtOurCompanySection() {
       className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white overflow-hidden scroll-mt-20"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         {/* ── TOP SECTION: Header & Panoramic Image ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-14 sm:mb-18 lg:mb-20">
           {/* Left Text Block (5 cols) */}

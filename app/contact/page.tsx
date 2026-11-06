@@ -111,7 +111,7 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
         </div>
 
-        <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
+        <div className="relative z-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 text-center mt-12">
           <div className="flex items-center justify-center gap-2 text-red-500 font-bold text-xs uppercase tracking-[0.25em] mb-4">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
             <span>{isArabic ? "معارض ومركز تفصيل الرحمانية بالشارقة" : "AL RAHMANIAH AUTO ACCESSORIES & STYLING SHARJAH"}</span>
@@ -132,7 +132,7 @@ export default function ContactPage() {
 
       {/* 2. Quick Contact Cards Strip */}
       <section className="w-full py-12 bg-white border-b border-zinc-200">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Card 1: Location */}
@@ -223,7 +223,7 @@ export default function ContactPage() {
       </section>
 
       {/* 3. Main Form & Map Area */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+      <section className="py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Form (7 Cols) */}

@@ -44,7 +44,7 @@ export default function LatestInsightsSection() {
 
   return (
     <section className="py-20 lg:py-24 bg-white border-b border-zinc-200">
-      <div className="max-w-[1400px] mx-auto px-6">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="text-center mb-14">
           <div className="inline-flex items-center justify-center gap-2 mb-3">
             <span className="w-6 h-[2px] bg-red-600 rounded-full" />

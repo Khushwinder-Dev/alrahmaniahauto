@@ -14,7 +14,7 @@ export default function BestSellersSection() {
 
   return (
     <section className="py-20 bg-white border-b border-zinc-200" dir={isArabic ? "rtl" : "ltr"}>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         {/* Header without filter pills */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>

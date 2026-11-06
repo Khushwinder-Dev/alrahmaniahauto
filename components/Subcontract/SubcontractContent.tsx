@@ -365,7 +365,7 @@ export default function SubcontractContent() {
         />
         {/* Light overlay so text stays readable */}
         <div className="absolute inset-0 bg-white/60 pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 relative z-10">
 
           {/* Eyebrow */}
           <div className="flex items-center gap-2.5 mb-2.5">
@@ -444,7 +444,7 @@ export default function SubcontractContent() {
 
       {/* ─── SECTION 3: INTRO / ABOUT SUBCONTRACTING ────────────────────── */}
       <section className="w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             {/* Left Column: Image with rounded corners */}
             <div className="lg:col-span-6 flex flex-col justify-center">
@@ -504,7 +504,7 @@ export default function SubcontractContent() {
 
       {/* ─── SECTION 3: OUR SUBCONTRACTING CAPABILITIES ──────────────────── */}
       <section className="w-full py-[40px] md:py-[56px] lg:py-[72px] bg-[#f4f7fa]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* Centered Heading */}
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111827] tracking-tight">
@@ -558,7 +558,7 @@ export default function SubcontractContent() {
 
       {/* ─── SECTION 4: BUILT FOR PROJECT REQUIREMENTS ─────────────────── */}
       <section className="w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* Section Heading */}
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111827] tracking-tight">
@@ -614,7 +614,7 @@ export default function SubcontractContent() {
 
       {/* ─── SECTION 5: SIMPLE & EFFICIENT PROCESS ─────────────────────── */}
       <section className="w-full py-[40px] md:py-[56px] lg:py-[72px] bg-[#f4f7fa]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* Section Heading */}
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111827] tracking-tight">
@@ -692,7 +692,7 @@ export default function SubcontractContent() {
 
       {/* ─── SECTION 6: SUPPORTING PROJECTS ACROSS THE INDUSTRY ────────── */}
       <section className="w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* Section Heading */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] tracking-tight">
@@ -749,7 +749,7 @@ export default function SubcontractContent() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#031d33] via-[#052642]/85 to-transparent/15 rtl:bg-gradient-to-l rtl:from-[#031d33] rtl:via-[#052642]/85 rtl:to-transparent/15" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-9 sm:py-11">
+        <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 w-full py-9 sm:py-11">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8">
             {/* Left: Handshake icon + Heading & Subtext */}
             <div className="flex items-center gap-4 sm:gap-6">

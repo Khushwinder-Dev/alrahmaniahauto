@@ -71,7 +71,7 @@ export default function ProductDetailsPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
         </div>
 
-        <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-10">
+        <div className="relative z-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 text-center mt-10">
           <div className="flex items-center justify-center gap-2 text-red-600 font-bold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-4">
             <span className="text-[8px]">▲</span>
             <span>{isArabic ? "الرحمانية لزينة وتنجيد السيارات" : "AL RAHMANIAH AUTO ACCESSORIES"}</span>
@@ -91,7 +91,7 @@ export default function ProductDetailsPage() {
 
       {/* 2. Main Product Details Content */}
       <section className="py-12 sm:py-16">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm text-zinc-500 mb-8">
             <Link href="/" className="hover:text-red-600 transition-colors">

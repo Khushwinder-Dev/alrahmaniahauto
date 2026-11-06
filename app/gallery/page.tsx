@@ -55,7 +55,7 @@ export default function GalleryPage() {
 
         {/* Video Grid */}
         <div className="bg-[#0a0a0a] min-h-screen py-16 px-4 sm:px-6 lg:px-8 text-white">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-zinc-800 pb-8" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {videos.map((videoSrc, idx) => (

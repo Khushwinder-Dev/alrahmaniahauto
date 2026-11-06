@@ -221,7 +221,7 @@ export default function CareerPageContent() {
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
         </div>
 
-        <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
+        <div className="relative z-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 text-center mt-12">
           <div className="flex items-center justify-center gap-2 text-red-500 font-bold text-xs uppercase tracking-[0.25em] mb-4">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
             <span>{isArabic ? "انضم إلى فريق الحرفيين المتميزين" : "JOIN OUR MASTER CRAFTSMEN TEAM"}</span>
@@ -241,7 +241,7 @@ export default function CareerPageContent() {
       </section>
 
       {/* 2. Benefits Grid */}
-      <section className="py-16 px-4 sm:px-6 max-w-[1400px] mx-auto">
+      <section className="py-16 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="text-center mb-12">
           <div className="text-red-600 font-bold uppercase tracking-widest text-xs mb-2">
             {isArabic ? "مزايا العمل معنا" : "Why Work With Us"}
@@ -311,7 +311,7 @@ export default function CareerPageContent() {
       </section>
 
       {/* 3. Job Openings Directory */}
-      <section className="py-16 px-4 sm:px-6 max-w-[1400px] mx-auto border-t border-zinc-200">
+      <section className="py-16 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 border-t border-zinc-200">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
             <div className="text-red-600 font-bold uppercase tracking-widest text-xs mb-2">

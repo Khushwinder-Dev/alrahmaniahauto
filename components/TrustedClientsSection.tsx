@@ -88,7 +88,7 @@ export default function TrustedClientsSection() {
 
   return (
     <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
 
         {/* ── Section header ─────────────────────────────────────────────── */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
@@ -111,7 +111,7 @@ export default function TrustedClientsSection() {
         {/* ── Testimonial card ───────────────────────────────────────────── */}
         <div
           data-aos="fade-up"
-          className="relative max-w-7xl mx-auto bg-gradient-to-br from-white via-[#f4faf9] to-[#e8f6f5] border border-[#01a9a0]/25 rounded-[32px] p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(1,169,160,0.1)] overflow-hidden"
+          className="relative max-w-8xl mx-auto bg-gradient-to-br from-white via-[#f4faf9] to-[#e8f6f5] border border-[#01a9a0]/25 rounded-[32px] p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(1,169,160,0.1)] overflow-hidden"
         >
           <div className="absolute inset-0 bg-[radial-gradient(#01a9a0_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
 

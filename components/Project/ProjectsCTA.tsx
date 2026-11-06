@@ -15,7 +15,7 @@ export default function ProjectsCTA() {
       className="relative w-full bg-[#F2F9F7] pb-[40px] md:pb-[56px] lg:pb-[72px] px-4 sm:px-6 lg:px-8"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className="max-w-8xl mx-auto">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         <div className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] min-h-[240px] sm:min-h-[260px]">
           <Image
             src={BG_IMAGE}

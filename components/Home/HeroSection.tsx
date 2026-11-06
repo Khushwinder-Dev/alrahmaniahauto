@@ -245,7 +245,7 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
 
       {/* 6. Main Hero Content Container */}
       <div
-        className={`relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 sm:pt-40 lg:pt-44 flex-1 flex flex-col justify-center ${isArabic ? "pr-10 sm:pr-12" : "pl-10 sm:pl-12"
+        className={`relative z-20 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 pt-32 sm:pt-40 lg:pt-44 flex-1 flex flex-col justify-center ${isArabic ? "pr-10 sm:pr-14" : "pl-10 sm:pl-14"
           }`}
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
@@ -347,7 +347,7 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       </div>
 
       {/* 7. Bottom Glassmorphic Stats Section */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 mt-12 sm:mt-14 pb-8 sm:pb-12">
+      <div className="relative z-20 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 mt-12 sm:mt-14 pb-8 sm:pb-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3.5 lg:gap-4 max-w-4xl">
           {statsData.map((stat, idx) => (
             <div

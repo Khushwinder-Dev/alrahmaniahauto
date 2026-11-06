@@ -183,7 +183,7 @@ export default function WarrantyPageContent() {
           3. WARRANTY CARDS: 3 Detailed Coverage Cards
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full pb-[40px] md:pb-[56px] lg:pb-[72px] bg-white">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {WARRANTY_CARDS.map((card) => (

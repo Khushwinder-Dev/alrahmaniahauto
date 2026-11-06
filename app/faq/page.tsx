@@ -45,7 +45,7 @@ export default function FAQPage() {
       </section>
 
       {/* Main Taj Al Rahmah Style FAQ Container (Exactly 6 FAQs) */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 py-20">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-3">
             <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
