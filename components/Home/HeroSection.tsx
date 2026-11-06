@@ -317,13 +317,14 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
           {/* Right Column: Circular Automotive Video Play Button */}
           <div className="lg:col-span-4 flex items-center justify-center lg:justify-start lg:pl-6 pt-4 lg:pt-0">
             <div className="relative group">
-              {/* Ambient Pulsing Red Halo */}
+              {/* Ambient Pulsing Halo */}
               {(!isPlayingVideo || isVideoPaused) && (
-                <span className="absolute inset-0 rounded-full bg-red-600/30 animate-ping duration-1000 pointer-events-none" />
+                <span className="absolute inset-0 rounded-full bg-white/35 animate-ping duration-1000 pointer-events-none" />
               )}
 
               {/* Play / Pause Toggle Button */}
               <button
+                type="button"
                 onClick={handleToggleVideo}
                 aria-label={
                   isPlayingVideo
@@ -332,12 +333,12 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
                       : (isArabic ? "إيقاف مؤقت" : "Pause workshop video")
                     : (isArabic ? "مشاهدة فيديو الورشة" : "Watch workshop video")
                 }
-                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-red-600 hover:bg-red-700 border-2 border-white/40 flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 shadow-[0_0_35px_rgba(220,38,38,0.55)] hover:shadow-[0_0_55px_rgba(220,38,38,0.85)] focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-white hover:bg-zinc-100 border-2 border-white flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 shadow-[0_0_35px_rgba(255,255,255,0.45)] hover:shadow-[0_0_55px_rgba(255,255,255,0.7)] focus:outline-none active:scale-95"
               >
                 {isPlayingVideo && !isVideoPaused ? (
-                  <Pause className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white fill-white" />
+                  <Pause className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-red-600 fill-red-600" />
                 ) : (
-                  <Play className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white fill-white ml-0.5 sm:ml-1" />
+                  <Play className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-red-600 fill-red-600 ml-0.5 sm:ml-1 rtl:ml-0 rtl:mr-0.5 rtl:sm:mr-1" />
                 )}
               </button>
             </div>
