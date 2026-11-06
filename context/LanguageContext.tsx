@@ -172,16 +172,16 @@ const translations: Record<Language, Translations> = {
       langToggle: "العربية",
     },
     hero: {
-      eyebrow: "TRUSTED CAR WORKSHOP IN SHARJAH",
-      titlePart1: "Precision Care &",
-      titlePart2: "Complete Auto Maintenance",
+      eyebrow: "BESPOKE AUTO ACCESSORIES & UPHOLSTERY IN SHARJAH",
+      titlePart1: "Custom Craftsmanship &",
+      titlePart2: "Exclusive Auto Accessories",
       description:
-        "Dealership-grade auto repair, advanced computer diagnostics, engine overhauls, and complete car care in Sharjah Industrial Area 5.",
-      exploreServices: "EXPLORE SERVICES",
-      exploreProject: "BOOK APPOINTMENT",
+        "Bespoke 3D leather seat covers, precision 7D floor mats, custom colored seatbelts, and automotive electronics engineered for extreme UAE durability in Sharjah.",
+      exploreServices: "EXPLORE ACCESSORIES",
+      exploreProject: "GET A QUOTE",
       stat1: "Years Experience",
-      stat2: "Cars Serviced",
-      stat3: "Expert Services",
+      stat2: "Vehicles Upgraded",
+      stat3: "Top Accessories",
       stat4: "Satisfaction Rate",
       videoMode: "Workshop Video",
       videoPaused: "Video Paused",
@@ -194,18 +194,18 @@ const translations: Record<Language, Translations> = {
       returnToPhoto: "Return to photo banner",
     },
     whyChooseUs: {
-      title: "Why Choose Us?",
-      exploreMore: "Explore More",
-      watchVideo: "Watch Video",
-      feature1Title: "Unmatched Expertise",
+      title: "Why Choose Al Rahmaniah Auto?",
+      exploreMore: "Explore Products",
+      watchVideo: "Watch Showcase",
+      feature1Title: "Laser Precision Fitment",
       feature1Desc:
-        "With years of experience across residential, commercial, and industrial projects, we bring proven knowledge and innovative techniques to every build.",
-      feature2Title: "Commitment to Quality",
+        "Over 15 years of master craftsmanship tailoring bespoke leather seat covers and 7D floor liners with 100% factory OEM fitment.",
+      feature2Title: "Heat & UV Gulf Resistance",
       feature2Desc:
-        "From materials to craftsmanship, we follow international standards to ensure long-lasting durability and top-tier finishing.",
-      feature3Title: "On-Time Delivery",
+        "Engineered with premium German Napa leatherette and UV-stabilized materials that resist cracking and fading under extreme UAE summer heat.",
+      feature3Title: "Same-Day Turnaround & Fitting",
       feature3Desc:
-        "We value your time. Our structured planning and efficient project management guarantee deadlines are met without compromise.",
+        "We value your schedule with rapid expert installation at our Sharjah workshop or express dispatch across all 7 Emirates.",
     },
     featured: {
       title: "Our Featured Projects",
@@ -276,39 +276,39 @@ const translations: Record<Language, Translations> = {
       ],
     },
     services: {
-      title: "Our Services",
-      subtitle: "Discover how we can elevate your experience.",
-      getStarted: "Get Started",
+      title: "Our Products & Services",
+      subtitle: "Bespoke craftsmanship & automotive upgrades engineered for UAE climate.",
+      getStarted: "Get a Quote",
       items: [
         {
-          title: "Manpower Supply",
+          title: "Custom Car Seat Covers",
           description:
-            "We provide skilled, semi-skilled, and unskilled manpower for construction, engineering, industrial, and facility projects.",
+            "Laser-measured 3D diamond quilted, Napa leatherette, and breathable seat covers tailored to your exact car model.",
         },
         {
-          title: "Equipment Rental",
+          title: "7D All-Weather Floor Mats",
           description:
-            "Reliable and well-maintained equipment rental solutions for construction, industrial, and project needs — delivered on time, every time.",
+            "Deep-dish molded floor mats with detachable curly carpet layer, offering complete sandproof and spill-proof interior protection.",
         },
         {
-          title: "Scaffolding Rental",
+          title: "Custom Colored Seatbelts",
           description:
-            "Safe, durable, and fully certified scaffolding rental solutions for construction, maintenance, and industrial projects.",
+            "High-tensile certified safety seatbelts available in over 30 vibrant sports colors including Ferrari Red and M-Power Blue.",
         },
         {
-          title: "General Trading",
+          title: "Starlight Roof Headliners",
           description:
-            "Reliable general trading solutions providing high-quality materials, equipment, and supplies through a strong and trusted global network.",
+            "Rolls-Royce inspired fiber optic twinkling starlight ceilings and premium Alcantara suede roof lining revamps.",
         },
         {
-          title: "Calibration",
+          title: "Car Electronics & Audio",
           description:
-            "Accurate and reliable calibration services for all industrial measuring instruments.",
+            "Crystal-clear Android touchscreens, Apple CarPlay, DSP amplifiers, 360-degree cameras, and premium sound upgrades.",
         },
         {
-          title: "Soil Testing Laboratories",
+          title: "Laser LED Lighting",
           description:
-            "Comprehensive laboratory testing solutions for materials, structures, and site investigations.",
+            "High-lumen laser LED headlamps, fog lights, and app-controlled ambient cabin interior lighting strips.",
         },
       ],
     },
@@ -392,8 +392,8 @@ const translations: Record<Language, Translations> = {
       ],
     },
     footer: {
-      tagline1: "Protecting Structures.",
-      tagline2: "Delivering Lasting Solutions",
+      tagline1: "Crafting Comfort.",
+      tagline2: "Delivering Automotive Luxury",
       companyDescription:
         "Al Rahmaniah Auto Accessories is Sharjah’s trusted destination for custom leather seat covers, 7D floor mats, automotive lighting, car electronics, and premium interior & exterior styling accessories.",
       newsletter: {
@@ -435,54 +435,54 @@ const translations: Record<Language, Translations> = {
       phone2: "+971 55 867 4927",
       email1: "info@alrahmaniahauto.com",
       email2: "alrahmaniahauto@gmail.com",
-      location: "Industrial Area 4,\nSharjah, United Arab Emirates",
-      workingHours: "Sat - Thu: 8:00 AM - 9:00 PM",
-      closedDay: "Friday - Closed",
-      copyright: "© 2026 Al Rahmaniah Auto Maintenance Workshop. All Rights Reserved.",
+      location: "Industrial Area 4 & 5,\nSharjah, United Arab Emirates",
+      workingHours: "Sat - Thu: 8:00 AM - 10:00 PM",
+      closedDay: "Friday: 2:00 PM - 10:00 PM",
+      copyright: "© 2026 Al Rahmaniah Auto Accessories & Styling. All Rights Reserved.",
       scrollToTop: "Scroll to top",
-      exploreMore: "View All Services",
+      exploreMore: "View All Products",
     },
     faq: {
       titlePrefix: "Frequently Asked",
       titleAccent: "Questions",
       subtitle:
-        "Fermentum iaculis eu non diam phasellus vestibulum. Volutpat commodo sed egestas egestas fringilla phasellus. Donec ac odio tempor orci dapibus ultrices.",
+        "Find answers regarding custom fitment, materials, UAE delivery, warranties, and showroom visits.",
       items: [
         {
-          question: "Can i try free trial?",
+          question: "Can seat covers be tailored for my specific car model?",
           answer:
-            "Sit amet. Sem integer vitae justo eget magna fermentum iaculis. Facilisis magna etiam tempor orci eu lobortis.",
+            "Yes! Every set is laser-cut and custom-stitched to the exact contours, headrests, and airbag seams of your vehicle make and model.",
         },
         {
-          question: "What's the pricing?",
+          question: "What materials do you use for UAE heat durability?",
           answer:
-            "Sit amet. Sem integer vitae justo eget magna fermentum iaculis. Facilisis magna etiam tempor orci eu lobortis.",
+            "We use heat-reflective German Napa leatherette, heavy-duty breathable PVC, and genuine Alcantara designed to withstand over 50°C summer heat.",
         },
         {
-          question: "Is there a refund?",
+          question: "Do you offer warranty on leather seat covers and floor mats?",
           answer:
-            "Sit amet. Sem integer vitae justo eget magna fermentum iaculis. Facilisis magna etiam tempor orci eu lobortis.",
+            "Yes, we provide up to 3 years written warranty against cracking, peeling, stitch failure, and UV fading.",
         },
         {
-          question: "Where to chat with support?",
+          question: "Can I inspect physical material swatches in Sharjah?",
           answer:
-            "Sit amet. Sem integer vitae justo eget magna fermentum iaculis. Facilisis magna etiam tempor orci eu lobortis.",
+            "Absolutely. Visit our showrooms in Industrial Area 4 & 5 to examine colors, leather grades, and custom stitching patterns in person.",
         },
         {
-          question: "Can I try demo for free?",
+          question: "Do you provide same-day installation?",
           answer:
-            "Sit amet. Sem integer vitae justo eget magna fermentum iaculis. Facilisis magna etiam tempor orci eu lobortis.",
+            "Yes, most standard custom fitments and electronics installations are completed within 1 to 2 hours at our showroom bays.",
         },
         {
-          question: "Where can I leave feedback?",
+          question: "Do you ship across all 7 UAE Emirates?",
           answer:
-            "Sit amet. Sem integer vitae justo eget magna fermentum iaculis. Facilisis magna etiam tempor orci eu lobortis.",
+            "Yes, we offer express door-to-door courier delivery across Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, and UAQ.",
         },
       ],
       stillHave: {
         title: "Still have questions?",
         subtitle:
-          "We understand. Let's get in touch directly with our team, then.",
+          "Our auto accessories and styling specialists are ready to help you.",
         button: "Contact Us",
       },
     },
@@ -504,11 +504,11 @@ const translations: Record<Language, Translations> = {
       langToggle: "English",
     },
     hero: {
-      eyebrow: "ورشة صيانة سيارات معتمدة في الشارقة",
-      titlePart1: "دقة الصيانة و",
-      titlePart2: "خدمات سيارات متكاملة",
+      eyebrow: "مركز تفصيل وتنجيد وزينة السيارات في الشارقة",
+      titlePart1: "فخامة مقصورة سيارتك و",
+      titlePart2: "إكسسوارات حصرية معتمدة",
       description:
-        "خدمات تصليح سيارات بمستوى الوكالة، فحص كمبيوتر متقدم، توضيب محركات، وصيانة شاملة في المنطقة الصناعية 5، الشارقة.",
+        "أرقى تشكيلات أغطية المقاعد الجلدية، دعاسات 7D الفاخرة، أحزمة الأمان الملونة، والإلكترونيات المصممة لأقسى درجات حرارة الإمارات بالشارقة.",
       exploreServices: "استكشف الخدمات",
       exploreProject: "احجز موعداً",
       stat1: "سنوات خبرة",
@@ -526,18 +526,18 @@ const translations: Record<Language, Translations> = {
       returnToPhoto: "العودة إلى الصورة",
     },
     whyChooseUs: {
-      title: "لماذا تختارنا؟",
+      title: "لماذا تختار الرحمانية لزينة السيارات؟",
       exploreMore: "استكشف المزيد",
       watchVideo: "شاهد الفيديو",
-      feature1Title: "خبرة لا تُضاهى",
+      feature1Title: "تفصيل ليزري متقن",
       feature1Desc:
-        "بسنوات من الخبرة في المشاريع السكنية والتجارية والصناعية، نقدم معرفة مثبتة وتقنيات مبتكرة لكل مشروع.",
-      feature2Title: "الالتزام بالجودة",
+        "خبرة لأكثر من 15 عاماً في تفصيل مقاعد السيارات ودعاسات 7D بمقاسات تطابق الوكالة 100% لجميع الموديلات.",
+      feature2Title: "خامات تتحمل شمس الإمارات",
       feature2Desc:
-        "من المواد إلى الحرفية، نتبع المعايير الدولية لضمان المتانة الدائمة والتشطيب عالي الجودة.",
-      feature3Title: "التسليم في الوقت المحدد",
+        "نستخدم جلود نابا ألمانية وبوليمر عالي المتانة معالج ضد الأشعة فوق البنفسجية والتشقق مع ضمان خطي يصل لـ 3 سنوات.",
+      feature3Title: "تسليم سريع وتركيب بنفس اليوم",
       feature3Desc:
-        "نقدر وقتك. تخطيطنا المنظم وإدارة المشاريع الفعالة تضمن الوفاء بالمواعيد النهائية دون مساومة.",
+        "نقدر وقتك ونضمن تركيباً سريعاً ودقيقاً في ورشتنا بالمنطقة الصناعية 4 و 5 بالشارقة أو شحناً فورياً لكافة الإمارات.",
     },
     featured: {
       title: "مشاريعنا البارزة",
@@ -608,39 +608,39 @@ const translations: Record<Language, Translations> = {
       ],
     },
     services: {
-      title: "خدماتنا",
-      subtitle: "اكتشف كيف يمكننا تحسين تجربتك.",
-      getStarted: "ابدأ الآن",
+      title: "منتجاتنا وخدماتنا",
+      subtitle: "تفصيل متقن وإكسسوارات حصرية مصممة خصيصاً لأجواء وحرارة الإمارات.",
+      getStarted: "طلب تسعيرة",
       items: [
         {
-          title: "توريد القوى العاملة",
+          title: "تفصيل وتلبيس مقاعد السيارات",
           description:
-            "نحن نقدم القوى العاملة الماهرة وشبه الماهرة وغير الماهرة لمشاريع البناء والهندسة والصناعية والمرافق.",
+            "تفصيل ليزر دقيق لأغطية المقاعد بجلود نابا الألمانية وجلود PVC المطرزة بنقشات ماسية 3D مع مراعاة الوسائد الهوائية.",
         },
         {
-          title: "تأجير المعدات",
+          title: "دعاسات وأرضيات 7D المقاومة للماء",
           description:
-            "حلول تأجير معدات موثوقة ومحافظة عليها جيداً للاحتياجات الإنشائية والصناعية والمشاريع - يتم التسليم في الوقت المحدد دائماً.",
+            "حماية شاملة للأرضيات من الرمال والسوائل بتصميم ثلاثي الأبعاد مقولب مع طبقة سجاد قابلة للفك والغسيل بسهولة.",
         },
         {
-          title: "تأجير السقالات",
+          title: "أحزمة أمان ملونة رياضية معتمدة",
           description:
-            "حلول تأجير سقالات آمنة ودائمة ومعتمدة بالكامل لمشاريع البناء والصيانة والمشاريع الصناعية.",
+            "أحزمة أمان عالية الشد معتمدة بالمواصفات الرياضية متوفرة بأكثر من 30 لوناً مميزاً كالأحمر الرياضي والأزرق والأصفر.",
         },
         {
-          title: "التجارة العامة",
+          title: "سقف نجوم رولز رويس (ألياف ضوئية)",
           description:
-            "حلول تجارة عامة موثوقة تقدم مواد ومعدات ولوازم عالية الجودة من خلال شبكة عالمية قوية وموثوقة.",
+            "سقف فايبر أوبتيك متلألئ مع خيارات التحكم بالألوان، وتجديد كامل لبطانة السقف بأقمشة الشامواه والألكانتارا.",
         },
         {
-          title: "المعايرة",
+          title: "شاشات أندرويد وإلكترونيات السيارات",
           description:
-            "خدمات معايرة دقيقة وموثوقة لجميع أدوات القياس الصناعية.",
+            "شاشات لمس فائقة الوضوح، أنظمة Apple CarPlay و Android Auto، مضخمات صوت DSP، وكاميرات مراقبة 360 درجة.",
         },
         {
-          title: "مختبرات فحص التربة",
+          title: "إضاءات ليزر LED وعدسات فائقة",
           description:
-            "حلول اختبارات معملية شاملة للمواد والهياكل والتحقيقات الموقعية.",
+            "لمبات وعدسات ليزر LED قوية تزيد مدى الرؤية الليلية بنسبة 300%، مع إضاءات ليد داخلية محيطية متعددة الألوان.",
         },
       ],
     },
@@ -724,10 +724,10 @@ const translations: Record<Language, Translations> = {
       ],
     },
     footer: {
-      tagline1: "حماية المنشآت.",
-      tagline2: "حلول دائمة وموثوقة",
+      tagline1: "صياغة الراحة.",
+      tagline2: "وفخامة مقصورة السيارات",
       companyDescription:
-        "شركة الرحمانية لإكسسوارات وزينة السيارات هي وجهتك الأولى في الشارقة لتفصيل مقاعد الجلد الفاخرة، دعاسات 7D المقولبة، الإضاءات، وشاشات الأندرويد مع ضمان الجودة.",
+        "الرحمانية لإكسسوارات وزينة وتنجيد السيارات هي وجهتك الأولى في الشارقة لتفصيل مقاعد الجلد الفاخرة، دعاسات 7D المقولبة، الإضاءات، وشاشات الأندرويد مع ضمان الجودة.",
       newsletter: {
         title: "اشترك للحصول على أحدث العروض وتنسيقات السيارات",
         description:
@@ -767,54 +767,54 @@ const translations: Record<Language, Translations> = {
       phone2: "+971 55 867 4927",
       email1: "info@alrahmaniahauto.com",
       email2: "alrahmaniahauto@gmail.com",
-      location: "المنطقة الصناعية 4،\nالشارقة، الإمارات العربية المتحدة",
-      workingHours: "السبت - الخميس: 8:00 ص - 9:00 م",
-      closedDay: "الجمعة - مغلق",
-      copyright: "© 2026 ورشة الرحمانية لصيانة السيارات. جميع الحقوق محفوظة.",
+      location: "المنطقة الصناعية 4 و 5،\nالشارقة، الإمارات العربية المتحدة",
+      workingHours: "السبت - الخميس: 8:00 ص - 10:00 م",
+      closedDay: "الجمعة: 2:00 ظهراً - 10:00 م",
+      copyright: "© 2026 الرحمانية لزينة وتنجيد السيارات. جميع الحقوق محفوظة.",
       scrollToTop: "العودة للأعلى",
-      exploreMore: "عرض جميع الخدمات",
+      exploreMore: "عرض جميع المنتجات",
     },
     faq: {
       titlePrefix: "الأسئلة",
       titleAccent: "الشائعة",
       subtitle:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربي، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف.",
+        "إجابات على أكثر الاستفسارات تداولاً حول تفصيل المقاعد، وخامات جلود نابا، وضمان المنتجات وطرق التركيب بالشارقة.",
       items: [
         {
-          question: "هل يمكنني تجربة النسخة المجانية؟",
+          question: "هل يمكن تفصيل أغطية المقاعد لموديل سيارتي بدقة؟",
           answer:
-            "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربي.",
+            "نعم بكل تأكيد! يتم أخذ مقاسات وقص كل طقم بالليزر وفقاً لموديل وسنة صنع سيارتك بدقة متناهية، مع مراعاة فتحات الوسائد الهوائية (الإيرباج) وأزرار التحكم لتبدو كفرش الوكالة الأصلي.",
         },
         {
-          question: "ما هي الأسعار؟",
+          question: "ما هي الخامات التي تستخدمونها لمقاومة حرارة صيف الإمارات؟",
           answer:
-            "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربي.",
+            "نستخدم جلود نابا الألمانية المعالجة ضد الأشعة فوق البنفسجية، وجلود PVC المطرزة بطبقات عازلة، وأقمشة الألكانتارا التي لا تمتص الحرارة ولا تتشقق حتى في حرارة تفوق 50 درجة مئوية.",
         },
         {
-          question: "هل يوجد استرداد للأموال؟",
+          question: "هل المنتجات وتفصيل المقاعد مشمولة بالضمان؟",
           answer:
-            "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربي.",
+            "نعم، نوفر ضماناً خطياً يصل إلى 3 سنوات ضد التشقق أو تفكك الخياطة أو تغير اللون لجميع أطقم تفصيل المقاعد والدعاسات.",
         },
         {
-          question: "أين يمكنني الدردشة مع الدعم؟",
+          question: "هل يمكنني معاينة عينات الجلود والألوان شخصياً بالمعرض؟",
           answer:
-            "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربي.",
+            "نرحب بزيارتكم لمعارضنا بالمنطقة الصناعية 4 و 5 بالشارقة لمعاينة أكثر من 60 خامة ولوناً من جلود النابا وخيوط التطريز وتشكيلات الدعاسات شخصياً.",
         },
         {
-          question: "هل يمكنني تجربة العرض التجريبي مجاناً؟",
+          question: "كم يستغرق تفصيل وتركيب أغطية المقاعد والدعاسات؟",
           answer:
-            "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربي.",
+            "تستغرق عملية التركيب والتلبيس المباشر في ورشة المعرض ما بين ساعة إلى ساعتين فقط لمعظم السيارات مع تسليم في نفس اليوم.",
         },
         {
-          question: "أين يمكنني ترك ملاحظاتي؟",
+          question: "هل توفرون خدمة الشحن والتوصيل لجميع إمارات الدولة؟",
           answer:
-            "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربي.",
+            "نعم، نوفر خدمة شحن سريع وتوصيل للمنزل لكافة إمارات الدولة (دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة، الفجيرة، وأم القيوين).",
         },
       ],
       stillHave: {
         title: "لا تزال لديك أسئلة؟",
-        subtitle: "نحن نفهم. دعنا نتصل مباشرة بفريقنا.",
-        button: "اتصل بنا",
+        subtitle: "فريق مستشاري زينة وتنجيد السيارات جاهز لمساعدتك والرد على كافة استفساراتك فوراً.",
+        button: "تواصل معنا",
       },
     },
   },

@@ -8,25 +8,24 @@ import {
   Clock,
   Calendar,
   ArrowRight,
-  Sparkles,
-  BookOpen,
   Wrench,
-  ShieldCheck,
   MessageCircle,
 } from "lucide-react";
 import { BLOG_POSTS } from "@/data/blogs";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function BlogsPage() {
+  const { isArabic } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
   const [searchQuery, setSearchQuery] = useState("");
 
   const categories = [
-    "All Categories",
-    "Seat Covers",
-    "Floor Mats",
-    "Lighting",
-    "Interior Styling",
-    "Electronics",
+    { en: "All Categories", ar: "جميع الفئات" },
+    { en: "Seat Covers", ar: "أغطية المقاعد" },
+    { en: "Floor Mats", ar: "دعاسات الأرضيات" },
+    { en: "Lighting", ar: "إضاءات الليزر LED" },
+    { en: "Interior Styling", ar: "تعديل الفرش الداخلي" },
+    { en: "Electronics", ar: "إلكترونيات وشاشات" },
   ];
 
   const filteredPosts = BLOG_POSTS.filter((post) => {
@@ -42,7 +41,7 @@ export default function BlogsPage() {
   const featuredPost = BLOG_POSTS[0];
 
   return (
-    <main className="bg-zinc-50 text-zinc-900 min-h-screen">
+    <main className="bg-zinc-50 text-zinc-900 min-h-screen" dir={isArabic ? "rtl" : "ltr"}>
       {/* 1. Hero Section */}
       <section className="relative w-full h-[55vh] min-h-[420px] overflow-hidden flex flex-col justify-center bg-black">
         <div className="absolute inset-0 z-0">
@@ -60,21 +59,23 @@ export default function BlogsPage() {
         <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
           <div className="flex items-center justify-center gap-2 text-red-500 font-bold text-xs uppercase tracking-[0.25em] mb-4">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
-            <span>AL RAHMANIAH AUTOMOTIVE JOURNAL &amp; GUIDES</span>
+            <span>{isArabic ? "مقالات وإرشادات زينة وتنجيد السيارات" : "AL RAHMANIAH AUTOMOTIVE JOURNAL & GUIDES"}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold tracking-tight mb-4 text-white">
-            <span>Expert </span>
-            <span className="text-red-600">Car Care Insights</span>
+            <span>{isArabic ? "مقالات " : "Expert "}</span>
+            <span className="text-red-600">{isArabic ? "ونصائح العناية بالسيارات" : "Car Care Insights"}</span>
           </h1>
 
           <p className="max-w-2xl mx-auto text-zinc-300 text-xs sm:text-sm font-medium tracking-wide leading-relaxed">
-            Essential guides on custom seat covers, 7D floor mats, LED headlight retrofits, and car styling from our master craftsmen in Sharjah.
+            {isArabic
+              ? "دليلك الشامل لاختيار أغطية مقاعد السيارات، ودعاسات 7D، وإضاءات الليزر، والحفاظ على الفرش الداخلي في طقس الإمارات."
+              : "Essential guides on custom seat covers, 7D floor mats, LED headlight retrofits, and car styling from our master craftsmen in Sharjah."}
           </p>
         </div>
       </section>
 
-      {/* 2. Featured Article Spotlight (Wolmart style) */}
+      {/* 2. Featured Article Spotlight */}
       {featuredPost && (
         <section className="w-full py-12 bg-white border-b border-zinc-200">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -88,9 +89,9 @@ export default function BlogsPage() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4">
                   <span className="px-3 py-1 bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider rounded-full shadow-md">
-                    Featured Guide
+                    {isArabic ? "مقال مميز" : "Featured Guide"}
                   </span>
                 </div>
               </div>
@@ -130,8 +131,8 @@ export default function BlogsPage() {
                     href={`/blogs/${featuredPost.slug}`}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md shadow-red-600/30"
                   >
-                    <span>Read Full Article</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>{isArabic ? "قراءة المقال بالكامل" : "Read Full Article"}</span>
+                    <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                   </Link>
                 </div>
               </div>
@@ -152,28 +153,28 @@ export default function BlogsPage() {
           <div className="flex flex-wrap gap-2 w-full md:w-auto">
             {categories.map((cat) => (
               <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
+                key={cat.en}
+                onClick={() => setSelectedCategory(cat.en)}
                 className={`text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full transition-all cursor-pointer ${
-                  selectedCategory === cat
+                  selectedCategory === cat.en
                     ? "bg-red-600 text-white shadow-md shadow-red-600/30"
                     : "bg-white text-zinc-700 hover:text-red-600 border border-zinc-200 shadow-xs"
                 }`}
               >
-                {cat}
+                {isArabic ? cat.ar : cat.en}
               </button>
             ))}
           </div>
 
           {/* Search Box */}
           <div className="w-full sm:w-80 relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" />
+            <Search className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" />
             <input
               type="text"
-              placeholder="Search car advice & guides..."
+              placeholder={isArabic ? "ابحث عن مقالات وتنسيقات..." : "Search car advice & guides..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-11 pl-10 pr-4 rounded-full bg-white border border-zinc-200 text-xs sm:text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-red-600 outline-none transition-all shadow-xs"
+              className="w-full h-11 pl-10 pr-4 rtl:pr-10 rtl:pl-4 rounded-full bg-white border border-zinc-200 text-xs sm:text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-red-600 outline-none transition-all shadow-xs"
             />
           </div>
         </div>
@@ -193,7 +194,7 @@ export default function BlogsPage() {
                   fill
                   className="object-cover object-center group-hover:scale-108 transition-transform duration-700"
                 />
-                <div className="absolute top-3 left-3">
+                <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3">
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/95 text-red-600 border border-red-100 shadow-xs">
                     {post.category}
                   </span>
@@ -228,14 +229,14 @@ export default function BlogsPage() {
 
                 <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
                   <span className="text-[11px] font-semibold text-zinc-400">
-                    By Al Rahmaniah Tech
+                    {isArabic ? "بواسطة خبراء الرحمانية" : "By Al Rahmaniah Tech"}
                   </span>
                   <Link
                     href={`/blogs/${post.slug}`}
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-700 group-hover:gap-2 transition-all"
                   >
-                    <span>Read Article</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <span>{isArabic ? "قراءة المقال" : "Read Article"}</span>
+                    <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
                   </Link>
                 </div>
               </div>
@@ -249,17 +250,19 @@ export default function BlogsPage() {
             <Wrench className="w-6 h-6" />
           </div>
           <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-zinc-900 mb-2">
-            Looking for Custom Accessories or Interior Styling?
+            {isArabic ? "هل تبحث عن تفصيل إكسسوارات أو تجديد مقصورة سيارتك؟" : "Looking for Custom Accessories or Interior Styling?"}
           </h3>
           <p className="text-zinc-600 text-xs sm:text-sm max-w-lg mx-auto mb-6">
-            Get an instant custom accessories recommendation and transparent quote from our auto styling specialists in Sharjah.
+            {isArabic
+              ? "احصل على استشارة مجانية وعرض سعر فوري ومباشر من متخصصي زينة وتنجيد السيارات بالشارقة."
+              : "Get an instant custom accessories recommendation and transparent quote from our auto styling specialists in Sharjah."}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/get-a-quote"
               className="px-8 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md shadow-red-600/30"
             >
-              Get a Fast Quote
+              {isArabic ? "طلب تسعيرة سريعة" : "Get a Fast Quote"}
             </Link>
             <a
               href="https://wa.me/971507860161"
@@ -268,7 +271,7 @@ export default function BlogsPage() {
               className="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all inline-flex items-center gap-2 shadow-md shadow-emerald-600/20"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Ask via WhatsApp</span>
+              <span>{isArabic ? "استفسار عبر واتساب" : "Ask via WhatsApp"}</span>
             </a>
           </div>
         </div>

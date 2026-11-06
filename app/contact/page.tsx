@@ -8,7 +8,6 @@ import {
   Clock,
   Send,
   MessageCircle,
-  ShieldCheck,
   CheckCircle2,
   Navigation,
 } from "lucide-react";
@@ -62,20 +61,24 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.phone.trim()) {
-      toast.error("Please enter your name and phone number.");
+      toast.error(isArabic ? "يرجى إدخال اسمك ورقم هاتفك." : "Please enter your name and phone number.");
       return;
     }
 
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      toast.success("Thank you! Your message has been sent. We will respond promptly.");
+      toast.success(
+        isArabic
+          ? "شكراً لك! تم إرسال رسالتك بنجاح وسيتواصل معك فريقنا قريباً."
+          : "Thank you! Your message has been sent. We will respond promptly."
+      );
       setFormData({
         name: "",
         email: "",
         phone: "",
         vehicleModel: "",
-        serviceNeeded: "Routine Maintenance",
+        serviceNeeded: "Custom Seat Covers",
         message: "",
       });
     }, 1000);
@@ -83,15 +86,17 @@ export default function ContactPage() {
 
   const getWhatsAppDirectUrl = () => {
     const text = encodeURIComponent(
-      `Hello Al Rahmaniah Auto! I am contacting you from your website. My name is ${
-        formData.name || "Customer"
-      } and I would like to inquire about automotive services for my car.`
+      isArabic
+        ? `مرحباً الرحمانية لزينة وتنجيد السيارات! اسمي ${formData.name || "عميل كريم"} وأود الاستفسار عن إكسسوارات وخدمات التفصيل لسيارتي.`
+        : `Hello Al Rahmaniah Auto! I am contacting you from your website. My name is ${
+            formData.name || "Customer"
+          } and I would like to inquire about automotive services for my car.`
     );
     return `https://wa.me/971507860161?text=${text}`;
   };
 
   return (
-    <main className="bg-zinc-50 text-zinc-900 min-h-screen">
+    <main className="bg-zinc-50 text-zinc-900 min-h-screen" dir={isArabic ? "rtl" : "ltr"}>
       {/* 1. Hero Section */}
       <section className="relative w-full h-[55vh] min-h-[420px] overflow-hidden flex flex-col justify-center bg-black">
         <div className="absolute inset-0 z-0">
@@ -109,100 +114,112 @@ export default function ContactPage() {
         <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
           <div className="flex items-center justify-center gap-2 text-red-500 font-bold text-xs uppercase tracking-[0.25em] mb-4">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
-            <span>AL RAHMANIAH AUTO WORKSHOP SHARJAH</span>
+            <span>{isArabic ? "معارض ومركز تفصيل الرحمانية بالشارقة" : "AL RAHMANIAH AUTO ACCESSORIES & STYLING SHARJAH"}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold tracking-tight mb-4 text-white">
-            <span>Contact </span>
-            <span className="text-red-600">Our Workshop</span>
+            <span>{isArabic ? "تواصل مع " : "Contact "}</span>
+            <span className="text-red-600">{isArabic ? "معرضنا وورشة التفصيل" : "Our Showroom"}</span>
           </h1>
 
           <p className="max-w-2xl mx-auto text-zinc-300 text-xs sm:text-sm font-medium tracking-wide leading-relaxed">
-            Conveniently located in Industrial Area 5, Sharjah. Reach our team for fast bookings, computerized diagnostics, genuine spare parts, and emergency towing.
+            {isArabic
+              ? "موقعنا المتميز في المنطقة الصناعية 4 و 5، الشارقة. تواصل مع خبرائنا لمعاينة عينات الجلود، وتفصيل أغطية المقاعد، ودعاسات 7D والشحن لكافة الإمارات."
+              : "Conveniently located in Industrial Area 4 & 5, Sharjah. Reach our team for custom leather fitting, material samples, 7D mats, and fast dispatch across the UAE."}
           </p>
         </div>
       </section>
 
-      {/* 2. Quick Contact Cards Strip (Wolmart style) */}
+      {/* 2. Quick Contact Cards Strip */}
       <section className="w-full py-12 bg-white border-b border-zinc-200">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          
-          {/* Card 1: Location */}
-          <div className="bg-white border border-zinc-200 rounded-3xl p-6 hover:border-red-600/70 transition-all duration-300 shadow-md flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0">
-              <MapPin className="w-6 h-6" />
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            {/* Card 1: Location */}
+            <div className="bg-white border border-zinc-200 rounded-3xl p-6 hover:border-red-600/70 transition-all duration-300 shadow-md flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
+                  {isArabic ? "موقع المعرض" : "Our Location"}
+                </span>
+                <h3 className="font-bold text-base text-zinc-900 mt-1">
+                  {isArabic ? "فرع الشارقة" : "Sharjah Showroom"}
+                </h3>
+                <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
+                  {isArabic ? "المنطقة الصناعية 4 و 5، الشارقة، الإمارات" : "Industrial Area 4 & 5, Sharjah, UAE"}
+                </p>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
-                Our Location
-              </span>
-              <h3 className="font-bold text-base text-zinc-900 mt-1">Sharjah Workshop</h3>
-              <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                Industrial Area No 5, Sharjah, United Arab Emirates
-              </p>
-            </div>
-          </div>
 
-          {/* Card 2: Phone */}
-          <div className="bg-white border border-zinc-200 rounded-3xl p-6 hover:border-red-600/70 transition-all duration-300 shadow-md flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0">
-              <Phone className="w-6 h-6" />
+            {/* Card 2: Phone */}
+            <div className="bg-white border border-zinc-200 rounded-3xl p-6 hover:border-red-600/70 transition-all duration-300 shadow-md flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0">
+                <Phone className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
+                  {isArabic ? "اتصل بنا مباشرة" : "Call Us Directly"}
+                </span>
+                <h3 className="font-bold text-base text-zinc-900 mt-1">
+                  {isArabic ? "الخط الساخن" : "Direct Hotline"}
+                </h3>
+                <a
+                  href="tel:+971507860161"
+                  className="text-xs font-bold text-zinc-700 hover:text-red-600 block mt-1 transition-colors"
+                >
+                  +971 50 786 0161
+                </a>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
-                Call Us Directly
-              </span>
-              <h3 className="font-bold text-base text-zinc-900 mt-1">Direct Hotline</h3>
-              <a
-                href="tel:+971507860161"
-                className="text-xs font-bold text-zinc-700 hover:text-red-600 block mt-1 transition-colors"
-              >
-                +971 50 786 0161
-              </a>
-            </div>
-          </div>
 
-          {/* Card 3: Working Hours */}
-          <div className="bg-white border border-zinc-200 rounded-3xl p-6 hover:border-red-600/70 transition-all duration-300 shadow-md flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0">
-              <Clock className="w-6 h-6" />
+            {/* Card 3: Working Hours */}
+            <div className="bg-white border border-zinc-200 rounded-3xl p-6 hover:border-red-600/70 transition-all duration-300 shadow-md flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0">
+                <Clock className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
+                  {isArabic ? "أوقات العمل" : "Operating Hours"}
+                </span>
+                <h3 className="font-bold text-base text-zinc-900 mt-1">
+                  {isArabic ? "السبت - الخميس" : "Sat - Thu"}
+                </h3>
+                <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
+                  {isArabic ? "8:00 صباحاً - 10:00 مساءً" : "8:00 AM - 10:00 PM"} <br />
+                  <span className="text-zinc-400">
+                    {isArabic ? "الجمعة: 2:00 ظهراً - 10:00 مساءً" : "Friday: 2:00 PM - 10:00 PM"}
+                  </span>
+                </p>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
-                Operating Hours
-              </span>
-              <h3 className="font-bold text-base text-zinc-900 mt-1">Sat - Thu</h3>
-              <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                8:00 AM - 10:00 PM <br />
-                <span className="text-zinc-400">Friday: 2:00 PM - 10:00 PM</span>
-              </p>
-            </div>
-          </div>
 
-          {/* Card 4: WhatsApp */}
-          <div className="bg-white border border-zinc-200 rounded-3xl p-6 hover:border-emerald-500 transition-all duration-300 shadow-md flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center flex-shrink-0">
-              <MessageCircle className="w-6 h-6" />
+            {/* Card 4: WhatsApp */}
+            <div className="bg-white border border-zinc-200 rounded-3xl p-6 hover:border-emerald-500 transition-all duration-300 shadow-md flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600">
+                  {isArabic ? "محادثة فورية" : "Instant Chat"}
+                </span>
+                <h3 className="font-bold text-base text-zinc-900 mt-1">
+                  {isArabic ? "خدمة العملاء واتساب" : "WhatsApp Desk"}
+                </h3>
+                <a
+                  href="https://wa.me/971507860161"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-emerald-600 hover:underline block mt-1"
+                >
+                  {isArabic ? "تحدث مع خبير التنجيد والزينة" : "Chat with Product Specialists"}
+                </a>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600">
-                Instant Chat
-              </span>
-              <h3 className="font-bold text-base text-zinc-900 mt-1">WhatsApp Desk</h3>
-              <a
-                href="https://wa.me/971507860161"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-bold text-emerald-600 hover:underline block mt-1"
-              >
-                Chat with Product Specialists
-              </a>
-            </div>
-          </div>
 
+          </div>
         </div>
-      </div>
       </section>
 
       {/* 3. Main Form & Map Area */}
@@ -214,13 +231,15 @@ export default function ContactPage() {
             <div className="bg-white rounded-3xl p-8 sm:p-10 border border-zinc-200 shadow-xl">
               <div className="inline-flex items-center gap-2 text-red-600 font-bold uppercase tracking-widest text-xs mb-3">
                 <Send className="w-4 h-4" />
-                <span>Send Us a Message</span>
+                <span>{isArabic ? "أرسل لنا رسالة أو استفسار" : "Send Us a Message"}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-zinc-900 mb-2">
-                Have a Question or Inquiring About Products?
+                {isArabic ? "هل لديك استفسار أو طلب تفصيل لإكسسوارات سيارتك؟" : "Have a Question or Inquiring About Products?"}
               </h2>
               <p className="text-xs sm:text-sm text-zinc-500 mb-8 leading-relaxed">
-                Fill in the details below, and our workshop manager will contact you with pricing and schedule availability.
+                {isArabic
+                  ? "املأ البيانات أدناه وسيتواصل معك مسؤول المعرض لتقديم الأسعار والمقاسات ومواعيد التركيب المتاحة."
+                  : "Fill in the details below, and our showroom team will contact you with pricing, fitment options, and appointment availability."}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -266,7 +285,7 @@ export default function ContactPage() {
                     type="text"
                     name="vehicleModel"
                     value={formData.vehicleModel}
-                    label={isArabic ? "طراز وسنة السيارة" : "Vehicle Model & Year"}
+                    label={isArabic ? "نوع وسنة صنع السيارة" : "Vehicle Model & Year"}
                     isArabic={isArabic}
                     isListening={voice.listeningField === "vehicleModel"}
                     onVoiceToggle={() => voice.toggleListening("vehicleModel", "text")}
@@ -303,7 +322,9 @@ export default function ContactPage() {
                     disabled={isSubmitting}
                     className="flex-1 py-4 px-8 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all shadow-md shadow-red-600/30 cursor-pointer disabled:opacity-50"
                   >
-                    {isSubmitting ? "Sending Message..." : "Send Message"}
+                    {isSubmitting
+                      ? (isArabic ? "جاري الإرسال..." : "Sending Message...")
+                      : (isArabic ? "إرسال الرسالة" : "Send Message")}
                   </button>
                   <a
                     href={getWhatsAppDirectUrl()}
@@ -312,7 +333,7 @@ export default function ContactPage() {
                     className="py-4 px-8 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all inline-flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
                   >
                     <MessageCircle className="w-4 h-4" />
-                    <span>WhatsApp Now</span>
+                    <span>{isArabic ? "محادثة واتساب مباشرة" : "WhatsApp Now"}</span>
                   </a>
                 </div>
               </form>
@@ -327,10 +348,10 @@ export default function ContactPage() {
               <div className="p-6 pb-4">
                 <div className="flex items-center gap-2 text-red-600 font-bold uppercase tracking-widest text-xs mb-1">
                   <Navigation className="w-4 h-4" />
-                  <span>Workshop Directions</span>
+                  <span>{isArabic ? "إرشادات الوصول إلى المعرض" : "Showroom Directions"}</span>
                 </div>
                 <h3 className="font-display font-extrabold text-xl text-zinc-900">
-                  Visit Us in Industrial Area 5
+                  {isArabic ? "تفضل بزيارتنا بالمنطقة الصناعية 4 و 5" : "Visit Us in Industrial Area 4 & 5"}
                 </h3>
               </div>
 
@@ -346,32 +367,34 @@ export default function ContactPage() {
               <div className="p-6 pt-4 text-xs text-zinc-500 space-y-2">
                 <p className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>Easily accessible from E11 (Al Wahda St) and E311 (Sheikh Mohammed Bin Zayed Rd).</span>
+                  <span>{isArabic ? "سهولة الوصول عبر شارع الوحدة (E11) وشارع الشيخ محمد بن زايد (E311)." : "Easily accessible from E11 (Al Wahda St) and E311 (Sheikh Mohammed Bin Zayed Rd)."}</span>
                 </p>
                 <p className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>Free dedicated customer parking and vehicle reception bays.</span>
+                  <span>{isArabic ? "مواقف سيارات مجانية مخصصة للعملاء مع ورش تلبيس وتركيب مظللة." : "Free dedicated customer parking and covered vehicle fitting bays."}</span>
                 </p>
               </div>
             </div>
 
-            {/* Emergency Recovery Banner */}
+            {/* Same Day Fitment Banner */}
             <div className="bg-gradient-to-br from-red-50 via-white to-red-50/50 border border-red-200 rounded-3xl p-6 sm:p-8 shadow-md">
               <span className="text-red-600 text-xs font-bold uppercase tracking-wider block mb-1">
-                Emergency Breakdown Assistance
+                {isArabic ? "خدمة التفصيل والتركيب المباشر" : "Direct Installation Service"}
               </span>
               <h4 className="text-xl font-display font-bold text-zinc-900 mb-2">
-                Car Broken Down or Need Towing?
+                {isArabic ? "ترغب في معاينة الخامات والتركيب الفوري؟" : "Want to Inspect Swatches & Install Today?"}
               </h4>
               <p className="text-xs text-zinc-600 leading-relaxed mb-4">
-                Our flatbed recovery trucks operate across Sharjah and Dubai to bring your vehicle safely to our workshop.
+                {isArabic
+                  ? "تفضل بزيارة صالة عرضنا لمشاهدة عينات جلود نابا، وأقمشة ألكانتارا، وأحزمة الأمان، وأحدث شاشات الأندرويد."
+                  : "Visit our Sharjah showroom bays to inspect physical Napa leather swatches, Alcantara roof headliners, and 7D mats in person."}
               </p>
               <a
                 href="tel:+971507860161"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md shadow-red-600/30"
               >
                 <Phone className="w-4 h-4" />
-                <span>Call Emergency Recovery</span>
+                <span>{isArabic ? "اتصل واحجز موعدك" : "Call & Book Fitting"}</span>
               </a>
             </div>
 

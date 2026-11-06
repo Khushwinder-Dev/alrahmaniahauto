@@ -6,24 +6,38 @@ export interface ProductSpecification {
 export interface ProductDetailItem {
   id: number;
   name: string;
+  nameAr?: string;
   longName: string;
+  longNameAr?: string;
   category: string;
+  categoryAr?: string;
   subcategory?: string;
   categoryPath?: string[];
   image: string;
   additionalImages?: string[];
   description: string;
+  descriptionAr?: string;
   longDescription?: string[];
   overviewTitle?: string;
   overviewContent?: string[];
   rating: number;
   reviewsCount: number;
   price?: string;
+  priceAr?: string;
   specifications: {
     column1: ProductSpecification[];
     column2: ProductSpecification[];
   };
 }
+
+export const PRODUCT_CATEGORIES_AR: Record<string, string> = {
+  "All Categories": "جميع الفئات",
+  "Car Seat Covers": "تلبيس مقاعد السيارات",
+  "Upholstery Leather & Fabrics": "جلود وأقمشة التنجيد الفاخرة",
+  "Custom Colored Seatbelts": "أحزمة أمان ملونة رياضية",
+  "Floor Carpets & Mats": "سجاد ودعاسات الأرضيات 7D",
+  "Roof Headliners": "بطانات وأسقف السيارات (ألياف ونجوم)",
+};
 
 export const PRODUCT_CATEGORIES = [
   "All Categories",
@@ -38,8 +52,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 1,
     name: "3D Diamond-Stitched PVC Leather Seat Covers",
+    nameAr: "أغطية مقاعد جلد PVC بتطريز ماسي 3D",
     longName: "Premium 3D Diamond-Stitched PVC Leather Seat Covers",
+    longNameAr: "أطقم أغطية مقاعد سيارات جلد PVC فاخر بتطريز ماسي ثلاثي الأبعاد",
     category: "Car Seat Covers",
+    categoryAr: "تلبيس مقاعد السيارات",
     subcategory: "DIAMOND QUILTED",
     categoryPath: ["Home", "Products", "Car Seat Covers", "3D Diamond-Stitched PVC Leather Seat Covers"],
     image: "/fb-posts/469317378_122127198956549942_2454514240647818107_n.jpg",
@@ -51,6 +68,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "Revive your car’s interior with premium 3D diamond-quilted PVC leather seat covers. Crafted with 100% original high-durability materials engineered to resist intense UAE summer heat without cracking or fading.",
+    descriptionAr:
+      "جدد مقصورة سيارتك بأفخم أغطية المقاعد المصنوعة من جلد PVC المتين والمطرز بنقشة ماسية ثلاثية الأبعاد، والمصمم خصيصاً لتحمل حرارة صيف الإمارات دون تشقق أو بهتان.",
     longDescription: [
       "Engineered for both luxury aesthetics and day-to-day comfort, our 3D Diamond-Stitched PVC Leather Seat Covers give your vehicle a factory-fresh executive ambiance. Using ultra-resilient multi-ply automotive grade PVC with high-density foam padding, each panel provides supportive lumbar alignment.",
       "Treated with advanced anti-UV and heat-reflecting surface coatings, these seat covers withstand high UAE cabin temperatures, resisting cracking, peeling, and discoloration.",
@@ -68,6 +87,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 4.9,
     reviewsCount: 128,
     price: "From AED 450",
+    priceAr: "ابتداءً من 450 درهم",
     specifications: {
       column1: [
         { label: "Material Composition", value: "Multi-ply Automotive Grade PVC Leather" },
@@ -86,8 +106,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 2,
     name: "Custom Dual-Tone Ergonomic Tailored Seat Covers",
+    nameAr: "تفصيل مقاعد جلدية بلونين وتصميم مريح",
     longName: "Custom Dual-Tone Ergonomic Tailored Leather Seat Covers",
+    longNameAr: "أغطية وتلبيس مقاعد جلدية فاخرة بلونين مخصصة حسب مقاسات السيارة",
     category: "Car Seat Covers",
+    categoryAr: "تلبيس مقاعد السيارات",
     subcategory: "LUXURY TAILORED",
     categoryPath: ["Home", "Products", "Car Seat Covers", "Custom Dual-Tone Ergonomic Tailored Seat Covers"],
     image: "/fb-posts/611304648_122199913940549942_4994234153758255283_n.jpg",
@@ -99,6 +122,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "Bespoke dual-tone automotive seat covers custom patterned to your car's exact seat contours. Featuring contrasting bolster leather, sport piping, and breathable center inserts.",
+    descriptionAr:
+      "أغطية مقاعد مفصلة بدقة حسب مقاسات سيارتك تجمع بين لونين متناسقين وتبطين مريح مع أطراف رياضية وحشوة داعمة للظهر أثناء القيادة.",
     longDescription: [
       "Step into supercar luxury with Al Rahmaniah Auto’s bespoke dual-tone tailored seat covers. Combining deep charcoal bolsters with warm cognac or saddle tan centers, this styling transforms standard interiors into prestigious showpieces.",
       "Each set is laser-measured and hand-stitched by our master craftsmen in Sharjah, guaranteeing tight contouring around lumbar bolsters, headrests, and folding armrests.",
@@ -114,6 +139,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 5.0,
     reviewsCount: 96,
     price: "From AED 650",
+    priceAr: "ابتداءً من 650 درهم",
     specifications: {
       column1: [
         { label: "Pattern Type", value: "Bespoke Laser Tailored Fitment" },
@@ -132,8 +158,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 3,
     name: "Luxury Quilted Ergonomic Leather Seat Covers",
+    nameAr: "أغطية مقاعد جلدية فاخرة مبطنة ومريحة",
     longName: "Luxury Quilted Ergonomic Leather Car Seat Cover Set",
+    longNameAr: "طقم مقاعد جلدية مبطنة بتصميم تنفيذي فاخر لراحة الظهر",
     category: "Car Seat Covers",
+    categoryAr: "تلبيس مقاعد السيارات",
     subcategory: "QUILTED LUXURY",
     categoryPath: ["Home", "Products", "Car Seat Covers", "Luxury Quilted Ergonomic Seat Covers"],
     image: "/fb-posts/580575558_122191406348549942_4454035087039568744_n.jpg",
@@ -144,6 +173,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "Ergonomically contoured executive quilted leather seat covers engineered for long-distance driving support, premium cabin aesthetics, and complete protection of factory seats.",
+    descriptionAr:
+      "تصميم مريح مع خياطة ماسية مبطنة بإسفنج عالي الكثافة، يمنحك راحة قصوى في الرحلات الطويلة ويحمي مقاعد سيارتك الأصلية لسنوات.",
     longDescription: [
       "Crafted with precision quilt work and deep bolster padding, these seat covers elevate vehicle interiors to executive class. Built with high-density foam laminates and reinforced stitching, they cushion pressure points on long journeys.",
     ],
@@ -157,6 +188,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 4.9,
     reviewsCount: 88,
     price: "From AED 550",
+    priceAr: "ابتداءً من 550 درهم",
     specifications: {
       column1: [
         { label: "Style", value: "Ergonomic Chevron / Diamond Quilt" },
@@ -175,8 +207,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 4,
     name: "Rahmaniah Collection 2025 Automotive Leather Swatches & Rolls",
+    nameAr: "كتالوج ولفائف جلود السيارات - تشكيلة الرحمانية 2025",
     longName: "Rahmaniah Collection 2025 Luxury Automotive Leatherette Swatches & Rolls",
+    longNameAr: "كتالوج جلود السيارات الفاخرة ولفائف التنجيد تشكيلة الرحمانية 2025",
     category: "Upholstery Leather & Fabrics",
+    categoryAr: "جلود وأقمشة التنجيد الفاخرة",
     subcategory: "LEATHERETTE ROLLS",
     categoryPath: ["Home", "Products", "Upholstery Leather & Fabrics", "Rahmaniah Collection 2025"],
     image: "/fb-posts/589737449_122194717400549942_1424638142598421653_n.jpg",
@@ -188,6 +223,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "Official Rahmaniah Collection 2025 catalog featuring 60+ curated shades of automotive upholstery leather and leatherette. Wholesale rolls and custom cutting available for upholstery shops and vehicle owners.",
+    descriptionAr:
+      "أكثر من 60 لوناً وخامة من جلود نابا وجلود PVC المعتمدة المقاومة لأشعة الشمس والحرارة العالية، متوفرة بالرول وبالتفصيل حسب الطلب.",
     longDescription: [
       "The Rahmaniah Collection 2025 represents our finest compilation of automotive synthetic leather and micro-grain Napa leatherette. Hand-picked for the challenging GCC climate, these materials combine soft hand-feel with industrial tear resistance.",
       "Available by the running meter or in wholesale master rolls for car upholstery workshops, custom garages, and automotive styling centers throughout the UAE and GCC.",
@@ -203,6 +240,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 4.9,
     reviewsCount: 84,
     price: "AED 55 / Meter",
+    priceAr: "حسب الطلب والمقاس",
     specifications: {
       column1: [
         { label: "Collection Series", value: "Rahmaniah Collection 2025 Edition" },
@@ -221,8 +259,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 5,
     name: "Microfiber Suede & Alcantara Automotive Interior Fabric",
+    nameAr: "أقمشة ألكانتارا وشامواه مايكروفايبر للسيارات",
     longName: "Premium Microfiber Suede & Alcantara-Style Automotive Interior Rolls",
+    longNameAr: "قماش ألكانتارا وشامواه إيطالي فاخر لأسقف وديكورات السيارات",
     category: "Upholstery Leather & Fabrics",
+    categoryAr: "جلود وأقمشة التنجيد الفاخرة",
     subcategory: "MICROFIBER SUEDE",
     categoryPath: ["Home", "Products", "Upholstery Leather & Fabrics", "Microfiber Suede Fabric"],
     image: "/fb-posts/592746335_122194714862549942_8464117864862490904_n.jpg",
@@ -233,6 +274,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "Ultra-soft, non-glare automotive microfiber suede engineered for sports car headliners, pillars, dashboard covers, and seat inserts. Superior tactile grip and sun-resistant rich matte finish.",
+    descriptionAr:
+      "شامواه ناعم فاخر غير عاكس للضوء مخصص لبطانات الأسقف والأبواب ولوحة القيادة، يمنح سيارتك لمسة رياضية فائقة الفخامة.",
     longDescription: [
       "Give your vehicle cabin the race-ready ambiance of high-performance supercars. Our Microfiber Suede fabric combines velvety texture with extreme wear resistance, making it ideal for wrapping pillars, headliners, center consoles, and steering wheels.",
       "The matte nap absorbs windshield glare and remains cool to the touch even under blistering midday sun.",
@@ -247,6 +290,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 4.9,
     reviewsCount: 71,
     price: "AED 85 / Meter",
+    priceAr: "ابتداءً من 120 درهم / متر",
     specifications: {
       column1: [
         { label: "Fabric Type", value: "High-Density Microfiber Polyester / Polyurethane Suede" },
@@ -265,8 +309,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 6,
     name: "Diamond-Perforated Automotive Leatherette Rolls",
+    nameAr: "رولات جلد صناعي مخرم بنقشات ماسية للتبريد",
     longName: "Diamond Micro-Perforated Breathable Automotive Leatherette Rolls",
+    longNameAr: "لفائف جلود سيارات مخرمة بالليزر للتبريد والتهوية",
     category: "Upholstery Leather & Fabrics",
+    categoryAr: "جلود وأقمشة التنجيد الفاخرة",
     subcategory: "PERFORATED LEATHER",
     categoryPath: ["Home", "Products", "Upholstery Leather & Fabrics", "Perforated Leatherette Rolls"],
     image: "/fb-posts/592743969_122194708214549942_1469620853049452467_n.jpg",
@@ -277,6 +324,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "Precision diamond-perforated automotive synthetic leather engineered for seat center panels and ventilated air-conditioned car seats. Maximizes air circulation while retaining structural tensile integrity.",
+    descriptionAr:
+      "جلود سيارات مثقبة بالليزر خصيصاً لمقاعد التبريد والتهوية في الإمارات، تمنع حبس الحرارة وتوفر برودة وانتعاشاً مستمراً.",
     longDescription: [
       "Essential for hot Middle Eastern weather, this micro-perforated material channels cooling air from OEM seat blowers. Features laser-punched diamond matrix perforations that will not stretch or deform under seat loads.",
     ],
@@ -290,6 +339,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 4.8,
     reviewsCount: 62,
     price: "AED 65 / Meter",
+    priceAr: "ابتداءً من 85 درهم / متر",
     specifications: {
       column1: [
         { label: "Hole Size", value: "1.0mm Micro-Perforation" },
@@ -308,8 +358,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 7,
     name: "Luxury Custom Colored Seatbelts & Designer Webbing",
+    nameAr: "أحزمة أمان ملونة رياضية معتمدة عالمياً",
     longName: "Luxury Custom Colored Seatbelts & Designer Monogram Webbing",
+    longNameAr: "أحزمة أمان ملونة عالية الشد معتمدة بالمواصفات الرياضية",
     category: "Custom Colored Seatbelts",
+    categoryAr: "أحزمة أمان ملونة رياضية",
     subcategory: "SAFETY WEBBING",
     categoryPath: ["Home", "Products", "Custom Colored Seatbelts", "Luxury Custom Colored Seatbelts"],
     image: "/fb-posts/588668836_122194707920549942_6964088685681111711_n.jpg",
@@ -320,6 +373,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "Upgrade your vehicle interior with safety-certified custom colored seatbelts. Available in vibrant colors including Racing Red, Speed Yellow, M-Power Tri-Stripe, Sky Blue, Acid Orange, and Designer Monograms.",
+    descriptionAr:
+      "أضف طابعاً رياضياً مميزاً لسيارتك بأحزمة أمان ملونة (أحمر فيراري، أصفر بورشه، أزرق M-Power وغيرها)، مطابقة لمعايير السلامة العالمية.",
     longDescription: [
       "Add a striking motorsport or luxury fashion accent to your cabin with Al Rahmaniah Auto Accessories’ certified colored seatbelts. Manufactured to strict international safety standards with high-tenacity polyester webbing.",
       "Professional fitment done on-site utilizing factory retractors and OEM pyrotechnic tensioners for zero warning lights and maximum crash protection.",
@@ -335,6 +390,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 5.0,
     reviewsCount: 112,
     price: "AED 120 / Belt (Installed)",
+    priceAr: "ابتداءً من 180 درهم / حزام",
     specifications: {
       column1: [
         { label: "Webbing Width", value: "48mm Standard Automotive Specification" },
@@ -353,8 +409,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 8,
     name: "CARFECT Premium Deep-Pile Automotive Carpet Rolls & Mats",
+    nameAr: "سجاد وأرضيات كارفيكت المخملية الفاخرة",
     longName: "CARFECT Luxury Deep-Pile Velvet Automotive Carpet Rolls & Matting",
+    longNameAr: "سجاد أرضيات سيارات مخملي فاخر وعازل للصوت من كارفيكت",
     category: "Floor Carpets & Mats",
+    categoryAr: "سجاد ودعاسات الأرضيات 7D",
     subcategory: "AUTOMOTIVE CARPETS",
     categoryPath: ["Home", "Products", "Floor Carpets & Mats", "CARFECT Automotive Carpets"],
     image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
@@ -365,6 +424,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "CARFECT deep-pile luxury velvet floor carpeting rolls engineered for automotive floor renewal, sound deadening, and custom molded vehicle floor mats with anti-slip rubber backing.",
+    descriptionAr:
+      "سجاد سيارات مخملي سميك عالي الكثافة مقاوم للبقع والرطوبة، يضفي هدوءاً فائقاً داخل المقصورة ويعزل الصوت والحرارة.",
     longDescription: [
       "Restore worn cabin flooring or build ultra-plush custom floor mats with CARFECT automotive carpeting. Designed specifically for vehicle floors, trunks, and side kick-panels, this carpet absorbs road vibrations and tire hum while delivering plush beneath-shoe comfort.",
       "Featuring high-density tufted nylon fibers laminated to water-impermeable crumb rubber backing, it repels mud, desert sand, and liquid spills.",
@@ -379,6 +440,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 4.8,
     reviewsCount: 65,
     price: "AED 75 / Meter",
+    priceAr: "ابتداءً من 350 درهم للطقم",
     specifications: {
       column1: [
         { label: "Brand / Series", value: "CARFECT Premium Velvet Line" },
@@ -397,8 +459,11 @@ export const allProductsData: ProductDetailItem[] = [
   {
     id: 9,
     name: "Genuine USA Foam-Backed Automotive Roof Headliner Rolls",
+    nameAr: "قماش سقف سيارات أمريكي أصلي مدعم بالإسفنج",
     longName: "Genuine USA Automotive Foam-Backed Roof Headliner Rolls",
+    longNameAr: "لفائف بطانة سقف السيارات الأمريكية الأصلية مع طبقة عازلة",
     category: "Roof Headliners",
+    categoryAr: "بطانات وأسقف السيارات (ألياف ونجوم)",
     subcategory: "HEADLINER FABRIC",
     categoryPath: ["Home", "Products", "Roof Headliners", "USA Automotive Roof Headliner Rolls"],
     image: "/fb-posts/609035383_122200209176549942_2808337490054960890_n.jpg",
@@ -409,6 +474,8 @@ export const allProductsData: ProductDetailItem[] = [
     ],
     description:
       "Original USA imported automotive headliner fabric with integrated heat-resistant foam backing. Solves sagging roof problems permanently in extreme UAE temperatures.",
+    descriptionAr:
+      "قماش تنجيد بطانة السقف الأمريكي الأصلي المعالج ضد الحرارة والمزود بإسفنج مرن، مثالي لتجديد الأسقف المترهلة وسقف النجوم.",
     longDescription: [
       "Roof headliner sagging is one of the most common vehicle interior issues in the Middle East due to foam breakdown under intense roof heat. Our Genuine USA Automotive Roof Headliner Rolls feature high-density polyurethane foam bonded with synthetic knit face fabric that will not degrade under sun exposure.",
       "Flexible enough to wrap compound curves, sunroof recesses, pillar covers, and visors without creasing.",
@@ -424,6 +491,7 @@ export const allProductsData: ProductDetailItem[] = [
     rating: 4.9,
     reviewsCount: 78,
     price: "AED 65 / Meter",
+    priceAr: "65 درهم / متر",
     specifications: {
       column1: [
         { label: "Origin", value: "Imported USA Automotive Grade" },

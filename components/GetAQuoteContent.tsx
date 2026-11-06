@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Wrench,
   ShieldCheck,
@@ -11,8 +10,6 @@ import {
   Phone,
   MessageCircle,
   CheckCircle2,
-  ChevronDown,
-  HelpCircle,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import FaqAccordionItem from "@/components/Common/FaqAccordionItem";
@@ -24,6 +21,7 @@ import {
   useVoiceInput,
   SearchableSelectOption,
 } from "@/components/ui/FloatField";
+import { useLanguage } from "@/context/LanguageContext";
 
 const VEHICLE_MAKES = [
   "Toyota",
@@ -48,53 +46,76 @@ const SERVICE_OPTIONS = [
   {
     id: "seat-covers",
     title: "Custom Car Seat Covers",
+    titleAr: "تفصيل مقاعد السيارات (جلد نابا / PVC)",
     desc: "3D diamond quilted, perforated Napa leather, suede & sport custom tailoring",
+    descAr: "خياطة ليزر ماسية 3D وجلود نابا معالجة ضد الحرارة",
     tag: "Best Seller",
+    tagAr: "الأكثر طلباً",
   },
   {
     id: "floor-mats",
     title: "7D / 5D Luxury Floor Mats",
+    titleAr: "دعاسات وأرضيات 7D و 5D الفاخرة",
     desc: "Full cabin & trunk all-weather waterproof custom molded protection",
+    descAr: "تغطية كاملة للمقصورة والشنطة مقاومة للماء والرمال",
     tag: "All-Weather",
+    tagAr: "مقاومة للرمال",
   },
   {
     id: "colored-seatbelts",
     title: "Custom Colored Seatbelts",
+    titleAr: "أحزمة أمان ملونة رياضية",
     desc: "FIA-certified high-tensile safety webbing in Racing Red, Yellow, Blue & Neon",
+    descAr: "أحزمة أمان معتمدة بأكثر من 30 لوناً رياضياً جذاباً",
     tag: "Custom Styling",
+    tagAr: "تصميم رياضي",
   },
   {
     id: "roof-headliner",
     title: "Starlight Headliner & Roof Suede",
+    titleAr: "سقف نجوم رولز رويس وبطانة شامواه",
     desc: "Rolls-Royce style optic fiber twinkling stars & Alcantara headliner revamp",
+    descAr: "ألياف ضوئية لنجوم السقف مع تجديد بطانة الشامواه",
     tag: "VIP Luxury",
+    tagAr: "فخامة VIP",
   },
   {
     id: "car-electronics",
     title: "Car Electronics & Android Screens",
+    titleAr: "شاشات أندرويد وإلكترونيات السيارات",
     desc: "Touchscreens, Apple CarPlay / Android Auto, DSP amplifiers & dashcams",
+    descAr: "شاشات أندرويد متطورة، كاميرات 360، وأنظمة صوت DSP",
     tag: "Smart Tech",
+    tagAr: "تقنية ذكية",
   },
   {
     id: "led-lighting",
     title: "Laser LED Headlamps & Ambient Lights",
+    titleAr: "إضاءات ليزر LED وإنارة محيطية",
     desc: "High-lumen laser LED conversion kits & app-controlled cabin ambient strips",
+    descAr: "عدسات ليزر فائقة السطوع وأشرطة إنارة محيطية ذكية",
     tag: "Ultra Bright",
+    tagAr: "إضاءة قوية",
   },
   {
     id: "car-care-styling",
     title: "Styling Kits & Protection Film",
+    titleAr: "زينة وعوازل وحزم حماية",
     desc: "Window tints, ceramic surface coatings, sunshades & aero body accessories",
+    descAr: "ستائر متحركة، عوازل شمسية، ومشتتات هواء رياضية",
     tag: "Protection",
+    tagAr: "حماية متكاملة",
   },
   {
     id: "wholesale-accessories",
     title: "Wholesale & Bulk Accessories",
+    titleAr: "طلبات الجملة والتوريد التجاري",
     desc: "B2B shop supplies, commercial fleet accessories & GCC export orders",
+    descAr: "توريد جملة للمحلات والمعارض وتصدير لدول الخليج",
     tag: "Wholesale",
+    tagAr: "توريد جملة",
   },
 ];
-
 
 const VEHICLE_MAKE_OPTIONS: SearchableSelectOption[] = VEHICLE_MAKES.map((m) => ({
   value: m,
@@ -112,13 +133,13 @@ const EMIRATE_OPTIONS: SearchableSelectOption[] = [
 ];
 
 export default function GetAQuoteContent() {
+  const { isArabic } = useLanguage();
   const [selectedServices, setSelectedServices] = useState<string[]>([
-    "oil-service",
+    "seat-covers",
   ]);
   const [make, setMake] = useState("Toyota");
   const [modelYear, setModelYear] = useState("");
   const [emirate, setEmirate] = useState("Sharjah");
-  const [urgency, setUrgency] = useState("flexible");
   const [serviceLocation, setServiceLocation] = useState("workshop");
 
   const [formData, setFormData] = useState({
@@ -129,6 +150,7 @@ export default function GetAQuoteContent() {
   });
 
   const voice = useVoiceInput({
+    isArabic,
     onResult: (fieldName: string, text: string) => {
       if (fieldName === "modelYear") {
         setModelYear(text);
@@ -150,7 +172,7 @@ export default function GetAQuoteContent() {
   const toggleService = (id: string) => {
     if (selectedServices.includes(id)) {
       if (selectedServices.length === 1) {
-        toast.error("Please select at least one service.");
+        toast.error(isArabic ? "يرجى اختيار خدمة أو إكسسوار واحد على الأقل." : "Please select at least one service.");
         return;
       }
       setSelectedServices(selectedServices.filter((s) => s !== id));
@@ -161,15 +183,27 @@ export default function GetAQuoteContent() {
 
   const getWhatsAppMessage = () => {
     const serviceNames = selectedServices
-      .map((id) => SERVICE_OPTIONS.find((s) => s.id === id)?.title)
+      .map((id) => {
+        const s = SERVICE_OPTIONS.find((opt) => opt.id === id);
+        return isArabic && s?.titleAr ? s.titleAr : s?.title;
+      })
       .filter(Boolean)
       .join(", ");
 
-    const text = `*New Quote Request - Al Rahmaniah Auto*
+    const text = isArabic
+      ? `*طلب عرض سعر إكسسوارات جديد - الرحمانية للسيارات*
+• السيارة: ${make} (${modelYear || "غير محدد"})
+• الإمارة: ${emirate}
+• الخدمات المطلوبة: ${serviceNames}
+• طريقة التركيب: ${serviceLocation === "workshop" ? "التركيب بالمعرض في الشارقة" : "شحن وتوصيل للمنزل"}
+• الاسم: ${formData.name || "عميل"}
+• الهاتف: ${formData.phone || "غير محدد"}
+• ملاحظات إضافية: ${formData.additionalNotes || "لا يوجد"}`
+      : `*New Quote Request - Al Rahmaniah Auto*
 • Vehicle: ${make} (${modelYear || "Not specified"})
 • Emirate: ${emirate}
 • Services Required: ${serviceNames}
-• Preferred Mode: ${serviceLocation === "workshop" ? "Workshop Drop-off" : "Pickup & Delivery"}
+• Preferred Mode: ${serviceLocation === "workshop" ? "Workshop Fitting" : "Courier Delivery"}
 • Customer Name: ${formData.name || "Customer"}
 • Phone: ${formData.phone || "Not specified"}
 • Notes: ${formData.additionalNotes || "None"}`;
@@ -180,7 +214,7 @@ export default function GetAQuoteContent() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.phone.trim()) {
-      toast.error("Please enter your name and phone number.");
+      toast.error(isArabic ? "يرجى إدخال اسمك ورقم هاتفك." : "Please enter your name and phone number.");
       return;
     }
 
@@ -188,12 +222,16 @@ export default function GetAQuoteContent() {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      toast.success("Quote request submitted! Our service team is preparing your estimate.");
+      toast.success(
+        isArabic
+          ? "تم إرسال طلبك بنجاح! يقوم فريقنا بتجهيز عرض السعر وسيتواصل معك فوراً."
+          : "Quote request submitted! Our service team is preparing your estimate."
+      );
     }, 1200);
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900">
+    <div className="min-h-screen bg-zinc-50 text-zinc-900" dir={isArabic ? "rtl" : "ltr"}>
       {/* 1. Header Banner */}
       <section className="relative w-full h-[55vh] min-h-[420px] overflow-hidden flex flex-col justify-center bg-black">
         <div className="absolute inset-0 z-0">
@@ -211,15 +249,18 @@ export default function GetAQuoteContent() {
         <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
           <div className="flex items-center justify-center gap-2 text-red-500 font-bold text-xs uppercase tracking-[0.25em] mb-4">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
-            <span>FAST TRANSPARENT ESTIMATES</span>
+            <span>{isArabic ? "تسعيرات سريعة وشفافة ومضمونة" : "FAST TRANSPARENT ESTIMATES"}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-white mb-4">
-            Request an <span className="text-red-600">Instant Quote</span>
+            <span>{isArabic ? "طلب " : "Request an "}</span>
+            <span className="text-red-600">{isArabic ? "عرض سعر فوري" : "Instant Quote"}</span>
           </h1>
 
           <p className="max-w-2xl mx-auto text-zinc-300 text-xs sm:text-sm font-medium tracking-wide leading-relaxed">
-            Get an upfront, honest price estimate for custom leather seat covers, 7D floor mats, lighting upgrades, or bulk automotive accessories. 100% genuine quality with precision vehicle fitment.
+            {isArabic
+              ? "احصل على تسعيرة دقيقة ومباشرة لتفصيل أغطية المقاعد الجلدية، ودعاسات 7D، والإنارة، وطلبات الجملة. جودة أصلية 100% ومقاسات ليزر دقيقة لموديل سيارتك."
+              : "Get an upfront, honest price estimate for custom leather seat covers, 7D floor mats, lighting upgrades, or bulk automotive accessories. 100% genuine quality with precision vehicle fitment."}
           </p>
         </div>
       </section>
@@ -238,10 +279,18 @@ export default function GetAQuoteContent() {
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
                   <h2 className="text-3xl font-display font-bold text-zinc-900">
-                    Quote Request Received!
+                    {isArabic ? "تم استلام طلب التسعيرة بنجاح!" : "Quote Request Received!"}
                   </h2>
                   <p className="text-zinc-600 max-w-md mx-auto text-sm leading-relaxed">
-                    Thank you, <span className="text-zinc-900 font-bold">{formData.name}</span>! Our auto styling and fitment specialist at Al Rahmaniah Auto is reviewing your vehicle details. We will send your transparent price estimate shortly.
+                    {isArabic ? (
+                      <>
+                        شكراً لك، <span className="text-zinc-900 font-bold">{formData.name}</span>! خبراؤنا في الرحمانية يقومون بمراجعة مواصفات سيارتك وسنرسل لك التسعيرة التفصيلية ومواعيد التركيب المتاحة فوراً.
+                      </>
+                    ) : (
+                      <>
+                        Thank you, <span className="text-zinc-900 font-bold">{formData.name}</span>! Our auto styling and fitment specialist at Al Rahmaniah Auto is reviewing your vehicle details. We will send your transparent price estimate shortly.
+                      </>
+                    )}
                   </p>
                   
                   <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center">
@@ -252,13 +301,13 @@ export default function GetAQuoteContent() {
                       className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all shadow-md"
                     >
                       <MessageCircle className="w-4 h-4" />
-                      <span>Speed Up via WhatsApp</span>
+                      <span>{isArabic ? "متابعة سريعة عبر واتساب" : "Speed Up via WhatsApp"}</span>
                     </a>
                     <button
                       onClick={() => setSubmitted(false)}
                       className="px-8 py-3.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-bold rounded-full text-xs uppercase tracking-widest transition-all border border-zinc-200"
                     >
-                      Submit Another Request
+                      {isArabic ? "إرسال طلب تسعيرة آخر" : "Submit Another Request"}
                     </button>
                   </div>
                 </div>
@@ -272,7 +321,7 @@ export default function GetAQuoteContent() {
                         1
                       </div>
                       <h3 className="text-xl font-display font-bold text-zinc-900">
-                        Vehicle Information
+                        {isArabic ? "معلومات وبيانات السيارة" : "Vehicle Information"}
                       </h3>
                     </div>
 
@@ -281,7 +330,8 @@ export default function GetAQuoteContent() {
                         <SearchableSelect
                           value={make}
                           options={VEHICLE_MAKE_OPTIONS}
-                          label="Vehicle Make"
+                          label={isArabic ? "صانع السيارة" : "Vehicle Make"}
+                          isArabic={isArabic}
                           required
                           onChange={(val) => setMake(val)}
                         />
@@ -292,7 +342,8 @@ export default function GetAQuoteContent() {
                           type="text"
                           name="modelYear"
                           value={modelYear}
-                          label="Model & Year (e.g. Land Cruiser 2023)"
+                          label={isArabic ? "الموديل والسنة (مثلاً: لاند كروزر 2024)" : "Model & Year (e.g. Land Cruiser 2023)"}
+                          isArabic={isArabic}
                           isListening={voice.listeningField === "modelYear"}
                           onVoiceToggle={() => voice.toggleListening("modelYear", "text")}
                           onChange={(e) => setModelYear(e.target.value)}
@@ -303,7 +354,8 @@ export default function GetAQuoteContent() {
                         <SearchableSelect
                           value={emirate}
                           options={EMIRATE_OPTIONS}
-                          label="Plate Emirate"
+                          label={isArabic ? "إمارة اللوحة" : "Plate Emirate"}
+                          isArabic={isArabic}
                           onChange={(val) => setEmirate(val)}
                         />
                       </div>
@@ -318,10 +370,10 @@ export default function GetAQuoteContent() {
                       </div>
                       <div>
                         <h3 className="text-xl font-display font-bold text-zinc-900">
-                          Select Required Services
+                          {isArabic ? "اختر المنتجات أو الخدمات المطلوبة" : "Select Required Services"}
                         </h3>
                         <p className="text-xs text-zinc-500 mt-0.5">
-                          Choose one or multiple services to bundle into your quote
+                          {isArabic ? "يمكنك اختيار خدمة واحدة أو دمج عدة خدمات في تسعيرة واحدة" : "Choose one or multiple services to bundle into your quote"}
                         </p>
                       </div>
                     </div>
@@ -341,7 +393,7 @@ export default function GetAQuoteContent() {
                           >
                             <div className="flex items-start justify-between gap-2 mb-2">
                               <span className="text-xs uppercase font-bold text-red-600">
-                                {srv.tag}
+                                {isArabic ? srv.tagAr : srv.tag}
                               </span>
                               <div
                                 className={`w-5 h-5 rounded-md flex items-center justify-center border transition-all ${
@@ -353,9 +405,11 @@ export default function GetAQuoteContent() {
                                 {isSelected && <CheckCircle2 className="w-3.5 h-3.5" />}
                               </div>
                             </div>
-                            <h4 className="font-bold text-sm text-zinc-900">{srv.title}</h4>
+                            <h4 className="font-bold text-sm text-zinc-900">
+                              {isArabic ? srv.titleAr : srv.title}
+                            </h4>
                             <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                              {srv.desc}
+                              {isArabic ? srv.descAr : srv.desc}
                             </p>
                           </div>
                         );
@@ -363,14 +417,14 @@ export default function GetAQuoteContent() {
                     </div>
                   </div>
 
-                  {/* Step 3: Service Mode & Urgency */}
+                  {/* Step 3: Service Mode */}
                   <div>
                     <div className="flex items-center gap-3 mb-6 pb-3 border-b border-zinc-100">
                       <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-sm">
                         3
                       </div>
                       <h3 className="text-xl font-display font-bold text-zinc-900">
-                        Service Preferences
+                        {isArabic ? "طريقة التنفيذ والاستلام" : "Service Preferences"}
                       </h3>
                     </div>
 
@@ -383,9 +437,13 @@ export default function GetAQuoteContent() {
                             : "bg-zinc-50 border-zinc-200 hover:bg-white"
                         }`}
                       >
-                        <h4 className="font-bold text-sm text-zinc-900">Workshop Drop-Off</h4>
+                        <h4 className="font-bold text-sm text-zinc-900">
+                          {isArabic ? "التركيب بمعرض الشارقة" : "Workshop Fitting in Sharjah"}
+                        </h4>
                         <p className="text-xs text-zinc-500 mt-1">
-                          Bring your car to Industrial Area 5, Sharjah. Fast reception.
+                          {isArabic
+                            ? "تفضل بزيارة معرضنا بالصناعية 5 للتركيب المباشر والمعاينة."
+                            : "Bring your car to Industrial Area 4 & 5, Sharjah for same-day expert fitment."}
                         </p>
                       </div>
 
@@ -397,9 +455,13 @@ export default function GetAQuoteContent() {
                             : "bg-zinc-50 border-zinc-200 hover:bg-white"
                         }`}
                       >
-                        <h4 className="font-bold text-sm text-zinc-900">Recovery / Pickup &amp; Delivery</h4>
+                        <h4 className="font-bold text-sm text-zinc-900">
+                          {isArabic ? "شحن وتوصيل لكافة الإمارات" : "Express UAE Courier Delivery"}
+                        </h4>
                         <p className="text-xs text-zinc-500 mt-1">
-                          Flatbed recovery available across Sharjah and Dubai.
+                          {isArabic
+                            ? "توصيل سريع للأطقم المفصلة والدعاسات إلى باب بيتك في أي إمارة."
+                            : "Express delivery for tailored seat covers, 7D mats, and accessories across all Emirates."}
                         </p>
                       </div>
                     </div>
@@ -412,7 +474,7 @@ export default function GetAQuoteContent() {
                         4
                       </div>
                       <h3 className="text-xl font-display font-bold text-zinc-900">
-                        Your Contact Details
+                        {isArabic ? "بيانات التواصل معك" : "Your Contact Details"}
                       </h3>
                     </div>
 
@@ -421,8 +483,9 @@ export default function GetAQuoteContent() {
                         type="text"
                         name="name"
                         value={formData.name}
-                        label="Your Full Name"
+                        label={isArabic ? "الاسم الكامل" : "Your Full Name"}
                         required
+                        isArabic={isArabic}
                         isListening={voice.listeningField === "name"}
                         onVoiceToggle={() => voice.toggleListening("name", "text")}
                         onChange={(e) =>
@@ -434,8 +497,9 @@ export default function GetAQuoteContent() {
                         type="tel"
                         name="phone"
                         value={formData.phone}
-                        label="Mobile / WhatsApp Number"
+                        label={isArabic ? "رقم الهاتف / واتساب" : "Mobile / WhatsApp Number"}
                         required
+                        isArabic={isArabic}
                         isListening={voice.listeningField === "phone"}
                         onVoiceToggle={() => voice.toggleListening("phone", "phone")}
                         onChange={(e) =>
@@ -449,7 +513,8 @@ export default function GetAQuoteContent() {
                         type="email"
                         name="email"
                         value={formData.email}
-                        label="Email Address (Optional)"
+                        label={isArabic ? "البريد الإلكتروني (اختياري)" : "Email Address (Optional)"}
+                        isArabic={isArabic}
                         isListening={voice.listeningField === "email"}
                         onVoiceToggle={() => voice.toggleListening("email", "email")}
                         onChange={(e) =>
@@ -462,8 +527,9 @@ export default function GetAQuoteContent() {
                       <FloatTextarea
                         name="additionalNotes"
                         value={formData.additionalNotes}
-                        label="Custom Specifications, Color & Material Preferences"
+                        label={isArabic ? "ملاحظات إضافية، تفضيل اللون أو نوع الجلد أو التطريز..." : "Custom Specifications, Color & Material Preferences"}
                         rows={3}
+                        isArabic={isArabic}
                         isListening={voice.listeningField === "additionalNotes"}
                         onVoiceToggle={() => voice.toggleListening("additionalNotes", "textarea")}
                         onChange={(e) =>
@@ -480,7 +546,9 @@ export default function GetAQuoteContent() {
                       disabled={isSubmitting}
                       className="flex-1 py-4 px-8 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all shadow-lg shadow-red-600/30 cursor-pointer disabled:opacity-50"
                     >
-                      {isSubmitting ? "Calculating Estimate..." : "Submit Quote Request"}
+                      {isSubmitting
+                        ? (isArabic ? "جاري تجهيز التسعيرة..." : "Calculating Estimate...")
+                        : (isArabic ? "إرسال طلب التسعيرة" : "Submit Quote Request")}
                     </button>
 
                     <a
@@ -490,7 +558,7 @@ export default function GetAQuoteContent() {
                       className="py-4 px-8 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all inline-flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-emerald-600/20"
                     >
                       <MessageCircle className="w-4 h-4" />
-                      <span>Instant WhatsApp Quote</span>
+                      <span>{isArabic ? "تسعيرة فورية عبر واتساب" : "Instant WhatsApp Quote"}</span>
                     </a>
                   </div>
 
@@ -500,17 +568,17 @@ export default function GetAQuoteContent() {
             </div>
           </div>
 
-          {/* Right Side: Wolmart Demo 15 Style Quote Assurance Card (4 Cols) */}
+          {/* Right Side: Guarantee Card (4 Cols) */}
           <div className="lg:col-span-4 space-y-6">
             
             {/* Guarantee Box */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-zinc-200 shadow-xl">
               <div className="flex items-center gap-2 text-red-600 font-bold uppercase tracking-widest text-xs mb-3">
                 <Sparkles className="w-4 h-4" />
-                <span>Our Service Guarantee</span>
+                <span>{isArabic ? "ضمان الخدمة والحرفية" : "Our Service Guarantee"}</span>
               </div>
               <h3 className="text-xl font-display font-extrabold text-zinc-900 mb-6">
-                Why Drivers Trust Al Rahmaniah Auto
+                {isArabic ? "لماذا يثق بنا أصحاب السيارات؟" : "Why Drivers Trust Al Rahmaniah Auto"}
               </h3>
 
               <div className="space-y-5 text-sm">
@@ -520,10 +588,10 @@ export default function GetAQuoteContent() {
                   </div>
                   <div>
                     <h4 className="font-bold text-zinc-900 text-xs uppercase tracking-wider">
-                      100% Precision Laser Vehicle Fitment
+                      {isArabic ? "تفصيل ليزر مطابق لمقاسات الوكالة 100%" : "100% Precision Laser Vehicle Fitment"}
                     </h4>
                     <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                      Guaranteed perfect contour fitment tailored to your vehicle make, year, and seat profile.
+                      {isArabic ? "تفصيل دقيق يطابق شكل المقاعد وأرضية السيارة تماماً دون تجاعيد." : "Guaranteed perfect contour fitment tailored to your vehicle make, year, and seat profile."}
                     </p>
                   </div>
                 </div>
@@ -534,10 +602,10 @@ export default function GetAQuoteContent() {
                   </div>
                   <div>
                     <h4 className="font-bold text-zinc-900 text-xs uppercase tracking-wider">
-                      OEM Grade Leather & Materials
+                      {isArabic ? "جلود نابا وخامات معتمدة" : "OEM Grade Leather & Materials"}
                     </h4>
                     <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                      German Napa leatherette, high-tensile seatbelt webbing, and certified 7D all-weather polymer.
+                      {isArabic ? "جلود ألمانية، أحزمة أمان رياضية، وبوليمر 7D مقاوم لأقسى الظروف." : "German Napa leatherette, high-tensile seatbelt webbing, and certified 7D all-weather polymer."}
                     </p>
                   </div>
                 </div>
@@ -548,10 +616,10 @@ export default function GetAQuoteContent() {
                   </div>
                   <div>
                     <h4 className="font-bold text-zinc-900 text-xs uppercase tracking-wider">
-                      Transparent Upfront Pricing
+                      {isArabic ? "أسعار واضحة بدون رسوم مخفية" : "Transparent Upfront Pricing"}
                     </h4>
                     <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                      Detailed written quotation prior to any repair. Zero surprise charges.
+                      {isArabic ? "عرض سعر رسمي معتمد مسبقاً قبل أي تفصيل أو تركيب." : "Detailed written quotation prior to any repair. Zero surprise charges."}
                     </p>
                   </div>
                 </div>
@@ -560,7 +628,7 @@ export default function GetAQuoteContent() {
               {/* Direct Call / Contact Pill */}
               <div className="mt-8 pt-6 border-t border-zinc-100">
                 <p className="text-xs text-zinc-500 mb-2 uppercase tracking-wider font-bold">
-                  Need Immediate Help?
+                  {isArabic ? "هل تحتاج مساعدة عاجلة؟" : "Need Immediate Help?"}
                 </p>
                 <div className="flex flex-col gap-2">
                   <a
@@ -577,7 +645,7 @@ export default function GetAQuoteContent() {
                     className="flex items-center gap-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 hover:border-emerald-500 transition-colors text-emerald-800 font-bold text-xs"
                   >
                     <MessageCircle className="w-4 h-4 text-emerald-600" />
-                    <span>WhatsApp Service Desk</span>
+                    <span>{isArabic ? "مكتب خدمة العملاء واتساب" : "WhatsApp Service Desk"}</span>
                   </a>
                 </div>
               </div>
@@ -587,14 +655,14 @@ export default function GetAQuoteContent() {
             {/* Workshop Location Snippet */}
             <div className="bg-white rounded-3xl p-6 border border-zinc-200 shadow-sm">
               <h4 className="font-bold text-sm text-zinc-900 uppercase tracking-wider mb-2">
-                Workshop Location
+                {isArabic ? "موقع المعرض والورشة" : "Workshop Location"}
               </h4>
               <p className="text-xs text-zinc-500 leading-relaxed">
-                Industrial Area No 5, Sharjah, United Arab Emirates.
+                {isArabic ? "المنطقة الصناعية 4 و 5، الشارقة، الإمارات العربية المتحدة." : "Industrial Area No 5, Sharjah, United Arab Emirates."}
               </p>
               <div className="mt-4 flex items-center justify-between text-xs text-zinc-500">
-                <span>Sat - Thu: 8 AM - 10 PM</span>
-                <span className="text-red-600 font-bold">Open Today</span>
+                <span>{isArabic ? "السبت - الخميس: 8 ص - 10 م" : "Sat - Thu: 8 AM - 10 PM"}</span>
+                <span className="text-red-600 font-bold">{isArabic ? "مفتوح اليوم" : "Open Today"}</span>
               </div>
             </div>
 
@@ -602,37 +670,45 @@ export default function GetAQuoteContent() {
 
         </div>
 
-        {/* 3. Automotive Quotation FAQ Section (Taj Al Rahmah Style - Exactly 6 FAQs) */}
+        {/* 3. Automotive Quotation FAQ Section */}
         <div className="mt-20 max-w-4xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
             <div className="inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-3">
               <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
               <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-red-600">
-                FAQ
+                {isArabic ? "الأسئلة الشائعة" : "FAQ"}
               </span>
               <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
             </div>
 
             <h2 className="text-2xl sm:text-4xl md:text-[44px] font-black text-zinc-900 tracking-tight leading-[1.15]">
-              Frequently Asked <span className="text-red-600">Questions</span>
+              {isArabic ? "الأسئلة الأكثر " : "Frequently Asked "}
+              <span className="text-red-600">{isArabic ? "تداولاً عن الأسعار" : "Questions"}</span>
             </h2>
 
             <p className="mt-2.5 sm:mt-3.5 text-zinc-500 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-              Everything you need to know about our vehicle repairs, transparent pricing, warranties, and workshop turnaround in Sharjah.
+              {isArabic
+                ? "إجابات فورية عن طرق احتساب الأسعار، والضمان، والمدة اللازمة لتفصيل المقاعد والدعاسات في الشارقة."
+                : "Everything you need to know about our vehicle repairs, transparent pricing, warranties, and workshop turnaround in Sharjah."}
             </p>
           </div>
 
           <div className="space-y-3 sm:space-y-4">
-            {AUTOMOTIVE_FAQS.slice(0, 6).map((faq, idx) => (
-              <FaqAccordionItem
-                key={faq.id}
-                number={idx + 1}
-                question={faq.question}
-                answer={faq.answer}
-                isOpen={activeFaq === faq.id}
-                onToggle={() => setActiveFaq(activeFaq === faq.id ? null : faq.id)}
-              />
-            ))}
+            {AUTOMOTIVE_FAQS.slice(0, 6).map((faq, idx) => {
+              const q = isArabic && faq.questionAr ? faq.questionAr : faq.question;
+              const a = isArabic && faq.answerAr ? faq.answerAr : faq.answer;
+
+              return (
+                <FaqAccordionItem
+                  key={faq.id}
+                  number={idx + 1}
+                  question={q}
+                  answer={a}
+                  isOpen={activeFaq === faq.id}
+                  onToggle={() => setActiveFaq(activeFaq === faq.id ? null : faq.id)}
+                />
+              );
+            })}
           </div>
         </div>
 

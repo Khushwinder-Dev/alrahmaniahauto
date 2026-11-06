@@ -3,10 +3,28 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Sparkles, CheckCircle2, ShieldCheck, SunMedium, Flame, ArrowRight, MessageCircle } from "lucide-react";
+import { Sparkles, CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
-const MATERIALS = [
+interface MaterialItem {
+  id: string;
+  name: string;
+  nameAr: string;
+  tagline: string;
+  taglineAr: string;
+  desc: string;
+  descAr: string;
+  features: string[];
+  featuresAr: string[];
+  colors: string[];
+  colorsAr: string[];
+  colorHexes: string[];
+  image: string;
+  recommendedFor: string;
+  recommendedForAr: string;
+}
+
+const MATERIALS: MaterialItem[] = [
   {
     id: "napa",
     name: "German Napa Leatherette",
@@ -21,10 +39,18 @@ const MATERIALS = [
       "Airbag Deploy Safe Seam Ready",
       "3-Year Warranty Against Cracking",
     ],
+    featuresAr: [
+      "اختبار احتكاك معتمد لأكثر من 100,000 دورة",
+      "طبقة حماية ضد الأشعة فوق البنفسجية والبهتان",
+      "خياطة أمان مخصصة لفتح الوسائد الهوائية فوراً",
+      "ضمان 3 سنوات ضد التشققات وتغير اللون",
+    ],
     colors: ["Obsidian Black", "Cognac Tan", "Saddle Brown", "Royal Crimson", "Pure Ivory"],
+    colorsAr: ["أسود ملكي", "كونياك تان", "بني غامق", "أحمر كرمزي", "عاجي ناصع"],
     colorHexes: ["#18181b", "#92400e", "#78350f", "#991b1b", "#fef3c7"],
     image: "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
     recommendedFor: "Sedans, Luxury Coupes & Executive SUVs",
+    recommendedForAr: "سيارات الصالون، الكوبيه والدفع الرباعي الفاخر",
   },
   {
     id: "diamond-pvc",
@@ -40,10 +66,18 @@ const MATERIALS = [
       "100% Water & Spill Proof Surface",
       "Effortless Wet-Wipe Cleaning",
     ],
+    featuresAr: [
+      "إسفنج مرن ميموري فوم سمك 8 مم لراحة الظهر",
+      "خياطة مزدوجة بخيوط عالية الشد والمقاومة",
+      "سطح مقاوم للماء والسوائل بنسبة 100%",
+      "تنظيف سهل وسريع بمسحة قماش مبللة",
+    ],
     colors: ["Black / Red Stitch", "Tan / Gold Stitch", "Black / Blue Stitch", "Grey / Silver Stitch"],
+    colorsAr: ["أسود / خياطة حمراء", "تان / خياطة ذهبية", "أسود / خياطة زرقاء", "رمادي / خياطة فضية"],
     colorHexes: ["#09090b", "#b45309", "#1e3a8a", "#4b5563"],
     image: "/fb-posts/605828125_122199913874549942_1353754870971959198_n.jpg",
     recommendedFor: "Desert Cruisers, Patrol, Land Cruiser & Trucks",
+    recommendedForAr: "نيسان باترول، لاند كروزر، البيك أب والدفع الرباعي",
   },
   {
     id: "7d-polymer",
@@ -59,10 +93,18 @@ const MATERIALS = [
       "Reinforced Anti-Wear Driver Heel Pad",
       "OEM Floor Retention Fastening Clips",
     ],
+    featuresAr: [
+      "حواف مرتفعة تمنع تسرب السوائل والأتربة للأرضية",
+      "طبقات متعددة من EVA عازلة للصوت والماء والرمال",
+      "دعاسة قدم معززة لجهة السائق لمنع الاهتراء",
+      "كلبسات تثبيت أصلية مطابقة لأرضية الوكالة",
+    ],
     colors: ["Black Diamond", "Coffee Brown", "Beige Quilted", "Carbon Grain Black"],
+    colorsAr: ["أسود ماسي", "بني قهوة", "بيج مطرز", "كاربون فايبر أسود"],
     colorHexes: ["#18181b", "#451a03", "#d97706", "#27272a"],
     image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
     recommendedFor: "All Weather Protection Across Sharjah & UAE",
+    recommendedForAr: "حماية تامة من حرارة ورمال الإمارات",
   },
   {
     id: "seatbelts",
@@ -78,16 +120,24 @@ const MATERIALS = [
       "High-Luster UV Fade-Resistant Yarn",
       "Same-Day Installation in Sharjah",
     ],
+    featuresAr: [
+      "مطابق لمعايير السلامة الأوروبية ECE",
+      "يحافظ على مشدات وأقفال الأمان الأصلية للسيارة",
+      "خيوط عالية اللمعان ومقاومة للبهتان بأشعة الشمس",
+      "تركيب وإنجاز فوري خلال نفس اليوم بالشارقة",
+    ],
     colors: ["Ferrari Red", "Porsche Yellow", "M-Power Blue", "Toxic Green", "Miami Blue"],
+    colorsAr: ["أحمر فيراري", "أصفر بورشه", "أزرق إم باور", "أخضر رياضي", "أزرق ميامي"],
     colorHexes: ["#dc2626", "#eab308", "#2563eb", "#16a34a", "#0284c7"],
     image: "/fb-posts/588668836_122194707920549942_6964088685681111711_n.jpg",
     recommendedFor: "Sports Cars, German Marques & Custom Restyling",
+    recommendedForAr: "السيارات الرياضية والألمانية والتعديلات الحصرية",
   },
 ];
 
 export default function MaterialSwatchesShowcase() {
   const { isArabic } = useLanguage();
-  const [selectedMat, setSelectedMat] = useState(MATERIALS[0]);
+  const [selectedMat, setSelectedMat] = useState<MaterialItem>(MATERIALS[0]);
 
   return (
     <section className="py-20 lg:py-24 bg-white border-b border-zinc-200" dir={isArabic ? "rtl" : "ltr"}>
@@ -103,20 +153,22 @@ export default function MaterialSwatchesShowcase() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-zinc-900 leading-tight">
-            {isArabic ? "أرقى أنواع الجلود " : "Master Craftsmanship & "}
-            <span className="text-red-600">{isArabic ? "والمواد المعالجة للشمس" : "Material Swatches"}</span>
+            {isArabic ? "خامات وجلود تنجيد مصممة خصيصاً " : "Master Craftsmanship: "}
+            <span className="text-red-600">
+              {isArabic ? "لتحمل حرارة الإمارات" : "Premium Auto Materials"}
+            </span>
           </h2>
 
-          <p className="mt-3 text-zinc-600 text-xs sm:text-sm md:text-base max-w-xl mx-auto">
+          <p className="mt-3 text-zinc-600 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed">
             {isArabic
-              ? "اختر من بين تشكيلات جلود نابا، والخياطة الماسية، ودعاسات 7D، وأحزمة الأمان الرياضية المصممة خصيصاً لمناخ الإمارات."
-              : "Explore our premium automotive materials tested for extreme heat, durability, and luxury fitment in Sharjah."}
+              ? "نستخدم في الرحمانية جلود نابا المعالجة ضد الأشعة فوق البنفسجية، وأقمشة ألكانتارا، وأحزمة أمان ملونة معتمدة لضمان أطول عمر افتراضي."
+              : "Touch and feel the difference. From heat-reflective German Napa leatherette to rugged 7D sandproof floor liners, our materials are selected for Gulf endurance."}
           </p>
 
-          {/* Material Select Tabs */}
+          {/* Material Selection Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-2.5 mt-8">
             {MATERIALS.map((mat) => {
-              const active = selectedMat.id === mat.id;
+              const active = mat.id === selectedMat.id;
               return (
                 <button
                   key={mat.id}
@@ -142,13 +194,13 @@ export default function MaterialSwatchesShowcase() {
               <div className="relative aspect-[16/11] w-full rounded-2xl overflow-hidden bg-white border border-zinc-200 shadow-md group">
                 <Image
                   src={selectedMat.image}
-                  alt={selectedMat.name}
+                  alt={isArabic ? selectedMat.nameAr : selectedMat.name}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4">
                   <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
-                    {selectedMat.recommendedFor}
+                    {isArabic ? selectedMat.recommendedForAr : selectedMat.recommendedFor}
                   </span>
                 </div>
               </div>
@@ -171,7 +223,7 @@ export default function MaterialSwatchesShowcase() {
 
               {/* Feature Checklist */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {selectedMat.features.map((f, i) => (
+                {(isArabic ? selectedMat.featuresAr : selectedMat.features).map((f, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs text-zinc-700 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-red-600 flex-shrink-0" />
                     <span>{f}</span>
@@ -185,7 +237,7 @@ export default function MaterialSwatchesShowcase() {
                   {isArabic ? "الألوان الشائعة المتاحة:" : "Popular Color Swatches:"}
                 </span>
                 <div className="flex flex-wrap items-center gap-2.5">
-                  {selectedMat.colors.map((colorName, idx) => (
+                  {(isArabic ? selectedMat.colorsAr : selectedMat.colors).map((colorName, idx) => (
                     <div
                       key={idx}
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-zinc-200 text-[11px] text-zinc-700 font-semibold shadow-xs"
@@ -207,12 +259,14 @@ export default function MaterialSwatchesShowcase() {
                   className="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-red-600/30 flex items-center gap-2"
                 >
                   <span>{isArabic ? "طلب تسعيرة لهذا الخام" : "Quote This Material"}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Link>
 
                 <a
                   href={`https://wa.me/971558674927?text=${encodeURIComponent(
-                    `Hello Al Rahmaniah, I would like to check physical swatches and pricing for: ${selectedMat.name}.`
+                    isArabic
+                      ? `مرحباً الرحمانية لزينة وتنجيد السيارات! أود معاينة عينات الأسعار والخامات لـ: ${selectedMat.nameAr}.`
+                      : `Hello Al Rahmaniah, I would like to check physical swatches and pricing for: ${selectedMat.name}.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -229,4 +283,3 @@ export default function MaterialSwatchesShowcase() {
     </section>
   );
 }
-

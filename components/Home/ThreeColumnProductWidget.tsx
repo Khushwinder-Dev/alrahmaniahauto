@@ -79,58 +79,64 @@ export default function ThreeColumnProductWidget() {
 
               {/* Items List */}
               <div className="space-y-4 flex-1">
-                {col.items.map((prod: ProductDetailItem) => (
-                  <Link
-                    key={prod.id}
-                    href={`/products?search=${encodeURIComponent(prod.name)}`}
-                    className="flex items-center gap-4 p-2.5 rounded-2xl hover:bg-zinc-50 border border-transparent hover:border-zinc-200 transition-all duration-200 group"
-                  >
-                    {/* Thumbnail */}
-                    <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden bg-zinc-100 flex-shrink-0 border border-zinc-100">
-                      <Image
-                        src={prod.image}
-                        alt={prod.name}
-                        fill
-                        className="object-cover group-hover:scale-108 transition-transform duration-300"
-                      />
-                    </div>
+                {col.items.map((prod: ProductDetailItem) => {
+                  const title = isArabic && prod.nameAr ? prod.nameAr : prod.name;
+                  const categoryName = isArabic && prod.categoryAr ? prod.categoryAr : prod.category;
+                  const priceTag = isArabic && prod.priceAr ? prod.priceAr : (prod.price || (isArabic ? "طلب تسعيرة" : "Contact for Quote"));
 
-                    {/* Details */}
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[10px] font-bold uppercase text-red-600 tracking-wider block truncate">
-                        {prod.category}
-                      </span>
-
-                      <h4 className="text-xs sm:text-sm font-bold text-zinc-900 group-hover:text-red-600 transition-colors line-clamp-1 mt-0.5 leading-snug">
-                        {prod.name}
-                      </h4>
-
-                      {/* Stars */}
-                      <div className="flex items-center gap-1 text-amber-500 text-[11px] mt-1">
-                        <div className="flex items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-3 h-3 ${
-                                i < Math.floor(prod.rating || 4.9)
-                                  ? "fill-amber-400 text-amber-400"
-                                  : "text-zinc-300"
-                              }`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-zinc-400 font-medium text-[10px]">
-                          ({prod.reviewsCount || 42})
-                        </span>
+                  return (
+                    <Link
+                      key={prod.id}
+                      href={`/products?search=${encodeURIComponent(prod.name)}`}
+                      className="flex items-center gap-4 p-2.5 rounded-2xl hover:bg-zinc-50 border border-transparent hover:border-zinc-200 transition-all duration-200 group"
+                    >
+                      {/* Thumbnail */}
+                      <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden bg-zinc-100 flex-shrink-0 border border-zinc-100">
+                        <Image
+                          src={prod.image}
+                          alt={title}
+                          fill
+                          className="object-cover group-hover:scale-108 transition-transform duration-300"
+                        />
                       </div>
 
-                      {/* Price */}
-                      <span className="text-xs font-black text-zinc-900 block mt-1">
-                        {prod.price || "Contact for Quote"}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+                      {/* Details */}
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[10px] font-bold uppercase text-red-600 tracking-wider block truncate">
+                          {categoryName}
+                        </span>
+
+                        <h4 className="text-xs sm:text-sm font-bold text-zinc-900 group-hover:text-red-600 transition-colors line-clamp-1 mt-0.5 leading-snug">
+                          {title}
+                        </h4>
+
+                        {/* Stars */}
+                        <div className="flex items-center gap-1 text-amber-500 text-[11px] mt-1">
+                          <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`w-3 h-3 ${
+                                  i < Math.floor(prod.rating || 4.9)
+                                    ? "fill-amber-400 text-amber-400"
+                                    : "text-zinc-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-zinc-400 font-medium text-[10px]">
+                            ({prod.reviewsCount || 42})
+                          </span>
+                        </div>
+
+                        {/* Price */}
+                        <span className="text-xs font-black text-zinc-900 block mt-1">
+                          {priceTag}
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Bottom Card Link */}
@@ -140,7 +146,7 @@ export default function ThreeColumnProductWidget() {
                   className="w-full py-2.5 rounded-xl bg-zinc-100 hover:bg-red-600 hover:text-white text-zinc-800 text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1.5"
                 >
                   <span>{isArabic ? "طلب تسعيرة سريعة" : "Request Custom Quote"}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
                 </Link>
               </div>
             </div>
@@ -150,4 +156,3 @@ export default function ThreeColumnProductWidget() {
     </section>
   );
 }
-

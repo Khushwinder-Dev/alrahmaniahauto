@@ -2,41 +2,44 @@
 
 import React from "react";
 import { Zap, ShieldCheck, Wrench, PhoneCall } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function WolmartTrustBar() {
+  const { isArabic } = useLanguage();
+
   const trustItems = [
     {
       icon: <Zap className="w-6 h-6 text-red-600 group-hover:text-white transition-colors flex-shrink-0" />,
-      title: "Fast UAE Delivery",
-      subtitle: "Express dispatch across all Emirates",
+      title: isArabic ? "توصيل سريع لكافة الإمارات" : "Fast UAE Delivery",
+      subtitle: isArabic ? "شحن فوري لجميع إمارات الدولة" : "Express dispatch across all Emirates",
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-red-600 group-hover:text-white transition-colors flex-shrink-0" />,
-      title: "100% Genuine Quality",
-      subtitle: "Certified authentic car accessories",
+      title: isArabic ? "جودة أصلية ومضمونة 100%" : "100% Genuine Quality",
+      subtitle: isArabic ? "إكسسوارات وخامات أصلية معتمدة" : "Certified authentic car accessories",
     },
     {
       icon: <Wrench className="w-6 h-6 text-red-600 group-hover:text-white transition-colors flex-shrink-0" />,
-      title: "Custom Fit Guaranteed",
-      subtitle: "Tailored to your vehicle specs",
+      title: isArabic ? "تفصيل ومقاسات دقيقة ومضمونة" : "Custom Fit Guaranteed",
+      subtitle: isArabic ? "تفصيل ليزر لموديل سيارتك بدقة" : "Tailored to your vehicle specs",
     },
     {
       icon: <PhoneCall className="w-6 h-6 text-red-600 group-hover:text-white transition-colors flex-shrink-0" />,
-      title: "24/7 Expert Support",
-      subtitle: "Fitment guidance & assistance",
+      title: isArabic ? "استشارة ودعم فني متواصل" : "24/7 Expert Support",
+      subtitle: isArabic ? "إرشاد كامل للمقاسات والمواصفات" : "Fitment guidance & assistance",
     },
   ];
 
   return (
-    <section className="w-full py-8 lg:py-12 bg-white border-b border-zinc-200">
+    <section className="w-full py-8 lg:py-12 bg-white border-b border-zinc-200" dir={isArabic ? "rtl" : "ltr"}>
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         <div className="bg-white rounded-3xl p-6 lg:p-8 border border-zinc-200 shadow-md">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-zinc-200 items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x rtl:sm:divide-x-reverse divide-zinc-200 items-center">
             {trustItems.map((item, index) => (
               <div
                 key={index}
                 className={`flex items-center gap-4 group transition-all duration-300 ${
-                  index > 0 ? "pt-4 sm:pt-0 sm:pl-6" : ""
+                  index > 0 ? "pt-4 sm:pt-0 sm:px-4" : ""
                 }`}
               >
                 {/* Clean Centered Icon Box */}
