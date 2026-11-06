@@ -51,7 +51,7 @@ export default function MediaLatestNewsSection() {
 
   return (
     <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white transition-colors duration-300">
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 w-full">
         {/* ========================================================= */}
         {/* HEADER: Centered Title matching website design language  */}
         {/* ========================================================= */}

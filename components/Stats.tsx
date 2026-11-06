@@ -3,9 +3,10 @@ import React from "react";
 
 export default function Stats() {
   return (
-    <div className="w-full bg-gray-50 pb-[40px] md:pb-[56px] lg:pb-[72px] px-4 sm:px-6 lg:px-8">
-      {/* Stats Section */}
-      <div className="max-w-8xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 bg-gradient-to-r from-red-800 theme-bg-main px-3 sm:px-4 py-4 sm:py-6 shadow rounded-2xl">
+    <div className="w-full bg-gray-50 pb-[40px] md:pb-[56px] lg:pb-[72px]">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
+        {/* Stats Section */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 bg-gradient-to-r from-red-800 theme-bg-main px-3 sm:px-4 py-4 sm:py-6 shadow rounded-2xl">
         <div className="flex flex-col items-center text-white">
           <Image
             src="/landing/stats/1.svg"
@@ -69,6 +70,7 @@ export default function Stats() {
             Architects
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

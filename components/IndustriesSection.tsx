@@ -64,7 +64,7 @@ export default function IndustriesSection() {
   ];
 
   return (
-    <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         {/* ============================================================
             SECTION HEADER

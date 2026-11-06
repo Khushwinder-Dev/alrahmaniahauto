@@ -173,7 +173,8 @@ export default function SupportPageContent() {
             2. INTRO HEADING: "Our Support"
         ══════════════════════════════════════════════════════════════ */}
         <section className="relative z-10 w-full py-[40px] md:py-[56px] lg:py-[72px] text-center">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
+            <div className="max-w-4xl mx-auto">
             {/* Tag */}
             <div className="flex items-center justify-center gap-2 mb-3">
               <span className="w-5 h-[1.5px] bg-[#00A896]" />
@@ -202,6 +203,7 @@ export default function SupportPageContent() {
                 ? "ابحث في الأسئلة الشائعة أو تصفح الأقسام للعثور على المعلومات والإرشادات التي تحتاجها لحلول العزل المائي عالية الجودة."
                 : "Search our frequently asked questions or browse by category to get the information you need. high-quality waterproofing solutions."}
             </p>
+          </div>
           </div>
         </section>
 

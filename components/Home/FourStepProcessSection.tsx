@@ -32,7 +32,7 @@ export default function FourStepProcessSection() {
   ];
 
   return (
-    <section className="bg-zinc-50 py-24 px-6 overflow-hidden">
+    <section className="bg-zinc-50 py-24 overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 flex flex-col items-center">
         <div className="inline-block px-5 py-1.5 rounded-full border border-red-200 bg-red-50 mb-6">
           <span className="text-red-600 text-[10px] font-black tracking-[0.25em] uppercase">

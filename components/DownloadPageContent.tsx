@@ -339,7 +339,7 @@ export default function DownloadPageContent() {
       {/* ══════════════════════════════════════════════════════════════
           2. RESOURCES & DOCUMENTS SECTION (3x3 Grid of 9 Cards)
       ══════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px]">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">

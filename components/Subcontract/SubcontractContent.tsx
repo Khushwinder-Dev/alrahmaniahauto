@@ -354,7 +354,7 @@ export default function SubcontractContent() {
       />
 
       {/* ─── SECTION 2: CERTIFICATION — OUR COMMITMENT TO QUALITY (SINGLE ROW AT TOP) ─── */}
-      <section className="w-full relative py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-gray-100">
+      <section className="w-full relative py-[40px] md:py-[56px] lg:py-[72px] overflow-hidden border-b border-gray-100">
         {/* Section background image */}
         <Image
           src="/certifications/logos/sectionBg.png"
@@ -521,7 +521,7 @@ export default function SubcontractContent() {
           </div>
 
           {/* 6 Capabilities Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             {CAPABILITIES.map((cap) => (
               <div
                 key={cap.id}
@@ -575,7 +575,7 @@ export default function SubcontractContent() {
           </div>
 
           {/* 4 Column Flow with Vertical Cyan Dividers */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto divide-y sm:divide-y-0 lg:divide-x lg:rtl:divide-x-reverse divide-teal-100/70">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full divide-y sm:divide-y-0 lg:divide-x lg:rtl:divide-x-reverse divide-teal-100/70">
             {REQUIREMENTS.map((req) => (
               <div
                 key={req.id}
@@ -631,7 +631,7 @@ export default function SubcontractContent() {
           </div>
 
           {/* 4 Process Steps Flow */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-4 max-w-6xl mx-auto relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-4 w-full relative">
             {PROCESS_STEPS.map((proc, index) => (
               <div
                 key={proc.step}
@@ -703,7 +703,7 @@ export default function SubcontractContent() {
           </div>
 
           {/* 6 Partner Cards Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-4 xl:gap-5 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-4 xl:gap-5 w-full">
             {INDUSTRY_PARTNERS.map((partner, idx) => (
               <div
                 key={idx}

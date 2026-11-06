@@ -147,7 +147,8 @@ export default function WarrantyPageContent() {
           2. INTRO HEADING: "Our Warranty Coverage"
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full py-[40px] md:py-[56px] lg:py-[72px] bg-white text-center">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
+          <div className="max-w-4xl mx-auto">
           {/* Tag */}
           <div className="flex items-center justify-center gap-2 mb-3">
             <span className="w-5 h-[1.5px] bg-[#00A896]" />
@@ -176,6 +177,7 @@ export default function WarrantyPageContent() {
               ? "ندرك أن كل قطاع ومشروع يحمل تحدياته الخاصة. حلولنا المتكاملة في العزل المائي والحماية الإنشائية مصممة لتمكينك من البناء بأعلى معايير القوة والأمان والاستدامة."
               : "We understand that every industry has unique challenges. Our tailored waterproofing and protective solutions help you build safer, stronger, and more sustainable assets."}
           </p>
+        </div>
         </div>
       </section>
 

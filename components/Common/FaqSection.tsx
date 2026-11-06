@@ -116,7 +116,8 @@ export default function FaqSection({
       className={`relative w-full ${pyClassName} ${bgClassName} ${className} overflow-hidden`}
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
+        <div className="max-w-4xl mx-auto">
         {/* Taj Al Rahmah Style Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
           {/* Tagline: — FAQ — */}
@@ -170,6 +171,7 @@ export default function FaqSection({
               isArabic={isArabic}
             />
           ))}
+        </div>
         </div>
       </div>
     </section>

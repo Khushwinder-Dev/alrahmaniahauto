@@ -28,7 +28,7 @@ const AllGallery = () => {
   };
 
   return (
-    <div className="bg-gray-50 py-[40px] md:py-[56px] lg:py-[72px] px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-50 py-[40px] md:py-[56px] lg:py-[72px]">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
         {/* Header Section */}
         <div className="text-center mb-12">

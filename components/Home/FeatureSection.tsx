@@ -9,7 +9,7 @@ export default function FeatureSection() {
   const router = useRouter();
 
   return (
-    <section className="bg-zinc-50 py-20 px-6">
+    <section className="bg-zinc-50 py-20">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="relative h-[300px] md:h-[500px] w-full rounded-[40px] overflow-hidden border border-zinc-200 shadow-xl">
           <Image
