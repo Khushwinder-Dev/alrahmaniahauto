@@ -48,7 +48,7 @@ const MATERIALS: MaterialItem[] = [
     colors: ["Obsidian Black", "Cognac Tan", "Saddle Brown", "Royal Crimson", "Pure Ivory"],
     colorsAr: ["أسود ملكي", "كونياك تان", "بني غامق", "أحمر كرمزي", "عاجي ناصع"],
     colorHexes: ["#18181b", "#92400e", "#78350f", "#991b1b", "#fef3c7"],
-    image: "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
+    image: "/images/materials/napa-leatherette.jpg",
     recommendedFor: "Sedans, Luxury Coupes & Executive SUVs",
     recommendedForAr: "سيارات الصالون، الكوبيه والدفع الرباعي الفاخر",
   },
@@ -75,7 +75,7 @@ const MATERIALS: MaterialItem[] = [
     colors: ["Black / Red Stitch", "Tan / Gold Stitch", "Black / Blue Stitch", "Grey / Silver Stitch"],
     colorsAr: ["أسود / خياطة حمراء", "تان / خياطة ذهبية", "أسود / خياطة زرقاء", "رمادي / خياطة فضية"],
     colorHexes: ["#09090b", "#b45309", "#1e3a8a", "#4b5563"],
-    image: "/fb-posts/605828125_122199913874549942_1353754870971959198_n.jpg",
+    image: "/images/materials/diamond-pvc.jpg",
     recommendedFor: "Desert Cruisers, Patrol, Land Cruiser & Trucks",
     recommendedForAr: "نيسان باترول، لاند كروزر، البيك أب والدفع الرباعي",
   },
@@ -102,7 +102,7 @@ const MATERIALS: MaterialItem[] = [
     colors: ["Black Diamond", "Coffee Brown", "Beige Quilted", "Carbon Grain Black"],
     colorsAr: ["أسود ماسي", "بني قهوة", "بيج مطرز", "كاربون فايبر أسود"],
     colorHexes: ["#18181b", "#451a03", "#d97706", "#27272a"],
-    image: "/fb-posts/590817435_122194716200549942_3770877090703741555_n.jpg",
+    image: "/images/materials/7d-polymer.jpg",
     recommendedFor: "All Weather Protection Across Sharjah & UAE",
     recommendedForAr: "حماية تامة من حرارة ورمال الإمارات",
   },
@@ -129,7 +129,7 @@ const MATERIALS: MaterialItem[] = [
     colors: ["Ferrari Red", "Porsche Yellow", "M-Power Blue", "Toxic Green", "Miami Blue"],
     colorsAr: ["أحمر فيراري", "أصفر بورشه", "أزرق إم باور", "أخضر رياضي", "أزرق ميامي"],
     colorHexes: ["#dc2626", "#eab308", "#2563eb", "#16a34a", "#0284c7"],
-    image: "/fb-posts/588668836_122194707920549942_6964088685681111711_n.jpg",
+    image: "/images/materials/seatbelts.jpg",
     recommendedFor: "Sports Cars, German Marques & Custom Restyling",
     recommendedForAr: "السيارات الرياضية والألمانية والتعديلات الحصرية",
   },
@@ -191,14 +191,17 @@ export default function MaterialSwatchesShowcase() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Image Preview */}
             <div className="lg:col-span-6">
-              <div className="relative aspect-[16/11] w-full rounded-2xl overflow-hidden bg-white border border-zinc-200 shadow-md group">
+              <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full min-h-[300px] sm:min-h-[380px] rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200 shadow-md group">
                 <Image
                   src={selectedMat.image}
                   alt={isArabic ? selectedMat.nameAr : selectedMat.name}
                   fill
+                  priority
+                  unoptimized
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4">
+                <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">
                   <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
                     {isArabic ? selectedMat.recommendedForAr : selectedMat.recommendedFor}
                   </span>
