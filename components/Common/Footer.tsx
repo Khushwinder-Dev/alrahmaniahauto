@@ -22,8 +22,18 @@ export default function Footer({ hideNewsletter }: { hideNewsletter?: boolean } 
   const { isArabic } = useLanguage();
   const pathname = usePathname();
 
-  const isAboutUs = pathname === "/about-us" || pathname?.startsWith("/about-us");
-  const showNewsletter = !hideNewsletter && !isAboutUs;
+  const isExcludedPage =
+    pathname === "/about-us" ||
+    pathname?.startsWith("/about-us") ||
+    pathname === "/career" ||
+    pathname?.startsWith("/career") ||
+    pathname === "/careers" ||
+    pathname?.startsWith("/careers") ||
+    pathname === "/contact" ||
+    pathname?.startsWith("/contact") ||
+    pathname === "/contact-us" ||
+    pathname?.startsWith("/contact-us");
+  const showNewsletter = !hideNewsletter && !isExcludedPage;
 
   const ArrowIcon = isArabic ? ChevronLeft : ChevronRight;
 
