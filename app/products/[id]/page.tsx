@@ -64,7 +64,7 @@ export default function ProductDetailsPage() {
             alt="Product Details Hero"
             fill
             className="object-cover object-center"
-            src="/images/services-hero.png"
+            src="/images/products-banner.jpg"
             priority
           />
           <div className="absolute inset-0 bg-[#1a0a05]/75" />

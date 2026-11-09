@@ -76,17 +76,17 @@ export default function ProductsPage() {
   return (
     <main className="bg-zinc-50 text-zinc-900 min-h-screen" dir={isArabic ? "rtl" : "ltr"}>
       {/* 1. Hero Section */}
-      <section className="relative w-full h-[55vh] min-h-[420px] overflow-hidden flex flex-col justify-center bg-black">
+      <section className="relative w-full h-[55vh] min-h-[420px] overflow-hidden flex flex-col justify-center bg-zinc-950">
         <div className="absolute inset-0 z-0">
           <Image
-            alt="Al Rahmaniah Auto Accessories Hero"
+            alt="Al Rahmaniah Auto Accessories & Seat Covers Catalog"
             fill
             className="object-cover object-center"
-            src="/images/services-hero.png"
+            src="/images/products-banner.jpg"
             priority
           />
-          <div className="absolute inset-0 bg-[#0a0a0c]/85" />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-black/30" />
         </div>
 
         <div className="relative z-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 text-center mt-12">
