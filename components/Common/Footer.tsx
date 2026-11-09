@@ -32,7 +32,11 @@ export default function Footer({ hideNewsletter }: { hideNewsletter?: boolean } 
     pathname === "/contact" ||
     pathname?.startsWith("/contact") ||
     pathname === "/contact-us" ||
-    pathname?.startsWith("/contact-us");
+    pathname?.startsWith("/contact-us") ||
+    pathname === "/products" ||
+    pathname?.startsWith("/products") ||
+    pathname === "/product" ||
+    pathname?.startsWith("/product");
   const showNewsletter = !hideNewsletter && !isExcludedPage;
 
   const ArrowIcon = isArabic ? ChevronLeft : ChevronRight;
