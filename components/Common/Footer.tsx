@@ -100,11 +100,11 @@ export default function Footer() {
             {/* Col 1: About & Social */}
             <div className="space-y-6">
               <Link className="inline-block" href="/">
-                <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-sm">
+                <div className="relative h-14 w-36 sm:w-40 rounded-xl bg-white p-1.5 shadow-md overflow-hidden flex items-center justify-center transition-transform hover:scale-[1.02]">
                   <Image
                     alt="Al Rahmaniah Auto Accessories"
                     fill
-                    className="object-contain object-left rtl:object-right"
+                    className="object-contain"
                     src="/images/alrahmaniah-logo.jpg"
                     unoptimized
                   />
@@ -174,15 +174,51 @@ export default function Footer() {
                       <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"></path>
                     </svg>
                   </a>
+                  <a
+                    href="https://twitter.com/alrahmaniahauto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full bg-zinc-800/80 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all border border-zinc-700"
+                    aria-label="Twitter"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      strokeWidth="0"
+                      viewBox="0 0 512 512"
+                      height="13"
+                      width="13"
+                    >
+                      <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@alrahmaniahauto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full bg-zinc-800/80 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all border border-zinc-700"
+                    aria-label="YouTube"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      strokeWidth="0"
+                      viewBox="0 0 576 512"
+                      height="13"
+                      width="13"
+                    >
+                      <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Col 2: Products & Accessories */}
+            {/* Col 2: Categories */}
             <div>
               <div className="mb-6">
                 <h4 className="text-white text-xl uppercase tracking-tight font-display font-bold">
-                  {isArabic ? "المنتجات والإكسسوارات" : "Products & Accessories"}
+                  {isArabic ? "الأقسام" : "Categories"}
                 </h4>
                 <div className="h-0.5 w-10 bg-red-600 mt-1"></div>
               </div>
@@ -205,7 +241,7 @@ export default function Footer() {
             <div>
               <div className="mb-6">
                 <h4 className="text-white text-xl uppercase tracking-tight font-display font-bold">
-                  {isArabic ? "عن الشركة" : "Company & Info"}
+                  {isArabic ? "الشركة" : "Company"}
                 </h4>
                 <div className="h-0.5 w-10 bg-red-600 mt-1"></div>
               </div>
@@ -228,7 +264,7 @@ export default function Footer() {
             <div>
               <div className="mb-6">
                 <h4 className="text-white text-xl uppercase tracking-tight font-display font-bold">
-                  {isArabic ? "المعرض والتواصل" : "Showroom & Contact"}
+                  {isArabic ? "التواصل" : "Contact"}
                 </h4>
                 <div className="h-0.5 w-10 bg-red-600 mt-1"></div>
               </div>

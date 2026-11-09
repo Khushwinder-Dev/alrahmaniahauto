@@ -278,70 +278,9 @@ const SUBCONTRACT_CERTIFICATIONS: SubcontractCertification[] = [
   },
 ];
 
-interface SubcontractFaqItem {
-  id: number;
-  questionEn: string;
-  questionAr: string;
-  answerEn: string;
-  answerAr: string;
-}
-
-const SUBCONTRACT_FAQS: SubcontractFaqItem[] = [
-  {
-    id: 1,
-    questionEn: "What specialized subcontracting services do you provide?",
-    questionAr: "ما هي خدمات المقاولات من الباطن التخصصية التي تقدمونها؟",
-    answerEn:
-      "We provide end-to-end subcontracting solutions across waterproofing (combo system, GRP, bitumen membrane, polyurea), high-performance protective and anti-corrosion coatings, concrete repair and crack injection, and heavy-duty industrial flooring systems.",
-    answerAr:
-      "نقدم حلولاً متكاملة في المقاولات من الباطن تشمل أعمال العزل المائي (نظام الكومبو، GRP، الأغشية البيتومينية، والبولي يوريا)، الطلاءات الواقية ومكافحة التآكل، إصلاح الشروخ وحقن الخرسانة، وأنظمة الأرضيات الصناعية فائقة التحمل.",
-  },
-  {
-    id: 2,
-    questionEn: "Are your works certified and compliant with UAE municipal standards?",
-    questionAr: "هل أعمالكم معتمدة ومتوافقة مع المعايير البلدية في دولة الإمارات؟",
-    answerEn:
-      "Yes. Our engineering processes and application teams comply strictly with Dubai Municipality, Civil Defense, Estidama, and ISO 9001/14001/45001 standards. We provide complete submittals, method statements, and inspection test plans (ITP).",
-    answerAr:
-      "نعم، تلتزم منهجياتنا الهندسية وفرق التطبيق باشتراطات بلدية دبي، الدفاع المدني، برنامج استدامة، ومعايير الآيزو (9001، 14001، 45001). ونوفر اعتمادات المواد، بيانات طرق العمل (Method Statements)، وخطط الفحص والاختبار (ITP).",
-  },
-  {
-    id: 3,
-    questionEn: "How quickly can you provide site assessments and commercial proposals?",
-    questionAr: "كم يستغرق إجراء المعاينة الميدانية وتقديم العرض الفني والمالي؟",
-    answerEn:
-      "Upon receiving your project drawings, BOQ, or specifications, our technical team conducts a complimentary site inspection and issues a detailed technical proposal and competitive quotation within 24 to 48 hours.",
-    answerAr:
-      "بمجرد تزويدنا بمخططات المشروع أو جدول الكميات (BOQ)، يقوم فريقنا الفني بزيارة ميدانية وإعداد مقترح فني تفصيلي مع عرض أسعار تنافسي خلال 24 إلى 48 ساعة فقط.",
-  },
-  {
-    id: 4,
-    questionEn: "What warranties and guarantees are issued upon project handover?",
-    questionAr: "ما هي الضمانات التي يتم تسليمها عند إنجاز المشروع؟",
-    answerEn:
-      "We issue comprehensive, certified material and workmanship warranties ranging from 10 to 25 years depending on the approved system. All warranties are backed by mandatory on-site ponding, thickness, and holiday spark testing prior to handover.",
-    answerAr:
-      "نمنح ضمانات خطية شاملة على المواد والتنفيذ تتراوح بين 10 إلى 25 عاماً وفقاً للنظام المعتمد. وتكون كافة الضمانات مدعومة باختبارات غمر المياه والفحص الفني الشامل قبل التسليم النهائي.",
-  },
-  {
-    id: 5,
-    questionEn: "Can you mobilize teams for fast-track or high-volume construction schedules?",
-    questionAr: "هل يمكنكم حشد وتوفير الفرق الفنية للمشاريع العاجلة والمضغوطة زمنياً؟",
-    answerEn:
-      "Yes. With our dedicated full-time workforce of certified engineers, QA/QC inspectors, site supervisors, and trained technicians, we have the logistical capacity to deploy immediately and scale up for fast-track milestones across Dubai and the Northern Emirates.",
-    answerAr:
-      "نعم، نمتلك كادراً دائماً ومؤهلاً من المهندسين، ومفتشي ضبط الجودة، والمشرفين، والفنيين المدربين، مما يتيح لنا الحشد الفوري والتوسع اللوجستي للالتزام بالجداول الزمنية المضغوطة في دبي وكافة إمارات الدولة.",
-  },
-];
-
 export default function SubcontractContent() {
   const { isArabic, direction } = useLanguage();
   const isAr = isArabic;
-  const [openFaqId, setOpenFaqId] = useState<number | null>(SUBCONTRACT_FAQS[0]?.id ?? 1);
-
-  const toggleFaq = (id: number) => {
-    setOpenFaqId(openFaqId === id ? null : id);
-  };
 
   return (
     <div className="w-full bg-white selection:bg-[#01a9a0] selection:text-white" dir={direction}>

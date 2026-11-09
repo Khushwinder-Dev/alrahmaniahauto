@@ -51,14 +51,14 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="block">
-                <div className="relative h-12 w-12 lg:h-16 lg:w-16 rounded-xl overflow-hidden shadow-sm">
+                <div className="relative h-11 sm:h-12 lg:h-14 w-28 sm:w-36 lg:w-40 rounded-xl bg-white p-1 shadow-md overflow-hidden flex items-center justify-center transition-transform hover:scale-[1.02]">
                   <Image
                     src="/images/alrahmaniah-logo.jpg"
                     unoptimized
                     alt="Al Rahmaniah Auto Logo"
                     fill
                     priority
-                    className="object-contain object-left rtl:object-right"
+                    className="object-contain"
                   />
                 </div>
               </Link>
@@ -148,13 +148,13 @@ export default function Navbar() {
             className="fixed inset-0 bg-black z-[10002] p-8 flex flex-col overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-8">
-              <div className="h-10 w-10 relative rounded-lg overflow-hidden">
+              <div className="h-10 w-28 sm:w-32 relative rounded-lg bg-white p-1 shadow-sm overflow-hidden flex items-center justify-center">
                 <Image
                   src="/images/alrahmaniah-logo.jpg"
                   unoptimized
                   alt="Logo"
                   fill
-                  className="object-contain object-left rtl:object-right"
+                  className="object-contain"
                 />
               </div>
               <button

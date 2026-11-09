@@ -68,20 +68,13 @@ export default function FaqPageContent() {
             <span className="inline-block h-[2px] w-6 sm:w-8 bg-red-600 rounded-full" />
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-[42px] font-black text-zinc-900 tracking-tight leading-[1.15]">
-            {isArabic ? (
-              <>
-                استفسارات <span className="text-red-600">العملاء</span>
-              </>
-            ) : (
-              <>
-                Popular Product & Fitment <span className="text-red-600">Inquiries</span>
-              </>
-            )}
+            {isArabic ? "الأسئلة الأكثر " : "Frequently Asked "}
+            <span className="text-red-600">{isArabic ? "تداولاً وإجاباتها" : "Questions"}</span>
           </h2>
           <p className="mt-3 text-zinc-500 text-xs sm:text-sm md:text-base leading-relaxed">
             {isArabic
-              ? "إجابات دقيقة ومفصلة أعدها فريق خبراء تزيين وتفصيل إكسسوارات السيارات في الرحمانية بالشارقة."
-              : "Quick, reliable answers compiled by our certified auto accessories specialists in Sharjah."}
+              ? "كل ما تود معرفته عن إكسسواراتنا، وتفصيل أغطية المقاعد الجلدية، ودعاسات 7D، والضمان وطرق التركيب في الشارقة."
+              : "Everything you need to know about our auto accessories, custom leather seat covers, 7D floor mats, and expert fitment in Sharjah."}
           </p>
         </div>
 

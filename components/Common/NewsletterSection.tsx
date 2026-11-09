@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Send, CheckCircle2, Sparkles, ShieldCheck, Tag, Layers } from "lucide-react";
+import { Send, CheckCircle2, Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
 import { useLanguage } from "@/context/LanguageContext";
 import { FloatInput, useVoiceInput } from "@/components/ui/FloatField";
@@ -70,21 +70,6 @@ export default function NewsletterSection() {
     }
   };
 
-  const perks = [
-    {
-      icon: Tag,
-      text: isArabic ? "خصومات خاصة للأعضاء" : "Exclusive VIP Discounts",
-    },
-    {
-      icon: Layers,
-      text: isArabic ? "أحدث تشكيلات أغطية المقاعد ودعاسات 7D" : "New Arrival Accessories & Mats",
-    },
-    {
-      icon: ShieldCheck,
-      text: isArabic ? "خصوصية تامة وبدون إزعاج" : "Zero Spam Guarantee",
-    },
-  ];
-
   return (
     <section
       id="newsletter"
@@ -102,16 +87,13 @@ export default function NewsletterSection() {
 
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 relative z-10">
         <div className="relative rounded-3xl bg-white border border-zinc-200/90 p-5 sm:p-10 lg:p-14 shadow-xl shadow-zinc-200/60 overflow-hidden">
-          {/* Subtle top accent gradient */}
-          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-600 via-red-500 to-amber-500" />
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left / Info Column */}
             <div className="lg:col-span-7 space-y-4 text-center lg:text-start">
               <div className="inline-flex items-center gap-2 text-xs font-bold text-red-600 uppercase tracking-widest bg-red-50 border border-red-200 px-3.5 py-1.5 rounded-full shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                <Sparkles className="w-3.5 h-3.5 text-red-600" />
                 <span>
-                  {isArabic ? "نادي العروض والتخفيضات" : "VIP CLUB & OFFERS"}
+                  {isArabic ? "تحديثات وعروض حصرية" : "EXCLUSIVE UPDATES & OFFERS"}
                 </span>
               </div>
 
@@ -129,22 +111,6 @@ export default function NewsletterSection() {
                   ? "احصل على عروض حصرية، أحدث موديلات تفصيل المقاعد، ودعاسات 7D مباشرة إلى بريدك الإلكتروني."
                   : "Receive UAE seasonal styling checklists, new arrival alerts, custom fitment promotions, and VIP discount coupons directly to your inbox."}
               </p>
-
-              {/* Trust & Value Perks */}
-              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs text-zinc-700 font-medium">
-                {perks.map((perk, idx) => {
-                  const PerkIcon = perk.icon;
-                  return (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 bg-zinc-50 border border-zinc-200 px-3 py-1.5 rounded-lg shadow-2xs hover:border-zinc-300 transition-colors"
-                    >
-                      <PerkIcon className="w-3.5 h-3.5 text-red-600 shrink-0" />
-                      <span>{perk.text}</span>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
 
             {/* Right / Form Column */}

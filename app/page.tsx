@@ -7,10 +7,7 @@ import FeaturedProductsShowcase from "@/components/Home/FeaturedProductsShowcase
 import BestSellersSection from "@/components/Home/BestSellersSection";
 import DealCountdownBanner from "@/components/Home/DealCountdownBanner";
 import ThreeColumnProductWidget from "@/components/Home/ThreeColumnProductWidget";
-import MaterialSwatchesShowcase from "@/components/Home/MaterialSwatchesShowcase";
 import NewArrivalsSection from "@/components/Home/NewArrivalsSection";
-import AppointmentFormSection from "@/components/Home/AppointmentFormSection";
-import PartnershipSection from "@/components/Home/PartnershipSection";
 import FaqSection from "@/components/Home/FaqSection";
 
 export default function Home() {
@@ -22,41 +19,32 @@ export default function Home() {
           <HeroSection />
         </div>
 
-        {/* 2. Wolmart Trust & Value Proposition Bar */}
-        <WolmartTrustBar />
-
-        {/* 3. Top Product Categories of the Month */}
+        {/* 2. Top Product Categories of the Month */}
         <TopCategoriesGrid />
 
-        {/* 4. Promotional Split Banners (Seat Covers / 7D Mats / Starlight Roof) */}
+        {/* 3. Promotional Split Banners (Seat Covers / 7D Mats / Starlight Roof) */}
         <PromoSplitBanners />
 
-        {/* 5. Featured Products Showcase */}
+        {/* 4. Featured Products Showcase */}
         <FeaturedProductsShowcase />
 
-        {/* 6. Best Selling & Trending Auto Accessories Grid */}
+        {/* 5. Best Selling & Trending Auto Accessories Grid */}
         <BestSellersSection />
 
-        {/* 7. Limited-Time Bundle Deal Countdown Banner */}
+        {/* 6. Limited-Time Bundle Deal Countdown Banner */}
         <DealCountdownBanner />
 
-        {/* 8. Signature Wolmart 3-Column Product Widget (Top Rated / Best Selling / New Arrivals) */}
+        {/* 7. Signature Wolmart 3-Column Product Widget (Top Rated / Best Selling / New Arrivals) */}
         <ThreeColumnProductWidget />
 
-        {/* 9. Bespoke Upholstery & Material Swatches Showcase */}
-        <MaterialSwatchesShowcase />
-
-        {/* 10. Fresh New Arrivals & Auto Accessories Showcase */}
+        {/* 8. Fresh New Arrivals & Auto Accessories Showcase */}
         <NewArrivalsSection />
 
-        {/* 11. Instant Custom Accessories Quotation Request Form */}
-        <AppointmentFormSection />
-
-        {/* 12. Brand Compatibility Infinite Carousel (Bab Al Bustan Style) */}
-        <PartnershipSection />
-
-        {/* 13. 6 Automotive Product & Fitment FAQs */}
+        {/* 9. 6 Automotive Product & Fitment FAQs */}
         <FaqSection />
+
+        {/* 10. Wolmart Trust & Value Proposition Bar (Above Footer Section) */}
+        <WolmartTrustBar />
       </main>
     </div>
   );
