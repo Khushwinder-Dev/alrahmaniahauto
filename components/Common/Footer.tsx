@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ChevronRight,
   ChevronLeft,
@@ -17,8 +18,12 @@ import NewsletterSection from "./NewsletterSection";
 
 export { default as NewsletterSection } from "./NewsletterSection";
 
-export default function Footer() {
+export default function Footer({ hideNewsletter }: { hideNewsletter?: boolean } = {}) {
   const { isArabic } = useLanguage();
+  const pathname = usePathname();
+
+  const isAboutUs = pathname === "/about-us" || pathname?.startsWith("/about-us");
+  const showNewsletter = !hideNewsletter && !isAboutUs;
 
   const ArrowIcon = isArabic ? ChevronLeft : ChevronRight;
 
@@ -76,7 +81,7 @@ export default function Footer() {
   return (
     <>
       {/* ── 1. Top Newsletter Section (Bab Al Bustan Style with Voice Input) ── */}
-      <NewsletterSection />
+      {showNewsletter && <NewsletterSection />}
 
       {/* ── 2. Main Dark Footer ── */}
       <footer

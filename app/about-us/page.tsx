@@ -11,6 +11,8 @@ import {
   Star,
   ShieldCheck,
   Layers,
+  Wrench,
+  CheckCircle2,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import AboutUsSection from "./AboutUsSection";
@@ -231,44 +233,77 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* 5. Real Transformations Banner */}
-      <section className="py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
-        <div className="rounded-3xl border border-zinc-200 bg-gradient-to-r from-red-50/50 via-white to-red-50/30 p-8 lg:p-12 shadow-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="space-y-4">
-              <span className="text-red-600 text-xs font-bold uppercase tracking-widest">
-                {isArabic ? "نتائج حقيقية وحرفية معتمدة" : "Real Results & Craftsmanship"}
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-zinc-900 leading-tight">
-                {isArabic ? "تجديد وتعديل كامل لمقصورة السيارة" : "Complete Automotive Styling Transformations"}
-              </h2>
-              <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
+      {/* 5. Dedicated Workshop Services & Fitting Facility */}
+      <section className="py-14 sm:py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
+        <div className="rounded-3xl border border-zinc-200 bg-gradient-to-r from-red-50/60 via-white to-red-50/40 p-6 sm:p-8 lg:p-12 shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="space-y-5">
+              <div className="inline-flex items-center gap-2 text-red-600 text-xs font-bold uppercase tracking-widest">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                <span>
+                  {isArabic ? "ورشة الشارقة المتخصصة وكراج الصيانة" : "OUR SHARJAH WORKSHOP & FITTING BAYS"}
+                </span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-zinc-900 leading-tight">
                 {isArabic
-                  ? "من تنجيد المقاعد الجلدية وتفصيل دعاسات 7D إلى أسقف النجوم وشاشات الأندرويد، استمتع بتجربة قيادة مريحة وفخمة تجدد سيارتك بالكامل."
-                  : "From custom 3D diamond leather upholstery and 7D all-weather floor liners to starlight roof headliners and Android screens, experience the transformative difference of master craftsmanship."}
+                  ? "خدمات الورشة المعتمدة وتعديل زينة السيارات بالشارقة"
+                  : "Professional Workshop Services & Master Vehicle Styling"}
+              </h2>
+
+              <p className="text-zinc-600 text-xs sm:text-sm lg:text-[15px] leading-relaxed">
+                {isArabic
+                  ? "تقع ورشتنا المجهزة بالكامل في المنطقة الصناعية 4 و 5 بالشارقة لتقديم خدمات صيانة وفحص وتعديل السيارات تحت سقف واحد. من فحص وبرمجة المحركات بالكمبيوتر وصيانة المكابح والمكيفات، إلى تفصيل أطقم المقاعد الجلدية ثلاثية الأبعاد، وتركيب دعاسات 7D، والشاشات الذكية، وأسقف النجوم — يضمن فنيونا أعلى معايير الجودة والتشطيب الوكالة."
+                  : "Located in Sharjah Industrial Area 4 & 5, our certified automotive workshop delivers comprehensive mechanical care and custom luxury styling under one roof. From advanced computerized engine diagnostics, brake overhaul, and AC maintenance to custom 3D diamond leather upholstery tailoring, 7D floor mat installation, and starlight roof headliners — our master technicians ensure factory-grade precision."}
               </p>
-              <div className="pt-2 flex flex-wrap gap-4">
-                <Link
-                  href="/products"
-                  className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md shadow-red-600/30"
+
+              {/* Workshop Quick Badges */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 text-xs font-bold text-zinc-800">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
+                  <span>{isArabic ? "فحص كمبيوتر وميكانيكا ومكابح" : "Engine Diagnostics & Brakes"}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
+                  <span>{isArabic ? "تفصيل فرش جلد ودعاسات 7D" : "Custom Leather & 7D Mats"}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
+                  <span>{isArabic ? "المنطقة الصناعية 4 و 5 بالشارقة" : "Industrial Area 4 & 5, Sharjah"}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
+                  <span>{isArabic ? "ضمان خطي معتمد لكافة الخدمات" : "Written Quality Warranty"}</span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-3 flex flex-wrap gap-3.5">
+                <a
+                  href="https://wa.me/971558875678?text=Hello%20Al%20Rahmaniah%20Auto%20Accessories,%20I%20would%20like%20to%20book%20a%20workshop%20service."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md shadow-red-600/30 flex items-center gap-2"
                 >
-                  {isArabic ? "استكشف المنتجات" : "Explore Products"}
-                </Link>
+                  <Wrench className="w-4 h-4" />
+                  <span>{isArabic ? "احجز موعد بالورشة" : "Book Workshop Service"}</span>
+                </a>
                 <Link
                   href="/get-a-quote"
-                  className="px-6 py-3 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-bold text-xs uppercase tracking-widest rounded-full transition-all border border-zinc-200"
+                  className="px-6 py-3.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-bold text-xs uppercase tracking-widest rounded-full transition-all border border-zinc-200"
                 >
-                  {isArabic ? "طلب تسعيرة للمنتجات" : "Request Product Quotation"}
+                  {isArabic ? "طلب تسعيرة صيانة أو زينة" : "Get a Workshop Quote"}
                 </Link>
               </div>
             </div>
 
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-zinc-200 shadow-lg">
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-square xl:aspect-[16/12] rounded-2xl overflow-hidden border border-zinc-200 shadow-xl bg-zinc-900 group">
               <Image
-                alt="Automotive styling project"
+                alt={isArabic ? "ورشة الرحمانية لصيانة وزينة السيارات بالشارقة" : "Al Rahmaniah Auto Workshop Sharjah"}
                 fill
-                className="object-cover"
-                src="/images/back-sec.jpg"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                src="/images/alrahmaniah-workshop.jpg"
+                priority
               />
             </div>
           </div>
