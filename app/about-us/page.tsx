@@ -137,14 +137,14 @@ export default function AboutUsPage() {
       <section className="relative w-full h-[60vh] min-h-[450px] overflow-hidden flex flex-col justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <Image
-            alt="Al Rahmaniah Auto Accessories Facility"
+            alt="Al Rahmaniah Auto Accessories Swatches & Craftsmanship"
             fill
             className="object-cover object-center"
-            src="/images/services-hero.png"
+            src="/images/about-us-banner.jpg"
             priority
           />
-          <div className="absolute inset-0 bg-[#0a0a0c]/85" />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-black/30" />
         </div>
 
         <div className="relative z-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 text-center mt-12">
