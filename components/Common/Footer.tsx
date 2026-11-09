@@ -75,7 +75,14 @@ export default function Footer() {
     { label: isArabic ? "الأسئلة الشائعة" : "Customer FAQs", href: "/faqs" },
     { label: isArabic ? "فرص العمل والتوظيف" : "Career Opportunities", href: "/career" },
     { label: isArabic ? "المعرض والتواصل معنا" : "Contact & Showroom", href: "/contact" },
-    { label: isArabic ? "سياسة الخصوصية والشروط" : "Privacy & Terms Policy", href: "/privacy" },
+  ];
+
+  const legalLinks = [
+    { label: isArabic ? "خريطة الموقع" : "Site Map", href: "/sitemap" },
+    { label: isArabic ? "سياسة الاسترداد والإلغاء" : "Refund & Cancellation Policy", href: "/refund-policy" },
+    { label: isArabic ? "سياسة الخصوصية" : "Privacy Policy", href: "/privacy" },
+    { label: isArabic ? "شروط الاستخدام" : "Terms of Use", href: "/terms" },
+    { label: isArabic ? "سياسة ملفات الكوكيز" : "Cookie Policy", href: "/cookies" },
   ];
 
   return (
@@ -90,9 +97,9 @@ export default function Footer() {
       >
         <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
           {/* ============================================================
-              MAIN 4-COLUMN FOOTER LINKS
+              MAIN 5-COLUMN FOOTER LINKS (INCLUDING LEGAL COLUMN)
               ============================================================ */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6 xl:gap-10">
             {/* Col 1: About & Social */}
             <div className="space-y-6">
               <Link className="inline-block" href="/">
@@ -256,7 +263,30 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Col 4: Contact & Hours */}
+            {/* Col 4: Legal */}
+            <div>
+              <div className="mb-6">
+                <h4 className="text-white text-xl uppercase tracking-tight font-display font-bold">
+                  {isArabic ? "قانوني" : "Legal"}
+                </h4>
+                <div className="h-0.5 w-10 bg-red-600 mt-1"></div>
+              </div>
+              <ul className="space-y-3">
+                {legalLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      className="flex items-center gap-2 text-sm hover:text-red-500 transition-colors group"
+                      href={link.href}
+                    >
+                      <ArrowIcon className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform shrink-0" />
+                      <span>{link.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 5: Contact & Hours */}
             <div>
               <div className="mb-6">
                 <h4 className="text-white text-xl uppercase tracking-tight font-display font-bold">
