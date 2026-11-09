@@ -222,184 +222,193 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 3. Main Form & Map Area */}
-      <section className="py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
-          {/* Form (7 Cols) */}
-          <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-zinc-200 shadow-xl">
-              <div className="inline-flex items-center gap-2 text-red-600 font-bold uppercase tracking-widest text-xs mb-3">
-                <Send className="w-4 h-4" />
-                <span>{isArabic ? "أرسل لنا رسالة أو استفسار" : "Send Us a Message"}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-zinc-900 mb-2">
-                {isArabic ? "هل لديك استفسار أو طلب تفصيل لإكسسوارات سيارتك؟" : "Have a Question or Inquiring About Products?"}
-              </h2>
-              <p className="text-xs sm:text-sm text-zinc-500 mb-8 leading-relaxed">
-                {isArabic
-                  ? "املأ البيانات أدناه وسيتواصل معك مسؤول المعرض لتقديم الأسعار والمقاسات ومواعيد التركيب المتاحة."
-                  : "Fill in the details below, and our showroom team will contact you with pricing, fitment options, and appointment availability."}
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <FloatInput
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    label={isArabic ? "الاسم الكامل" : "Full Name"}
-                    required
-                    isArabic={isArabic}
-                    isListening={voice.listeningField === "name"}
-                    onVoiceToggle={() => voice.toggleListening("name", "text")}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
-
-                  <FloatInput
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    label={isArabic ? "رقم الهاتف" : "Phone Number"}
-                    required
-                    isArabic={isArabic}
-                    isListening={voice.listeningField === "phone"}
-                    onVoiceToggle={() => voice.toggleListening("phone", "phone")}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <FloatInput
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    label={isArabic ? "البريد الإلكتروني (اختياري)" : "Email (Optional)"}
-                    isArabic={isArabic}
-                    isListening={voice.listeningField === "email"}
-                    onVoiceToggle={() => voice.toggleListening("email", "email")}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-
-                  <FloatInput
-                    type="text"
-                    name="vehicleModel"
-                    value={formData.vehicleModel}
-                    label={isArabic ? "نوع وسنة صنع السيارة" : "Vehicle Model & Year"}
-                    isArabic={isArabic}
-                    isListening={voice.listeningField === "vehicleModel"}
-                    onVoiceToggle={() => voice.toggleListening("vehicleModel", "text")}
-                    onChange={(e) => setFormData({ ...formData, vehicleModel: e.target.value })}
-                  />
-                </div>
-
-                <div>
-                  <SearchableSelect
-                    value={formData.serviceNeeded}
-                    options={PRODUCT_INQUIRY_OPTIONS}
-                    label={isArabic ? "المنتج أو الإكسسوار المطلوب" : "Product / Accessory Inquired"}
-                    isArabic={isArabic}
-                    onChange={(val) => setFormData({ ...formData, serviceNeeded: val })}
-                  />
-                </div>
-
-                <div>
-                  <FloatTextarea
-                    name="message"
-                    value={formData.message}
-                    label={isArabic ? "تفاصيل إضافية، تفضيل اللون أو نوع الجلد..." : "Message / Product Specifications or Vehicle Details"}
-                    rows={4}
-                    isArabic={isArabic}
-                    isListening={voice.listeningField === "message"}
-                    onVoiceToggle={() => voice.toggleListening("message", "textarea")}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  />
-                </div>
-
-                <div className="pt-2 flex flex-col sm:flex-row gap-4">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1 py-4 px-8 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all shadow-md shadow-red-600/30 cursor-pointer disabled:opacity-50"
-                  >
-                    {isSubmitting
-                      ? (isArabic ? "جاري الإرسال..." : "Sending Message...")
-                      : (isArabic ? "إرسال الرسالة" : "Send Message")}
-                  </button>
-                  <a
-                    href={getWhatsAppDirectUrl()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="py-4 px-8 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all inline-flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>{isArabic ? "محادثة واتساب مباشرة" : "WhatsApp Now"}</span>
-                  </a>
-                </div>
-              </form>
-            </div>
+      {/* 3. Inquiry & Contact Form Section (Sequence 1) */}
+      <section className="py-12 sm:py-16 lg:py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-zinc-200 shadow-xl">
+          <div className="inline-flex items-center gap-2 text-red-600 font-bold uppercase tracking-widest text-xs mb-3">
+            <Send className="w-4 h-4" />
+            <span>{isArabic ? "أرسل لنا رسالة أو استفسار" : "Send Us a Message"}</span>
           </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-zinc-900 mb-2">
+            {isArabic ? "هل لديك استفسار أو طلب تفصيل لإكسسوارات سيارتك؟" : "Have a Question or Inquiring About Products?"}
+          </h2>
+          <p className="text-xs sm:text-sm text-zinc-500 mb-8 leading-relaxed max-w-2xl">
+            {isArabic
+              ? "املأ البيانات أدناه وسيتواصل معك مسؤول المعرض لتقديم الأسعار والمقاسات ومواعيد التركيب المتاحة."
+              : "Fill in the details below, and our showroom team will contact you with pricing, fitment options, and appointment availability."}
+          </p>
 
-          {/* Map & Directions (5 Cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            {/* Embedded Google Map */}
-            <div className="bg-white rounded-3xl overflow-hidden border border-zinc-200 shadow-xl">
-              <div className="p-6 pb-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <FloatInput
+                type="text"
+                name="name"
+                value={formData.name}
+                label={isArabic ? "الاسم الكامل" : "Full Name"}
+                required
+                isArabic={isArabic}
+                isListening={voice.listeningField === "name"}
+                onVoiceToggle={() => voice.toggleListening("name", "text")}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
+
+              <FloatInput
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                label={isArabic ? "رقم الهاتف" : "Phone Number"}
+                required
+                isArabic={isArabic}
+                isListening={voice.listeningField === "phone"}
+                onVoiceToggle={() => voice.toggleListening("phone", "phone")}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <FloatInput
+                type="email"
+                name="email"
+                value={formData.email}
+                label={isArabic ? "البريد الإلكتروني (اختياري)" : "Email (Optional)"}
+                isArabic={isArabic}
+                isListening={voice.listeningField === "email"}
+                onVoiceToggle={() => voice.toggleListening("email", "email")}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
+
+              <FloatInput
+                type="text"
+                name="vehicleModel"
+                value={formData.vehicleModel}
+                label={isArabic ? "نوع وسنة صنع السيارة" : "Vehicle Model & Year"}
+                isArabic={isArabic}
+                isListening={voice.listeningField === "vehicleModel"}
+                onVoiceToggle={() => voice.toggleListening("vehicleModel", "text")}
+                onChange={(e) => setFormData({ ...formData, vehicleModel: e.target.value })}
+              />
+            </div>
+
+            <div>
+              <SearchableSelect
+                value={formData.serviceNeeded}
+                options={PRODUCT_INQUIRY_OPTIONS}
+                label={isArabic ? "المنتج أو الإكسسوار المطلوب" : "Product / Accessory Inquired"}
+                isArabic={isArabic}
+                onChange={(val) => setFormData({ ...formData, serviceNeeded: val })}
+              />
+            </div>
+
+            <div>
+              <FloatTextarea
+                name="message"
+                value={formData.message}
+                label={isArabic ? "تفاصيل إضافية، تفضيل اللون أو نوع الجلد..." : "Message / Product Specifications or Vehicle Details"}
+                rows={4}
+                isArabic={isArabic}
+                isListening={voice.listeningField === "message"}
+                onVoiceToggle={() => voice.toggleListening("message", "textarea")}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              />
+            </div>
+
+            <div className="pt-2 flex flex-col sm:flex-row gap-4">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex-1 py-4 px-8 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all shadow-md shadow-red-600/30 cursor-pointer disabled:opacity-50"
+              >
+                {isSubmitting
+                  ? (isArabic ? "جاري الإرسال..." : "Sending Message...")
+                  : (isArabic ? "إرسال الرسالة" : "Send Message")}
+              </button>
+              <a
+                href={getWhatsAppDirectUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-4 px-8 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full text-xs uppercase tracking-widest transition-all inline-flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>{isArabic ? "محادثة واتساب مباشرة" : "WhatsApp Now"}</span>
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      {/* 4. Showroom Directions & Map Section (Sequence 2) */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-white border-y border-zinc-200">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
+          <div className="bg-white rounded-3xl overflow-hidden border border-zinc-200 shadow-xl">
+            <div className="p-6 sm:p-8 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
                 <div className="flex items-center gap-2 text-red-600 font-bold uppercase tracking-widest text-xs mb-1">
                   <Navigation className="w-4 h-4" />
                   <span>{isArabic ? "إرشادات الوصول إلى المعرض" : "Showroom Directions"}</span>
                 </div>
-                <h3 className="font-display font-extrabold text-xl text-zinc-900">
+                <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-zinc-900">
                   {isArabic ? "تفضل بزيارتنا بالمنطقة الصناعية 4 و 5" : "Visit Us in Industrial Area 4 & 5"}
                 </h3>
               </div>
-
-              <div className="w-full h-80 relative bg-zinc-100">
-                <iframe
-                  title="Al Rahmaniah Auto Location"
-                  src="https://maps.google.com/maps?q=Industrial+Area+5+Sharjah+UAE&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                  className="w-full h-full border-0"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="p-6 pt-4 text-xs text-zinc-500 space-y-2">
-                <p className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>{isArabic ? "سهولة الوصول عبر شارع الوحدة (E11) وشارع الشيخ محمد بن زايد (E311)." : "Easily accessible from E11 (Al Wahda St) and E311 (Sheikh Mohammed Bin Zayed Rd)."}</span>
-                </p>
-                <p className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>{isArabic ? "مواقف سيارات مجانية مخصصة للعملاء مع ورش تلبيس وتركيب مظللة." : "Free dedicated customer parking and covered vehicle fitting bays."}</span>
-                </p>
-              </div>
-            </div>
-
-            {/* Same Day Fitment Banner */}
-            <div className="bg-gradient-to-br from-red-50 via-white to-red-50/50 border border-red-200 rounded-3xl p-6 sm:p-8 shadow-md">
-              <span className="text-red-600 text-xs font-bold uppercase tracking-wider block mb-1">
-                {isArabic ? "خدمة التفصيل والتركيب المباشر" : "Direct Installation Service"}
-              </span>
-              <h4 className="text-xl font-display font-bold text-zinc-900 mb-2">
-                {isArabic ? "ترغب في معاينة الخامات والتركيب الفوري؟" : "Want to Inspect Swatches & Install Today?"}
-              </h4>
-              <p className="text-xs text-zinc-600 leading-relaxed mb-4">
-                {isArabic
-                  ? "تفضل بزيارة صالة عرضنا لمشاهدة عينات جلود نابا، وأقمشة ألكانتارا، وأحزمة الأمان، وأحدث شاشات الأندرويد."
-                  : "Visit our Sharjah showroom bays to inspect physical Napa leather swatches, Alcantara roof headliners, and 7D mats in person."}
-              </p>
               <a
-                href="tel:+971507860161"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md shadow-red-600/30"
+                href="https://maps.google.com/?q=Industrial+Area+5+Sharjah+UAE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-zinc-900 hover:bg-red-600 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all self-start sm:self-auto shadow-md"
               >
-                <Phone className="w-4 h-4" />
-                <span>{isArabic ? "اتصل واحجز موعدك" : "Call & Book Fitting"}</span>
+                <MapPin className="w-4 h-4 text-red-500" />
+                <span>{isArabic ? "فتح في خرائط جوجل" : "Open in Google Maps"}</span>
               </a>
             </div>
 
-          </div>
+            <div className="w-full h-80 sm:h-96 md:h-[420px] relative bg-zinc-100">
+              <iframe
+                title="Al Rahmaniah Auto Location"
+                src="https://maps.google.com/maps?q=Industrial+Area+5+Sharjah+UAE&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                className="w-full h-full border-0"
+                loading="lazy"
+              />
+            </div>
 
+            <div className="p-6 sm:p-8 pt-4 text-xs sm:text-sm text-zinc-600 grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-zinc-100 bg-zinc-50/70">
+              <p className="flex items-center gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-red-600 flex-shrink-0" />
+                <span>{isArabic ? "سهولة الوصول عبر شارع الوحدة (E11) وشارع الشيخ محمد بن زايد (E311)." : "Easily accessible from E11 (Al Wahda St) and E311 (Sheikh Mohammed Bin Zayed Rd)."}</span>
+              </p>
+              <p className="flex items-center gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-red-600 flex-shrink-0" />
+                <span>{isArabic ? "مواقف سيارات مجانية مخصصة للعملاء مع ورش تلبيس وتركيب مظللة." : "Free dedicated customer parking and covered vehicle fitting bays."}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Direct Installation Service Banner (Sequence 3) */}
+      <section className="py-12 sm:py-16 lg:py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
+        <div className="bg-gradient-to-br from-red-50 via-white to-red-50/50 border border-red-200 rounded-3xl p-8 sm:p-10 lg:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-2xl space-y-3">
+            <span className="text-red-600 text-xs font-bold uppercase tracking-wider block">
+              {isArabic ? "خدمة التفصيل والتركيب المباشر" : "Direct Installation Service"}
+            </span>
+            <h4 className="text-2xl sm:text-3xl font-display font-extrabold text-zinc-900 leading-tight">
+              {isArabic ? "ترغب في معاينة الخامات والتركيب الفوري؟" : "Want to Inspect Swatches & Install Today?"}
+            </h4>
+            <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+              {isArabic
+                ? "تفضل بزيارة صالة عرضنا لمشاهدة عينات جلود نابا، وأقمشة ألكانتارا، وأحزمة الأمان، وأحدث شاشات الأندرويد."
+                : "Visit our Sharjah showroom bays to inspect physical Napa leather swatches, Alcantara roof headliners, and 7D mats in person."}
+            </p>
+          </div>
+          <div className="flex-shrink-0 flex flex-wrap gap-4">
+            <a
+              href="tel:+971507860161"
+              className="inline-flex items-center gap-2.5 px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-lg shadow-red-600/30"
+            >
+              <Phone className="w-4 h-4" />
+              <span>{isArabic ? "اتصل واحجز موعدك" : "Call & Book Fitting"}</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
