@@ -80,7 +80,6 @@ export default function FeaturedProductsShowcase() {
             const title = isArabic && prod.nameAr ? prod.nameAr : prod.name;
             const categoryName = isArabic && prod.categoryAr ? prod.categoryAr : prod.category;
             const desc = isArabic && prod.descriptionAr ? prod.descriptionAr : prod.description;
-            const priceDisplay = isArabic && prod.priceAr ? prod.priceAr : (prod.price || "طلب تسعيرة");
 
             return (
               <div
@@ -95,16 +94,6 @@ export default function FeaturedProductsShowcase() {
                     fill
                     className="object-cover object-center group-hover:scale-108 transition-transform duration-700"
                   />
-                  
-                  {/* Badges */}
-                  <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 flex flex-col gap-1.5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-red-600 text-white shadow-md">
-                      {isArabic ? "جودة أصلية" : "OEM Grade"}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/95 text-emerald-700 border border-emerald-200 shadow-xs font-semibold">
-                      {isArabic ? "متوفر بالمخزن" : "In Stock"}
-                    </span>
-                  </div>
 
                   {/* Quick details link overlay on hover */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
@@ -150,19 +139,10 @@ export default function FeaturedProductsShowcase() {
                   </div>
 
                   <div className="mt-5 pt-4 border-t border-zinc-100">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs text-zinc-500 font-medium">
-                        {isArabic ? "السعر التقديري" : "Starting from"}
-                      </span>
-                      <span className="text-base font-extrabold text-red-600">
-                        {priceDisplay}
-                      </span>
-                    </div>
-
                     <div className="grid grid-cols-2 gap-2">
                       <Link
                         href={`/get-a-quote?item=${encodeURIComponent(prod.name)}`}
-                        className="w-full text-center py-2 px-3 bg-zinc-100 hover:bg-red-600 hover:text-white text-zinc-800 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-200 hover:border-red-600"
+                        className="w-full text-center py-2.5 px-3 bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-900 shadow-xs"
                       >
                         {isArabic ? "طلب تسعيرة" : "Get Quote"}
                       </Link>
@@ -170,10 +150,10 @@ export default function FeaturedProductsShowcase() {
                         href={getWhatsAppLink(title)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-xs"
+                        className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-xs"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
-                        <span>{isArabic ? "طلب" : "Order"}</span>
+                        <span>{isArabic ? "اطلب الآن" : "Order Now"}</span>
                       </a>
                     </div>
                   </div>

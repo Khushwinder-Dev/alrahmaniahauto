@@ -43,32 +43,28 @@ export default function Footer() {
 
   const productLinks = [
     {
-      label: isArabic ? "تفصيل مقاعد السيارات (جلد نابا و PVC)" : "Custom Car Seat Covers (Napa / PVC)",
-      href: "/products?category=seat-covers",
+      label: isArabic ? "خامات هيت أون شيت (Heat-on-Sheet)" : "Heat-on-Sheet",
+      href: "/products?search=Heat-on-Sheet",
     },
     {
-      label: isArabic ? "دعاسات أرضيات 7D و 5D فاخرة" : "7D / 5D Molded Floor Mats",
-      href: "/products?category=mats",
+      label: isArabic ? "تصاميم أقمشة (Fabric Design)" : "Fabric Design",
+      href: "/products?search=Fabric+Design",
     },
     {
-      label: isArabic ? "أحزمة أمان ملونة رياضية معتمدة" : "Custom Colored Safety Belts",
-      href: "/products?category=seatbelts",
+      label: isArabic ? "أقمشة سادة (Plain Fabric)" : "Plain Fabric",
+      href: "/products?search=Plain+Fabric",
     },
     {
-      label: isArabic ? "سقف نجوم فايبر أوبتيك رولز رويس" : "Starlight Roof Headliners",
-      href: "/products?category=headliners",
+      label: isArabic ? "أقمشة مطرزة (Embroidery Fabric)" : "Embroidery Fabric",
+      href: "/products?search=Embroidery+Fabric",
     },
     {
-      label: isArabic ? "شاشات أندرويد وأنظمة صوتية متطورة" : "Car Electronics & Android Screens",
-      href: "/products?category=electronics",
+      label: isArabic ? "مكائن خياطة (Stitching Machine)" : "Stitching Machine",
+      href: "/products?search=Stitching+Machine",
     },
     {
-      label: isArabic ? "إنارة ليزر LED وعدسات فائقة" : "Laser LED Headlamps & Fog Lights",
-      href: "/products?category=lighting",
-    },
-    {
-      label: isArabic ? "تصفح جميع المنتجات والإكسسوارات" : "View All Products & Accessories",
-      href: "/products",
+      label: isArabic ? "مخمل ستريتش (Velvet Stretch)" : "Velvet Stretch",
+      href: "/products?search=Velvet+Stretch",
     },
   ];
 
