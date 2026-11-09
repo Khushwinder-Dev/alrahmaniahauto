@@ -11,11 +11,9 @@ import {
   Star,
   ShieldCheck,
   Layers,
-  Sparkles,
-  CheckCircle2,
-  ArrowRight,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import AboutUsSection from "./AboutUsSection";
 
 // Animated counter with spring physics
 const AnimatedCounter = ({
@@ -192,115 +190,8 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* 3. Main Story Section */}
-      <section className="py-20 max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Images collage */}
-          <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-4 h-[380px]">
-              <div className="relative rounded-2xl overflow-hidden border border-zinc-200 shadow-md group">
-                <Image
-                  alt="Custom diamond leather seat cover tailoring"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  src="/images/service-1.png"
-                />
-              </div>
-              <div className="relative rounded-2xl overflow-hidden border border-zinc-200 shadow-md group">
-                <Image
-                  alt="7D all-weather floor mat precision fitment"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  src="/images/service-7.png"
-                />
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center">
-                  <Sparkles className="w-6 h-6" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-sm text-zinc-900">
-                    {isArabic ? "قص دقيق بأنظمة الليزر و CNC" : "Laser-Cut CNC Pattern Suite"}
-                  </h4>
-                  <p className="text-xs text-zinc-500">
-                    {isArabic ? "قص آلي وقوالب ليزرية مع خياطة مزدوجة متينة" : "Automated pattern cutters & double-needle stitching"}
-                  </p>
-                </div>
-              </div>
-              <Link
-                href="/products"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-red-600 hover:text-red-700"
-              >
-                <span>{isArabic ? "كتالوج المنتجات" : "Products Catalog"}</span>
-                <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Text Story */}
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 text-red-600 text-xs font-bold uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-red-600" />
-              <span>{isArabic ? "معايير الجودة في الرحمانية" : "THE AL RAHMANIAH STANDARD"}</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-zinc-900 leading-tight">
-              {isArabic
-                ? "فخامة وإتقان حرفي مصمم لتحمل صيف الإمارات"
-                : "Crafted Luxury & Durability Engineered for UAE Weather"}
-            </h2>
-
-            <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
-              {isArabic
-                ? "انطلقت الرحمانية لزينة وتنجيد السيارات من قلب الشارقة (المنطقة الصناعية 4 و 5) لتصبح إحدى كبرى الوجهات المتخصصة في تعديل وتزيين مقصورات السيارات في الإمارات. نتخصص في تفصيل مقاعد جلود نابا الفاخرة، ودعاسات 7D المقولبة، وأحزمة الأمان الملونة، وأسقف النجوم، وشاشات الأندرويد."
-                : "Founded in Sharjah Industrial Area 4 & 5, Al Rahmaniah Auto Accessories has grown into one of the region’s premier automotive styling and accessories studios. We specialize in custom-tailored Napa leather seat covers, 7D molded floor liners, colored safety belts, starlight roof constellations, and car electronics."}
-            </p>
-
-            <p className="text-zinc-500 text-xs sm:text-sm leading-relaxed">
-              {isArabic
-                ? "سواء كنت تقود سيارة صالون يومية، أو بيك أب، أو سيارة دفع رباعي صحراوية (نيسان باترول، لاند كروزر)، أو سيارة ألمانية فاخرة، يقوم فنيونا بتفصيل كل قطعة بمقاسات مليمترية دقيقة لتحقيق الراحة المطلقة والأناقة الفارهة."
-                : "Whether you drive a daily sedan, a rugged 4x4 desert cruiser, a family SUV, or a luxury vehicle, our master craftsmen tailor each accessory with millimetric precision to ensure peak interior comfort, extreme UV heat durability, and head-turning aesthetics."}
-            </p>
-
-            <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="flex items-center gap-2 text-xs font-bold text-zinc-800">
-                <CheckCircle2 className="w-4 h-4 text-red-600" />
-                <span>{isArabic ? "شفافية تامة بالأسعار" : "Zero Hidden Charges"}</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-zinc-800">
-                <CheckCircle2 className="w-4 h-4 text-red-600" />
-                <span>{isArabic ? "مقاسات تفصيل دقيقة" : "Precision Custom Fitment"}</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-zinc-800">
-                <CheckCircle2 className="w-4 h-4 text-red-600" />
-                <span>{isArabic ? "ضمان خطي حتى 3 سنوات" : "Up to 3 Years Warranty"}</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-zinc-800">
-                <CheckCircle2 className="w-4 h-4 text-red-600" />
-                <span>{isArabic ? "توصيل سريع لجميع الإمارات" : "Fast UAE Delivery"}</span>
-              </div>
-            </div>
-
-            <div className="pt-4 flex gap-4">
-              <Link
-                href="/products"
-                className="px-8 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md shadow-red-600/30"
-              >
-                {isArabic ? "استكشف المنتجات" : "Explore Products"}
-              </Link>
-              <Link
-                href="/get-a-quote"
-                className="px-8 py-3.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-bold text-xs uppercase tracking-widest rounded-full transition-all border border-zinc-200"
-              >
-                {isArabic ? "طلب تسعيرة" : "Get a Quote"}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 3. CEO Message Section (Matching Taj Al Rahmah First Section Style) */}
+      <AboutUsSection />
 
       {/* 4. Why Choose Us Grid */}
       <section className="py-20 bg-zinc-50 border-y border-zinc-200">
