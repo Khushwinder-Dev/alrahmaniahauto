@@ -28,18 +28,6 @@ export default function Footer() {
     }
   };
 
-  const handleSubscribeClick = () => {
-    if (typeof document !== "undefined") {
-      const el = document.getElementById("newsletter");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        const input = el.querySelector("input");
-        input?.focus();
-      } else if (typeof window !== "undefined") {
-        window.dispatchEvent(new CustomEvent("open-subscribe-modal"));
-      }
-    }
-  };
 
   const productLinks = [
     {
@@ -382,66 +370,13 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-6">
+            <div className="flex items-center justify-center text-center px-2">
               {/* Copyright Text */}
-              <div className="text-center lg:text-start px-2 shrink-0">
-                <p className="text-xs lg:text-[13px] text-zinc-400 font-normal leading-normal">
-                  {isArabic
-                    ? "© 2026 شركة الرحمانية لإكسسوارات وزينة السيارات. جميع الحقوق محفوظة."
-                    : "© 2026 Al Rahmaniah Auto Accessories. All rights reserved."}
-                </p>
-              </div>
-
-              {/* Refund & Legal Policy Links (Strictly on one line on desktop, matching Bab Al Bustan reference) */}
-              <div className="w-full lg:w-auto flex flex-wrap justify-center lg:justify-end items-center gap-y-2 gap-x-2 lg:gap-x-2.5 xl:gap-x-3 text-[11px] sm:text-xs lg:text-[12.5px] xl:text-[13px] text-zinc-400 shrink-0">
-                <Link
-                  href="/sitemap"
-                  className="hover:text-red-500 transition-colors whitespace-nowrap"
-                >
-                  {isArabic ? "خريطة الموقع" : "Site Map"}
-                </Link>
-                <span className="text-zinc-600 select-none">•</span>
-
-                <Link
-                  href="/refund-policy"
-                  className="hover:text-red-500 transition-colors whitespace-nowrap"
-                >
-                  {isArabic ? "سياسة الاسترداد والإلغاء" : "Refund & Cancellation Policy"}
-                </Link>
-                <span className="text-zinc-600 select-none">•</span>
-
-                <Link
-                  href="/privacy"
-                  className="hover:text-red-500 transition-colors whitespace-nowrap"
-                >
-                  {isArabic ? "سياسة الخصوصية" : "Privacy Policy"}
-                </Link>
-                <span className="text-zinc-600 select-none">•</span>
-
-                <Link
-                  href="/terms"
-                  className="hover:text-red-500 transition-colors whitespace-nowrap"
-                >
-                  {isArabic ? "شروط الاستخدام" : "Terms of Use"}
-                </Link>
-                <span className="text-zinc-600 select-none">•</span>
-
-                <Link
-                  href="/cookies"
-                  className="hover:text-red-500 transition-colors whitespace-nowrap"
-                >
-                  {isArabic ? "سياسة الكوكيز" : "Cookie Policy"}
-                </Link>
-                <span className="text-zinc-600 select-none">•</span>
-
-                <button
-                  type="button"
-                  onClick={handleSubscribeClick}
-                  className="hover:text-red-500 transition-colors whitespace-nowrap cursor-pointer text-start"
-                >
-                  {isArabic ? "الاشتراك بالبريد" : "Subscribe to email"}
-                </button>
-              </div>
+              <p className="text-xs lg:text-[13px] text-zinc-400 font-normal leading-normal">
+                {isArabic
+                  ? "© 2026 شركة الرحمانية لإكسسوارات وزينة السيارات. جميع الحقوق محفوظة."
+                  : "© 2026 Al Rahmaniah Auto Accessories. All rights reserved."}
+              </p>
             </div>
           </div>
         </div>
