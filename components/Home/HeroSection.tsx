@@ -5,47 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Play, Pause } from "lucide-react";
-import { AnimatePresence, motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import BookMeetingModal from "@/components/BookMeetingModal";
-
-// Animated counter with spring physics
-const AnimatedCounter = ({
-  value,
-  suffix = "+",
-}: {
-  value: number;
-  suffix?: string;
-}) => {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const motionValue = useMotionValue(0);
-  const springValue = useSpring(motionValue, {
-    damping: 35,
-    stiffness: 90,
-  });
-  const [displayValue, setDisplayValue] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      motionValue.set(value);
-    }
-  }, [isInView, motionValue, value]);
-
-  useEffect(() => {
-    const unsubscribe = springValue.on("change", (latest: number) => {
-      setDisplayValue(Math.floor(latest));
-    });
-    return () => unsubscribe();
-  }, [springValue]);
-
-  return (
-    <span ref={ref}>
-      {displayValue.toLocaleString()}
-      {suffix}
-    </span>
-  );
-};
 
 const SLIDE_VARIANTS = {
   enter: (direction: number) => ({
@@ -120,14 +82,6 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
     }, 7000);
     return () => clearInterval(timer);
   }, [isPlayingVideo, isVideoPaused, slides.length, slideIndex]);
-
-  // Accessories Stats
-  const statsData = [
-    { value: 15, suffix: "+", label: isArabic ? "سنوات خبرة" : (t?.hero?.stat1 || "Years Experience") },
-    { value: 20000, suffix: "+", label: isArabic ? "سيارة تم تزيينها" : "Vehicles Upgraded" },
-    { value: 500, suffix: "+", label: isArabic ? "منتج وإكسسوار متوفر" : "Top Accessories" },
-    { value: 99, suffix: "%", label: isArabic ? "نسبة رضا العملاء" : (t?.hero?.stat4 || "Satisfaction Rate") },
-  ];
 
   // Video playback toggling
   const handleToggleVideo = () => {
@@ -264,15 +218,15 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
 
       {/* 6. Main Hero Content Container */}
       <div
-        className="relative z-20 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 pt-32 sm:pt-40 lg:pt-44 flex-1 flex flex-col justify-center"
+        className="relative z-20 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 pt-32 sm:pt-40 lg:pt-44 pb-20 sm:pb-28 lg:pb-32 flex-1 flex flex-col justify-center"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           {/* Left Text & CTAs (Columns 1-8) */}
           <div className="lg:col-span-8 flex flex-col items-start text-start min-h-[280px] sm:min-h-[320px] lg:min-h-[340px]">
-            {/* Eyebrow with Brand Red Accent */}
-            <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
-              <span className="w-6 sm:w-8 h-[2px] bg-red-600" />
-              <span className="text-red-500 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
+            {/* Eyebrow Badge (Black Box Style) */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg bg-black border border-white/15 shadow-md mb-3 sm:mb-4">
+              <span className="w-4 sm:w-5 h-[2px] bg-red-600 rounded-full" />
+              <span className="text-white text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
                 {isArabic ? "أفضل متجر إكسسوارات سيارات في الشارقة" : "PREMIUM AUTO ACCESSORIES IN SHARJAH"}
               </span>
             </div>
@@ -303,9 +257,22 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
               </AnimatePresence>
             </div>
 
-            {/* Dual CTA Buttons */}
+            {/* Dual CTA Buttons (GET A QUOTE on left, EXPLORE PRODUCTS on right) */}
             <div className="flex flex-wrap items-center gap-4 sm:gap-5">
-              {/* Button 1: EXPLORE PRODUCTS */}
+              {/* Button 1: GET A QUOTE (Moved to left side) */}
+              <Link
+                href="/get-a-quote"
+                className="group pl-5 sm:pl-7 pr-2 sm:pr-2.5 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-zinc-900 border border-white/20 font-bold text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-3 transition-all duration-300 backdrop-blur-md hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <span>{isArabic ? "طلب تسعيرة" : "GET A QUOTE"}</span>
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-red-600 text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+                  <ArrowRight
+                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] ${isArabic ? "rotate-180" : ""}`}
+                  />
+                </span>
+              </Link>
+
+              {/* Button 2: EXPLORE PRODUCTS (Moved to right side) */}
               <button
                 type="button"
                 onClick={() => router.push("/products")}
@@ -314,22 +281,10 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
                 <span>{isArabic ? "استكشف المنتجات" : "EXPLORE PRODUCTS"}</span>
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white text-red-600 flex items-center justify-center transition-transform group-hover:translate-x-0.5">
                   <ArrowRight
-                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] ${isArabic ? "rotate-180" : ""
-                      }`}
+                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] ${isArabic ? "rotate-180" : ""}`}
                   />
                 </span>
               </button>
-
-              {/* Button 2: GET A QUOTE */}
-              <Link
-                href="/get-a-quote"
-                className="group pl-5 sm:pl-7 pr-2 sm:pr-2.5 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-zinc-900 border border-white/20 font-bold text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-3 transition-all duration-300 backdrop-blur-md hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <span>{isArabic ? "طلب تسعيرة" : "GET A QUOTE"}</span>
-                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-red-600 text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5">
-                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
-                </span>
-              </Link>
             </div>
           </div>
 
@@ -362,25 +317,6 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
               </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* 7. Bottom Glassmorphic Stats Section */}
-      <div className="relative z-20 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14 mt-12 sm:mt-14 pb-8 sm:pb-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3.5 lg:gap-4 max-w-4xl">
-          {statsData.map((stat, idx) => (
-            <div
-              key={idx}
-              className="rounded-xl px-4 py-3 sm:px-5 sm:py-3.5 bg-black/50 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:border-red-600/40 hover:bg-white/[0.08] hover:-translate-y-1 group"
-            >
-              <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight flex items-baseline">
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              </div>
-              <p className="text-[10px] sm:text-xs text-zinc-300 font-semibold uppercase tracking-wider mt-0.5">
-                {stat.label}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
 

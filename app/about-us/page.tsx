@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useInView, useMotionValue, useSpring } from "framer-motion";
 import {
   UserCheck,
   Handshake,
@@ -15,6 +16,44 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+
+// Animated counter with spring physics
+const AnimatedCounter = ({
+  value,
+  suffix = "+",
+}: {
+  value: number;
+  suffix?: string;
+}) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
+    damping: 35,
+    stiffness: 90,
+  });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value);
+    }
+  }, [isInView, motionValue, value]);
+
+  useEffect(() => {
+    const unsubscribe = springValue.on("change", (latest: number) => {
+      setDisplayValue(Math.floor(latest));
+    });
+    return () => unsubscribe();
+  }, [springValue]);
+
+  return (
+    <span ref={ref}>
+      {displayValue.toLocaleString()}
+      {suffix}
+    </span>
+  );
+};
 
 export default function AboutUsPage() {
   const { isArabic } = useLanguage();
@@ -64,26 +103,31 @@ export default function AboutUsPage() {
     },
   ];
 
-  const milestones = [
+  // Key Stats from Hero Section
+  const statsData = [
     {
-      number: "20,000+",
-      label: isArabic ? "سيارة تم تزيينها وفرشها" : "Vehicles Upgraded & Styled",
-      desc: isArabic ? "في الشارقة ودبي والإمارات الشمالية" : "Across Sharjah, Dubai & Northern Emirates",
+      value: 15,
+      suffix: "+",
+      label: isArabic ? "سنوات خبرة" : "YEARS EXPERIENCE",
+      desc: isArabic ? "خبرة في تفصيل وتزيين السيارات بالشارقة" : "15+ Years of Mastery in Sharjah",
     },
     {
-      number: "15+",
-      label: isArabic ? "عاماً من الخبرة والإتقان" : "Years of Craftsmanship",
-      desc: isArabic ? "معارض متخصصة بالصناعية 4 و 5" : "Showrooms in Sharjah Industrial Area 4 & 5",
+      value: 20000,
+      suffix: "+",
+      label: isArabic ? "سيارة تم تزيينها" : "VEHICLES UPGRADED",
+      desc: isArabic ? "في الشارقة ودبي وكافة الإمارات" : "Across Sharjah, Dubai & UAE",
     },
     {
-      number: "99.4%",
-      label: isArabic ? "نسبة رضا العملاء" : "Customer Satisfaction",
-      desc: isArabic ? "بناءً على أكثر من 2,500 تقييم معتمد" : "Based on 2,500+ verified customer reviews",
+      value: 500,
+      suffix: "+",
+      label: isArabic ? "منتج وإكسسوار متوفر" : "TOP ACCESSORIES",
+      desc: isArabic ? "إكسسوارات جاهزة ومتاحة فوراً" : "Premium In-Stock Automotive Catalog",
     },
     {
-      number: "500+",
-      label: isArabic ? "إكسسوار ومنتج متاح فوراً" : "Products & Accessories",
-      desc: isArabic ? "كتالوج شامل وجاهز للشحن الفوري" : "Premium in-stock catalog with fast delivery",
+      value: 99,
+      suffix: "%",
+      label: isArabic ? "نسبة رضا العملاء" : "SATISFACTION RATE",
+      desc: isArabic ? "تقييمات معتمدة لضمان الجودة" : "Based on 2,500+ Verified Customer Reviews",
     },
   ];
 
@@ -122,25 +166,28 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* 2. Trust Stats Strip */}
-      <section className="w-full py-12 bg-white border-b border-zinc-200">
+      {/* 2. Key Achievements & Stats Strip (From Hero Section) */}
+      <section className="relative w-full py-10 sm:py-14 bg-[#0a0a0c] border-b border-white/10" dir={isArabic ? "rtl" : "ltr"}>
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-10 2xl:px-14">
-          <div className="bg-zinc-50/80 text-zinc-900 rounded-3xl p-6 sm:p-8 border border-zinc-200 shadow-sm">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x rtl:sm:divide-x-reverse divide-zinc-200">
-              {milestones.map((m, idx) => (
-                <div key={idx} className={`space-y-1 ${idx > 0 ? "pt-4 sm:pt-0 sm:px-6" : ""}`}>
-                  <div className="text-2xl sm:text-4xl font-display font-extrabold text-red-600">
-                    {m.number}
-                  </div>
-                  <div className="text-xs sm:text-sm font-bold text-zinc-900 uppercase tracking-wider">
-                    {m.label}
-                  </div>
-                  <p className="text-[11px] text-zinc-500 leading-tight">
-                    {m.desc}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+            {statsData.map((stat, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl px-5 py-5 sm:px-6 sm:py-6 bg-zinc-950/90 backdrop-blur-md border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-red-600/50 hover:bg-white/[0.05] hover:-translate-y-1 group flex flex-col justify-between"
+              >
+                <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight flex items-baseline group-hover:text-red-500 transition-colors">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </div>
+                <div className="mt-2">
+                  <h3 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-zinc-200">
+                    {stat.label}
+                  </h3>
+                  <p className="text-[11px] text-zinc-400 mt-1 leading-snug">
+                    {stat.desc}
                   </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
