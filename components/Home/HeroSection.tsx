@@ -81,6 +81,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       description: isArabic
         ? "أرقى تشكيلات أغطية المقاعد الجلدية، دعاسات 7D الفاخرة، والإلكترونيات المصممة لأقسى درجات حرارة الإمارات."
         : "Discover bespoke 3D leather seat covers, precision 7D floor mats, advanced car electronics, and styling accessories engineered for extreme UAE durability in Sharjah.",
+      image: "/images/materials/rahmaniah-swatches-slide-1-1920.jpg",
+      mobileImage: "/images/materials/rahmaniah-swatches-slide-1-mobile.jpg",
     },
     {
       titlePart1: isArabic ? "تفصيل مقاعد فاخرة و" : "Tailored Seat Covers &",
@@ -88,6 +90,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       description: isArabic
         ? "تفصيل جلود نابا وألكانتارا، أحزمة أمان ملونة، ونجوم سقف روز رايز مخصصة لموديل سيارتك بدقة متناهية."
         : "Hand-crafted German Napa leather, diamond-quilted PVC, custom colored seatbelts, and starlight headliners precision-fitted to your exact vehicle model.",
+      image: "/images/home-hero.png",
+      mobileImage: "/images/home-hero-mobile.png",
     },
     {
       titlePart1: isArabic ? "إلكترونيات متطورة و" : "Automotive Electronics &",
@@ -95,6 +99,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       description: isArabic
         ? "شاشات أندرويد فائقة الوضوح، أنظمة صوت DSP، عدسات وإضاءات ليزر LED قوية، وإضاءات محيطية داخلية."
         : "Upgrade your driving experience with crystal-clear Android touchscreens, DSP sound systems, high-lumen laser LED headlights, and ambient interior lighting.",
+      image: "/images/home-hero.png",
+      mobileImage: "/images/home-hero-mobile.png",
     },
   ];
 
@@ -156,35 +162,47 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0a0a0c]"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      {/* 1. Background Image Banner (This Project's Automotive Workshop Images) */}
+      {/* 1. Background Image Banner Slider */}
       <div
         className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${isPlayingVideo && !isVideoPaused
             ? "opacity-0 pointer-events-none"
             : "opacity-100"
           }`}
       >
-        {/* Desktop / Tablet Supercar Workshop Banner */}
-        <Image
-          src="/images/home-hero.png"
-          alt="Al Rahmaniah Auto Maintenance Workshop"
-          fill
-          priority
-          quality={100}
-          className="hidden md:block object-cover object-center"
-          sizes="(min-width: 768px) 100vw, 1px"
-          unoptimized
-        />
-        {/* Mobile Portrait Workshop Banner */}
-        <Image
-          src="/images/home-hero-mobile.png"
-          alt="Al Rahmaniah Auto Workshop Mobile"
-          fill
-          priority
-          quality={100}
-          className="block md:hidden object-cover object-center"
-          sizes="(max-width: 767px) 100vw, 1px"
-          unoptimized
-        />
+        {slides.map((slide, idx) => {
+          const isActive = idx === slideIndex;
+          return (
+            <div
+              key={idx}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                isActive ? "opacity-100 z-0" : "opacity-0 pointer-events-none -z-10"
+              }`}
+            >
+              {/* Desktop / Tablet Workshop Banner */}
+              <Image
+                src={slide.image}
+                alt={`${slide.titlePart1} ${slide.titlePart2}`}
+                fill
+                priority={idx === 0}
+                quality={95}
+                className="hidden md:block object-cover object-center"
+                sizes="(min-width: 768px) 100vw, 1px"
+                unoptimized
+              />
+              {/* Mobile Portrait Workshop Banner */}
+              <Image
+                src={slide.mobileImage}
+                alt={`${slide.titlePart1} ${slide.titlePart2}`}
+                fill
+                priority={idx === 0}
+                quality={95}
+                className="block md:hidden object-cover object-center"
+                sizes="(max-width: 767px) 100vw, 1px"
+                unoptimized
+              />
+            </div>
+          );
+        })}
       </div>
 
       {/* 2. Background Video Banner (4K Car Workshop Repair Video) */}
@@ -208,15 +226,16 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background:
-            "linear-gradient(90deg, rgba(10, 10, 12, 0.88) 0%, rgba(14, 14, 18, 0.75) 40%, rgba(20, 10, 10, 0.50) 70%, rgba(0, 0, 0, 0.25) 100%)",
+          background: isArabic
+            ? "linear-gradient(270deg, rgba(10, 10, 12, 0.90) 0%, rgba(14, 14, 18, 0.78) 42%, rgba(20, 10, 10, 0.35) 70%, rgba(0, 0, 0, 0.15) 100%)"
+            : "linear-gradient(90deg, rgba(10, 10, 12, 0.90) 0%, rgba(14, 14, 18, 0.78) 42%, rgba(20, 10, 10, 0.35) 70%, rgba(0, 0, 0, 0.15) 100%)",
         }}
       />
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(8, 8, 10, 0.55) 0%, transparent 25%, transparent 65%, rgba(10, 10, 12, 0.90) 100%)",
+            "linear-gradient(180deg, rgba(8, 8, 10, 0.50) 0%, transparent 25%, transparent 65%, rgba(10, 10, 12, 0.85) 100%)",
         }}
       />
 
