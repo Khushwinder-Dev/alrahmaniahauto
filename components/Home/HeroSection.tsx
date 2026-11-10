@@ -52,8 +52,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       description: isArabic
         ? "تفصيل جلود نابا وألكانتارا، أحزمة أمان ملونة، ونجوم سقف روز رايز مخصصة لموديل سيارتك بدقة متناهية."
         : "Hand-crafted German Napa leather, diamond-quilted PVC, custom colored seatbelts, and starlight headliners precision-fitted to your exact vehicle model.",
-      image: "/images/home-hero.png",
-      mobileImage: "/images/home-hero-mobile.png",
+      image: "/images/materials/rahmaniah-swatches-slide-1-mobile.jpg",
+      mobileImage: "/images/materials/rahmaniah-swatches-slide-1-mobile.jpg",
     },
     {
       titlePart1: isArabic ? "إلكترونيات متطورة و" : "Automotive Electronics &",
@@ -61,8 +61,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       description: isArabic
         ? "شاشات أندرويد فائقة الوضوح، أنظمة صوت DSP، عدسات وإضاءات ليزر LED قوية، وإضاءات محيطية داخلية."
         : "Upgrade your driving experience with crystal-clear Android touchscreens, DSP sound systems, high-lumen laser LED headlights, and ambient interior lighting.",
-      image: "/images/home-hero.png",
-      mobileImage: "/images/home-hero-mobile.png",
+      image: "/images/materials/rahmaniah-swatches-slide-1-mobile.jpg",
+      mobileImage: "/images/materials/rahmaniah-swatches-slide-1-mobile.jpg",
     },
   ];
 
@@ -119,8 +119,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       {/* 1. Background Image Banner Slider */}
       <div
         className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${isPlayingVideo && !isVideoPaused
-            ? "opacity-0 pointer-events-none"
-            : "opacity-100"
+          ? "opacity-0 pointer-events-none"
+          : "opacity-100"
           }`}
       >
         {slides.map((slide, idx) => {
@@ -128,9 +128,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
           return (
             <div
               key={idx}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-100 z-0" : "opacity-0 pointer-events-none -z-10"
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${isActive ? "opacity-100 z-0" : "opacity-0 pointer-events-none -z-10"
+                }`}
             >
               {/* Desktop / Tablet Workshop Banner */}
               <Image
@@ -162,13 +161,13 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
       {/* 2. Background Video Banner (4K Car Workshop Repair Video) */}
       <div
         className={`absolute inset-0 transition-opacity duration-1000 ease-in-out z-0 ${isPlayingVideo && !isVideoPaused
-            ? "opacity-100"
-            : "opacity-0 pointer-events-none"
+          ? "opacity-100"
+          : "opacity-0 pointer-events-none"
           }`}
       >
         <video
           ref={videoRef}
-          src="/Hero.mp4"
+          src="/videos/heroSection.mp4"
           loop
           playsInline
           muted={isMuted}
@@ -208,8 +207,8 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
               aria-label={`${isArabic ? "الشريحة" : "Go to slide"} ${index + 1}`}
               aria-current={active}
               className={`rounded-full transition-all duration-300 cursor-pointer ${active
-                  ? "w-1.5 h-8 bg-red-600 shadow-[0_0_14px_rgba(220,38,38,0.9)]"
-                  : "w-1.5 h-7 border border-white/40 bg-white/10 hover:border-red-500 hover:bg-red-600/30"
+                ? "w-1.5 h-8 bg-red-600 shadow-[0_0_14px_rgba(220,38,38,0.9)]"
+                : "w-1.5 h-7 border border-white/40 bg-white/10 hover:border-red-500 hover:bg-red-600/30"
                 }`}
             />
           );
