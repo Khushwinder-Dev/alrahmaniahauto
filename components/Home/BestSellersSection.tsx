@@ -10,7 +10,7 @@ import { allProductsData, ProductDetailItem } from "@/data/productsData";
 export default function BestSellersSection() {
   const { isArabic } = useLanguage();
 
-  const products = allProductsData.slice(0, 8);
+  const products = allProductsData.slice(0, 10);
 
   const getWhatsAppLink = (productTitle: string) => {
     const text = isArabic
@@ -53,9 +53,8 @@ export default function BestSellersSection() {
           </Link>
         </div>
 
-        {/* Products Grid */}
-        {/* Products Grid - Compact Proportions */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Products Grid - 5 Products Per Row on Desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {products.map((product: ProductDetailItem, index: number) => {
             const title = isArabic && product.nameAr ? product.nameAr : product.name;
             const categoryName = isArabic && product.categoryAr ? product.categoryAr : product.category;
