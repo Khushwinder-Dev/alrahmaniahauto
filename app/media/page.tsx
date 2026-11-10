@@ -670,8 +670,8 @@ export default function MediaPage() {
     if (photoSliderRef.current) {
       const container = photoSliderRef.current;
       const card = container.querySelector<HTMLElement>(".photo-gallery-slide");
-      const cardWidth = card ? card.offsetWidth : 330;
-      const scrollStep = cardWidth + 24; // width + gap
+      const cardWidth = card ? card.offsetWidth : 220;
+      const scrollStep = cardWidth + 16; // width + gap
       const factor = direction === "left" ? -1 : 1;
       const delta = isArabic ? -factor * scrollStep : factor * scrollStep;
 
@@ -843,17 +843,17 @@ export default function MediaPage() {
           {/* Photo Slider Carousel (with NO slider dots) */}
           {!loading && filteredPhotos.length > 0 && (
             <div className="relative group/carousel">
-              {/* Horizontal Scroll Track */}
+              {/* Horizontal Scroll Track (6 slides on desktop) */}
               <div
                 ref={photoSliderRef}
-                className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-5 sm:gap-6 pb-4 pt-1 px-0.5 no-scrollbar"
+                className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3.5 sm:gap-4 pb-4 pt-1 px-0.5 no-scrollbar"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
                 {filteredPhotos.map((photo) => (
                   <div
                     key={photo.id}
                     onClick={() => router.push("/services")}
-                    className="photo-gallery-slide flex-shrink-0 w-[290px] sm:w-[340px] md:w-[380px] lg:w-[410px] snap-start flex flex-col group cursor-pointer"
+                    className="photo-gallery-slide flex-shrink-0 w-[220px] sm:w-[calc((100%-16px)/2)] md:w-[calc((100%-2*16px)/3)] lg:w-[calc((100%-3*16px)/4)] xl:w-[calc((100%-5*16px)/6)] snap-start flex flex-col group cursor-pointer"
                   >
                     {/* Clean Image Container (Landscape Rectangle Shape) */}
                     <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-900 shadow-md group-hover:border-[#00c4b4]/40 transition-all duration-300">

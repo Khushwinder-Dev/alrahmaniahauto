@@ -172,8 +172,8 @@ export default function OurProjectsSection() {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const card = container.querySelector<HTMLElement>(".project-carousel-card");
-      const cardWidth = card ? card.offsetWidth : 330;
-      const scrollStep = cardWidth + 24; // width + gap
+      const cardWidth = card ? card.offsetWidth : 220;
+      const scrollStep = cardWidth + 16; // width + gap
       const factor = direction === "left" ? -1 : 1;
       const delta = isArabic ? -factor * scrollStep : factor * scrollStep;
 
@@ -262,23 +262,23 @@ export default function OurProjectsSection() {
             )}
           </button>
 
-          {/* Carousel Scroll Container (Always scrolls smoothly on all viewports) */}
+          {/* Carousel Scroll Container (Always scrolls smoothly on all viewports - 6 slides on desktop) */}
           <div
             ref={scrollContainerRef}
-            className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-5 sm:gap-6 pb-6 pt-2 px-1 no-scrollbar"
+            className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3.5 sm:gap-4 pb-6 pt-2 px-1 no-scrollbar"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="project-carousel-card flex-shrink-0 w-[285px] sm:w-[310px] md:w-[325px] lg:w-[320px] xl:w-[335px] snap-start flex flex-col"
+                className="project-carousel-card flex-shrink-0 w-[220px] sm:w-[calc((100%-16px)/2)] md:w-[calc((100%-2*16px)/3)] lg:w-[calc((100%-3*16px)/4)] xl:w-[calc((100%-5*16px)/6)] snap-start flex flex-col"
               >
                 <Link
                   href={project.link}
-                  className="group relative block bg-white rounded-[26px] shadow-[0_10px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_40px_rgba(1,169,160,0.16)] hover:-translate-y-1 transition-all duration-400 overflow-hidden flex flex-col h-full"
+                  className="group relative block bg-white rounded-2xl shadow-[0_10px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_40px_rgba(1,169,160,0.16)] hover:-translate-y-1 transition-all duration-400 overflow-hidden flex flex-col h-full"
                 >
                   {/* Top Photo Container */}
-                  <div className="relative w-full h-[200px] sm:h-[215px] overflow-hidden bg-stone-100">
+                  <div className="relative w-full h-[150px] sm:h-[165px] overflow-hidden bg-stone-100">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -293,17 +293,17 @@ export default function OurProjectsSection() {
 
                     {/* Square Teal Badge with Target Reticle Icon at bottom-left */}
                     <div
-                      className={`absolute bottom-0 ${isArabic ? "right-4 sm:right-5" : "left-4 sm:left-5"
-                        } z-20 w-11 h-11 bg-[#009e90] rounded-t-xl flex items-center justify-center shadow-md group-hover:bg-[#01887e] transition-colors duration-300`}
+                      className={`absolute bottom-0 ${isArabic ? "right-3 sm:right-4" : "left-3 sm:left-4"
+                        } z-20 w-8 h-8 sm:w-9 sm:h-9 bg-[#009e90] rounded-t-lg flex items-center justify-center shadow-md group-hover:bg-[#01887e] transition-colors duration-300`}
                     >
-                      <TargetReticleWhiteIcon className="w-5 h-5 text-white" />
+                      <TargetReticleWhiteIcon className="w-4 h-4 text-white" />
                     </div>
                   </div>
 
                   {/* Bottom White Info Box */}
-                  <div className="relative pt-6 pb-9 px-5 sm:px-6 flex flex-col flex-grow bg-white">
+                  <div className="relative pt-4 pb-6 px-3.5 sm:px-4 flex flex-col flex-grow bg-white">
                     {/* Project Title */}
-                    <h3 className="text-[17px] sm:text-[18px] font-bold text-stone-900 tracking-tight leading-snug group-hover:text-[#01a9a0] transition-colors duration-300 line-clamp-1 mb-2">
+                    <h3 className="text-sm sm:text-[15px] font-bold text-stone-900 tracking-tight leading-snug group-hover:text-[#01a9a0] transition-colors duration-300 line-clamp-1 mb-1">
                       {project.title}
                     </h3>
 

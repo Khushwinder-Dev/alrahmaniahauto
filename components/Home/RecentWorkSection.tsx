@@ -65,11 +65,13 @@ export default function RecentWorkSection() {
             <Swiper
               onSwiper={(swiper) => setSwiperInstance(swiper)}
               onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-              spaceBetween={24}
+              spaceBetween={16}
               slidesPerView={1}
               breakpoints={{
                 640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+                1440: { slidesPerView: 6 },
               }}
               className="w-full !overflow-visible"
             >

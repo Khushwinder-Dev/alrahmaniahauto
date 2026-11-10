@@ -41,8 +41,8 @@ export default function NewArrivalsSection() {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const card = container.querySelector<HTMLElement>(".new-arrival-card");
-      const cardWidth = card ? card.offsetWidth : 320;
-      const scrollStep = cardWidth + 24; // width + gap
+      const cardWidth = card ? card.offsetWidth : 200;
+      const scrollStep = cardWidth + 14; // card width + 14px gap
       const factor = direction === "left" ? -1 : 1;
       const delta = isArabic ? -factor * scrollStep : factor * scrollStep;
 
@@ -119,10 +119,10 @@ export default function NewArrivalsSection() {
             )}
           </button>
 
-          {/* Carousel Scroll Container (Single row horizontal slider) */}
+          {/* Carousel Scroll Container (Single row horizontal slider - 6 slides visible on desktop) */}
           <div
             ref={scrollContainerRef}
-            className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-5 sm:gap-6 pb-6 pt-2 px-1 no-scrollbar"
+            className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 sm:gap-3.5 pb-6 pt-2 px-1 no-scrollbar"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {newProducts.map((product: ProductDetailItem) => {
@@ -134,7 +134,7 @@ export default function NewArrivalsSection() {
               return (
                 <div
                   key={product.id}
-                  className="new-arrival-card flex-shrink-0 w-[240px] sm:w-[260px] md:w-[275px] lg:w-[285px] snap-start flex flex-col"
+                  className="new-arrival-card flex-shrink-0 w-[200px] xs:w-[220px] sm:w-[calc((100%-1*14px)/2)] md:w-[calc((100%-2*14px)/3)] lg:w-[calc((100%-3*14px)/4)] xl:w-[calc((100%-5*14px)/6)] snap-start flex flex-col"
                 >
                   <div className="bg-white rounded-2xl border border-zinc-200 overflow-hidden flex flex-col justify-between group hover:border-red-500 hover:shadow-lg transition-all duration-300 shadow-xs h-full">
                     {/* Image Frame - Compact 4:3 Proportion */}
@@ -149,33 +149,33 @@ export default function NewArrivalsSection() {
                       </Link>
 
                       {/* Badges */}
-                      <div className="absolute top-2.5 left-2.5 rtl:left-auto rtl:right-2.5 flex flex-col gap-1">
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-red-600 text-white text-[9px] font-extrabold uppercase tracking-wider shadow-sm">
+                      <div className="absolute top-2 left-2 rtl:left-auto rtl:right-2 flex flex-col gap-1">
+                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-red-600 text-white text-[9px] font-extrabold uppercase tracking-wider shadow-xs">
                           <Sparkles className="w-2.5 h-2.5 fill-white" />
-                          <span>{isArabic ? "جديد" : "New Arrival"}</span>
+                          <span>{isArabic ? "جديد" : "New"}</span>
                         </span>
-                        <span className="px-2 py-0.5 rounded-md bg-zinc-900/85 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider">
+                        <span className="px-1.5 py-0.5 rounded-md bg-zinc-900/85 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider">
                           {priceTag}
                         </span>
                       </div>
 
-                      <div className="absolute bottom-2.5 right-2.5 rtl:right-auto rtl:left-2.5">
-                        <span className="px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-800 text-[10px] font-semibold shadow-xs">
+                      <div className="absolute bottom-2 right-2 rtl:right-auto rtl:left-2 max-w-[70%]">
+                        <span className="px-1.5 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-800 text-[9px] font-semibold shadow-xs truncate block">
                           {categoryName}
                         </span>
                       </div>
                     </div>
 
-                    {/* Card Body - Compact */}
-                    <div className="p-4 flex-1 flex flex-col justify-between">
+                    {/* Card Body - Optimized for 6 Slides per View */}
+                    <div className="p-3 flex-1 flex flex-col justify-between">
                       <div>
                         {/* Rating */}
-                        <div className="flex items-center gap-1.5 mb-1.5 text-amber-500 text-xs">
+                        <div className="flex items-center gap-1 mb-1 text-amber-500 text-xs">
                           <div className="flex items-center">
                             {[...Array(5)].map((_, i) => (
                               <Star
                                 key={i}
-                                className={`w-3 h-3 ${
+                                className={`w-2.5 h-2.5 ${
                                   i < Math.floor(product.rating || 4.9)
                                     ? "fill-amber-400 text-amber-400"
                                     : "text-zinc-300"
@@ -183,30 +183,30 @@ export default function NewArrivalsSection() {
                               />
                             ))}
                           </div>
-                          <span className="font-bold text-zinc-800 text-xs">{product.rating || 4.9}</span>
-                          <span className="text-zinc-400 text-[10px]">({product.reviewsCount || 65})</span>
+                          <span className="font-bold text-zinc-800 text-[10px]">{product.rating || 4.9}</span>
+                          <span className="text-zinc-400 text-[8px]">({product.reviewsCount || 65})</span>
                         </div>
 
                         {/* Title */}
                         <Link href={`/products?search=${encodeURIComponent(product.name)}`} className="block">
-                          <h3 className="text-sm font-bold text-zinc-900 group-hover:text-red-600 transition-colors line-clamp-1 mb-1.5 leading-snug">
+                          <h3 className="text-xs sm:text-[13px] font-bold text-zinc-900 group-hover:text-red-600 transition-colors line-clamp-1 mb-1 leading-snug">
                             {title}
                           </h3>
                         </Link>
 
-                        <p className="text-xs text-zinc-500 line-clamp-2 leading-relaxed mb-3">
+                        <p className="text-[10px] sm:text-[11px] text-zinc-500 line-clamp-2 leading-relaxed mb-2.5">
                           {desc}
                         </p>
                       </div>
 
                       {/* Actions */}
-                      <div className="pt-3 border-t border-zinc-100 flex items-center justify-between gap-2">
+                      <div className="pt-2.5 border-t border-zinc-100 flex items-center justify-between gap-1.5">
                         <Link
                           href={`/get-a-quote?product=${encodeURIComponent(product.name)}`}
-                          className="flex-1 py-2 px-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1.5 shadow-xs"
+                          className="flex-1 py-1.5 px-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1 shadow-xs"
                         >
-                          <span>{isArabic ? "طلب تسعيرة" : "Get a Quote"}</span>
-                          <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
+                          <span>{isArabic ? "طلب تسعيرة" : "Get Quote"}</span>
+                          <ArrowRight className="w-3 h-3 rtl:rotate-180" />
                         </Link>
 
                         <a
@@ -217,10 +217,10 @@ export default function NewArrivalsSection() {
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 rounded-xl border border-zinc-200 hover:border-emerald-500 hover:bg-emerald-50 text-emerald-600 transition-colors shadow-xs"
+                          className="p-1.5 rounded-lg border border-zinc-200 hover:border-emerald-500 hover:bg-emerald-50 text-emerald-600 transition-colors shadow-xs flex-shrink-0"
                           title={isArabic ? "طلب عبر واتساب" : "Order via WhatsApp"}
                         >
-                          <MessageCircle className="w-4 h-4" />
+                          <MessageCircle className="w-3.5 h-3.5" />
                         </a>
                       </div>
                     </div>
