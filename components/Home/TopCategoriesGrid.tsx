@@ -220,35 +220,13 @@ export default function TopCategoriesGrid() {
             </p>
           </div>
 
-          <div className="flex items-center gap-4 self-start md:self-auto flex-shrink-0">
-            {/* Header Mini Navigation Arrows */}
-            <div className="hidden sm:flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => scroll("left")}
-                aria-label={isArabic ? "السابق" : "Previous"}
-                className="w-9 h-9 rounded-full border border-zinc-200 hover:border-red-600 bg-white hover:bg-red-600 text-zinc-700 hover:text-white transition-all flex items-center justify-center shadow-xs cursor-pointer active:scale-95"
-              >
-                {isArabic ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
-              </button>
-              <button
-                type="button"
-                onClick={() => scroll("right")}
-                aria-label={isArabic ? "التالي" : "Next"}
-                className="w-9 h-9 rounded-full border border-zinc-200 hover:border-red-600 bg-white hover:bg-red-600 text-zinc-700 hover:text-white transition-all flex items-center justify-center shadow-xs cursor-pointer active:scale-95"
-              >
-                {isArabic ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-              </button>
-            </div>
-
-            <Link
-              href="/products"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-900 hover:text-red-600 transition-colors group border-b border-zinc-300 pb-1 hover:border-red-600"
-            >
-              <span>{isArabic ? "تصفح جميع المنتجات والإكسسوارات" : "View All 500+ Accessories"}</span>
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </Link>
-          </div>
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-900 hover:text-red-600 transition-colors group self-start md:self-auto flex-shrink-0 border-b border-zinc-300 pb-1 hover:border-red-600"
+          >
+            <span>{isArabic ? "تصفح جميع المنتجات والإكسسوارات" : "View All 500+ Accessories"}</span>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </Link>
         </div>
 
         {/* Categories Slider (6 Slides visible on Desktop) */}
