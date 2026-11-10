@@ -532,14 +532,14 @@ export default function AdminVisitorsPage() {
 
               <button
                 onClick={() => handleSiteChange("alrahmaniah")}
-                className={`px-3 py-1.5 rounded-lg font-medium transition cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 rounded-lg font-bold transition cursor-pointer flex items-center gap-1.5 ${
                   selectedSite === "alrahmaniah"
-                    ? "bg-red-600 text-white shadow-sm shadow-red-600/30"
-                    : "text-zinc-400 hover:text-white"
+                    ? "bg-red-600 text-white shadow-md shadow-red-600/40"
+                    : "text-zinc-300 hover:text-white"
                 }`}
               >
                 <span className="w-2 h-2 rounded-full bg-red-400" />
-                <span>Al Rahmaniah</span>
+                <span>Al Rahmaniah (This Site)</span>
                 <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-black/40 text-red-200">
                   {stats.alrahmaniahCount || 0}
                 </span>
@@ -799,26 +799,35 @@ export default function AdminVisitorsPage() {
                     return (
                       <tr
                         key={v.id}
-                        className="hover:bg-zinc-800/30 transition-colors duration-150 group"
+                        className={`transition-colors duration-150 group ${
+                          isAlrahmaniah
+                            ? "bg-red-950/20 hover:bg-red-900/30 border-l-4 border-l-red-600"
+                            : "hover:bg-zinc-800/30"
+                        }`}
                       >
                         {/* Site & IP Column */}
                         <td className="py-3.5 px-4">
-                          <div className="flex flex-col gap-1">
-                            <div className="flex items-center gap-1.5">
+                          <div className="flex flex-col gap-1.5">
+                            <div className="flex items-center gap-1.5 flex-wrap">
                               {isAlrahmaniah ? (
-                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-red-500/10 text-red-300 border border-red-500/20">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-                                  Al Rahmaniah
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-red-600 text-white shadow-sm shadow-red-600/40 border border-red-500 uppercase tracking-wide">
+                                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                                  Al Rahmaniah Auto
                                 </span>
                               ) : isTaj ? (
-                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10px] font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 uppercase tracking-wide">
                                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                                   Taj Al Rahmah
                                 </span>
                               ) : (
-                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30 uppercase tracking-wide">
                                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                                   Bab Al Bustan
+                                </span>
+                              )}
+                              {isAlrahmaniah && (
+                                <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-500/20 text-red-300 border border-red-500/30 uppercase">
+                                  This Site
                                 </span>
                               )}
                               {v.country === "Local Network" && (
