@@ -48,7 +48,7 @@ export default function Footer({ hideNewsletter }: { hideNewsletter?: boolean } 
   };
 
 
-  const productLinks = [
+  const productLinks: { label: string; href: string; isViewAll?: boolean }[] = [
     {
       label: isArabic ? "خامات هيت أون شيت (Heat-on-Sheet)" : "Heat-on-Sheet",
       href: "/products?search=Heat-on-Sheet",
@@ -72,6 +72,11 @@ export default function Footer({ hideNewsletter }: { hideNewsletter?: boolean } 
     {
       label: isArabic ? "مخمل ستريتش (Velvet Stretch)" : "Velvet Stretch",
       href: "/products?search=Velvet+Stretch",
+    },
+    {
+      label: isArabic ? "عرض الكل (View All)" : "View All",
+      href: "/products",
+      isViewAll: true,
     },
   ];
 
@@ -236,7 +241,11 @@ export default function Footer({ hideNewsletter }: { hideNewsletter?: boolean } 
                 {productLinks.map((link) => (
                   <li key={link.label}>
                     <Link
-                      className="flex items-center gap-2 text-sm hover:text-red-500 transition-colors group"
+                      className={`flex items-center gap-2 text-sm transition-colors group ${
+                        link.isViewAll
+                          ? "text-red-500 font-semibold hover:text-red-400 pt-1"
+                          : "hover:text-red-500"
+                      }`}
                       href={link.href}
                     >
                       <ArrowIcon className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform shrink-0" />
