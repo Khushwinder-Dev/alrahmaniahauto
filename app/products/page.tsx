@@ -28,7 +28,7 @@ export default function ProductsPage() {
   const [sortBy, setSortBy] = useState<string>("featured");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 15;
+  const itemsPerPage = 18;
 
   // Sync search param from URL if present
   useEffect(() => {
@@ -435,8 +435,8 @@ export default function ProductsPage() {
               })}
             </div>
           ) : (
-            /* COMPACT GRID VIEW - 5 Columns with 4:3 Aspect Ratio */
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            /* COMPACT GRID VIEW - 6 Columns with 4:3 Aspect Ratio */
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-3.5">
               {paginatedProducts.map((product: ProductDetailItem) => {
                 const title = isArabic && product.nameAr ? product.nameAr : product.name;
                 const categoryName = isArabic && product.categoryAr ? product.categoryAr : product.category;

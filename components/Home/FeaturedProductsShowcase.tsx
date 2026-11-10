@@ -21,10 +21,10 @@ export default function FeaturedProductsShowcase() {
 
   const filteredProducts =
     activeTab === "All"
-      ? allProductsData.slice(0, 10)
+      ? allProductsData.slice(0, 12)
       : allProductsData
           .filter((p) => p.category.toLowerCase().includes(activeTab.toLowerCase()))
-          .slice(0, 10);
+          .slice(0, 12);
 
   const getWhatsAppLink = (productName: string) => {
     const text = encodeURIComponent(
@@ -74,8 +74,8 @@ export default function FeaturedProductsShowcase() {
           </div>
         </div>
 
-        {/* Product Cards Grid - 5 Products Per Row on Desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {/* Product Cards Grid - 6 Products Per Row on Desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-3.5">
           {filteredProducts.map((prod: ProductDetailItem) => {
             const title = isArabic && prod.nameAr ? prod.nameAr : prod.name;
             const categoryName = isArabic && prod.categoryAr ? prod.categoryAr : prod.category;
@@ -98,16 +98,16 @@ export default function FeaturedProductsShowcase() {
 
                   {/* Top Category Badge */}
                   <div className="absolute top-2 left-2 rtl:left-auto rtl:right-2">
-                    <span className="px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-800 text-[9px] font-bold shadow-xs">
+                    <span className="px-1.5 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-800 text-[8px] sm:text-[9px] font-bold shadow-xs">
                       {categoryName}
                     </span>
                   </div>
 
                   {/* Quick details link overlay on hover */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-1.5">
                     <Link
                       href={`/products?search=${encodeURIComponent(prod.name)}`}
-                      className="p-2 bg-white text-zinc-900 rounded-full hover:bg-red-600 hover:text-white transition-all transform hover:scale-110 shadow-md"
+                      className="p-1.5 bg-white text-zinc-900 rounded-full hover:bg-red-600 hover:text-white transition-all transform hover:scale-110 shadow-md"
                       title={isArabic ? "عرض التفاصيل" : "View Details"}
                     >
                       <Eye className="w-3.5 h-3.5" />
@@ -116,7 +116,7 @@ export default function FeaturedProductsShowcase() {
                       href={getWhatsAppLink(title)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-emerald-600 text-white rounded-full hover:bg-emerald-500 transition-all transform hover:scale-110 shadow-md"
+                      className="p-1.5 bg-emerald-600 text-white rounded-full hover:bg-emerald-500 transition-all transform hover:scale-110 shadow-md"
                       title={isArabic ? "طلب عبر واتساب" : "WhatsApp Quick Order"}
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
@@ -124,35 +124,35 @@ export default function FeaturedProductsShowcase() {
                   </div>
                 </div>
 
-                {/* Product Content - Compact 5-col Layout */}
-                <div className="p-3.5 flex-1 flex flex-col justify-between">
+                {/* Product Content - Compact 6-col Layout */}
+                <div className="p-3 flex-1 flex flex-col justify-between">
                   <div>
                     {/* Stars + Rating + Price */}
-                    <div className="flex items-center justify-between gap-1.5 mb-1">
-                      <div className="flex items-center gap-1 text-amber-500 text-[11px] font-bold">
-                        <Star className="w-3 h-3 fill-amber-500" />
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                      <div className="flex items-center gap-0.5 text-amber-500 text-[10px] font-bold">
+                        <Star className="w-2.5 h-2.5 fill-amber-500" />
                         <span>{prod.rating || 4.9}</span>
-                        <span className="text-zinc-400 font-normal text-[9px]">({prod.reviewsCount || 88})</span>
+                        <span className="text-zinc-400 font-normal text-[8px]">({prod.reviewsCount || 88})</span>
                       </div>
-                      <span className="text-xs font-black text-zinc-900">
+                      <span className="text-[11px] sm:text-xs font-black text-zinc-900">
                         {priceTag}
                       </span>
                     </div>
 
-                    <h3 className="font-bold text-zinc-900 text-xs sm:text-sm group-hover:text-red-600 transition-colors line-clamp-1 leading-snug">
+                    <h3 className="font-bold text-zinc-900 text-xs sm:text-[13px] group-hover:text-red-600 transition-colors line-clamp-1 leading-snug">
                       {title}
                     </h3>
 
-                    <p className="text-[11px] text-zinc-500 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-[10px] sm:text-[11px] text-zinc-500 mt-0.5 line-clamp-2 leading-relaxed">
                       {desc}
                     </p>
                   </div>
 
-                  <div className="mt-3 pt-2.5 border-t border-zinc-100">
-                    <div className="grid grid-cols-2 gap-1.5">
+                  <div className="mt-2.5 pt-2 border-t border-zinc-100">
+                    <div className="grid grid-cols-2 gap-1">
                       <Link
                         href={`/get-a-quote?item=${encodeURIComponent(prod.name)}`}
-                        className="w-full text-center py-1.5 px-2 bg-zinc-900 hover:bg-zinc-800 text-white text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-900 shadow-xs"
+                        className="w-full text-center py-1.5 px-1 bg-zinc-900 hover:bg-zinc-800 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-900 shadow-xs"
                       >
                         {isArabic ? "تسعيرة" : "Quote"}
                       </Link>
@@ -160,7 +160,7 @@ export default function FeaturedProductsShowcase() {
                         href={getWhatsAppLink(title)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full inline-flex items-center justify-center gap-1 py-1.5 px-2 bg-red-600 hover:bg-red-700 text-white text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors shadow-xs"
+                        className="w-full inline-flex items-center justify-center gap-0.5 py-1.5 px-1 bg-red-600 hover:bg-red-700 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors shadow-xs"
                       >
                         <MessageCircle className="w-3 h-3" />
                         <span>{isArabic ? "طلب" : "Order"}</span>

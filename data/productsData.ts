@@ -507,6 +507,153 @@ export const allProductsData: ProductDetailItem[] = [
       ],
     },
   },
+  {
+    id: 10,
+    name: "Starlight Roof Headliner Optical Fiber Constellation",
+    nameAr: "سقف نجوم روز رايز ألياف ضوئية ذكية",
+    longName: "Custom Starlight Roof Headliner with App Control & Shooting Stars",
+    longNameAr: "تجهيز سقف النجوم الذكي بتقنية الألياف الضوئية والشهب المتحركة",
+    category: "Roof Headliners",
+    categoryAr: "بطانات وأسقف السيارات",
+    subcategory: "STARLIGHT",
+    categoryPath: ["Home", "Products", "Roof Headliners", "Starlight Roof Headliner"],
+    image: "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
+    additionalImages: [
+      "/fb-posts/592124585_122194707128549942_2096198504496408305_n.jpg",
+      "/fb-posts/598016407_122195897402549942_6284656040581813203_n.jpg",
+    ],
+    description:
+      "Transform your car interior with our bespoke Rolls-Royce style starlight headliner. Features smartphone Bluetooth app control, dynamic RGB colors, and twinkle shooting stars.",
+    descriptionAr:
+      "حول مقصورة سيارتك إلى فضاء فندقي راقٍ مع نجوم سقف روز رايز بالألياف الضوئية وتقنية الشهب المتحركة والتحكم عبر تطبيق الهاتف الذكي.",
+    longDescription: [
+      "Precision hand-installed fiber optics delivering an authentic starlight ceiling experience.",
+      "Complete with Bluetooth app color selection, music sync, and shooting star effects tailored for UAE luxury cars.",
+    ],
+    overviewTitle: "Luxury Starlight Headliner Custom Craftsmanship",
+    overviewContent: [
+      "High-output RGB LED light engines",
+      "Over 400 to 1,000 individually drilled optic fibers",
+      "Shooting star animations and twinkle modes",
+      "Zero battery drain with smart ignition relay",
+    ],
+    rating: 5.0,
+    reviewsCount: 142,
+    price: "From AED 850",
+    priceAr: "ابتداءً من 850 درهم",
+    specifications: {
+      column1: [
+        { label: "Light Source", value: "Smart Bluetooth RGB LED Engine" },
+        { label: "Fibers", value: "450 - 1000 End-Glow Strands" },
+        { label: "Control", value: "iOS / Android Mobile App & Remote" },
+        { label: "Voltage", value: "12V Automotive Relay" },
+      ],
+      column2: [
+        { label: "Features", value: "Twinkle, Shooting Stars, Music Sync" },
+        { label: "Compatibility", value: "All Sedans, Coupes & SUVs" },
+        { label: "Warranty", value: "2 Years Al Rahmaniah Warranty" },
+        { label: "Installation", value: "Sharjah Showroom Fitting Bays" },
+      ],
+    },
+  },
+  {
+    id: 11,
+    name: "Custom 7D Diamond Molded All-Weather Floor Mats",
+    nameAr: "دعاسات سيارات 7D فاخرة مقاومة للماء والحرارة",
+    longName: "Precision 7D Laser-Cut Double Layer Waterproof Floor Mats",
+    longNameAr: "أطقم دعاسات 7D بطبقتين مقاومة للرمال والأتربة مقصوصة بالليزر",
+    category: "Floor Carpets & Mats",
+    categoryAr: "سجاد ودعاسات 7D",
+    subcategory: "7D MATS",
+    categoryPath: ["Home", "Products", "Floor Carpets & Mats", "7D Floor Mats"],
+    image: "/fb-posts/593463700_122194846754549942_643382399179757249_n.jpg",
+    additionalImages: [
+      "/fb-posts/593463700_122194846754549942_643382399179757249_n.jpg",
+      "/fb-posts/626124573_122203468610549942_6790340746446751625_n.jpg",
+    ],
+    description:
+      "High-edge 7D all-weather molded floor mats offering complete carpet protection against sand, water spills, and daily wear in UAE driving conditions.",
+    descriptionAr:
+      "دعاسات 7D فائقة الجودة بحواف مرتفعة وتصميم ليزري مطابق للموديل لحماية أرضية السيارة تماماً من الرمال والماء وسهولة التنظيف التامة.",
+    longDescription: [
+      "Heavy-duty multi-layer construction with detachable curly mat for quick cleaning.",
+      "Laser measured specifically for sedans, 4x4s, and luxury SUVs across the UAE.",
+    ],
+    overviewTitle: "Full Cabin Edge-to-Edge Floor Protection",
+    overviewContent: [
+      "High perimeter walls trap dirt, mud, and liquid spills",
+      "Detachable coil wire top mat for instant cleaning",
+      "Anti-skid bottom spikes prevent pedal interference",
+      "Odorless, non-toxic, heat-resistant PVC composite",
+    ],
+    rating: 4.9,
+    reviewsCount: 110,
+    price: "From AED 320",
+    priceAr: "ابتداءً من 320 درهم",
+    specifications: {
+      column1: [
+        { label: "Material", value: "7-Layer EVA + Heavy-Duty PVC Leather" },
+        { label: "Fitment", value: "Laser Cut Exact OEM Vehicle Shape" },
+        { label: "Top Layer", value: "Detachable Curly Coil Mat" },
+        { label: "Waterproof", value: "100% Sealed & Spill-Proof" },
+      ],
+      column2: [
+        { label: "Weather Rating", value: "Engineered for UAE Sand & Extreme Heat" },
+        { label: "Cleaning", value: "Hose Off / Wipe Clean in Seconds" },
+        { label: "Anti-Slip", value: "Safety Retention Fasteners & Bottom Grips" },
+        { label: "Colors", value: "Black/Red, Tan/Gold, Coffee, Triple Black" },
+      ],
+    },
+  },
+  {
+    id: 12,
+    name: "German Napa Perforated Luxury Leather Rolls",
+    nameAr: "لفائف جلد نابا ألماني مخرم فاخر للسيارات",
+    longName: "Executive German Napa Micro-Perforated Automotive Leather",
+    longNameAr: "جلود نابا ألمانية أصلية مخرمة لتبريد وتنجيد المقاعد الفاخرة",
+    category: "Upholstery Leather & Fabrics",
+    categoryAr: "جلود وأقمشة التنجيد",
+    subcategory: "NAPA LEATHER",
+    categoryPath: ["Home", "Products", "Upholstery Leather & Fabrics", "German Napa Leather"],
+    image: "/fb-posts/588668836_122194707920549942_6964088685681111711_n.jpg",
+    additionalImages: [
+      "/fb-posts/588668836_122194707920549942_6964088685681111711_n.jpg",
+      "/fb-posts/625000072_122203468760549942_9148929700562058684_n.jpg",
+    ],
+    description:
+      "Imported German automotive-grade Napa leather rolls with micro-perforations ideal for ventilated cooling seats and luxury re-trimming in Sharjah.",
+    descriptionAr:
+      "لفائف جلد نابا ألماني فاخر بنقشات تخريم دقيقة متوافقة مع تبريد وتدفئة المقاعد وتوفر لمسة نعومة فائقة ومقاومة للحرارة العالية.",
+    longDescription: [
+      "Supreme soft touch, high tensile strength, and color-fast dyes that resist UV fading.",
+      "Available by the meter or in full wholesale rolls for workshops and car interior enthusiasts.",
+    ],
+    overviewTitle: "Bespoke German Napa Leather for Luxury Retrims",
+    overviewContent: [
+      "Ultra-fine grain texture with supple hand feel",
+      "Micro-perforated pattern for seat ventilation systems",
+      "UV resistant and scratch-resistant automotive finish",
+      "Available in Black, Cognac, Saddle Brown, and Ivory",
+    ],
+    rating: 4.9,
+    reviewsCount: 96,
+    price: "AED 95 / Meter",
+    priceAr: "95 درهم / متر",
+    specifications: {
+      column1: [
+        { label: "Origin", value: "German Automotive Specification" },
+        { label: "Pattern", value: "Precision Micro-Perforated" },
+        { label: "Roll Width", value: "1.40 Meters" },
+        { label: "Thickness", value: "1.2mm High-Density Grain" },
+      ],
+      column2: [
+        { label: "Cooling Support", value: "Fully Compatible with Ventilated Seats" },
+        { label: "UV Durability", value: "UV Protected Against UAE Sun Cracking" },
+        { label: "Applications", value: "Seats, Steering Wheels, Door Cards, Dash" },
+        { label: "Availability", value: "By Meter or Wholesale Roll in Sharjah" },
+      ],
+    },
+  },
 ];
 
 export const defaultProductsData = allProductsData;
