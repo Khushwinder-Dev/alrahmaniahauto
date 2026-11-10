@@ -15,6 +15,8 @@ import {
   CheckCircle2,
   Wrench,
   SlidersHorizontal,
+  LayoutGrid,
+  List,
 } from "lucide-react";
 import { allProductsData, PRODUCT_CATEGORIES, PRODUCT_CATEGORIES_AR, ProductDetailItem } from "@/data/productsData";
 import { useLanguage } from "@/context/LanguageContext";
@@ -24,8 +26,9 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("featured");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 12;
 
   // Sync search param from URL if present
   useEffect(() => {
@@ -274,7 +277,46 @@ export default function ProductsPage() {
             </div>
           )}
 
-          {/* Products Grid */}
+          {/* Toolbar: Product Count & View Mode Toggle */}
+          <div className="flex items-center justify-between mb-6 pb-3 border-b border-zinc-200">
+            <span className="text-xs sm:text-sm font-semibold text-zinc-600">
+              {isArabic ? "عرض " : "Showing "}
+              <span className="font-bold text-zinc-900">{filteredProducts.length}</span>
+              {isArabic ? " منتج وإكسسوار متوفر" : " products & accessories"}
+            </span>
+
+            {/* Grid / List View Toggle */}
+            <div className="flex items-center gap-1 bg-white border border-zinc-200 rounded-lg p-1 shadow-xs">
+              <button
+                type="button"
+                onClick={() => setViewMode("grid")}
+                aria-label="Grid View"
+                className={`p-1.5 rounded-md transition-colors cursor-pointer ${
+                  viewMode === "grid"
+                    ? "bg-red-600 text-white shadow-xs"
+                    : "text-zinc-500 hover:text-zinc-900"
+                }`}
+                title={isArabic ? "عرض شبكي" : "Grid View"}
+              >
+                <LayoutGrid className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode("list")}
+                aria-label="List View"
+                className={`p-1.5 rounded-md transition-colors cursor-pointer ${
+                  viewMode === "list"
+                    ? "bg-red-600 text-white shadow-xs"
+                    : "text-zinc-500 hover:text-zinc-900"
+                }`}
+                title={isArabic ? "عرض مدمج للقائمة" : "Compact List View"}
+              >
+                <List className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Products Grid / List */}
           {filteredProducts.length === 0 ? (
             <div className="bg-white rounded-3xl p-14 text-center border border-zinc-200 max-w-xl mx-auto my-8 shadow-sm">
               <div className="w-14 h-14 rounded-full bg-red-50 text-red-600 border border-red-200 flex items-center justify-center mx-auto mb-4">
@@ -299,21 +341,115 @@ export default function ProductsPage() {
                 {isArabic ? "عرض جميع المنتجات" : "View All Products"}
               </button>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          ) : viewMode === "list" ? (
+            /* COMPACT LIST VIEW - Matching exact screenshot proportions */
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {paginatedProducts.map((product: ProductDetailItem) => {
                 const title = isArabic && product.nameAr ? product.nameAr : product.name;
                 const categoryName = isArabic && product.categoryAr ? product.categoryAr : product.category;
                 const desc = isArabic && product.descriptionAr ? product.descriptionAr : product.description;
-                const priceTag = isArabic && product.priceAr ? product.priceAr : (product.price || (isArabic ? "طلب تسعيرة" : "Contact for Quote"));
+                const priceTag = isArabic && product.priceAr ? product.priceAr : (product.price || (isArabic ? "طلب تسعيرة" : "From AED 450"));
 
                 return (
                   <div
                     key={product.id}
-                    className="bg-white rounded-3xl border border-zinc-200 hover:border-red-600/70 p-5 flex flex-col group hover:shadow-xl shadow-xs transition-all duration-300"
+                    className="bg-white rounded-2xl border border-zinc-200 hover:border-red-500 p-3 sm:p-3.5 flex items-center gap-3.5 sm:gap-4 group hover:shadow-md transition-all duration-200 shadow-xs"
                   >
-                    {/* Product Image Frame */}
-                    <div className="relative w-full aspect-square bg-zinc-50 rounded-2xl overflow-hidden mb-5 flex items-center justify-center border border-zinc-100 group-hover:border-red-100 transition-colors">
+                    {/* Compact Thumbnail (w-22 h-22 sm:w-24 sm:h-24) */}
+                    <Link
+                      href={`/products/${product.id}`}
+                      className="relative w-22 h-22 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-zinc-100 flex-shrink-0 border border-zinc-200 cursor-pointer"
+                    >
+                      <Image
+                        src={product.image}
+                        alt={title}
+                        fill
+                        className="object-cover object-center group-hover:scale-108 transition-transform duration-300"
+                      />
+                    </Link>
+
+                    {/* Details */}
+                    <div className="flex-1 min-w-0 flex flex-col justify-between h-full py-0.5">
+                      <div>
+                        <span className="text-[10px] sm:text-[11px] font-bold uppercase text-red-600 tracking-wider block truncate">
+                          {categoryName}
+                        </span>
+
+                        <Link href={`/products/${product.id}`} className="block">
+                          <h4 className="text-xs sm:text-sm font-bold text-zinc-900 group-hover:text-red-600 transition-colors line-clamp-1 mt-0.5 leading-snug">
+                            {title}
+                          </h4>
+                        </Link>
+
+                        {/* Stars */}
+                        <div className="flex items-center gap-1 text-amber-500 text-[11px] mt-1">
+                          <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`w-3 h-3 ${
+                                  i < Math.floor(product.rating || 4.9)
+                                    ? "fill-amber-400 text-amber-400"
+                                    : "text-zinc-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-zinc-400 font-medium text-[10px] ml-1 rtl:ml-0 rtl:mr-1">
+                            ({product.reviewsCount || 88})
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Price & Quick Actions */}
+                      <div className="flex items-center justify-between gap-2 mt-2 pt-2 border-t border-zinc-100">
+                        <span className="text-xs sm:text-sm font-black text-zinc-900">
+                          {priceTag}
+                        </span>
+
+                        <div className="flex items-center gap-1.5">
+                          <Link
+                            href={`/get-a-quote?item=${encodeURIComponent(product.name)}`}
+                            className="px-2.5 py-1.5 bg-zinc-100 hover:bg-zinc-900 hover:text-white text-zinc-800 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-200"
+                          >
+                            {isArabic ? "تسعيرة" : "Quote"}
+                          </Link>
+                          <a
+                            href={`https://wa.me/971558674927?text=${encodeURIComponent(
+                              isArabic
+                                ? `مرحباً الرحمانية لزينة وتنجيد السيارات! أود الاستفسار وطلب: ${title}`
+                                : `Hello Al Rahmaniah, I would like to inquire about: ${product.name}`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition-all shadow-xs"
+                            title={isArabic ? "طلب عبر واتساب" : "WhatsApp"}
+                          >
+                            <MessageCircle className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            /* COMPACT GRID VIEW - 4 Columns with 4:3 Aspect Ratio */
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+              {paginatedProducts.map((product: ProductDetailItem) => {
+                const title = isArabic && product.nameAr ? product.nameAr : product.name;
+                const categoryName = isArabic && product.categoryAr ? product.categoryAr : product.category;
+                const desc = isArabic && product.descriptionAr ? product.descriptionAr : product.description;
+                const priceTag = isArabic && product.priceAr ? product.priceAr : (product.price || (isArabic ? "طلب تسعيرة" : "From AED 450"));
+
+                return (
+                  <div
+                    key={product.id}
+                    className="bg-white rounded-2xl border border-zinc-200 hover:border-red-600/70 p-3.5 sm:p-4 flex flex-col group hover:shadow-lg shadow-xs transition-all duration-300"
+                  >
+                    {/* Product Image Frame - 4:3 Compact Proportion */}
+                    <div className="relative w-full aspect-[4/3] bg-zinc-50 rounded-xl overflow-hidden mb-3 flex items-center justify-center border border-zinc-100 group-hover:border-red-100 transition-colors">
                       <Link
                         href={`/products/${product.id}`}
                         className="w-full h-full relative cursor-pointer"
@@ -322,70 +458,71 @@ export default function ProductsPage() {
                           src={product.image}
                           alt={title}
                           fill
-                          className="object-cover object-center transition-transform duration-700 group-hover:scale-108"
+                          className="object-cover object-center transition-transform duration-500 group-hover:scale-108"
                         />
                       </Link>
 
                       {/* Original Red Badge */}
-                      <span className="absolute top-3 left-3 rtl:left-auto rtl:right-3 px-3 py-1 bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider rounded-full shadow-md">
-                        {isArabic ? "💎 أصلي 100%" : "💎 100% Original"}
+                      <span className="absolute top-2 left-2 rtl:left-auto rtl:right-2 px-2 py-0.5 bg-red-600 text-white text-[9px] font-extrabold uppercase tracking-wider rounded-md shadow-xs">
+                        {isArabic ? "أصلي" : "Original"}
                       </span>
                     </div>
 
                     {/* Category & Star Rating */}
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-200 truncate max-w-[170px]">
+                    <div className="flex items-center justify-between gap-1.5 mb-1.5">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-red-600 truncate max-w-[130px]">
                         {categoryName}
                       </span>
                       <div className="flex items-center gap-1 text-amber-500 text-xs font-bold">
-                        <Star className="w-3.5 h-3.5 fill-amber-500" />
+                        <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                         <span>{product.rating || 4.9}</span>
-                        <span className="text-zinc-400 text-[10px]">({product.reviewsCount || 120})</span>
+                        <span className="text-zinc-400 font-normal text-[10px]">({product.reviewsCount || 88})</span>
                       </div>
                     </div>
 
                     {/* Product Title */}
-                    <Link href={`/products/${product.id}`} className="block group/title mb-2">
-                      <h3 className="text-base sm:text-lg font-bold font-display text-zinc-900 tracking-tight leading-snug group-hover/title:text-red-600 transition-colors line-clamp-1">
+                    <Link href={`/products/${product.id}`} className="block group/title mb-1.5">
+                      <h3 className="text-xs sm:text-sm font-bold text-zinc-900 tracking-tight leading-snug group-hover/title:text-red-600 transition-colors line-clamp-1">
                         {title}
                       </h3>
                     </Link>
 
                     {/* Description */}
-                    <p className="text-xs text-zinc-500 leading-relaxed line-clamp-2 mb-5">
+                    <p className="text-xs text-zinc-500 leading-relaxed line-clamp-2 mb-3">
                       {desc}
                     </p>
 
-                    {/* Action Buttons */}
-                    <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center justify-between gap-3">
+                    {/* Action Buttons & Price */}
+                    <div className="mt-auto pt-3 border-t border-zinc-100 flex items-center justify-between gap-2">
                       <div>
-                        <span className="block text-[10px] uppercase font-bold text-zinc-400">
+                        <span className="block text-[9px] uppercase font-bold text-zinc-400">
                           {isArabic ? "السعر" : "Price"}
                         </span>
-                        <span className="text-sm font-extrabold text-zinc-900">
+                        <span className="text-xs sm:text-sm font-black text-zinc-900">
                           {priceTag}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5">
                         <Link
                           href={`/get-a-quote?item=${encodeURIComponent(product.name)}`}
-                          className="px-3.5 py-2 bg-zinc-100 hover:bg-red-600 hover:text-white text-zinc-800 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-200 hover:border-red-600"
+                          className="px-2.5 py-1.5 bg-zinc-100 hover:bg-zinc-900 hover:text-white text-zinc-800 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-200"
                         >
                           {isArabic ? "تسعيرة" : "Quote"}
                         </Link>
                         <a
-                          href={`https://wa.me/971507860161?text=${encodeURIComponent(
+                          href={`https://wa.me/971558674927?text=${encodeURIComponent(
                             isArabic
                               ? `مرحباً الرحمانية لزينة وتنجيد السيارات! أستفسر عن: ${title}`
                               : `Hello Al Rahmaniah Auto Accessories, I am inquiring about: ${product.name}`
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs"
+                          className="inline-flex items-center gap-1 p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-[11px] font-bold transition-all shadow-xs"
+                          title={isArabic ? "طلب عبر واتساب" : "WhatsApp"}
                         >
                           <MessageCircle className="w-3.5 h-3.5" />
-                          <span>{isArabic ? "طلب" : "Order"}</span>
+                          <span className="hidden sm:inline">{isArabic ? "طلب" : "Order"}</span>
                         </a>
                       </div>
                     </div>

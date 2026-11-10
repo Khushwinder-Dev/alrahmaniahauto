@@ -74,75 +74,85 @@ export default function FeaturedProductsShowcase() {
           </div>
         </div>
 
-        {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Product Cards Grid - Refined Compact Size */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {filteredProducts.map((prod: ProductDetailItem) => {
             const title = isArabic && prod.nameAr ? prod.nameAr : prod.name;
             const categoryName = isArabic && prod.categoryAr ? prod.categoryAr : prod.category;
             const desc = isArabic && prod.descriptionAr ? prod.descriptionAr : prod.description;
+            const priceTag = isArabic && prod.priceAr ? prod.priceAr : (prod.price || (isArabic ? "طلب تسعيرة" : "From AED 450"));
 
             return (
               <div
                 key={prod.id}
-                className="group bg-white rounded-2xl overflow-hidden border border-zinc-200 hover:border-red-600/70 transition-all duration-500 flex flex-col justify-between hover:shadow-xl shadow-xs"
+                className="group bg-white rounded-2xl overflow-hidden border border-zinc-200 hover:border-red-600/70 transition-all duration-300 flex flex-col justify-between hover:shadow-lg shadow-xs"
               >
-                {/* Product Image */}
-                <div className="relative aspect-square w-full overflow-hidden bg-zinc-100">
+                {/* Product Image - Compact 4:3 Proportion */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-100">
                   <Image
                     src={prod.image}
                     alt={title}
                     fill
-                    className="object-cover object-center group-hover:scale-108 transition-transform duration-700"
+                    className="object-cover object-center group-hover:scale-108 transition-transform duration-500"
                   />
 
+                  {/* Top Category Badge */}
+                  <div className="absolute top-2.5 left-2.5 rtl:left-auto rtl:right-2.5">
+                    <span className="px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-800 text-[10px] font-bold shadow-xs">
+                      {categoryName}
+                    </span>
+                  </div>
+
                   {/* Quick details link overlay on hover */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2.5">
                     <Link
                       href={`/products?search=${encodeURIComponent(prod.name)}`}
-                      className="p-3 bg-white text-zinc-900 rounded-full hover:bg-red-600 hover:text-white transition-all transform hover:scale-110 shadow-lg"
+                      className="p-2.5 bg-white text-zinc-900 rounded-full hover:bg-red-600 hover:text-white transition-all transform hover:scale-110 shadow-md"
                       title={isArabic ? "عرض التفاصيل" : "View Details"}
                     >
-                      <Eye className="w-5 h-5" />
+                      <Eye className="w-4 h-4" />
                     </Link>
                     <a
                       href={getWhatsAppLink(title)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 bg-emerald-600 text-white rounded-full hover:bg-emerald-500 transition-all transform hover:scale-110 shadow-lg"
+                      className="p-2.5 bg-emerald-600 text-white rounded-full hover:bg-emerald-500 transition-all transform hover:scale-110 shadow-md"
                       title={isArabic ? "طلب عبر واتساب" : "WhatsApp Quick Order"}
                     >
-                      <MessageCircle className="w-5 h-5" />
+                      <MessageCircle className="w-4 h-4" />
                     </a>
                   </div>
                 </div>
 
-                {/* Product Content */}
-                <div className="p-5 flex-1 flex flex-col justify-between">
+                {/* Product Content - Compact Layout */}
+                <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-[11px] font-semibold uppercase tracking-wider text-red-600">
-                        {categoryName}
-                      </span>
+                    {/* Stars + Rating */}
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
                       <div className="flex items-center gap-1 text-amber-500 text-xs font-bold">
                         <Star className="w-3.5 h-3.5 fill-amber-500" />
                         <span>{prod.rating || 4.9}</span>
+                        <span className="text-zinc-400 font-normal text-[10px]">({prod.reviewsCount || 95})</span>
                       </div>
+                      <span className="text-xs font-black text-zinc-900">
+                        {priceTag}
+                      </span>
                     </div>
 
-                    <h3 className="font-bold text-zinc-900 text-base group-hover:text-red-600 transition-colors line-clamp-1">
+                    <h3 className="font-bold text-zinc-900 text-sm group-hover:text-red-600 transition-colors line-clamp-1 leading-snug">
                       {title}
                     </h3>
 
-                    <p className="text-xs text-zinc-500 mt-2 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-zinc-500 mt-1.5 line-clamp-2 leading-relaxed">
                       {desc}
                     </p>
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-zinc-100">
+                  <div className="mt-4 pt-3 border-t border-zinc-100">
                     <div className="grid grid-cols-2 gap-2">
                       <Link
                         href={`/get-a-quote?item=${encodeURIComponent(prod.name)}`}
-                        className="w-full text-center py-2.5 px-3 bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-900 shadow-xs"
+                        className="w-full text-center py-2 px-2.5 bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-900 shadow-xs"
                       >
                         {isArabic ? "طلب تسعيرة" : "Get Quote"}
                       </Link>
@@ -150,10 +160,10 @@ export default function FeaturedProductsShowcase() {
                         href={getWhatsAppLink(title)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-xs"
+                        className="w-full inline-flex items-center justify-center gap-1 py-2 px-2.5 bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors shadow-xs"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
-                        <span>{isArabic ? "اطلب الآن" : "Order Now"}</span>
+                        <span>{isArabic ? "اطلب الآن" : "Order"}</span>
                       </a>
                     </div>
                   </div>
