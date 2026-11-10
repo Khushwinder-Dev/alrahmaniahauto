@@ -1,0 +1,92 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Al Rahmaniah Auto Dedicated Visitor Logs table
+model AlRahmaniahVisitorLog {
+  id               String   @id @default(cuid())
+  ip_address       String   @unique @db.VarChar(191)
+  country          String?  @default("Unknown") @db.VarChar(191)
+  city             String?  @default("Unknown") @db.VarChar(191)
+  timezone         String?  @default("Unknown") @db.VarChar(191)
+  user_agent       String?  @db.Text
+  device_type      String?  @default("Desktop") @db.VarChar(50)
+  browser          String?  @default("Unknown") @db.VarChar(100)
+  os               String?  @default("Unknown") @db.VarChar(100)
+  path_visited     String   @default("/") @db.VarChar(255)
+  visit_count      Int      @default(1)
+  first_visited_at DateTime @default(now())
+  last_visited_at  DateTime @default(now())
+
+  // Exact Geolocation fields
+  latitude         Float?
+  longitude        Float?
+  accuracy         Float?
+  location_source  String?  @default("IP") @db.VarChar(50)
+  exact_location   String?  @db.VarChar(255)
+  maps_url         String?  @db.VarChar(500)
+
+  @@map("alrahmaniah_visitor_logs")
+  @@index([ip_address])
+}
+
+// Bab Al Bustan Visitor Logs table
+model VisitorLog {
+  id               String   @id @default(cuid())
+  ip_address       String   @unique @db.VarChar(191)
+  country          String?  @default("Unknown") @db.VarChar(191)
+  city             String?  @default("Unknown") @db.VarChar(191)
+  timezone         String?  @default("Unknown") @db.VarChar(191)
+  user_agent       String?  @db.Text
+  device_type      String?  @default("Desktop") @db.VarChar(50)
+  browser          String?  @default("Unknown") @db.VarChar(100)
+  os               String?  @default("Unknown") @db.VarChar(100)
+  path_visited     String   @default("/") @db.VarChar(255)
+  visit_count      Int      @default(1)
+  first_visited_at DateTime @default(now())
+  last_visited_at  DateTime @default(now())
+
+  latitude         Float?
+  longitude        Float?
+  accuracy         Float?
+  location_source  String?  @default("IP") @db.VarChar(50)
+  exact_location   String?  @db.VarChar(255)
+  maps_url         String?  @db.VarChar(500)
+
+  @@map("babalbustan_visitor_logs")
+  @@index([ip_address])
+}
+
+// Taj Al Rahmah Visitor Logs table
+model TajVisitorLog {
+  id               String   @id @default(cuid())
+  ip_address       String   @unique @db.VarChar(191)
+  country          String?  @default("Unknown") @db.VarChar(191)
+  city             String?  @default("Unknown") @db.VarChar(191)
+  timezone         String?  @default("Unknown") @db.VarChar(191)
+  user_agent       String?  @db.Text
+  device_type      String?  @default("Desktop") @db.VarChar(50)
+  browser          String?  @default("Unknown") @db.VarChar(100)
+  os               String?  @default("Unknown") @db.VarChar(100)
+  path_visited     String   @default("/") @db.VarChar(255)
+  visit_count      Int      @default(1)
+  first_visited_at DateTime @default(now())
+  last_visited_at  DateTime @default(now())
+
+  latitude         Float?
+  longitude        Float?
+  accuracy         Float?
+  location_source  String?  @default("IP") @db.VarChar(50)
+  exact_location   String?  @db.VarChar(255)
+  maps_url         String?  @db.VarChar(500)
+
+  @@map("visitor_logs")
+  @@index([ip_address])
+}
+
