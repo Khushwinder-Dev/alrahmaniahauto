@@ -28,3 +28,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: "https://alrahmaniahauto.ae/sitemap.xml",
   };
 }
+
