@@ -434,6 +434,14 @@ const NAV_MENU_GROUPS: NavMenuGroup[] = [
       },
       {
         icon: "arrow",
+        titleEn: "Customer FAQs",
+        titleAr: "الأسئلة الشائعة",
+        subEn: "Frequently asked questions about seat covers, 7D mats, and fitment.",
+        subAr: "الأسئلة الشائعة حول تفصيل المقاعد ودعاسات 7D والضمان والتركيب.",
+        href: "/faqs",
+      },
+      {
+        icon: "arrow",
         titleEn: "Contact Us",
         titleAr: "اتصل بنا",
         subEn: "Connect with our team across Dubai and Northern Emirates.",
