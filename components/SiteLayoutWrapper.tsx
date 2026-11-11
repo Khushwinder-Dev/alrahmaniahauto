@@ -7,6 +7,7 @@ import Footer from "@/components/Common/Footer";
 import FloatingChatWidget from "@/components/Common/FloatingChatWidget";
 import WelcomeOfferModal from "@/components/WelcomeOfferModal";
 import VisitorTracker from "@/components/VisitorTracker";
+import SiteSecurityShield from "@/components/Common/SiteSecurityShield";
 
 export default function SiteLayoutWrapper({
   children,
@@ -22,6 +23,7 @@ export default function SiteLayoutWrapper({
 
   return (
     <>
+      <SiteSecurityShield />
       <VisitorTracker />
       <Navbar />
       <main className="min-h-screen">{children}</main>
