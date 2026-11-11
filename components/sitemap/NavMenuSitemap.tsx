@@ -426,6 +426,14 @@ const NAV_MENU_GROUPS: NavMenuGroup[] = [
       },
       {
         icon: "arrow",
+        titleEn: "Blogs & Styling Guides",
+        titleAr: "المدونة وأدلة التعديل",
+        subEn: "Expert guides on custom seat covers, 7D mats, and starlight roofs.",
+        subAr: "أدلة ونصائح حول تفصيل المقاعد ودعاسات 7D وسقف النجوم.",
+        href: "/blogs",
+      },
+      {
+        icon: "arrow",
         titleEn: "Contact Us",
         titleAr: "اتصل بنا",
         subEn: "Connect with our team across Dubai and Northern Emirates.",

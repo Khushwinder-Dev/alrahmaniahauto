@@ -17,6 +17,7 @@ export interface Translations {
     company: string;
     careers: string;
     contact: string;
+    blogs: string;
     getQuote: string;
     searchPlaceholder: string;
     langToggle: string;
@@ -107,6 +108,22 @@ export interface Translations {
       image: string;
     }[];
   };
+  blogs: {
+    heroTitle: string;
+    heroSubtitle: string;
+    sectionTitle: string;
+    sectionDesc: string;
+    searchPlaceholder: string;
+    categoriesTitle: string;
+    readTimePrefix: string;
+    readMoreBtn: string;
+    noResults: string;
+    moreInsights: string;
+    requestQuote: string;
+    quoteCtaDesc: string;
+    requestQuoteBtn: string;
+    teamAuthor: string;
+  };
   footer: {
     tagline1: string;
     tagline2: string;
@@ -167,6 +184,7 @@ const translations: Record<Language, Translations> = {
       company: "Company",
       careers: "Careers",
       contact: "Contact",
+      blogs: "Blogs",
       getQuote: "GET A QUOTE",
       searchPlaceholder: "Search...",
       langToggle: "العربية",
@@ -391,6 +409,25 @@ const translations: Record<Language, Translations> = {
         },
       ],
     },
+    blogs: {
+      heroTitle: "Auto Accessories & Styling Insights",
+      heroSubtitle:
+        "Expert guides on custom car seat covers, 7D floor mats, starlight headliners, colored seatbelts, and automotive upholstery from our master craftsmen in Sharjah.",
+      sectionTitle: "Explore Guides & Styling Insights",
+      sectionDesc:
+        "Stay informed with expert craftsmanship tips, material guides, and styling inspirations to elevate your vehicle's interior and exterior in UAE.",
+      searchPlaceholder: "Search guides & accessories...",
+      categoriesTitle: "Categories",
+      readTimePrefix: "min read",
+      readMoreBtn: "Read Full Article",
+      noResults: "No styling guides found matching your search.",
+      moreInsights: "More Insights",
+      requestQuote: "Need Custom Car Upholstery or Styling?",
+      quoteCtaDesc:
+        "Get a bespoke quotation for custom leather seat covers, 7D mats, or starlight roofs tailored to your car model.",
+      requestQuoteBtn: "Request Custom Quote",
+      teamAuthor: "Al Rahmaniah Master Craft Team",
+    },
     footer: {
       tagline1: "Crafting Comfort.",
       tagline2: "Delivering Automotive Luxury",
@@ -499,6 +536,7 @@ const translations: Record<Language, Translations> = {
       company: "عن الشركة",
       careers: "الوظائف",
       contact: "اتصل بنا",
+      blogs: "المدونة",
       getQuote: "طلب عرض سعر",
       searchPlaceholder: "بحث...",
       langToggle: "English",
@@ -722,6 +760,25 @@ const translations: Record<Language, Translations> = {
           image: "/media/Images/blogSection/Rectangle 34625007.png",
         },
       ],
+    },
+    blogs: {
+      heroTitle: "مدونة زينة وتنجيد السيارات",
+      heroSubtitle:
+        "أحدث النصائح والأدلة الشاملة حول تفصيل فرش السيارات، دواسات 7D، سقف النجوم رولز رويس، أحزمة الأمان الملونة، وخامات التنجيد من خبراء الرحمانية بالشارقة.",
+      sectionTitle: "استكشف أحدث المقالات وأدلة التعديل",
+      sectionDesc:
+        "تعرف على أفضل الخامات وطرق العناية بمقصورة سيارتك مع أحدث تصاميم التنجيد والإكسسوارات الفاخرة الملائمة لأجواء الإمارات.",
+      searchPlaceholder: "ابحث في المقالات والإكسسوارات...",
+      categoriesTitle: "الفئات",
+      readTimePrefix: "دقائق قراءة",
+      readMoreBtn: "اقرأ المقال كاملاً",
+      noResults: "لم يتم العثور على مقالات مطابقة لبحثك.",
+      moreInsights: "المزيد من المقالات",
+      requestQuote: "هل ترغب في تفصيل مقاعد أو تعديل مقصورة سيارتك؟",
+      quoteCtaDesc:
+        "احصل على تسعيرة فورية لتفصيل فرش المقاعد، دعاسات 7D، أو سقف النجوم المخصص لنوع وموديل سيارتك.",
+      requestQuoteBtn: "طلب تسعيرة مخصصة",
+      teamAuthor: "فريق خبراء تفصيل وتنجيد الرحمانية",
     },
     footer: {
       tagline1: "صياغة الراحة.",

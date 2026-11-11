@@ -18,6 +18,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: isArabic ? "المنتجات" : "Products", href: "/products" },
+    { label: isArabic ? "المدونة" : "Blogs", href: "/blogs" },
     { label: isArabic ? "عن الشركة" : "About", href: "/about-us" },
     { label: isArabic ? "الوظائف" : "Careers", href: "/career" },
     { label: isArabic ? "اتصل بنا" : "Contact", href: "/contact" },

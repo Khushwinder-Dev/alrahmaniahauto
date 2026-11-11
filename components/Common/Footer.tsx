@@ -82,6 +82,7 @@ export default function Footer({ hideNewsletter }: { hideNewsletter?: boolean } 
 
   const companyLinks = [
     { label: isArabic ? "من نحن" : "About Us", href: "/about-us" },
+    { label: isArabic ? "المدونة والمقالات" : "Blog & Guides", href: "/blogs" },
     { label: isArabic ? "طلب تسعيرة مخصصة" : "Get a Custom Quote", href: "/get-a-quote" },
     { label: isArabic ? "كتالوج خامات وجلود نابا" : "Bespoke Materials & Swatches", href: "/products?search=napa" },
     { label: isArabic ? "الأسئلة الشائعة" : "Customer FAQs", href: "/faqs" },

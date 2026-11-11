@@ -175,20 +175,24 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
         />
       </div>
 
-      {/* 3. Deep Carbon & Racing Red Gradient Overlays */}
+      {/* 3. Subtle Ambient Overlays (Dynamically reduced when video plays so the video is fully visible) */}
       <div
-        className="absolute inset-0 z-10 pointer-events-none"
+        className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-700 ease-in-out ${
+          isPlayingVideo && !isVideoPaused ? "opacity-15" : "opacity-50"
+        }`}
         style={{
           background: isArabic
-            ? "linear-gradient(270deg, rgba(10, 10, 12, 0.90) 0%, rgba(14, 14, 18, 0.78) 42%, rgba(20, 10, 10, 0.35) 70%, rgba(0, 0, 0, 0.15) 100%)"
-            : "linear-gradient(90deg, rgba(10, 10, 12, 0.90) 0%, rgba(14, 14, 18, 0.78) 42%, rgba(20, 10, 10, 0.35) 70%, rgba(0, 0, 0, 0.15) 100%)",
+            ? "linear-gradient(270deg, rgba(10, 10, 12, 0.65) 0%, rgba(14, 14, 18, 0.35) 45%, transparent 80%)"
+            : "linear-gradient(90deg, rgba(10, 10, 12, 0.65) 0%, rgba(14, 14, 18, 0.35) 45%, transparent 80%)",
         }}
       />
       <div
-        className="absolute inset-0 z-10 pointer-events-none"
+        className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-700 ease-in-out ${
+          isPlayingVideo && !isVideoPaused ? "opacity-10" : "opacity-30"
+        }`}
         style={{
           background:
-            "linear-gradient(180deg, rgba(8, 8, 10, 0.50) 0%, transparent 25%, transparent 65%, rgba(10, 10, 12, 0.85) 100%)",
+            "linear-gradient(180deg, rgba(8, 8, 10, 0.35) 0%, transparent 25%, transparent 75%, rgba(10, 10, 12, 0.45) 100%)",
         }}
       />
 
@@ -242,14 +246,14 @@ export default function HeroSection({ s }: { s?: Record<string, string> }) {
                   exit="exit"
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <h1 className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-[62px] xl:text-[70px] font-extrabold leading-[1.08] tracking-tight">
+                  <h1 className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-[62px] xl:text-[70px] font-extrabold leading-[1.08] tracking-tight drop-shadow-[0_4px_18px_rgba(0,0,0,0.85)]">
                     {activeSlide.titlePart1} <br />
-                    <span className="text-red-600 drop-shadow-[0_2px_24px_rgba(220,38,38,0.6)]">
+                    <span className="text-red-600 drop-shadow-[0_2px_24px_rgba(220,38,38,0.7)]">
                       {activeSlide.titlePart2}
                     </span>
                   </h1>
 
-                  <p className="text-white/85 text-sm sm:text-base md:text-lg max-w-xl font-normal leading-relaxed mt-4 sm:mt-5 mb-7 sm:mb-9">
+                  <p className="text-white text-sm sm:text-base md:text-lg max-w-xl font-normal leading-relaxed mt-4 sm:mt-5 mb-7 sm:mb-9 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
                     {activeSlide.description}
                   </p>
                 </motion.div>
