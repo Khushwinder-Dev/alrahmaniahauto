@@ -203,7 +203,7 @@ export default function NewArrivalsSection() {
                       <div className="pt-2.5 border-t border-zinc-100 flex items-center justify-between gap-1.5">
                         <Link
                           href={`/get-a-quote?product=${encodeURIComponent(product.name)}`}
-                          className="flex-1 py-1.5 px-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1 shadow-xs"
+                          className="flex-1 py-1.5 px-2 rounded-lg bg-red-50 hover:bg-red-600 text-red-600 hover:text-white font-bold text-[10px] uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1 border border-red-200 hover:border-red-600 shadow-2xs"
                         >
                           <span>{isArabic ? "طلب تسعيرة" : "Get Quote"}</span>
                           <ArrowRight className="w-3 h-3 rtl:rotate-180" />
@@ -217,7 +217,7 @@ export default function NewArrivalsSection() {
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 rounded-lg border border-zinc-200 hover:border-emerald-500 hover:bg-emerald-50 text-emerald-600 transition-colors shadow-xs flex-shrink-0"
+                          className="p-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white transition-colors shadow-xs flex-shrink-0"
                           title={isArabic ? "طلب عبر واتساب" : "Order via WhatsApp"}
                         >
                           <MessageCircle className="w-3.5 h-3.5" />

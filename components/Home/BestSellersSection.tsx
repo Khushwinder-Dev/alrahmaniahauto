@@ -136,7 +136,7 @@ export default function BestSellersSection() {
                   <div className="pt-2 border-t border-zinc-100 flex items-center justify-between gap-1.5">
                     <Link
                       href={`/get-a-quote?product=${encodeURIComponent(product.name)}`}
-                      className="flex-1 py-1.5 px-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[9px] sm:text-[10px] uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1 shadow-xs"
+                      className="flex-1 py-1.5 px-2 rounded-lg bg-red-50 hover:bg-red-600 text-red-600 hover:text-white font-bold text-[9px] sm:text-[10px] uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1 border border-red-200 hover:border-red-600 shadow-2xs"
                     >
                       <span>{isArabic ? "تسعيرة" : "Quote"}</span>
                       <ArrowRight className="w-3 h-3 rtl:rotate-180" />
@@ -145,7 +145,7 @@ export default function BestSellersSection() {
                       href={getWhatsAppLink(title)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg bg-zinc-900 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider text-center transition-all flex items-center justify-center shadow-xs"
+                      className="p-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider text-center transition-all flex items-center justify-center shadow-xs"
                       title={isArabic ? "طلب عبر واتساب" : "WhatsApp"}
                     >
                       <MessageCircle className="w-3 h-3" />

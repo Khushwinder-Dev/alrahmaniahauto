@@ -152,7 +152,7 @@ export default function FeaturedProductsShowcase() {
                     <div className="grid grid-cols-2 gap-1">
                       <Link
                         href={`/get-a-quote?item=${encodeURIComponent(prod.name)}`}
-                        className="w-full text-center py-1.5 px-1 bg-zinc-900 hover:bg-zinc-800 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-900 shadow-xs"
+                        className="w-full text-center py-1.5 px-1 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-red-200 hover:border-red-600 shadow-2xs"
                       >
                         {isArabic ? "تسعيرة" : "Quote"}
                       </Link>

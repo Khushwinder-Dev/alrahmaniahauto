@@ -410,7 +410,7 @@ export default function ProductsPage() {
                         <div className="flex items-center gap-1.5">
                           <Link
                             href={`/get-a-quote?item=${encodeURIComponent(product.name)}`}
-                            className="px-2.5 py-1.5 bg-zinc-100 hover:bg-zinc-900 hover:text-white text-zinc-800 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-200"
+                            className="px-2.5 py-1.5 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-red-200 hover:border-red-600 shadow-2xs"
                           >
                             {isArabic ? "تسعيرة" : "Quote"}
                           </Link>
@@ -422,7 +422,7 @@ export default function ProductsPage() {
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition-all shadow-xs"
+                            className="p-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white transition-all shadow-xs"
                             title={isArabic ? "طلب عبر واتساب" : "WhatsApp"}
                           >
                             <MessageCircle className="w-3.5 h-3.5" />
@@ -506,7 +506,7 @@ export default function ProductsPage() {
                       <div className="flex items-center gap-1.5">
                         <Link
                           href={`/get-a-quote?item=${encodeURIComponent(product.name)}`}
-                          className="px-2.5 py-1.5 bg-zinc-100 hover:bg-zinc-900 hover:text-white text-zinc-800 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-zinc-200"
+                          className="px-2.5 py-1.5 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors border border-red-200 hover:border-red-600 shadow-2xs"
                         >
                           {isArabic ? "تسعيرة" : "Quote"}
                         </Link>
@@ -518,7 +518,7 @@ export default function ProductsPage() {
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-[11px] font-bold transition-all shadow-xs"
+                          className="inline-flex items-center gap-1 p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-[10px] sm:text-[11px] font-bold transition-all shadow-xs"
                           title={isArabic ? "طلب عبر واتساب" : "WhatsApp"}
                         >
                           <MessageCircle className="w-3.5 h-3.5" />
